@@ -2,8 +2,8 @@
 
 * itu_row:           query the DuckDB table with the locator keys, rebuild the excerpt for the same fields.
 * finnish_table_row: rebuild the excerpt from the Traficom snapshot by ID.
-* calculation:       re-run the geography for the issue and compare "<relevance>: <note>".
-* regulation:        not produced yet; reported as unchecked.
+* calculation:       re-run the geography or the pfd for the group and compare the excerpt.
+* regulation:        rebuild the excerpt from data/reference/pfd_limits.csv (the RR Table 21-4 transcription).
 
     uv run python -m radar.evidence_check 3074          # exit 1 on any mismatch
 """
@@ -18,6 +18,7 @@ import duckdb
 from radar.adapters import space_ific, traficom_table
 from radar.evidence import parse_excerpt, parse_locator, row_excerpt
 from radar.models import AnalysisResult
+from radar.calc import pfd as PFD
 from radar.pipeline import geography as G
 
 
@@ -37,6 +38,7 @@ def check(result: AnalysisResult) -> list[Check]:
     con = duckdb.connect(str(space_ific.db_path(issue)), read_only=True)
     bands = {b.id: b for b in traficom_table.load_json()}
     geo = None
+    ingest = None
     out: list[Check] = []
     for f in result.findings:
         for e in f.evidence:
@@ -47,9 +49,27 @@ def check(result: AnalysisResult) -> list[Check]:
             elif e.kind == "finnish_table_row":
                 bid = int(e.locator.split("=", 1)[1])
                 found = traficom_table.evidence(bands[bid], e.id).excerpt if bid in bands else None
+            elif e.kind == "regulation" and e.locator.startswith("pfd_limits.csv id="):
+                rid = e.locator.split("=", 1)[1]
+                row = next((r for r in PFD.limits() if r.id == rid), None)
+                found = row.excerpt() if row else None
+            elif e.kind == "calculation" and e.locator.startswith("pfd("):
+                gid = e.locator[len("pfd(group_id="):-1]
+                if ingest is None:
+                    ingest = space_ific.load(issue)
+                g = next((g for n in ingest.notices for g in n.groups if g.group_id == gid), None)
+                n = next((n for n in ingest.notices if g and n.notice_id == g.notice_id), None)
+                gi = PFD.load_inputs(con, [gid]).get(gid)
+                if g and n and gi:
+                    r = PFD.worst_case(g.freq_min_hz, g.freq_max_hz, n.longitude_deg, gi.emissions, gi.gain_dbi, gi.steerable)
+                    w = r.worst
+                    found = (f"pfd {r.pfd_db:.2f} dB(W/m2) in {PFD.fmt_bw(w['bandwidth_hz'])} at {w['point']}; "
+                             f"limit {r.limit_db:.2f}; margin {r.margin_db:.2f} dB") if r.status == "computed" else r.status
             elif e.kind == "calculation" and e.locator.startswith("geography("):
                 if geo is None:
-                    geo = G.for_issue(space_ific.load(issue).notices, con)
+                    if ingest is None:
+                        ingest = space_ific.load(issue)
+                    geo = G.for_issue(ingest.notices, con)
                 key, val = e.locator[len("geography("):-1].split("=", 1)
                 g = geo.by_group.get(val) if key == "group_id" else geo.by_notice.get(val)
                 found = f"{g.relevance}: {g.note}" if g else None

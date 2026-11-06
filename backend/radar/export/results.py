@@ -17,6 +17,7 @@ import json
 from pathlib import Path
 
 from radar.config import ROOT
+from radar.calc import pfd as PFD
 from radar.models import ResultRow
 from radar.pipeline import assemble
 from radar.pipeline import rank as RK
@@ -63,6 +64,14 @@ def notice_rows(run: assemble.SpaceRun, bands: dict) -> list[ResultRow]:
     return out
 
 
+def _pfd_columns(res) -> dict:
+    if res is None or res.status != "computed":
+        return {"calc_method": "pfd_gso_worst_case" if res is not None else "none", "calc_value": None, "calc_unit": None,
+                "limit_value": None, "margin_db": None}
+    return {"calc_method": "pfd_gso_worst_case", "calc_value": res.pfd_db,
+            "calc_unit": f"dB(W/m2) in {PFD.fmt_bw(res.worst['bandwidth_hz'])}", "limit_value": res.limit_db, "margin_db": res.margin_db}
+
+
 def group_rows(run: assemble.SpaceRun, bands: dict) -> list[ResultRow]:
     by_notice = {n.notice_id: n for n in run.ingest.notices}
     out = []
@@ -78,7 +87,7 @@ def group_rows(run: assemble.SpaceRun, bands: dict) -> list[ResultRow]:
             freq_min_mhz=_mhz(r.freq_min_hz), freq_max_mhz=_mhz(r.freq_max_hz), direction=DIRECTION_TEXT[r.direction],
             finnish_match=_finnish_match(ids[:assemble.MAX_FINNISH_ROWS], bands), special_interest_station_ids=", ".join(r.matched_station_numbers) or None,
             overlap_mhz=_mhz(r.overlap_hz), geo_relevance=r.geo_relevance if r.geo_relevance != "unknown" else "unknown",
-            calc_method="none", calc_value=None, calc_unit=None, limit_value=None, margin_db=None,
+            **_pfd_columns((run.pfd or {}).get(r.group_id)),
             concern=s.concern, reason=f"{s.rule}; paths: {', '.join(sorted(r.paths))}; score {s.score}",
             evidence_refs="; ".join(refs), decision=None,
         ))

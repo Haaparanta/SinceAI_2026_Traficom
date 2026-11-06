@@ -20,6 +20,8 @@ from radar.adapters import space_ific, traficom_table
 from radar.config import settings
 from radar.evidence import locator, row_excerpt
 from radar.models import AnalysisResult, CalcTrace, Evidence, Finding
+from radar.calc import pfd as PFD
+from radar.models import CalcInput
 from radar.pipeline import geography as G
 from radar.pipeline import rank as RK
 from radar.pipeline import relevance as rel
@@ -34,6 +36,7 @@ class SpaceRun:
     rows: list                     # GroupRelevance for every screened group
     scores: dict                   # group_id -> GroupScore
     ingest: space_ific.IngestResult
+    pfd: dict = None               # group_id -> PfdResult (C1)
 
 
 def _fmt_hz(hz: int) -> str:
@@ -41,6 +44,44 @@ def _fmt_hz(hz: int) -> str:
         if hz >= div:
             return f"{hz / div:.6g} {unit}"
     return f"{hz} Hz"
+
+
+def _pfd_trace(res, gi, add, source, M, gid, score, geo_ev) -> CalcTrace:
+    """CalcTrace for the lead group, with an evidence item for every input (pm_pack/06 rule 5)."""
+    base_notes = [f"ranking score {score.score} from scoring/weights.json", f"geography evidence {geo_ev}"]
+    if res is None:
+        return CalcTrace(method="none", inputs=[], formula="", result_value=None, result_unit="", limit_value=None,
+                         limit_evidence_id=None, margin_db=None,
+                         notes=["pfd not evaluated: only GSO downlinks over Finnish terrestrial or passive rows that "
+                                "Finland can see are computed in step C1"] + base_notes)
+    if res.status != "computed":
+        return CalcTrace(method="pfd_gso_worst_case", inputs=[], formula=PFD.FORMULA, result_value=None, result_unit="",
+                         limit_value=None, limit_evidence_id=None, margin_db=None, notes=res.notes + base_notes)
+    w = res.worst
+    row = w["limit_row"]
+    t_em, t_beam = M.table("space", "emission"), M.table("space", "beam")
+    em_ev = add("itu_row", source, locator(t_em, **{M.col("space", "emission", "group_id"): gid, "seq_no": w["emission_seq_no"]}),
+                f"{M.col('space', 'emission', 'designation')}={w['designation']}; "
+                f"{M.col('space', 'emission', 'max_power_density_dbw_hz')}={w['p_d_dbw_hz']:.6g}")
+    beam_ev = add("itu_row", source, locator(t_beam, **{M.col("space", "beam", "notice_id"): gi.notice_id,
+                                                        M.col("space", "beam", "direction"): gi.direction_code,
+                                                        M.col("space", "beam", "beam_name"): gi.beam_name}),
+                  f"{M.col('space', 'beam', 'max_gain_dbi')}={w['gain_dbi']:.6g}")
+    lim_ev = add("regulation", f"{row.source}, page {row.page} (data/reference/pfd_limits.csv)",
+                 f"pfd_limits.csv id={row.id}", row.excerpt())
+    calc_ev = add("calculation", "radar.calc.pfd", f"pfd(group_id={gid})",
+                  f"pfd {res.pfd_db:.2f} dB(W/m2) in {PFD.fmt_bw(w['bandwidth_hz'])} at {w['point']}; limit {res.limit_db:.2f}; margin {res.margin_db:.2f} dB")
+    inputs = [
+        CalcInput(name="P_d max power density at antenna input", value=w["p_d_dbw_hz"], unit="dBW/Hz", evidence_id=em_ev),
+        CalcInput(name="G max beam gain", value=w["gain_dbi"], unit="dBi", evidence_id=beam_ev),
+        CalcInput(name="B bandwidth used, min(reference, emission)", value=w["bandwidth_hz"], unit="Hz", evidence_id=lim_ev),
+        CalcInput(name=f"d slant range from {w['point']}", value=w["slant_range_km"], unit="km", evidence_id=geo_ev),
+        CalcInput(name=f"delta angle of arrival at {w['point']}", value=w["elevation_deg"], unit="deg", evidence_id=geo_ev),
+        CalcInput(name="10 log10(4 pi d^2) spreading loss", value=w["spreading_loss_db"], unit="dB", evidence_id=calc_ev),
+    ]
+    return CalcTrace(method="pfd_gso_worst_case", inputs=inputs, formula=PFD.FORMULA, result_value=res.pfd_db,
+                     result_unit=f"dB(W/m2) in {PFD.fmt_bw(w['bandwidth_hz'])}", limit_value=res.limit_db, limit_evidence_id=lim_ev,
+                     margin_db=res.margin_db, label="indicative", notes=res.notes + base_notes)
 
 
 def run(issue: int) -> SpaceRun:
@@ -64,12 +105,23 @@ def run(issue: int) -> SpaceRun:
     G.apply(rows, geo, types)
 
     by_notice = {n.notice_id: n for n in ing.notices}
+    # C1: worst-case pfd for GSO downlinks over Finnish terrestrial or passive rows, visible from Finland
+    eligible = [r for r in rows if r.candidate and r.direction == "space_to_earth" and types.get(r.notice_id) == "G"
+                and r.geo_relevance in ("visible", "low_elevation")
+                and ("pfd_terrestrial" in r.paths or "passive_service" in r.paths)]
+    pfd_inputs = PFD.load_inputs(con, [r.group_id for r in eligible])
+    pfd_results = {}
+    for r in eligible:
+        gi = pfd_inputs.get(r.group_id)
+        lon = by_notice[r.notice_id].longitude_deg
+        if gi is not None and lon is not None:
+            pfd_results[r.group_id] = PFD.worst_case(r.freq_min_hz, r.freq_max_hz, lon, gi.emissions, gi.gain_dbi, gi.steerable)
     scores, lead = {}, {}
     for r in rows:
         n = by_notice[r.notice_id]
         gdet = G.group_relevance(geo, r.notice_id, r.group_id, r.direction).detail
         s = RK.score_group(r, bands=bands_by_id, classes=classes, section=n.special_section,
-                           action=actions.get(r.notice_id), geo_detail=gdet)
+                           action=actions.get(r.notice_id), geo_detail=gdet, pfd=pfd_results.get(r.group_id))
         scores[r.group_id] = s
         if RK.better(s, scores.get(lead.get(r.notice_id))):
             lead[r.notice_id] = r.group_id
@@ -145,16 +197,13 @@ def run(issue: int) -> SpaceRun:
         geo_key = f"group_id={gid}" if gid in geo.by_group else f"notice_id={n.notice_id}"
         geo_ev = add("calculation", "radar.pipeline.geography", f"geography({geo_key})", f"{gres.relevance}: {gres.note}")
 
+        calc = _pfd_trace(pfd_results.get(gid), pfd_inputs.get(gid), add, source, M, gid, s, geo_ev)
+
         more = candidates_per_notice.get(n.notice_id, 0) - (1 if r.candidate else 0)
         reason = (f"{s.rule[0].upper()}{s.rule[1:]}. Lead group {gid}: {_fmt_hz(r.freq_min_hz)} to {_fmt_hz(r.freq_max_hz)} "
                   f"{DIRECTION_TEXT[r.direction]}; geography {r.geo_relevance} ({gres.note})"
-                  + (f"; {more} more candidate group(s) in this notice" if more > 0 else "")
-                  + ". pfd not yet evaluated." if s.concern != "none" else
-                  f"Not raised: {r.drop_reason or s.rule}.")
-        calc = CalcTrace(method="none", inputs=[], formula="", result_value=None, result_unit="", limit_value=None,
-                         limit_evidence_id=None, margin_db=None,
-                         notes=[f"pfd not yet computed (step C1); ranking score {s.score} from scoring/weights.json",
-                                f"geography evidence {geo_ev}"])
+                  + (f"; {more} more candidate group(s) in this notice" if more > 0 else "") + "."
+                  if s.concern != "none" else f"Not raised: {r.drop_reason or s.rule}.")
         findings.append(Finding(
             id="", kind="space", issue=issue, notice_id=n.notice_id, group_id=gid,
             matched_subband_ids=[b.id for b in lanes[:MAX_FINNISH_ROWS]],
@@ -170,7 +219,7 @@ def run(issue: int) -> SpaceRun:
     complete = sum(1 for f in order if f.evidence and all(e.excerpt for e in f.evidence))
     result = AnalysisResult(issue=issue, kind="space", screened=len(order), flagged=sum(1 for f in order if f.concern != "none"),
                             provenance_coverage_pct=round(100 * complete / max(len(order), 1), 1), findings=order)
-    return SpaceRun(result, rows, scores, ing)
+    return SpaceRun(result, rows, scores, ing, pfd_results)
 
 
 def main() -> int:
