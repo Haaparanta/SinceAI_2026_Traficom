@@ -45,7 +45,8 @@ Turn an ITU BR IFIC issue into a ranked, cited, expert-reviewable list of notice
 - **Backend:** Python 3.12, `uv`, FastAPI, Pydantic v2, DuckDB (SQL over the converted tables, Parquet caches), pandas, pyarrow, NumPy, Shapely, pytest.
 - **Database conversion:** `mdbtools` (`brew install mdbtools`; `mdb-tables -1`, `mdb-export`). Fallback: a Windows machine with Access or the ITU tools exporting CSV `[GAP: Q13]`.
 - **AI:** Anthropic Python SDK (`pip install anthropic`), model `claude-opus-5-5` by default with adaptive thinking and the server-side refusal fallback enabled; `LLM_MODEL` in `.env` switches the model; `LLM_DISABLED=1` makes every LLM function return a deterministic placeholder so the pipeline runs offline.
-- **Frontend:** React 19, Vite, TypeScript, Tailwind CSS v4, shadcn/ui, MapLibre GL with a committed Finland GeoJSON, Recharts.
+- **Frontend:** React 19, Vite, TypeScript, Tailwind CSS v4 [built]. Maps and charts are plain SVG over the committed Natural Earth GeoJSON (no MapLibre or Recharts needed so far); shadcn/ui optional. End-to-end tests: Playwright (`make e2e`).
+- **Propagation:** ITU-R P.1546-6 reference implementation Py1546 6.1, pinned to commit e2356290, validated against its 52 ITU cases (`tests/p1546_validation/`).
 - **Design system:** Girlypop theme v2. Import `design/girlypop.css` into `frontend/src/globals.css` and follow `design/girlypop-theme.md`: tokens only, risk badges always with a text label, `bg-sigil` on the page root only, no emoji anywhere, plain language on findings, decisions and exports.
 - **Storage:** files only. `data/derived/*.duckdb`, `data/reference/*.csv`, `data/cache/*.json`, `results/*.csv|json`.
 
@@ -129,9 +130,9 @@ Names below are taken from the ITU's own schema documentation; full column lists
 | Our name | SNS v10 table | Fields we need |
 |---|---|---|
 | notice | `notice` | `ntc_id`, `adm`, `ntwk_org`, `ntc_type` (G GSO, N non-GSO, S specific earth station, T typical earth station, R radio astronomy), `ntf_rsn` (A API, C coordination, N notification), `prov`, `act_code`, `d_rcv`, `wic_no`, `wic_part`, `d_wic`, `tgt_ntc_id` |
-| GSO station | `geo` | `ntc_id`, `sat_name`, `long_nom` (minus = West) |
+| GSO station | `geo` | `ntc_id`, `sat_name`, `long_nom` (minus = West) [CHECKED: 20 West longitudes negative in 3074] |
 | non-GSO station | `non_geo` | `ntc_id`, `sat_name`, `ref_body` |
-| group | `grp` | `grp_id`, `ntc_id`, `beam_name`, `emi_rcp` (E = space station emits, R = receives), `freq_min`, `freq_max` (MHz), `bdwdth` (kHz), `d_inuse`, `adm_resp`, `op_agcy` |
+| group | `grp` | `grp_id`, `ntc_id`, `beam_name`, `emi_rcp`, `freq_min`, `freq_max` (MHz), `bdwdth` (kHz), `wic_no`, `d_inuse`, `adm_resp`, `op_agcy`. [CHECKED] `emi_rcp` describes the notified station: E is space-to-Earth for space-station notices (G, N) but Earth-to-space for earth-station notices (S). `wic_no` = issue that published the group; only groups with `wic_no` = the issue are screened |
 | frequency | `assgn` | assigned frequency; `pfd` and its `bdwdth` where declared |
 | emission | `emiss` | `grp_id`, `seq_no`, `design_emi`, `pep_max` (dBW), `pwr_ds_max` (dBW/Hz), `pwr_ds_nbw` |
 | beam | `s_beam` | `ntc_id`, `emi_rcp`, `beam_name`, `gain` (max dBi), `f_steer` |
@@ -139,13 +140,13 @@ Names below are taken from the ITU's own schema documentation; full column lists
 | service class | `srv_cls` | `grp_id`, nature of service, class of station |
 | orbit (non-GSO) | `orbit`, `phase` | `ntc_id`, `orb_id`, `nbr_sat_pl`, `inclin_ang`, `apog_km`, `perig_km`, `right_asc`, `perig_arg` |
 | pfd mask (non-GSO) | `mask_info`, `mask_lnk1`–`mask_lnk3` | presence and frequency range (C1) |
-| earth station | `e_as_stn`, `e_ant` | `ntc_id`, `ctry`, antenna `gain` |
-| affected networks | `provn`, `all_aff_ntw`, `tr_aff_ntw` | administrations and networks the Bureau identified |
+| earth station | `e_as_stn`, `e_ant`, `e_stn` | [CHECKED] `e_as_stn` links by `grp_id` (not `ntc_id`): `stn_name`, `stn_type` (S specific with `lat_dec`/`long_dec`, T typical without), `ctry`, `gain`; `e_stn` holds the station of an S notice (DMS coordinates); `e_ant` its antenna gain |
+| affected networks | `provn`, `all_aff_ntw`, `tr_aff_ntw` | administrations and networks the Bureau identified. [CHECKED] `provn.adm = 'FIN'` lists Finland as affected for 16 notices of 3074 (provisions 9.11, 9.14, 9.21/C, 11.31, AP30A): always a candidate, concern high |
 | publication | `pub_ssn` | special section reference |
 
 `com_el` and `freq` exist but are marked "BR internal use"; do not build on them. Part I-S action symbols: A new, M modification, N non-basic change, R resubmission, S suppression, W withdrawn.
 
-Terrestrial MDB extract: land-mobile notices are in the FXM domain, spread over several tables, not one. `fxm_terra` (`terrakey`, `adm`, `fragment`, `freq_assgn`, `freq_min`, `freq_max`, `bdwdth`, `emi_cls`, `stn_cls`, `notice_typ`, `intent` = ADD, MODIFY, SUPPRESS or WITHDRAW, `d_rcv`, `geo_key`), `fxm_geo` and `fxm_geo_pt` (`ctry`, `site_name`, `long_dec`, `lat_dec`, `site_alt`), `fxm_ant` (`pwr_ant` dBW, `gain_max`, `gain_type`, `ant_dir`, `azm_max_e`, `hgt_agl`, `eff_hgtmax`, `polar`) and `fxm_ant_hgt` (effective height per azimuth, the P.1546 input). Land-mobile notice forms: T12 transmitting stations, T13 receiving land stations, T14 typical stations. Station classes: FB base, FL land, ML land mobile, MO mobile. The full TerRaBase is SQLite (`BRIFIC_<NNNN>.db3`); the per-issue extract format is still to be confirmed by unzipping.
+Terrestrial MDB extract [CHECKED on 3075 and 3076]: an Access `.mdb` (not SQLite) holding only the notices of that issue, so it is a **change set**: `intent` is ADD, MODIFY, SUPPRESS or RECORDED (no WITHDRAW), MODIFY and SUPPRESS point through `fxm_target` into the Master Register, and no notice of one issue appears in the next. `site_alt` is in `fxm_geo` (not `fxm_geo_pt`); ZONE sites name a territory in `zone_id`. Land-mobile notices are in the FXM domain, spread over several tables, not one. `fxm_terra` (`terrakey`, `adm`, `fragment`, `freq_assgn`, `freq_min`, `freq_max`, `bdwdth`, `emi_cls`, `stn_cls`, `notice_typ`, `intent` = ADD, MODIFY, SUPPRESS or WITHDRAW, `d_rcv`, `geo_key`), `fxm_geo` and `fxm_geo_pt` (`ctry`, `site_name`, `long_dec`, `lat_dec`, `site_alt`), `fxm_ant` (`pwr_ant` dBW, `gain_max`, `gain_type`, `ant_dir`, `azm_max_e`, `hgt_agl`, `eff_hgtmax`, `polar`) and `fxm_ant_hgt` (effective height per azimuth, the P.1546 input). Land-mobile notice forms: T12 transmitting stations, T13 receiving land stations, T14 typical stations. Station classes: FB base, FL land, ML land mobile, MO mobile. The full TerRaBase is SQLite (`BRIFIC_<NNNN>.db3`); the per-issue extract format is still to be confirmed by unzipping.
 
 ---
 

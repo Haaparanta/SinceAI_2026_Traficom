@@ -12,6 +12,9 @@ Reference pages for every document in this repository and for every external res
 | [Challenge brief](challenge-brief/README.md) | [Since_AI_Traficom_Challenge_Brief_FINAL_04112026.pdf](../Since_AI_Traficom_Challenge_Brief_FINAL_04112026.pdf) | The official Traficom brief: problem statement, end-to-end workflow, terrestrial side quest, datasets, evaluation criteria, submission format, contacts |
 | [PM pack](pm-pack/README.md) | [pm_pack/](../pm_pack/) | The six planning documents and the briefing card, and what the official brief has answered since they were drafted |
 | [Design theme](design-theme/README.md) | [design/](../design/) | Girlypop theme v2: tokens, typography, sigil backgrounds, component rules and the document rules these pages follow |
+| [Results](../results/README.md) | [results/](../results/) | The graded results files for Space IFIC 3074 and Terrestrial IFIC 3076: columns, inputs with checksums, method, parameters, assumptions |
+| [Build plan and status](../pm_pack/08_Build_Plan_Step_by_Step.md) | [pm_pack/08](../pm_pack/08_Build_Plan_Step_by_Step.md) | Every build step with its proof, what the real data changed, and what is next |
+| [The screen](../frontend/README.md) | [frontend/](../frontend/) | How to run the one-screen UI and its Playwright tests |
 
 ## Mandatory datasets
 

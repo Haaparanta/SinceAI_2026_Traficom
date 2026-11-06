@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Playwright (reports go to ../reports/, which is git-ignored)
+/test-results/
+/playwright-report/
