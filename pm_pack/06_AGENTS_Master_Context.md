@@ -457,6 +457,7 @@ Shared rules:
 5. Every number on screen comes from a `CalcTrace` or a counted query. No agent writes a literal number into the UI.
 6. The language model never decides concern level, never computes, never cites anything outside the finding.
 7. Keep `pm_pack/` in sync: when a partner answer arrives, the PM updates the `[GAP]` tags before engineers change behaviour.
+8. When a task is done: commit the work, push the branch to `origin` and open a pull request against `main` (`gh pr create`, short title, body that says what changed and why). Never commit straight to `main`; a person reviews and merges.
 
 ---
 
