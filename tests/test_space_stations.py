@@ -103,3 +103,13 @@ def test_3074_station_evidence_points_to_the_sheet():
             s = rows[int(e["locator"].split("=")[1])]
             assert e["excerpt"] == SI.excerpt(s) and s.station_number in f["matched_station_numbers"]
         assert len(b["context"][f["id"]]["stations"]) == len(f["matched_station_numbers"])
+
+
+@needs
+def test_golden_stations():
+    import yaml
+    from pathlib import Path
+    from radar.pipeline import assemble
+    rows = {r.group_id: r for r in assemble.run(3074).rows}
+    for c in yaml.safe_load((Path(__file__).parent / "golden" / "space_3074.yaml").read_text())["cases"]:
+        assert sorted(rows[c["group_id"]].matched_station_numbers) == sorted(c["stations"]), c["notice"]

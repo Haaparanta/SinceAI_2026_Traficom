@@ -8,6 +8,8 @@
 # Stage B2 (frequency relevance) fields:
 #   candidate: true if a concern path applies
 #   paths:     the exact set of paths
+# Special-interest stations (Traficom XLS, read 7 Nov 2026):
+#   stations:  the station numbers whose protected channel the group overlaps and that it can reach
 # Stage B3 (geography) fields:
 #   candidate: after geography
 #   geo:       geo_relevance of the group
@@ -19,6 +21,7 @@ cases:
     b2: {candidate: true, paths: [pfd_terrestrial, space_cofrequency]}
     why: Finnish FIXED rows (IDs 4732-4737) and FSS space-to-Earth rows share the range.
     b3: {candidate: true, geo: visible}
+    stations: ['600529', '601452', '602266', '605729', '623938', '631021', '634993']
     why_b3: "NGSO constellation reaching every latitude."
     checked_by: claude-first-pass
 
@@ -27,6 +30,7 @@ cases:
     b2: {candidate: true, paths: [space_cofrequency]}
     why: only Finnish FSS space-to-Earth rows (IDs 4500-4521); coordination review, no terrestrial pfd path.
     b3: {candidate: true, geo: visible}
+    stations: []
     why_b3: "NGSO constellation reaching every latitude."
     checked_by: claude-first-pass
 
@@ -36,6 +40,7 @@ cases:
     why: FIXED radiolinks 19.315-19.6575 GHz sit inside the group. At 77 W the satellite is likely below the Finnish
       horizon, so geography (B3) should drop it; frequency alone keeps it.
     b3: {candidate: false, geo: not_visible}
+    stations: []
     why_b3: "GSO at 77 W: highest elevation -12.4 deg (Vaasa), below the Finnish horizon."
     checked_by: claude-first-pass
 
@@ -44,6 +49,7 @@ cases:
     b2: {candidate: true, paths: [pfd_terrestrial]}
     why: FIXED radiolinks start at 17.755 GHz (IDs 4689-4693), inside the group; the FSS rows here are Earth-to-space.
     b3: {candidate: true, geo: visible}
+    stations: ['607797', '632251', '643173']
     why_b3: "same constellation as 124742114."
     checked_by: claude-first-pass
 
@@ -52,6 +58,7 @@ cases:
     b2: {candidate: true, paths: [space_cofrequency]}
     why: only Finnish FSS space-to-Earth rows.
     b3: {candidate: false, geo: not_visible}
+    stations: []
     why_b3: "GSO at 77 W, below the Finnish horizon."
     checked_by: claude-first-pass
 
@@ -61,6 +68,7 @@ cases:
     why: Finland lists only FSS Earth-to-space (IDs 4687, 4688) in 17.7-17.725 GHz; FIXED starts at 17.755 GHz, 30 MHz
       above. Dropped under the co-channel rule; adjacent-band question for the specialists.
     b3: {candidate: false, geo: not_visible}
+    stations: []
     why_b3: "GSO at 52.5 W: -0.1 deg from Mariehamn, just below the horizon (borderline; the Bureau names Finland for other groups of this notice under 9.11)."
     checked_by: claude-first-pass
 
@@ -69,6 +77,7 @@ cases:
     b2: {candidate: false, paths: []}
     why: same range and reasoning as 124712266.
     b3: {candidate: false, geo: not_visible}
+    stations: []
     why_b3: "GSO at 131 W, far below the horizon."
     checked_by: claude-first-pass
 
@@ -77,6 +86,7 @@ cases:
     b2: {candidate: false, paths: []}
     why: same range and reasoning as 124712266.
     b3: {candidate: false, geo: not_visible}
+    stations: []
     why_b3: "as 124712266."
     checked_by: claude-first-pass
 
@@ -85,6 +95,7 @@ cases:
     b2: {candidate: false, paths: [uplink_space, uplink_terrestrial]}
     why: an uplink; informational until geography shows an earth station near Finland.
     b3: {candidate: false, geo: unknown}
+    stations: []
     why_b3: "uplink from a typical earth station: no location filed, stays informational."
     checked_by: claude-first-pass
 
@@ -93,5 +104,6 @@ cases:
     b2: {candidate: false, paths: [uplink_space]}
     why: an uplink over Finnish FSS Earth-to-space rows only.
     b3: {candidate: false, geo: unknown}
+    stations: []
     why_b3: "uplink from a typical earth station: no location filed, stays informational."
     checked_by: claude-first-pass
