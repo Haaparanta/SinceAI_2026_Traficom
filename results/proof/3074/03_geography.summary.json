@@ -108,6 +108,16 @@
       "groups": 1
     },
     {
+      "name": "STOCKHOLM",
+      "seq_no": 7,
+      "type": "S",
+      "country": "S",
+      "lat": 59.649200439453125,
+      "lon": 16.584699630737305,
+      "distance_km": 174.8,
+      "groups": 10
+    },
+    {
       "name": "IRBENE",
       "seq_no": 3,
       "type": "S",
@@ -116,16 +126,6 @@
       "lon": 21.854400634765625,
       "distance_km": 261.0,
       "groups": 4
-    },
-    {
-      "name": "STOCKHOLM",
-      "seq_no": 7,
-      "type": "S",
-      "country": "S",
-      "lat": 59.649200439453125,
-      "lon": 16.584699630737305,
-      "distance_km": 279.4,
-      "groups": 10
     }
   ]
 }

@@ -35,10 +35,10 @@
       "BT": 56,
       "MUUT": 22
     },
-    "flagged_stations": 131,
+    "flagged_stations": 121,
     "flags": {
-      "position outside Finland (kept as filed)": 59,
       "RX frequency missing: TX frequency protected": 58,
+      "position outside Finland (kept as filed)": 48,
       "implausible antenna gain over 60 dB (kept as filed)": 17,
       "channel bandwidth missing: transmission bandwidth used": 2,
       "antenna above sea level below the ground (kept as filed)": 1,
