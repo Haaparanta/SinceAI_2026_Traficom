@@ -1,0 +1,70 @@
+# Deploy the hosted demo to Cloud Run (europe-north1, Hamina) on every push to main.
+# Google sign-in is keyless: GitHub's OIDC token is exchanged through Workload Identity Federation
+# for the deploy service account, so no Google key is stored in GitHub. Setup: docs/HOSTING.md.
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-cloud-run
+  cancel-in-progress: false
+
+env:
+  PROJECT_ID: filing-radar-513921
+  REGION: europe-north1
+  SERVICE: filing-radar
+  IMAGE: europe-north1-docker.pkg.dev/filing-radar-513921/filing-radar/app
+  WIF_PROVIDER: projects/382772491710/locations/global/workloadIdentityPools/github/providers/github
+  DEPLOY_SA: github-deploy@filing-radar-513921.iam.gserviceaccount.com
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv run pytest -q
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ env.WIF_PROVIDER }}
+          service_account: ${{ env.DEPLOY_SA }}
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Build and push the image
+        run: |
+          gcloud auth configure-docker europe-north1-docker.pkg.dev --quiet
+          docker build -t "$IMAGE:$GITHUB_SHA" .
+          docker push "$IMAGE:$GITHUB_SHA"
+
+      - id: deploy
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: ${{ env.SERVICE }}
+          region: ${{ env.REGION }}
+          image: ${{ env.IMAGE }}:${{ github.sha }}
+          flags: >-
+            --allow-unauthenticated
+            --service-account=filing-radar-run@filing-radar-513921.iam.gserviceaccount.com
+            --cpu=1 --memory=512Mi --cpu-boost
+            --min-instances=1 --max-instances=2
+            --concurrency=80 --timeout=60
+
+      - name: Smoke test
+        run: |
+          curl -fsS "${{ steps.deploy.outputs.url }}/health"
+          curl -fsS "${{ steps.deploy.outputs.url }}/api/issues" > /dev/null
+          echo "Live at ${{ steps.deploy.outputs.url }}" >> "$GITHUB_STEP_SUMMARY"
