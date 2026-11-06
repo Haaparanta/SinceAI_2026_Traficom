@@ -1,0 +1,587 @@
+{
+  "document": {
+    "title": "Planning criteria and cross-border coordination of frequencies for land mobile systems in the range 29.7 - 470 MHz",
+    "recommendation": "ECC/ERC Recommendation T/R 25-08 (cover: 'Recommendation T/R 25-08')",
+    "edition": "Edition 6 June 2025",
+    "approved": "15 January 1990",
+    "latest_amended": "6 June 2025",
+    "history_as_printed": "RECOMMENDATION T/R 25-08 OF 15 JANUARY 1990 ... REVISED IN VIENNA 1999, IN UTRECHT 2005, IN BRUSSELS 2008 AND IN HELSINKI 2016, AMENDED 28 SEPTEMBER 2018 AND LATEST AMENDED 6 JUNE 2025 (p3)",
+    "pages": 18,
+    "source_file": "data/raw/cept/tr2508/TR2508.pdf (https://docdb.cept.org/download/4789)",
+    "read_method": "pages rendered to PNG with macOS PDFKit (poppler not installed) and text extracted with PDFKit; values on pp 6, 10, 12 checked visually against rendered pages"
+  },
+  "values": [
+    {
+      "section": "Annex 1, A1.2.3 Indicative coordination thresholds for analogue or digital land mobile systems",
+      "page": 6,
+      "reference_bandwidth": "25 kHz (\"within a reference bandwidth of 25 kHz\")",
+      "other_bandwidth_rule": "Page 6-7: for channel spacing > 25 kHz, if spectral power distribution is uniform within the channel: BC = 10 x log10 (channel spacing / 25 kHz) dB, added to the threshold. For all other spectral power distributions, threshold applies within every 25 kHz bandwidth within the channel spacing.",
+      "receiver_height_m": 10,
+      "receiver_height_as_printed": "10 m receiving antenna height",
+      "time_pct": 10,
+      "time_note": "Footnote 2: \"In certain situations, the 1% time curves should be used for digital systems, e.g. to better protect analogue systems.\"",
+      "locations_pct": 50,
+      "applies_at": "at the border-line (0 km)",
+      "distance_km": 0,
+      "interference_case": "co-channel",
+      "system_scope": "land mobile systems (analogue or digital)",
+      "id": "A1-29.7-47",
+      "value_as_printed": "0 dB(µV/m) for frequencies between 29.7 and 47 MHz",
+      "freq_range_as_printed": "between 29.7 and 47 MHz",
+      "freq_min_mhz": 29.7,
+      "freq_max_mhz": 47,
+      "field_strength": 0,
+      "unit": "dBµV/m",
+      "unit_as_printed": "dB(µV/m)",
+      "doubt": "Band edges are shared between adjacent ranges (e.g. 47 MHz appears in two ranges); the document does not say which value applies exactly at an edge. Unit printed 'dB(µV/m)' without space here, 'dB (µV/m)' in the other four lines (typographic only)."
+    },
+    {
+      "section": "Annex 1, A1.2.3 Indicative coordination thresholds for analogue or digital land mobile systems",
+      "page": 6,
+      "reference_bandwidth": "25 kHz (\"within a reference bandwidth of 25 kHz\")",
+      "other_bandwidth_rule": "Page 6-7: for channel spacing > 25 kHz, if spectral power distribution is uniform within the channel: BC = 10 x log10 (channel spacing / 25 kHz) dB, added to the threshold. For all other spectral power distributions, threshold applies within every 25 kHz bandwidth within the channel spacing.",
+      "receiver_height_m": 10,
+      "receiver_height_as_printed": "10 m receiving antenna height",
+      "time_pct": 10,
+      "time_note": "Footnote 2: \"In certain situations, the 1% time curves should be used for digital systems, e.g. to better protect analogue systems.\"",
+      "locations_pct": 50,
+      "applies_at": "at the border-line (0 km)",
+      "distance_km": 0,
+      "interference_case": "co-channel",
+      "system_scope": "land mobile systems (analogue or digital)",
+      "id": "A1-47-108",
+      "value_as_printed": "6 dB (µV/m) for frequencies between 47 and 108 MHz",
+      "freq_range_as_printed": "between 47 and 108 MHz",
+      "freq_min_mhz": 47,
+      "freq_max_mhz": 108,
+      "field_strength": 6,
+      "unit": "dBµV/m",
+      "unit_as_printed": "dB (µV/m)",
+      "doubt": "Band edges are shared between adjacent ranges (e.g. 47 MHz appears in two ranges); the document does not say which value applies exactly at an edge."
+    },
+    {
+      "section": "Annex 1, A1.2.3 Indicative coordination thresholds for analogue or digital land mobile systems",
+      "page": 6,
+      "reference_bandwidth": "25 kHz (\"within a reference bandwidth of 25 kHz\")",
+      "other_bandwidth_rule": "Page 6-7: for channel spacing > 25 kHz, if spectral power distribution is uniform within the channel: BC = 10 x log10 (channel spacing / 25 kHz) dB, added to the threshold. For all other spectral power distributions, threshold applies within every 25 kHz bandwidth within the channel spacing.",
+      "receiver_height_m": 10,
+      "receiver_height_as_printed": "10 m receiving antenna height",
+      "time_pct": 10,
+      "time_note": "Footnote 2: \"In certain situations, the 1% time curves should be used for digital systems, e.g. to better protect analogue systems.\"",
+      "locations_pct": 50,
+      "applies_at": "at the border-line (0 km)",
+      "distance_km": 0,
+      "interference_case": "co-channel",
+      "system_scope": "land mobile systems (analogue or digital)",
+      "id": "A1-108-380",
+      "value_as_printed": "12 dB (µV/m) for frequencies between 108 and 380MHz",
+      "freq_range_as_printed": "between 108 and 380MHz",
+      "freq_min_mhz": 108,
+      "freq_max_mhz": 380,
+      "field_strength": 12,
+      "unit": "dBµV/m",
+      "unit_as_printed": "dB (µV/m)",
+      "doubt": "Band edges are shared between adjacent ranges (e.g. 47 MHz appears in two ranges); the document does not say which value applies exactly at an edge. Printed '380MHz' without a space (typographic only)."
+    },
+    {
+      "section": "Annex 1, A1.2.3 Indicative coordination thresholds for analogue or digital land mobile systems",
+      "page": 6,
+      "reference_bandwidth": "25 kHz (\"within a reference bandwidth of 25 kHz\")",
+      "other_bandwidth_rule": "Page 6-7: for channel spacing > 25 kHz, if spectral power distribution is uniform within the channel: BC = 10 x log10 (channel spacing / 25 kHz) dB, added to the threshold. For all other spectral power distributions, threshold applies within every 25 kHz bandwidth within the channel spacing.",
+      "receiver_height_m": 10,
+      "receiver_height_as_printed": "10 m receiving antenna height",
+      "time_pct": 10,
+      "time_note": "Footnote 2: \"In certain situations, the 1% time curves should be used for digital systems, e.g. to better protect analogue systems.\"",
+      "locations_pct": 50,
+      "applies_at": "at the border-line (0 km)",
+      "distance_km": 0,
+      "interference_case": "co-channel",
+      "system_scope": "land mobile systems (analogue or digital)",
+      "id": "A1-380-400",
+      "value_as_printed": "18 dB (µV/m) for frequencies between 380 and 400 MHz",
+      "freq_range_as_printed": "between 380 and 400 MHz",
+      "freq_min_mhz": 380,
+      "freq_max_mhz": 400,
+      "field_strength": 18,
+      "unit": "dBµV/m",
+      "unit_as_printed": "dB (µV/m)",
+      "doubt": "Band edges are shared between adjacent ranges (e.g. 47 MHz appears in two ranges); the document does not say which value applies exactly at an edge."
+    },
+    {
+      "section": "Annex 1, A1.2.3 Indicative coordination thresholds for analogue or digital land mobile systems",
+      "page": 6,
+      "reference_bandwidth": "25 kHz (\"within a reference bandwidth of 25 kHz\")",
+      "other_bandwidth_rule": "Page 6-7: for channel spacing > 25 kHz, if spectral power distribution is uniform within the channel: BC = 10 x log10 (channel spacing / 25 kHz) dB, added to the threshold. For all other spectral power distributions, threshold applies within every 25 kHz bandwidth within the channel spacing.",
+      "receiver_height_m": 10,
+      "receiver_height_as_printed": "10 m receiving antenna height",
+      "time_pct": 10,
+      "time_note": "Footnote 2: \"In certain situations, the 1% time curves should be used for digital systems, e.g. to better protect analogue systems.\"",
+      "locations_pct": 50,
+      "applies_at": "at the border-line (0 km)",
+      "distance_km": 0,
+      "interference_case": "co-channel",
+      "system_scope": "land mobile systems (analogue or digital)",
+      "id": "A1-400-470",
+      "value_as_printed": "20 dB (µV/m) for frequencies between 400 and 470 MHz",
+      "freq_range_as_printed": "between 400 and 470 MHz",
+      "freq_min_mhz": 400,
+      "freq_max_mhz": 470,
+      "field_strength": 20,
+      "unit": "dBµV/m",
+      "unit_as_printed": "dB (µV/m)",
+      "doubt": "Band edges are shared between adjacent ranges (e.g. 47 MHz appears in two ranges); the document does not say which value applies exactly at an edge."
+    },
+    {
+      "section": "Annex 3, Table 1: Trigger values for partial overlap between narrowband system and wideband systems at a height of 10 m above ground",
+      "page": 10,
+      "freq_range_as_printed": "within the 410-430 MHz and 450-470 MHz frequency bands (Annex 3 title)",
+      "freq_ranges_mhz": [
+        [
+          410,
+          430
+        ],
+        [
+          450,
+          470
+        ]
+      ],
+      "reference_bandwidth": "25 kHz (\"/25 kHz\" in each cell)",
+      "other_bandwidth_rule": "Table 1 Note 2: if a channel bandwidth other than 25 kHz is used, add 10 x Log10 (channel bandwidth/25 kHz). Note 3: for narrowband systems using preferential frequencies and bandwidth > 25 kHz (e.g. 50, 100, 150, 200 kHz), thresholds apply within every 25 kHz bandwidth within the channel spacing.",
+      "receiver_height_m": 10,
+      "receiver_height_as_printed": "Field strength at 10 m height",
+      "time_pct": 10,
+      "locations_pct": 50,
+      "unit": "dBµV/m",
+      "unit_as_printed": "dBμV/m/25 kHz",
+      "interference_case": "partial overlap of narrowband (<=25 kHz, preferential channels) system on one side and system with channel > 1 MHz on the other side (FDD); not full overlap (ECC Report 276 does not cover full overlap, p9)",
+      "height_correction": "p10: 'For practical purposes, an antenna height correction factor of 10 dB from 10 m to 3 m height may be used.' Other examples: Okumura-Hatta 15.6 dB, ITU-R P.1546 10.3 dB, HCM 9 dB.",
+      "id": "A3-T1-pref-a",
+      "row": "System up to 25 kHz using preferential frequency",
+      "column": "Regime a)",
+      "value_as_printed": "20 dBμV/m/25 kHz@40 km beyond the borderline",
+      "field_strength": 20,
+      "distance_km": 40,
+      "applies_at": "40 km inside the neighbouring country",
+      "doubt": "Also stated in prose on p9: 'field strength threshold of 20 dB μV/m at 10 m height in 25 kHz at a distance inside the neighbouring country: Preferential Regime a) at 40 km distance and Preferential Regime b) at 50 km distance'. Table cell says 'beyond the borderline' while Note says '@ stands for at a distance inside the neighbouring country'; read as same meaning. Co-channel vs. adjacent not stated explicitly; context is partial frequency overlap."
+    },
+    {
+      "section": "Annex 3, Table 1: Trigger values for partial overlap between narrowband system and wideband systems at a height of 10 m above ground",
+      "page": 10,
+      "freq_range_as_printed": "within the 410-430 MHz and 450-470 MHz frequency bands (Annex 3 title)",
+      "freq_ranges_mhz": [
+        [
+          410,
+          430
+        ],
+        [
+          450,
+          470
+        ]
+      ],
+      "reference_bandwidth": "25 kHz (\"/25 kHz\" in each cell)",
+      "other_bandwidth_rule": "Table 1 Note 2: if a channel bandwidth other than 25 kHz is used, add 10 x Log10 (channel bandwidth/25 kHz). Note 3: for narrowband systems using preferential frequencies and bandwidth > 25 kHz (e.g. 50, 100, 150, 200 kHz), thresholds apply within every 25 kHz bandwidth within the channel spacing.",
+      "receiver_height_m": 10,
+      "receiver_height_as_printed": "Field strength at 10 m height",
+      "time_pct": 10,
+      "locations_pct": 50,
+      "unit": "dBµV/m",
+      "unit_as_printed": "dBμV/m/25 kHz",
+      "interference_case": "partial overlap of narrowband (<=25 kHz, preferential channels) system on one side and system with channel > 1 MHz on the other side (FDD); not full overlap (ECC Report 276 does not cover full overlap, p9)",
+      "height_correction": "p10: 'For practical purposes, an antenna height correction factor of 10 dB from 10 m to 3 m height may be used.' Other examples: Okumura-Hatta 15.6 dB, ITU-R P.1546 10.3 dB, HCM 9 dB.",
+      "id": "A3-T1-pref-b",
+      "row": "System up to 25 kHz using preferential frequency",
+      "column": "Regime b)",
+      "value_as_printed": "20 dBμV/m/25 kHz@50 km beyond the borderline",
+      "field_strength": 20,
+      "distance_km": 50,
+      "applies_at": "50 km inside the neighbouring country",
+      "doubt": "Also stated in prose on p9: 'field strength threshold of 20 dB μV/m at 10 m height in 25 kHz at a distance inside the neighbouring country: Preferential Regime a) at 40 km distance and Preferential Regime b) at 50 km distance'. Table cell says 'beyond the borderline' while Note says '@ stands for at a distance inside the neighbouring country'; read as same meaning. Co-channel vs. adjacent not stated explicitly; context is partial frequency overlap."
+    },
+    {
+      "section": "Annex 3, Table 1: Trigger values for partial overlap between narrowband system and wideband systems at a height of 10 m above ground",
+      "page": 10,
+      "freq_range_as_printed": "within the 410-430 MHz and 450-470 MHz frequency bands (Annex 3 title)",
+      "freq_ranges_mhz": [
+        [
+          410,
+          430
+        ],
+        [
+          450,
+          470
+        ]
+      ],
+      "reference_bandwidth": "25 kHz (\"/25 kHz\" in each cell)",
+      "other_bandwidth_rule": "Table 1 Note 2: if a channel bandwidth other than 25 kHz is used, add 10 x Log10 (channel bandwidth/25 kHz). Note 3: for narrowband systems using preferential frequencies and bandwidth > 25 kHz (e.g. 50, 100, 150, 200 kHz), thresholds apply within every 25 kHz bandwidth within the channel spacing.",
+      "receiver_height_m": 10,
+      "receiver_height_as_printed": "Field strength at 10 m height",
+      "time_pct": 10,
+      "locations_pct": 50,
+      "unit": "dBµV/m",
+      "unit_as_printed": "dBμV/m/25 kHz",
+      "interference_case": "partial overlap of narrowband (<=25 kHz, preferential channels) system on one side and system with channel > 1 MHz on the other side (FDD); not full overlap (ECC Report 276 does not cover full overlap, p9)",
+      "height_correction": "p10: 'For practical purposes, an antenna height correction factor of 10 dB from 10 m to 3 m height may be used.' Other examples: Okumura-Hatta 15.6 dB, ITU-R P.1546 10.3 dB, HCM 9 dB.",
+      "id": "A3-T1-nonpref-a",
+      "row": "System up to 25 kHz using NON-preferential frequency",
+      "column": "Regime a)",
+      "value_as_printed": "20 dBμV/m/25 kHz@0 km (on the borderline)",
+      "field_strength": 20,
+      "distance_km": 0,
+      "applies_at": "on the borderline",
+      "doubt": " Co-channel vs. adjacent not stated explicitly; context is partial frequency overlap."
+    },
+    {
+      "section": "Annex 3, Table 1: Trigger values for partial overlap between narrowband system and wideband systems at a height of 10 m above ground",
+      "page": 10,
+      "freq_range_as_printed": "within the 410-430 MHz and 450-470 MHz frequency bands (Annex 3 title)",
+      "freq_ranges_mhz": [
+        [
+          410,
+          430
+        ],
+        [
+          450,
+          470
+        ]
+      ],
+      "reference_bandwidth": "25 kHz (\"/25 kHz\" in each cell)",
+      "other_bandwidth_rule": "Table 1 Note 2: if a channel bandwidth other than 25 kHz is used, add 10 x Log10 (channel bandwidth/25 kHz). Note 3: for narrowband systems using preferential frequencies and bandwidth > 25 kHz (e.g. 50, 100, 150, 200 kHz), thresholds apply within every 25 kHz bandwidth within the channel spacing.",
+      "receiver_height_m": 10,
+      "receiver_height_as_printed": "Field strength at 10 m height",
+      "time_pct": 10,
+      "locations_pct": 50,
+      "unit": "dBµV/m",
+      "unit_as_printed": "dBμV/m/25 kHz",
+      "interference_case": "partial overlap of narrowband (<=25 kHz, preferential channels) system on one side and system with channel > 1 MHz on the other side (FDD); not full overlap (ECC Report 276 does not cover full overlap, p9)",
+      "height_correction": "p10: 'For practical purposes, an antenna height correction factor of 10 dB from 10 m to 3 m height may be used.' Other examples: Okumura-Hatta 15.6 dB, ITU-R P.1546 10.3 dB, HCM 9 dB.",
+      "id": "A3-T1-nonpref-b",
+      "row": "System up to 25 kHz using NON-preferential frequency",
+      "column": "Regime b)",
+      "value_as_printed": "20 dBμV/m/25 kHz@0 km (on the borderline)",
+      "field_strength": 20,
+      "distance_km": 0,
+      "applies_at": "on the borderline",
+      "doubt": " Co-channel vs. adjacent not stated explicitly; context is partial frequency overlap."
+    },
+    {
+      "section": "Annex 3, Table 1: Trigger values for partial overlap between narrowband system and wideband systems at a height of 10 m above ground",
+      "page": 10,
+      "freq_range_as_printed": "within the 410-430 MHz and 450-470 MHz frequency bands (Annex 3 title)",
+      "freq_ranges_mhz": [
+        [
+          410,
+          430
+        ],
+        [
+          450,
+          470
+        ]
+      ],
+      "reference_bandwidth": "25 kHz (\"/25 kHz\" in each cell)",
+      "other_bandwidth_rule": "Table 1 Note 2: if a channel bandwidth other than 25 kHz is used, add 10 x Log10 (channel bandwidth/25 kHz). Note 3: for narrowband systems using preferential frequencies and bandwidth > 25 kHz (e.g. 50, 100, 150, 200 kHz), thresholds apply within every 25 kHz bandwidth within the channel spacing.",
+      "receiver_height_m": 10,
+      "receiver_height_as_printed": "Field strength at 10 m height",
+      "time_pct": 10,
+      "locations_pct": 50,
+      "unit": "dBµV/m",
+      "unit_as_printed": "dBμV/m/25 kHz",
+      "interference_case": "partial overlap of narrowband (<=25 kHz, preferential channels) system on one side and system with channel > 1 MHz on the other side (FDD); not full overlap (ECC Report 276 does not cover full overlap, p9)",
+      "height_correction": "p10: 'For practical purposes, an antenna height correction factor of 10 dB from 10 m to 3 m height may be used.' Other examples: Okumura-Hatta 15.6 dB, ITU-R P.1546 10.3 dB, HCM 9 dB.",
+      "id": "A3-T1-wb-a",
+      "row": "System with a channel greater than 1 MHz",
+      "column": "Regime a)",
+      "value_as_printed": "41 dBμV/m/25 kHz@0 km (on the borderline)",
+      "field_strength": 41,
+      "distance_km": 0,
+      "applies_at": "on the borderline",
+      "doubt": " Wideband value is expressed per 25 kHz although the system channel is > 1 MHz; Note 2 conversion 10 x Log10(channel bandwidth/25 kHz) would apply (e.g. +23 dB for 5 MHz is our arithmetic, not printed). Co-channel vs. adjacent not stated explicitly; context is partial frequency overlap."
+    },
+    {
+      "section": "Annex 3, Table 1: Trigger values for partial overlap between narrowband system and wideband systems at a height of 10 m above ground",
+      "page": 10,
+      "freq_range_as_printed": "within the 410-430 MHz and 450-470 MHz frequency bands (Annex 3 title)",
+      "freq_ranges_mhz": [
+        [
+          410,
+          430
+        ],
+        [
+          450,
+          470
+        ]
+      ],
+      "reference_bandwidth": "25 kHz (\"/25 kHz\" in each cell)",
+      "other_bandwidth_rule": "Table 1 Note 2: if a channel bandwidth other than 25 kHz is used, add 10 x Log10 (channel bandwidth/25 kHz). Note 3: for narrowband systems using preferential frequencies and bandwidth > 25 kHz (e.g. 50, 100, 150, 200 kHz), thresholds apply within every 25 kHz bandwidth within the channel spacing.",
+      "receiver_height_m": 10,
+      "receiver_height_as_printed": "Field strength at 10 m height",
+      "time_pct": 10,
+      "locations_pct": 50,
+      "unit": "dBµV/m",
+      "unit_as_printed": "dBμV/m/25 kHz",
+      "interference_case": "partial overlap of narrowband (<=25 kHz, preferential channels) system on one side and system with channel > 1 MHz on the other side (FDD); not full overlap (ECC Report 276 does not cover full overlap, p9)",
+      "height_correction": "p10: 'For practical purposes, an antenna height correction factor of 10 dB from 10 m to 3 m height may be used.' Other examples: Okumura-Hatta 15.6 dB, ITU-R P.1546 10.3 dB, HCM 9 dB.",
+      "id": "A3-T1-wb-b",
+      "row": "System with a channel greater than 1 MHz",
+      "column": "Regime b)",
+      "value_as_printed": "48 dBμV/m/25 kHz@0 km (on the borderline)",
+      "field_strength": 48,
+      "distance_km": 0,
+      "applies_at": "on the borderline",
+      "doubt": " Wideband value is expressed per 25 kHz although the system channel is > 1 MHz; Note 2 conversion 10 x Log10(channel bandwidth/25 kHz) would apply (e.g. +23 dB for 5 MHz is our arithmetic, not printed). Co-channel vs. adjacent not stated explicitly; context is partial frequency overlap."
+    },
+    {
+      "section": "Annex 4, Table 2: Field strength triggers for FDD LTE/NR/CDMA systems at a height of 3 m above ground (restating A4.1.1, A4.1.2, A4.2.1 on p11)",
+      "page": 12,
+      "freq_range_as_printed": "410-430 MHz and 450-470 MHz (Annex 4 title); FDD in 410-420 MHz (duplex with 420-430 MHz) and 450-460 MHz (duplex with 460-470 MHz) (p11)",
+      "freq_ranges_mhz": [
+        [
+          410,
+          430
+        ],
+        [
+          450,
+          470
+        ]
+      ],
+      "reference_bandwidth": "5 MHz (\"/5 MHz\")",
+      "other_bandwidth_rule": "Table 2 Note 2: if a channel bandwidth other than 5 MHz is used, a bandwidth conversion factor applies: 10 x Log10 (channel bandwidth /5 MHz)",
+      "receiver_height_m": 3,
+      "receiver_height_as_printed": "at a height of 3 m above ground",
+      "time_pct": 10,
+      "locations_pct": 50,
+      "unit": "dBµV/m",
+      "unit_as_printed": "dBμV/m/5 MHz (Table 2); dBµV/m/5MHz (A4 prose)",
+      "measure": "mean field strength produced by the cell (all transmitters within the sector) (A4 prose, p11)",
+      "interference_case": "land mobile systems with channel bandwidth > 1 MHz on both sides of the border; table header 'Non-Preferential frequency usage'",
+      "id": "A4-T2-1",
+      "row": "LTE/NR vs. LTE/NR or CDMA vs. CDMA",
+      "column": "Centre frequencies aligned / Preferential codes/PCIs",
+      "case": "Case A (A4.1.1)",
+      "value_as_printed": "55 dBμV/m/5 MHz@0 km",
+      "field_strength": 55,
+      "distance_km": 0,
+      "applies_at": "at the borderline between neighbouring countries",
+      "doubt": "Case A is a joint condition: both 55@0 km AND 37@10 km must not be exceeded ('and'). Co-channel not stated explicitly. Table header says 'Non-Preferential frequency usage' over all columns; A4.4 lets administrations agree preferential frequencies, for which no values are given."
+    },
+    {
+      "section": "Annex 4, Table 2: Field strength triggers for FDD LTE/NR/CDMA systems at a height of 3 m above ground (restating A4.1.1, A4.1.2, A4.2.1 on p11)",
+      "page": 12,
+      "freq_range_as_printed": "410-430 MHz and 450-470 MHz (Annex 4 title); FDD in 410-420 MHz (duplex with 420-430 MHz) and 450-460 MHz (duplex with 460-470 MHz) (p11)",
+      "freq_ranges_mhz": [
+        [
+          410,
+          430
+        ],
+        [
+          450,
+          470
+        ]
+      ],
+      "reference_bandwidth": "5 MHz (\"/5 MHz\")",
+      "other_bandwidth_rule": "Table 2 Note 2: if a channel bandwidth other than 5 MHz is used, a bandwidth conversion factor applies: 10 x Log10 (channel bandwidth /5 MHz)",
+      "receiver_height_m": 3,
+      "receiver_height_as_printed": "at a height of 3 m above ground",
+      "time_pct": 10,
+      "locations_pct": 50,
+      "unit": "dBµV/m",
+      "unit_as_printed": "dBμV/m/5 MHz (Table 2); dBµV/m/5MHz (A4 prose)",
+      "measure": "mean field strength produced by the cell (all transmitters within the sector) (A4 prose, p11)",
+      "interference_case": "land mobile systems with channel bandwidth > 1 MHz on both sides of the border; table header 'Non-Preferential frequency usage'",
+      "id": "A4-T2-2",
+      "row": "LTE/NR vs. LTE/NR or CDMA vs. CDMA",
+      "column": "Centre frequencies aligned / Preferential codes/PCIs",
+      "case": "Case A (A4.1.1)",
+      "value_as_printed": "37 dBμV/m/5 MHz@10 km",
+      "field_strength": 37,
+      "distance_km": 10,
+      "applies_at": "at a distance of 10 km inside the neighbouring country",
+      "doubt": "Case A is a joint condition: both 55@0 km AND 37@10 km must not be exceeded ('and'). Co-channel not stated explicitly. Table header says 'Non-Preferential frequency usage' over all columns; A4.4 lets administrations agree preferential frequencies, for which no values are given."
+    },
+    {
+      "section": "Annex 4, Table 2: Field strength triggers for FDD LTE/NR/CDMA systems at a height of 3 m above ground (restating A4.1.1, A4.1.2, A4.2.1 on p11)",
+      "page": 12,
+      "freq_range_as_printed": "410-430 MHz and 450-470 MHz (Annex 4 title); FDD in 410-420 MHz (duplex with 420-430 MHz) and 450-460 MHz (duplex with 460-470 MHz) (p11)",
+      "freq_ranges_mhz": [
+        [
+          410,
+          430
+        ],
+        [
+          450,
+          470
+        ]
+      ],
+      "reference_bandwidth": "5 MHz (\"/5 MHz\")",
+      "other_bandwidth_rule": "Table 2 Note 2: if a channel bandwidth other than 5 MHz is used, a bandwidth conversion factor applies: 10 x Log10 (channel bandwidth /5 MHz)",
+      "receiver_height_m": 3,
+      "receiver_height_as_printed": "at a height of 3 m above ground",
+      "time_pct": 10,
+      "locations_pct": 50,
+      "unit": "dBµV/m",
+      "unit_as_printed": "dBμV/m/5 MHz (Table 2); dBµV/m/5MHz (A4 prose)",
+      "measure": "mean field strength produced by the cell (all transmitters within the sector) (A4 prose, p11)",
+      "interference_case": "land mobile systems with channel bandwidth > 1 MHz on both sides of the border; table header 'Non-Preferential frequency usage'",
+      "id": "A4-T2-3",
+      "row": "LTE/NR vs. LTE/NR or CDMA vs. CDMA",
+      "column": "Centre frequencies aligned / Non-preferential codes/PCIs",
+      "case": "Case B (A4.1.2)",
+      "value_as_printed": "37 dBμV/m/5 MHz@0 km",
+      "field_strength": 37,
+      "distance_km": 0,
+      "applies_at": "at the borderline between neighbouring countries",
+      "doubt": "Co-channel not stated explicitly. Table header says 'Non-Preferential frequency usage' over all columns; A4.4 lets administrations agree preferential frequencies, for which no values are given."
+    },
+    {
+      "section": "Annex 4, Table 2: Field strength triggers for FDD LTE/NR/CDMA systems at a height of 3 m above ground (restating A4.1.1, A4.1.2, A4.2.1 on p11)",
+      "page": 12,
+      "freq_range_as_printed": "410-430 MHz and 450-470 MHz (Annex 4 title); FDD in 410-420 MHz (duplex with 420-430 MHz) and 450-460 MHz (duplex with 460-470 MHz) (p11)",
+      "freq_ranges_mhz": [
+        [
+          410,
+          430
+        ],
+        [
+          450,
+          470
+        ]
+      ],
+      "reference_bandwidth": "5 MHz (\"/5 MHz\")",
+      "other_bandwidth_rule": "Table 2 Note 2: if a channel bandwidth other than 5 MHz is used, a bandwidth conversion factor applies: 10 x Log10 (channel bandwidth /5 MHz)",
+      "receiver_height_m": 3,
+      "receiver_height_as_printed": "at a height of 3 m above ground",
+      "time_pct": 10,
+      "locations_pct": 50,
+      "unit": "dBµV/m",
+      "unit_as_printed": "dBμV/m/5 MHz (Table 2); dBµV/m/5MHz (A4 prose)",
+      "measure": "mean field strength produced by the cell (all transmitters within the sector) (A4 prose, p11)",
+      "interference_case": "land mobile systems with channel bandwidth > 1 MHz on both sides of the border; table header 'Non-Preferential frequency usage'",
+      "id": "A4-T2-4",
+      "row": "LTE/NR vs. LTE/NR or CDMA vs. CDMA",
+      "column": "Centre frequencies not aligned / All codes/PCIs",
+      "case": "Case A (A4.1.1)",
+      "value_as_printed": "55 dBμV/m/5 MHz@0 km",
+      "field_strength": 55,
+      "distance_km": 0,
+      "applies_at": "at the borderline between neighbouring countries",
+      "doubt": "Case A is a joint condition: both 55@0 km AND 37@10 km must not be exceeded ('and'). Co-channel not stated explicitly. Table header says 'Non-Preferential frequency usage' over all columns; A4.4 lets administrations agree preferential frequencies, for which no values are given."
+    },
+    {
+      "section": "Annex 4, Table 2: Field strength triggers for FDD LTE/NR/CDMA systems at a height of 3 m above ground (restating A4.1.1, A4.1.2, A4.2.1 on p11)",
+      "page": 12,
+      "freq_range_as_printed": "410-430 MHz and 450-470 MHz (Annex 4 title); FDD in 410-420 MHz (duplex with 420-430 MHz) and 450-460 MHz (duplex with 460-470 MHz) (p11)",
+      "freq_ranges_mhz": [
+        [
+          410,
+          430
+        ],
+        [
+          450,
+          470
+        ]
+      ],
+      "reference_bandwidth": "5 MHz (\"/5 MHz\")",
+      "other_bandwidth_rule": "Table 2 Note 2: if a channel bandwidth other than 5 MHz is used, a bandwidth conversion factor applies: 10 x Log10 (channel bandwidth /5 MHz)",
+      "receiver_height_m": 3,
+      "receiver_height_as_printed": "at a height of 3 m above ground",
+      "time_pct": 10,
+      "locations_pct": 50,
+      "unit": "dBµV/m",
+      "unit_as_printed": "dBμV/m/5 MHz (Table 2); dBµV/m/5MHz (A4 prose)",
+      "measure": "mean field strength produced by the cell (all transmitters within the sector) (A4 prose, p11)",
+      "interference_case": "land mobile systems with channel bandwidth > 1 MHz on both sides of the border; table header 'Non-Preferential frequency usage'",
+      "id": "A4-T2-5",
+      "row": "LTE/NR vs. LTE/NR or CDMA vs. CDMA",
+      "column": "Centre frequencies not aligned / All codes/PCIs",
+      "case": "Case A (A4.1.1)",
+      "value_as_printed": "37 dBμV/m/5 MHz@10 km",
+      "field_strength": 37,
+      "distance_km": 10,
+      "applies_at": "at a distance of 10 km inside the neighbouring country",
+      "doubt": "Case A is a joint condition: both 55@0 km AND 37@10 km must not be exceeded ('and'). Co-channel not stated explicitly. Table header says 'Non-Preferential frequency usage' over all columns; A4.4 lets administrations agree preferential frequencies, for which no values are given."
+    },
+    {
+      "section": "Annex 4, Table 2: Field strength triggers for FDD LTE/NR/CDMA systems at a height of 3 m above ground (restating A4.1.1, A4.1.2, A4.2.1 on p11)",
+      "page": 12,
+      "freq_range_as_printed": "410-430 MHz and 450-470 MHz (Annex 4 title); FDD in 410-420 MHz (duplex with 420-430 MHz) and 450-460 MHz (duplex with 460-470 MHz) (p11)",
+      "freq_ranges_mhz": [
+        [
+          410,
+          430
+        ],
+        [
+          450,
+          470
+        ]
+      ],
+      "reference_bandwidth": "5 MHz (\"/5 MHz\")",
+      "other_bandwidth_rule": "Table 2 Note 2: if a channel bandwidth other than 5 MHz is used, a bandwidth conversion factor applies: 10 x Log10 (channel bandwidth /5 MHz)",
+      "receiver_height_m": 3,
+      "receiver_height_as_printed": "at a height of 3 m above ground",
+      "time_pct": 10,
+      "locations_pct": 50,
+      "unit": "dBµV/m",
+      "unit_as_printed": "dBμV/m/5 MHz (Table 2); dBµV/m/5MHz (A4 prose)",
+      "measure": "mean field strength produced by the cell (all transmitters within the sector) (A4 prose, p11)",
+      "interference_case": "land mobile systems with channel bandwidth > 1 MHz on both sides of the border; table header 'Non-Preferential frequency usage'",
+      "id": "A4-T2-6",
+      "row": "LTE/NR vs. CDMA",
+      "column": "all columns (merged cell): centre frequencies aligned or not aligned",
+      "case": "Case A (A4.2.1)",
+      "value_as_printed": "55 dBμV/m/5 MHz@0 km",
+      "field_strength": 55,
+      "distance_km": 0,
+      "applies_at": "at the borderline between neighbouring countries",
+      "doubt": "Case A is a joint condition: both 55@0 km AND 37@10 km must not be exceeded ('and'). Co-channel not stated explicitly. Table header says 'Non-Preferential frequency usage' over all columns; A4.4 lets administrations agree preferential frequencies, for which no values are given."
+    },
+    {
+      "section": "Annex 4, Table 2: Field strength triggers for FDD LTE/NR/CDMA systems at a height of 3 m above ground (restating A4.1.1, A4.1.2, A4.2.1 on p11)",
+      "page": 12,
+      "freq_range_as_printed": "410-430 MHz and 450-470 MHz (Annex 4 title); FDD in 410-420 MHz (duplex with 420-430 MHz) and 450-460 MHz (duplex with 460-470 MHz) (p11)",
+      "freq_ranges_mhz": [
+        [
+          410,
+          430
+        ],
+        [
+          450,
+          470
+        ]
+      ],
+      "reference_bandwidth": "5 MHz (\"/5 MHz\")",
+      "other_bandwidth_rule": "Table 2 Note 2: if a channel bandwidth other than 5 MHz is used, a bandwidth conversion factor applies: 10 x Log10 (channel bandwidth /5 MHz)",
+      "receiver_height_m": 3,
+      "receiver_height_as_printed": "at a height of 3 m above ground",
+      "time_pct": 10,
+      "locations_pct": 50,
+      "unit": "dBµV/m",
+      "unit_as_printed": "dBμV/m/5 MHz (Table 2); dBµV/m/5MHz (A4 prose)",
+      "measure": "mean field strength produced by the cell (all transmitters within the sector) (A4 prose, p11)",
+      "interference_case": "land mobile systems with channel bandwidth > 1 MHz on both sides of the border; table header 'Non-Preferential frequency usage'",
+      "id": "A4-T2-7",
+      "row": "LTE/NR vs. CDMA",
+      "column": "all columns (merged cell): centre frequencies aligned or not aligned",
+      "case": "Case A (A4.2.1)",
+      "value_as_printed": "37 dBμV/m/5 MHz@10 km",
+      "field_strength": 37,
+      "distance_km": 10,
+      "applies_at": "at a distance of 10 km inside the neighbouring country",
+      "doubt": "Case A is a joint condition: both 55@0 km AND 37@10 km must not be exceeded ('and'). Co-channel not stated explicitly. Table header says 'Non-Preferential frequency usage' over all columns; A4.4 lets administrations agree preferential frequencies, for which no values are given."
+    }
+  ],
+  "propagation": {
+    "prescribed_model": "None explicitly prescribed for computing the thresholds. Only prediction parameters are stated: 50% locations, 10% time (A1.2.3; Table 1 Note 1; Table 2 Note 1), with footnote 2 (p6) allowing 1% time curves for digital systems in certain situations.",
+    "p1546": "ITU-R Recommendation P.1546-6 (08/2019) is cited as reference [8] (p18) and on p10 only as an example of the 10 m to 3 m height correction (10.3 dB).",
+    "hcm": "HCM Agreement [7] cited for propagation details and procedures (considering f, p3) and as a basis for agreements (recommends 1); HCM gives 9 dB height correction (p10).",
+    "height_correction": "p10: 10 dB from 10 m to 3 m 'may be used' for practical purposes; examples Okumura-Hatta [6] 15.6 dB, P.1546 10.3 dB, HCM 9 dB.",
+    "bandwidth_correction": "A1: BC = 10 x log10(channel spacing / 25 kHz) dB (uniform PSD only); Annex 3: 10 x Log10(channel bandwidth/25 kHz); Annex 4: 10 x Log10(channel bandwidth/5 MHz).",
+    "divergence": "recommends 6 (p4): administrations may diverge from the technical parameters, propagation models and procedures subject to bilateral/multilateral agreements. Introduction (p2): existing agreements with other levels remain relevant."
+  },
+  "notes": [
+    "Document covers 29.7-470 MHz only; no values above 470 MHz.",
+    "Annex 2 (p8, Figure 1) gives band plans only, no field strengths. Annex 5 (pp13-17) gives PCI/PN code sets; FIN is 'Type country 1' (pp13, 15).",
+    "Annex 3 prose (p9) restates the preferential regimes: 20 dB μV/m at 10 m height in 25 kHz at 40 km (regime a) or 50 km (regime b) inside the neighbouring country.",
+    "A4 prose (p11) values are identical to Table 2 (p12); recorded once per Table 2 cell.",
+    "Only non-AAS base stations are covered (considering n, p3).",
+    "Code sharing in Annex 5 is triggered by exceeding the Annex 4 Table 2 trigger level (p16)."
+  ]
+}
