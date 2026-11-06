@@ -1,0 +1,235 @@
+# Real ITU table and column names -> our names. Step A4 of pm_pack/08.
+#
+# Filled on 2026-11-06 from scripts/inspect_mdb.py on the actual files (mdbtools 1.0.1, all three Jet 4):
+#   data/raw/ific3074/ific3074.mdb    88 tables   (Space, SNS v10)
+#   data/raw/brific3075/brific3075.mdb 136 tables (Terrestrial extract)
+#   data/raw/brific3076/brific3076.mdb 136 tables (Terrestrial extract)
+# Visual proof: reports/schema/schema_<file>.html (python3 scripts/schema_report.py ...).
+# Nothing in the pipeline may name an ITU table or column that is not in this file.
+#
+# Units are [CHECKED] only where a sample row makes them unambiguous; otherwise [HYPOTHESIS].
+# Export rule: mdb-export -D '%Y-%m-%d' -T '%Y-%m-%d %H:%M:%S' -b strip. Without -T, datetime columns
+# come out as MM/DD/YY with two-digit years (seen on notice.d_rcv).
+
+space:
+  source: ific<issue>/ific<issue>.mdb
+  notice:                       # 196 rows in 3074
+    table: notice
+    key: ntc_id
+    columns:
+      notice_id: ntc_id
+      administration: adm       # ITU symbol, e.g. USA, CHN
+      network_org: ntwk_org
+      orbit_code: ntc_type      # 3074: N 112, G 72, S 12 (N non-GSO, G GSO, S specific earth station)
+      reason: ntf_rsn           # 3074: C 76, N 65, A 50, U 5 (A API, C coordination, N notification, U [HYPOTHESIS] Res. 49)
+      provision: prov           # 3074: 9.6 76, 11.2 65, 9.1/IA 50, RS49 5
+      action: act_code          # 3074: A 117, M 77, S 2 (Part I-S symbols: A new, M modification, S suppression)
+      received: d_rcv           # datetime
+      ific_no: wic_no           # 3074 on every row
+      ific_part: wic_part       # 1, 2, 3 or empty
+      ific_date: d_wic          # 2026-06-23 for 3074
+      target_notice_id: tgt_ntc_id
+  special_section:              # 225 rows; several per notice
+    table: pub_ssn
+    key: [ntc_id, seq_no]
+    columns:
+      notice_id: ntc_id
+      reference: ssn_ref        # 3074: CR/C 76, CR/D 58, API/A 50, API/B 22, CR/E 14, RES49 5
+      number: ssn_no
+      revision: ssn_rev
+      revision_no: ssn_rev_no
+  gso:                          # 72 rows
+    table: geo
+    key: ntc_id
+    columns:
+      notice_id: ntc_id
+      satellite_name: sat_name
+      longitude_deg: long_nom   # minus = West [HYPOTHESIS until a West sample is seen]
+  non_gso:                      # 112 rows
+    table: non_geo
+    key: ntc_id
+    columns:
+      notice_id: ntc_id
+      satellite_name: sat_name
+      reference_body: ref_body
+  group:                        # 34 365 rows: every group of every notice in the issue, including historical ones
+    table: grp
+    key: grp_id
+    columns:
+      group_id: grp_id
+      notice_id: ntc_id
+      direction: emi_rcp        # E space station emits (space-to-Earth), R receives
+      beam_name: beam_name
+      freq_min_mhz: freq_min    # MHz [CHECKED: 6168-6182 with bdwdth 14000]
+      freq_max_mhz: freq_max    # MHz [CHECKED]
+      bandwidth_khz: bdwdth     # kHz [CHECKED: 14000 kHz = 6182-6168 MHz]
+      in_use: d_inuse
+      ific_no: wic_no
+      action: act_code
+      max_power_dbw: pwr_max    # [HYPOTHESIS unit]
+      min_elevation_deg: elev_min
+      admin_responsible: adm_resp
+      operating_agency: op_agcy
+  assignment:                   # 96 624 rows
+    table: assgn
+    key: [grp_id, seq_no]
+    columns:
+      group_id: grp_id
+      freq_mhz: freq_mhz        # MHz [CHECKED: 6175 inside 6168-6182]
+  emission:                     # 216 455 rows
+    table: emiss
+    key: [grp_id, seq_no]
+    columns:
+      group_id: grp_id
+      designation: design_emi   # e.g. 14M0F2D--
+      peak_power_dbw: pep_max   # dBW [HYPOTHESIS]
+      max_power_density_dbw_hz: pwr_ds_max   # dBW/Hz [HYPOTHESIS: -22 to -36 in samples]
+      power_density_nbw: pwr_ds_nbw
+  beam:                         # 2 304 rows; joined to grp on (ntc_id, emi_rcp, beam_name)
+    table: s_beam
+    key: [ntc_id, emi_rcp, beam_name]
+    columns:
+      notice_id: ntc_id
+      direction: emi_rcp
+      beam_name: beam_name
+      max_gain_dbi: gain        # dBi [CHECKED: 21 and 26 in samples]
+      steerable: f_steer
+      freq_min_mhz: freq_min
+      freq_max_mhz: freq_max
+      max_power_4khz: pwr_max_4k
+      max_power_1mhz: pwr_max_1m
+  service_area:                 # 930 rows
+    table: srv_area
+    columns:
+      group_id: grp_id
+      country: ctry
+      excluded_api: f_excl_api
+  service_class:                # 60 529 rows
+    table: srv_cls
+    key: [grp_id, seq_no]
+    columns:
+      group_id: grp_id
+      station_class: stn_cls
+      nature_of_service: nat_srv
+  orbit:                        # 11 221 rows
+    table: orbit
+    key: [ntc_id, orb_id]
+    columns:
+      notice_id: ntc_id
+      orbit_id: orb_id
+      satellites_per_plane: nbr_sat_pl
+      inclination_deg: inclin_ang
+      apogee_km: apog_km
+      perigee_km: perig_km
+      right_ascension_deg: right_asc
+  pfd_mask:                     # 23 rows
+    table: mask_info
+    columns:
+      notice_id: ntc_id
+      mask_id: mask_id
+      freq_min_mhz: freq_min
+      freq_max_mhz: freq_max
+  pfd_declared:                 # 119 rows: per-notice declared pfd limits by band
+    table: c_pfd
+    columns:
+      notice_id: ntc_id
+      freq_min_mhz: freq_min
+      freq_max_mhz: freq_max
+      pfd: pfd
+      bandwidth: bdwdth
+  earth_station:                # 48 115 rows; links through grp_id, NOT ntc_id as pm_pack/06 assumed
+    table: e_as_stn
+    key: [grp_id, seq_no]
+    columns:
+      group_id: grp_id
+      station_name: stn_name
+      lon_deg: long_dec
+      lat_deg: lat_dec
+      gain_dbi: gain
+  affected:                     # 759 644 rows: administrations the Bureau identified, per group
+    table: provn
+    columns:
+      group_id: grp_id
+      provision: coord_prov
+      administration: adm
+      network_org: ntwk_org
+      country: ctry
+  affected_networks:
+    table: all_aff_ntw          # 15 882 rows
+  bureau_internal:              # marked "BR internal use" in the ITU docs; never build on these
+    - com_el
+    - freq
+
+terrestrial:
+  source: brific<issue>/brific<issue>.mdb
+  notice:                       # 4 057 rows in 3076; the extract also carries old records (sample dated 1979)
+    table: fxm_terra
+    key: terrakey
+    columns:
+      notice_id: terrakey
+      administration: adm
+      fragment: fragment        # e.g. NTFD_RR
+      freq_mhz: freq_assgn      # MHz [CHECKED: 0.415 with bdwdth_cde 100H]
+      freq_min_mhz: freq_min
+      freq_max_mhz: freq_max
+      bandwidth_khz: bdwdth     # kHz [CHECKED: 0.1 with bdwdth_cde 100H]
+      emission_class: emi_cls
+      station_class: stn_cls
+      notice_type: notice_typ   # T12, T13, T14 for land mobile [SOURCE DATA]
+      intent: intent            # values to be counted in step C2
+      stage: stage
+      received: d_rcv
+      geo_key: geo_key
+  site:                         # 3 724 rows
+    table: fxm_geo
+    key: geo_key
+    columns:
+      geo_key: geo_key
+      geo_type: geo_type        # POINT or CIRCLE (CIRCLE has radius, km [HYPOTHESIS])
+      country: ctry
+      site_name: site_name
+      radius_km: radius
+      lon_deg: long_dec         # decimal degrees [CHECKED]
+      lat_deg: lat_dec
+      altitude_m: site_alt      # lives in fxm_geo, NOT fxm_geo_pt as pm_pack/06 assumed
+  site_point:                   # 6 rows: polygon points for area sites
+    table: fxm_geo_pt
+    columns:
+      geo_key: geo_key
+      lon_deg: long_dec
+      lat_deg: lat_dec
+  transmitter:                  # 871 rows: links notice + antenna to a site
+    table: fxm_tx
+    columns:
+      notice_id: terrakey
+      antenna_key: ant_key
+      geo_key: geo_key
+  receiver:                     # 4 317 rows
+    table: fxm_rx
+    columns:
+      notice_id: terrakey
+      antenna_key: ant_key
+      geo_key: geo_key
+  antenna:                      # 5 197 rows
+    table: fxm_ant
+    key: [terrakey, ant_key]
+    columns:
+      notice_id: terrakey
+      antenna_key: ant_key
+      power_dbw: pwr_dbw
+      power_quantity: pwr_eiv   # E e.r.p., I e.i.r.p., ... [HYPOTHESIS]
+      antenna_power: pwr_ant
+      directivity: ant_dir      # ND non-directional, D directional
+      azimuth_max_deg: azm_max_e
+      max_gain_dbi: gain_max
+      gain_type: gain_type
+      polarisation: polar
+      height_agl_m: hgt_agl
+      max_effective_height_m: eff_hgtmax
+  antenna_height:               # 1 152 rows: effective height per azimuth, P.1546 input
+    table: fxm_ant_hgt
+    columns:
+      notice_id: terrakey
+      antenna_key: ant_key
+      azimuth_deg: azm
+      effective_height_m: eff_hgt
