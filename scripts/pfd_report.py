@@ -138,7 +138,7 @@ def main() -> int:
         + "<h2>Ten smallest margins</h2>" + "".join(cards)
         + "<h2>Why 99 notices stay medium</h2>" + R.table(["Lead group", "Notices"], [[k, str(v)] for k, v in why.most_common()])
         + "<h2>Limit rows</h2><p class='sub'>data/reference/pfd_limits.csv, transcribed from RR 2024 Vol. 1 Article 21 "
-          "Table 21-4 (Rev.WRC-23). Second check on 7 Nov 2026: every row agrees with an independent transcription (data/reference/review); human sign-off pending.</p>"
+          "Table 21-4 (Rev.WRC-23). Signed off on 7 Nov 2026 by Claude (AI agent) at the project owner's request: every row agrees with an independent transcription (data/reference/review).</p>"
         + R.table(["Row", "MHz", "Orbit", "Ref bw Hz", "Limit by angle of arrival", "RR page", "Worst cases", "Review"], lim_rows)
     )
     summary = {"status": "PASS" if ok else "FAIL", "issue": issue, "pfd_status": dict(status), "vectors_ok": vec_ok,

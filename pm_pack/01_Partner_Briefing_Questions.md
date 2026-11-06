@@ -8,6 +8,30 @@ Interrogation script for the Traficom stand and the specialist call slots. Locke
 > - Team size and roles were not provided. Owners are role placeholders: **PM** (product and analysis), **BE** (data and pipeline), **AI** (calculations, LLM, drafting), **FE** (one-screen UI).
 > - Stand hours `[SOURCE DATA]`: Q&A stand **Sat 9:00-12:00 and 14:30-18:00**. Space IFIC specialists **Sat 10-11 and 17-18**. Terrestrial IFIC specialists **Sat 11-12 and 16-17**. Discord is the preferred channel: `traficomsinceai2026`. Named contacts: Pekka Pussinen, Otto Julkunen.
 
+## Final status, 7 Nov 2026: questions not asked
+
+The team did not get to ask the partner, and it is now too late to do so. Every open question is closed with the assumption the code already uses; that assumption is the final choice for the submission, and the results say so (`[HYPOTHESIS]` and `indicative` labels stay on every affected number). A partner answer received later changes the constant or rule named here, and `make freeze` re-runs every check.
+
+| Q | Final decision | Where it lives |
+|---|---|---|
+| Q1 relevance rule | A group is a candidate when its frequencies overlap a row of the Finnish allocation table **and** it can reach Finland: GSO elevation above 0 degrees from at least one of seven Finnish reference points, a non-GSO orbit that covers Finland's latitudes, or an earth station within 500 km. The Bureau naming Finland (`provn`) or an earth station inside Finland is always high. All special sections are screened. | `pipeline/relevance.py`, `pipeline/geography.py`, `pipeline/rank.py` |
+| Q2 pfd limits and method | RR Article 21 Table 21-4 (signed off, `data/reference/review/`), worst-case GSO pfd (peak gain towards Finland, free space, lowest elevation), labelled indicative. Non-GSO: not evaluated, reported as "medium, non-GSO pfd not evaluated". A margin of 15 dB or more lowers a notice to low. | `calc/pfd.py`, `data/reference/pfd_limits.csv`, `rank.PFD_LOW_MARGIN_DB` |
+| Q3 results format | One row per notice in CSV and JSON (`ResultRow`), every notice included with its reason, plus a per-group detail file for space. | `results/`, `results/README.md` |
+| Q4 special-interest XLS | Fetched by the team from the Since AI platform. The matching rule (a station inside a group's frequency range is at least medium) is in `relevance.screen`; the XLS reader that feeds it is not built yet. | `pipeline/relevance.py` |
+| Q5, Q17 demo focus | Both: the pfd calculation with every input on screen, and the same screen switching from Space 3074 to Terrestrial 3076. | `pm_pack/05` section 5 |
+| Q6 scope | Every notice of the issue is screened (196 in 3074, 4 057 in 3076). | results files |
+| Q7 non-GSO | No epfd (Article 22); non-GSO is flagged for review. | `calc/pfd.py` |
+| Q8 Finnish satellite systems | Protected through the Finnish table: a downlink over Finnish space-service rows raises a coordination-review path (concern low). FIN filings in the SRS are not used as a second target. | `pipeline/relevance.py` |
+| Q9 M15 | Not used; M4 (the Finnish allocation table) is the national reference. | |
+| Q10 letter | Formal English draft to the notifying administration, citing the special section, the frequency range, the Finnish use and the indicative calculation; placeholder signature; never sent. | `prompts/letter.md`, `llm/drafts.py` |
+| Q11 neighbours and distance | Any administration other than FIN; land-mobile notices up to 1 000 km (P.1546's limit); without a T/R 25-08 trigger, review within 100 km. | `pipeline/terrestrial.py` |
+| Q12 P.1546 and T/R 25-08 | T/R 25-08 Annex 1 co-channel trigger at the border line (signed off), ITU-R P.1546-6 through the ITU reference code, 10 % time, 50 % locations, 10 m receiving height; within 6 dB below the trigger is medium. | `calc/p1546.py`, `data/reference/tr2508_thresholds.csv` |
+| Q13 database access | `mdbtools` and DuckDB read every issue; no ITU software needed. | `scripts/mdb_to_duckdb.py` |
+| Q14 cloud language model | Optional; the screen, results and demo run without it. | `llm/client.py` |
+| Q15 input files | The full Space IFIC zip; the terrestrial MDB extract with the previous issue for the trend. | `scripts/fetch_data.sh` |
+| Q16 scoring | Unknown; the ranking favours recall (every notice is listed with its reason, nothing is dropped silently). | `results/README.md` |
+| Q18 logistics | Handled by the team on submission day. | |
+
 ---
 
 ## Top 5: the "3-minute stand" shortlist
