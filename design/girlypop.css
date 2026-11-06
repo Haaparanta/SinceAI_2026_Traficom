@@ -1,4 +1,4 @@
-/* Girlypop theme v2 — design tokens for shadcn/ui + Tailwind CSS v4
+/* Girlypop theme v3 (light mode: white pink) on v2 — design tokens for shadcn/ui + Tailwind CSS v4
  * Drop into app/globals.css (after `@import "tailwindcss";`).
  * Every text/background pair below was checked to pass WCAG AA (≥ 4.5:1).
  * See design/girlypop-theme.md for usage rules.
@@ -8,21 +8,21 @@
   --radius: 0.875rem; /* 14px */
 
   /* Neutrals */
-  --background: oklch(0.985 0.008 350);        /* blush white */
-  --foreground: oklch(0.24 0.04 340);          /* berry ink — 15.9:1 */
+  --background: oklch(0.99 0.012 350);         /* v3: white pink (#fff9fd) */
+  --foreground: oklch(0.27 0.07 350);          /* v3: raspberry ink, 14.9:1 */
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.24 0.04 340);
+  --card-foreground: oklch(0.27 0.07 350);
   --popover: oklch(1 0 0 / 0.85);              /* glass: pair with backdrop-blur */
-  --popover-foreground: oklch(0.24 0.04 340);
-  --muted: oklch(0.96 0.015 350);
-  --muted-foreground: oklch(0.52 0.03 340);    /* 5.3:1 on bg */
+  --popover-foreground: oklch(0.27 0.07 350);
+  --muted: oklch(0.965 0.022 350);             /* v3: pink milk */
+  --muted-foreground: oklch(0.5 0.06 350);      /* v3: 6.0:1 on bg, 5.5:1 on muted */
 
   /* Brand */
-  --primary: oklch(0.57 0.2 352);              /* v2: darker so white text passes (4.8:1; v1 was 3.4:1) */
+  --primary: oklch(0.575 0.21 354);            /* v3: hot pink, white text 4.8:1 */
   --primary-foreground: oklch(0.99 0.005 350);
   --primary-soft: oklch(0.72 0.17 352);        /* v2: bright bubblegum for decoration only, never under text */
-  --secondary: oklch(0.94 0.035 310);          /* lavender milk */
-  --secondary-foreground: oklch(0.32 0.08 310);
+  --secondary: oklch(0.945 0.04 350);          /* v3: strawberry milk (was lavender) */
+  --secondary-foreground: oklch(0.4 0.13 352);  /* v3: 8.2:1 on secondary */
   --accent: oklch(0.93 0.05 40);               /* peach fizz */
   --accent-foreground: oklch(0.36 0.08 35);
 
@@ -39,9 +39,9 @@
   --risk-high: oklch(0.94 0.04 20);
   --risk-high-foreground: oklch(0.46 0.17 25);
 
-  --border: oklch(0.91 0.025 350);
-  --input: oklch(0.91 0.025 350);
-  --ring: oklch(0.57 0.2 352);
+  --border: oklch(0.9 0.04 350);
+  --input: oklch(0.88 0.05 350);
+  --ring: oklch(0.575 0.21 354);
 
   --chart-1: oklch(0.66 0.2 352);   /* pink */
   --chart-2: oklch(0.6 0.13 300);   /* lilac — v2: darker to separate from pink */
@@ -56,23 +56,26 @@
   --map-footprint-stroke: oklch(0.57 0.2 352);
 
   --sidebar: oklch(0.97 0.015 350 / 0.8);
-  --sidebar-foreground: oklch(0.24 0.04 340);
-  --sidebar-primary: oklch(0.57 0.2 352);
+  --sidebar-foreground: oklch(0.27 0.07 350);
+  --sidebar-primary: oklch(0.575 0.21 354);
   --sidebar-primary-foreground: oklch(0.99 0.005 350);
   --sidebar-accent: oklch(0.94 0.035 350);
   --sidebar-accent-foreground: oklch(0.3 0.06 345);
-  --sidebar-border: oklch(0.91 0.025 350);
-  --sidebar-ring: oklch(0.57 0.2 352);
+  --sidebar-border: oklch(0.9 0.04 350);
+  --sidebar-ring: oklch(0.575 0.21 354);
 
   /* Extras */
   --gloss: linear-gradient(135deg, oklch(0.8 0.13 352), oklch(0.82 0.1 310));
-  --shadow-soft: 0 1px 2px oklch(0.6 0.15 352 / 0.08), 0 8px 24px oklch(0.6 0.15 352 / 0.12);
+  --shadow-soft: 0 1px 2px oklch(0.6 0.18 354 / 0.08), 0 10px 30px oklch(0.65 0.18 354 / 0.14);
+  /* v3: soft pink glow behind the page (light); the dark theme keeps a faint version */
+  --page-wash: radial-gradient(1100px 560px at 0% -8%, oklch(0.94 0.06 352 / 0.9), transparent 62%),
+    radial-gradient(900px 520px at 100% 0%, oklch(0.95 0.05 330 / 0.8), transparent 60%);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* Cybersigilism background (tiles in design/sigils/) */
-  --sigil-fill: linear-gradient(160deg, oklch(0.57 0.2 352), oklch(0.45 0.12 300));
-  --sigil-opacity: 0.16;        /* see guide 5a: text directly on the pattern uses foreground or secondary-foreground */
+  --sigil-fill: linear-gradient(160deg, oklch(0.7 0.18 354), oklch(0.72 0.13 330));  /* v3: pinker, lighter */
+  --sigil-opacity: 0.13;        /* see guide 5a: text directly on the pattern uses foreground or secondary-foreground */
   --sigil-size: 720px;          /* mosaic tile (960 x 960 artwork) */
   --sigil-size-single: 300px;   /* single-motif tiles (360 x 360 artwork) */
 
@@ -137,6 +140,7 @@
 
   --gloss: linear-gradient(135deg, oklch(0.6 0.15 352), oklch(0.55 0.1 310));
   --shadow-soft: 0 1px 2px oklch(0 0 0 / 0.3), 0 8px 24px oklch(0 0 0 / 0.35);
+  --page-wash: radial-gradient(1100px 560px at 0% -8%, oklch(0.3 0.08 352 / 0.45), transparent 62%);
 
   --sigil-fill: linear-gradient(160deg, oklch(0.8 0.15 352), oklch(0.78 0.1 300));
   --sigil-opacity: 0.2;
@@ -207,8 +211,10 @@
   .bg-sigil::before {
     content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
     background: var(--sigil-fill); opacity: var(--sigil-opacity);
-    -webkit-mask: url("./sigils/mosaic.svg") 0 0 / var(--sigil-size) var(--sigil-size) repeat;
-    mask: url("./sigils/mosaic.svg") 0 0 / var(--sigil-size) var(--sigil-size) repeat;
+    /* v3: the mosaic is a pre-rendered alpha PNG (2x of the 720 px tile). As an SVG mask it blocked the main
+       thread for about 6 s on a mid-range phone; re-render it after `generate.py` changes mosaic.svg. */
+    -webkit-mask: url("./sigils/mosaic.png") 0 0 / var(--sigil-size) var(--sigil-size) repeat;
+    mask: url("./sigils/mosaic.png") 0 0 / var(--sigil-size) var(--sigil-size) repeat;
   }
   .bg-sigil--thorn, .bg-sigil--needle, .bg-sigil--cathedral, .bg-sigil--filigree { --sigil-size: var(--sigil-size-single); }
   .bg-sigil--thorn::before { -webkit-mask-image: url("./sigils/thorn.svg"); mask-image: url("./sigils/thorn.svg"); }

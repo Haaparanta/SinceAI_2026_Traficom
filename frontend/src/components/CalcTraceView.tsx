@@ -20,7 +20,7 @@ export function CalcTraceView({ calc, onEvidence }: { calc: CalcTrace; onEvidenc
   return (
     <div className="p-4 space-y-4">
       <div className="flex flex-wrap items-center gap-2">
-        <h3 className="font-display text-lg font-semibold tracking-tight">{METHOD[calc.method]}</h3>
+        <h2 className="font-display text-lg font-semibold tracking-tight">{METHOD[calc.method]}</h2>
         <span className="rounded-full bg-accent text-accent-foreground px-2.5 py-0.5 text-xs font-semibold">{calc.label === "indicative" ? "Indicative" : "Confirmed"}</span>
       </div>
       {calc.result_value != null ? (
