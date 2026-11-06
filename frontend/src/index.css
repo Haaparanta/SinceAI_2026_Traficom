@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "../../design/girlypop.css";
+
+/* Dark mode follows the theme's .dark class (set on <html> from prefers-color-scheme in main.tsx). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  html, body { background: var(--background); color: var(--foreground); font-family: var(--font-sans); }
+  .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+}
