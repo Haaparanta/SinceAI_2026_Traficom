@@ -1,5 +1,5 @@
 # Filing Radar. Step IDs refer to pm_pack/08_Build_Plan_Step_by_Step.md.
-.PHONY: doctor check-data checksums schema convert subbands ingest test api
+.PHONY: doctor check-data checksums schema convert subbands ingest relevance test api
 
 doctor:        ## A1: tools on PATH, native arm64
 	python3 scripts/doctor.py tools
@@ -31,6 +31,9 @@ ISSUE ?= 3074
 
 ingest:        ## B1: space notices and groups, report reports/$(ISSUE)/01_ingest.html (fails on unflagged red flags)
 	uv run python scripts/ingest_report.py $(ISSUE)
+
+relevance:     ## B2: frequency relevance, report reports/$(ISSUE)/02_relevance.html
+	uv run python scripts/relevance_report.py $(ISSUE)
 
 test:          ## all unit tests
 	uv run pytest -q

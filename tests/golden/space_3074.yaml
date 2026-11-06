@@ -1,0 +1,74 @@
+# Golden cases for Space IFIC 3074. Each case was looked at in its zoomed spectrum view
+# (reports/3074/02_relevance.html, "Ten cases to check by hand", seed 3074) and the outcome agreed.
+#
+# checked_by records who agreed. "claude-first-pass" means the coding agent checked the picture against the raw
+# Finnish rows; a human reviewer should confirm and replace it with their name. Specialist answers (Q1) may change
+# the rule, in which case the expected value changes here first and the code follows.
+#
+# Stage B2 (frequency relevance) fields:
+#   candidate: true if a concern path applies
+#   paths:     the exact set of paths
+issue: 3074
+kind: space
+cases:
+  - group_id: "124746948"
+    notice: USA USASAT-NGSO-3X, CR/C 5995 M2, NGSO, 18.8-19.3 GHz space-to-Earth
+    b2: {candidate: true, paths: [pfd_terrestrial, space_cofrequency]}
+    why: Finnish FIXED rows (IDs 4732-4737) and FSS space-to-Earth rows share the range.
+    checked_by: claude-first-pass
+
+  - group_id: "124742114"
+    notice: F F-SAT-NG-15_B, CR/C 6342, NGSO, 12.7-12.75 GHz space-to-Earth
+    b2: {candidate: true, paths: [space_cofrequency]}
+    why: only Finnish FSS space-to-Earth rows (IDs 4500-4521); coordination review, no terrestrial pfd path.
+    checked_by: claude-first-pass
+
+  - group_id: "124709564"
+    notice: E HISPASAT-3-77W, CR/C 6333, GSO 77 W, 19.45-19.7 GHz space-to-Earth
+    b2: {candidate: true, paths: [pfd_terrestrial, space_cofrequency]}
+    why: FIXED radiolinks 19.315-19.6575 GHz sit inside the group. At 77 W the satellite is likely below the Finnish
+      horizon, so geography (B3) should drop it; frequency alone keeps it.
+    checked_by: claude-first-pass
+
+  - group_id: "324743233"
+    notice: F F-SAT-NG-15_B, CR/C 6342, NGSO, 17.7-17.8 GHz space-to-Earth
+    b2: {candidate: true, paths: [pfd_terrestrial]}
+    why: FIXED radiolinks start at 17.755 GHz (IDs 4689-4693), inside the group; the FSS rows here are Earth-to-space.
+    checked_by: claude-first-pass
+
+  - group_id: "324708950"
+    notice: E HISPASAT-3-77W, CR/C 6333, GSO 77 W, 12.5-12.75 GHz space-to-Earth
+    b2: {candidate: true, paths: [space_cofrequency]}
+    why: only Finnish FSS space-to-Earth rows.
+    checked_by: claude-first-pass
+
+  - group_id: "124712266"
+    notice: E HISPASAT-5-52.5W, CR/C 6331, GSO, 17.7-17.725 GHz space-to-Earth
+    b2: {candidate: false, paths: []}
+    why: Finland lists only FSS Earth-to-space (IDs 4687, 4688) in 17.7-17.725 GHz; FIXED starts at 17.755 GHz, 30 MHz
+      above. Dropped under the co-channel rule; adjacent-band question for the specialists.
+    checked_by: claude-first-pass
+
+  - group_id: "124706730"
+    notice: E HISPASAT-2-131W, CR/C 6334, GSO, 17.7-17.725 GHz space-to-Earth
+    b2: {candidate: false, paths: []}
+    why: same range and reasoning as 124712266.
+    checked_by: claude-first-pass
+
+  - group_id: "324712251"
+    notice: E HISPASAT-5-52.5W, CR/C 6331, GSO, 17.7-17.725 GHz space-to-Earth
+    b2: {candidate: false, paths: []}
+    why: same range and reasoning as 124712266.
+    checked_by: claude-first-pass
+
+  - group_id: "324709326"
+    notice: E HISPASAT-3-77W, CR/C 6333, GSO, 28.5-29 GHz Earth-to-space
+    b2: {candidate: false, paths: [uplink_space, uplink_terrestrial]}
+    why: an uplink; informational until geography shows an earth station near Finland.
+    checked_by: claude-first-pass
+
+  - group_id: "124710641"
+    notice: E HISPASAT-4-58.5W, CR/C 6332, GSO, 29.5-30 GHz Earth-to-space
+    b2: {candidate: false, paths: [uplink_space]}
+    why: an uplink over Finnish FSS Earth-to-space rows only.
+    checked_by: claude-first-pass
