@@ -108,21 +108,17 @@ Turn an ITU BR IFIC issue into a ranked, cited, expert-reviewable list of notice
 
 ## Data acquisition
 
-`scripts/fetch_data.sh` (run by a human; everything lands in `data/raw/`, which is git-ignored):
+`scripts/fetch_data.sh` (run by a human; everything lands in `data/raw/`, which is git-ignored) fetches the graded issues and
+extracts their databases: `ific3074.zip` -> `ific3074/ific3074.mdb`, `brific3076.zip` -> `brific3076/brific3076.mdb`,
+`brific3075.zip` -> `brific3075/brific3075.mdb` (previous issue, for the diff), plus `ReadMe_3076.pdf`, `ific3076_article11.pdf`,
+`PREFACE_EN.pdf`, `SRSDiagramV9_1.pdf`, the M4 PDFs in `finlex_m4/` and `taajuusjakotaulukko.json` (about 75 MB).
 
-```bash
-#!/usr/bin/env bash
-set -euo pipefail
-mkdir -p data/raw && cd data/raw
-curl -L -o ific3074.zip  https://www.itu.int/sns/ific10/ific3074.zip                       # 60.8 MB, graded
-curl -L -o brific3076.zip https://www.itu.int/en/ITU-R/terrestrial/brific/BRIFIC/MDB/brific3076.zip   # 2.4 MB, graded
-curl -L -o brific3075.zip https://www.itu.int/en/ITU-R/terrestrial/brific/BRIFIC/MDB/brific3075.zip   # 3.4 MB, previous issue
-curl -L -o ReadMe_3076.pdf https://www.itu.int/en/ITU-R/terrestrial/brific/BRIFIC/ReadMe/ReadMe_3076.pdf
-curl -L -o SRSDiagramV9_1.pdf https://www.itu.int/en/ITU-R/space/Documents/SRSDiagramV9_1.pdf
-curl -L -o taajuusjakotaulukko.json https://opendata.traficom.fi/api/v13/Taajuusjakotaulukko
-unzip -o ific3074.zip -d ific3074 && unzip -o brific3076.zip -d brific3076 && unzip -o brific3075.zip -d brific3075
-# The special-interest XLS comes from the Since AI platform: save it as data/raw/special_interest.xlsx
-```
+`scripts/download_data.sh` is the full version it wraps: every 2026 Space IFIC (3062-3083), terrestrial issues 3074-3083 with their
+Article 11 indexes and ReadMes, M15, the ITU Radio Regulations 2024, the CEPT ECO exports and the Traficom station registers
+(about 720 MB). `SPACE_IFICS="3084" scripts/download_data.sh` adds a new issue; `UNZIP="ific3083" ...` extracts another database.
+Every URL, issue date, column list and licence is in `data/SOURCES.md`; checksums land in `data/MANIFEST.sha256`.
+
+The special-interest XLS comes from the Since AI platform: save it as `data/raw/special_interest.xlsx`.
 
 Then `python scripts/inspect_mdb.py data/raw/ific3074/*.mdb` and fill `schema_map.yaml`. Only after that may `space_ific.py` be written.
 
