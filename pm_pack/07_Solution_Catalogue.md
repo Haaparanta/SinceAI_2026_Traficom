@@ -1,9 +1,10 @@
 # 07 — Solution Catalogue: more solutions, what each needs, what is fast enough, and where logic beats AI
 
 > [!IMPORTANT]
-> **Based on the official brief and verified sources.** Docs 01–06 were drafted from the README alone. This catalogue uses the official challenge brief (`Since_AI_Traficom_Challenge_Brief_FINAL_04112026.pdf`) and public ITU, CEPT and Traficom sources checked on 6 Nov 2026.
-> Labels: `[VERIFIED]` = checked against the named source. `[ESTIMATE]` = our own calculation or assumption. `[GAP]` = unknown; ask Traficom at the Q&A or check on the data.
-> Where this document conflicts with 01–06, this document wins. The hypothetical schema in `06_AGENTS_Master_Context.md` should be replaced by the real tables in section 2.
+> **Verified schema and solution reference.** This catalogue complements docs 01–06. Doc 06 stays the master context for agents, doc 02 the scope, doc 05 the schedule. This document adds three things they do not cover in depth: the ITU table and column names checked against the ITU's own schema documentation (section 2), a wider menu of solutions with what each needs (section 4), and per-stage speed budgets (section 3).
+> Sources: the official challenge brief (`Since_AI_Traficom_Challenge_Brief_FINAL_04112026.pdf`) and public ITU, CEPT and Traficom documents checked on 6 Nov 2026.
+> Labels: `[VERIFIED]` = checked against the named source. `[ESTIMATE]` = our own calculation or assumption. `[GAP]` = unknown; ask Traficom at the Q&A or check on the data. Question numbers Q1–Q18 refer to doc 01.
+> Doc 06's table list has been updated from section 2. Names still go through `schema_map.yaml` until `scripts/inspect_mdb.py` has run on the real files.
 
 ---
 
@@ -350,6 +351,8 @@ Extension to a third context later (for example terrestrial fixed links or broad
 
 ## 6. Recommended build order for the 48 hours
 
+Doc 05 owns the schedule and gate times. This section only says which catalogue items fit each gate.
+
 Friday night to Saturday 09:00 (Gate 2): L2 on both zips, L3 and L9 with the Traficom table, L8, L14, P1. Outcome: the tool processes 3074 and 3076 end-to-end and prints ranked candidates with evidence, no calculations yet. Show this at the Q&A and ask the questions in section 7.
 
 Saturday 09:00 to 16:00 (Gate 3): L4 with the transcribed Table 21-4, L11 with `Py1546` validated, L10, A1, P2, P4. Outcome: findings carry pfd or field-strength margins with parameters and citations.
@@ -364,15 +367,15 @@ Roles (four people): BE takes L2, L8, L9, L1; AI takes L4, L5, L11, A1, A2; FE t
 
 ## 7. New questions for the Saturday Q&A
 
-These replace the data-format questions in doc 01, which the brief and the ITU pages have now answered.
+Doc 01 holds the master list (Q1–Q18). The items below sharpen existing questions or add new ones; the doc 01 number each belongs to is in brackets.
 
-1. Can you give us `SRS_IFIC3074.mdb` (both parts) or a SpaceQry export of all Finnish networks and of all networks in the bands you care about? Without it, L6 runs on Part II-S of 2026 only.
-2. Which Radio Regulations edition should Table 21-4 be taken from (we assume the 2024 edition), and do you apply any national pfd or field-strength limits beyond it (for example from the special-interest list)?
-3. For T/R 25-08 at sea borders: coastline or maritime boundary, and do your bilateral agreements with Sweden, Norway, Russia and Estonia change the thresholds, time percentage (10 %) or receiving height (10 m)?
-4. Which notice types count as "land-mobile notices" for the 3076 evaluation: T12 base stations only, or also T13 receiving stations and T14 typical stations?
-5. What should the separate results file for 3074 and 3076 look like: one row per notice, or one row per finding, and which columns do you need to score accuracy?
-6. The XLS: exact columns, and does each station carry a protection threshold or do you expect us to derive one?
-7. Which special sections matter most to you in practice: API/A, CR/C, AP30B, or Part I-S notifications? And what does a specialist actually send after review (comment under No. 9.3, disagreement under No. 9.52, informal letter)?
+1. [Q8, new detail] Can you give us `SRS_IFIC3074.mdb` (both parts) or a SpaceQry export of all Finnish networks and of all networks in the bands you care about? Without it, L6 runs on Part II-S of 2026 only.
+2. [Q2, new detail] Which Radio Regulations edition should Table 21-4 be taken from (we assume the 2024 edition), and do you apply any national pfd or field-strength limits beyond it (for example from the special-interest list)?
+3. [Q12, new detail] For T/R 25-08 at sea borders: coastline or maritime boundary, and do your bilateral agreements with Sweden, Norway, Russia and Estonia change the thresholds, time percentage (10 %) or receiving height (10 m)?
+4. [Q11, new detail] Which notice types count as "land-mobile notices" for the 3076 evaluation: T12 base stations only, or also T13 receiving stations and T14 typical stations?
+5. [Q3, already covered] What should the separate results file for 3074 and 3076 look like: one row per notice, or one row per finding, and which columns do you need to score accuracy?
+6. [Q4, already covered] The XLS: exact columns, and does each station carry a protection threshold or do you expect us to derive one?
+7. [Q1 and Q10, already covered] Which special sections matter most to you in practice: API/A, CR/C, AP30B, or Part I-S notifications? And what does a specialist actually send after review (comment under No. 9.3, disagreement under No. 9.52, informal letter)?
 
 ---
 
