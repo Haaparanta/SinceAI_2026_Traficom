@@ -1,0 +1,125 @@
+"""Step B5 of pm_pack/08: the graded results files.
+
+    uv run python -m radar.export --issue 3074 --kind space
+
+writes
+    results/space_3074.csv, results/space_3074.json          one ResultRow per screened notice (the main file)
+    results/space_3074_groups.csv                             one ResultRow per candidate group (detail, Q3 open)
+
+Rows come from the same run as the findings report, so counts match the funnel and the concern bars.
+Output is deterministic: same inputs, byte-identical files (tested). No timestamps inside the files.
+"""
+from __future__ import annotations
+
+import csv
+import io
+import json
+from pathlib import Path
+
+from radar.config import ROOT
+from radar.models import ResultRow
+from radar.pipeline import assemble
+from radar.pipeline import rank as RK
+
+RESULTS_DIR = ROOT / "results"
+COLUMNS = list(ResultRow.model_fields)
+DIRECTION_TEXT = assemble.DIRECTION_TEXT
+
+
+def _mhz(hz: int | None) -> float | None:
+    return None if hz is None else round(hz / 1e6, 6)
+
+
+def _finnish_match(ids: list[int], bands: dict) -> str | None:
+    if not ids:
+        return None
+    services = []
+    for i in ids:
+        s = bands[i].services_in_finland
+        if s not in services:
+            services.append(s)
+    return f"{'; '.join(services)} (IDs {', '.join(str(i) for i in ids)})"
+
+
+def notice_rows(run: assemble.SpaceRun, bands: dict) -> list[ResultRow]:
+    by_notice = {n.notice_id: n for n in run.ingest.notices}
+    rows_by_group = {r.group_id: r for r in run.rows}
+    out = []
+    for f in run.result.findings:
+        n = by_notice[f.notice_id]
+        r = rows_by_group.get(f.group_id) if f.group_id else None
+        out.append(ResultRow(
+            issue=f.issue, kind=f.kind, notice_id=f.notice_id, special_section=n.special_section,
+            administration=n.administration, network_or_station=n.network_name,
+            freq_min_mhz=_mhz(r.freq_min_hz) if r else None, freq_max_mhz=_mhz(r.freq_max_hz) if r else None,
+            direction=DIRECTION_TEXT[r.direction] if r else None,
+            finnish_match=_finnish_match(f.matched_subband_ids, bands),
+            special_interest_station_ids=", ".join(f.matched_station_numbers) or None,
+            overlap_mhz=_mhz(f.overlap_hz) if r else None, geo_relevance=f.geo_relevance,
+            calc_method=f.calc.method, calc_value=f.calc.result_value, calc_unit=f.calc.result_unit or None,
+            limit_value=f.calc.limit_value, margin_db=f.calc.margin_db, concern=f.concern, reason=f.reason,
+            evidence_refs="; ".join(e.locator for e in f.evidence), decision=None,
+        ))
+    return out
+
+
+def group_rows(run: assemble.SpaceRun, bands: dict) -> list[ResultRow]:
+    by_notice = {n.notice_id: n for n in run.ingest.notices}
+    out = []
+    for r in sorted((r for r in run.rows if r.candidate), key=lambda r: (r.notice_id, r.group_id)):
+        n = by_notice[r.notice_id]
+        s = run.scores[r.group_id]
+        ids = sorted({i for p in r.paths.values() for i in p}) or r.matched_subband_ids
+        refs = [f"grp.grp_id={r.group_id}"] + [f"Taajuusjakotaulukko.ID={i}" for i in ids[:assemble.MAX_FINNISH_ROWS]] + \
+               [f"provn.grp_id={r.group_id}&adm=FIN&coord_prov={p}" for p in r.finland_named_provisions]
+        out.append(ResultRow(
+            issue=run.result.issue, kind="space", notice_id=r.notice_id, special_section=n.special_section,
+            administration=n.administration, network_or_station=n.network_name,
+            freq_min_mhz=_mhz(r.freq_min_hz), freq_max_mhz=_mhz(r.freq_max_hz), direction=DIRECTION_TEXT[r.direction],
+            finnish_match=_finnish_match(ids[:assemble.MAX_FINNISH_ROWS], bands), special_interest_station_ids=", ".join(r.matched_station_numbers) or None,
+            overlap_mhz=_mhz(r.overlap_hz), geo_relevance=r.geo_relevance if r.geo_relevance != "unknown" else "unknown",
+            calc_method="none", calc_value=None, calc_unit=None, limit_value=None, margin_db=None,
+            concern=s.concern, reason=f"{s.rule}; paths: {', '.join(sorted(r.paths))}; score {s.score}",
+            evidence_refs="; ".join(refs), decision=None,
+        ))
+    return out
+
+
+def to_csv(rows: list[ResultRow]) -> str:
+    buf = io.StringIO()
+    w = csv.DictWriter(buf, fieldnames=COLUMNS, lineterminator="\n")
+    w.writeheader()
+    for r in rows:
+        w.writerow({k: ("" if v is None else v) for k, v in r.model_dump().items()})
+    return buf.getvalue()
+
+
+def to_json(rows: list[ResultRow]) -> str:
+    return json.dumps([r.model_dump() for r in rows], indent=1, ensure_ascii=False) + "\n"
+
+
+def export_space(issue: int, out_dir: Path = RESULTS_DIR) -> dict:
+    from radar.adapters import traficom_table
+
+    run = assemble.run(issue)
+    bands = {b.id: b for b in traficom_table.subbands()}
+    main_rows, detail = notice_rows(run, bands), group_rows(run, bands)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    paths = {
+        "csv": out_dir / f"space_{issue}.csv",
+        "json": out_dir / f"space_{issue}.json",
+        "groups_csv": out_dir / f"space_{issue}_groups.csv",
+    }
+    paths["csv"].write_text(to_csv(main_rows), encoding="utf-8")
+    paths["json"].write_text(to_json(main_rows), encoding="utf-8")
+    paths["groups_csv"].write_text(to_csv(detail), encoding="utf-8")
+    from collections import Counter
+    return {"paths": {k: str(v) for k, v in paths.items()}, "rows": len(main_rows), "group_rows": len(detail),
+            "concern": dict(Counter(r.concern for r in main_rows)),
+            "group_concern": dict(Counter(r.concern for r in detail)),
+            "run": run}
+
+
+def concern_order_ok(rows: list[ResultRow]) -> bool:
+    order = [RK.CONCERN_ORDER[r.concern] for r in rows]
+    return order == sorted(order, reverse=True)

@@ -1,5 +1,5 @@
 # Filing Radar. Step IDs refer to pm_pack/08_Build_Plan_Step_by_Step.md.
-.PHONY: doctor check-data checksums schema convert subbands ingest relevance geography findings check-evidence test api
+.PHONY: doctor check-data checksums schema convert subbands ingest relevance geography findings check-evidence results test api
 
 doctor:        ## A1: tools on PATH, native arm64
 	python3 scripts/doctor.py tools
@@ -43,6 +43,10 @@ findings:      ## B4: ranked findings with evidence, report reports/$(ISSUE)/04_
 
 check-evidence: ## B4: reopen every citation of data/derived/findings_space_$(ISSUE).json
 	PYTHONPATH=backend:. uv run python -m radar.evidence_check $(ISSUE)
+
+results:       ## B5: results/space_$(ISSUE).csv|json + groups detail, reconciliation reports/$(ISSUE)/05_results.html
+	PYTHONPATH=backend:. uv run python -m radar.export --issue $(ISSUE) --kind space
+	uv run python scripts/results_report.py $(ISSUE)
 
 test:          ## all unit tests
 	uv run pytest -q
