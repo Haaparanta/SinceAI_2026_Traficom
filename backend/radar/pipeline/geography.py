@@ -183,11 +183,11 @@ def for_issue(notices: list[Notice], con: duckdb.DuckDBPyConnection) -> IssueGeo
         es_notice[nid] = {"name": name, "country": None, "lat": dms_to_deg(la_d, la_m, la_s, la_h),
                           "lon": dms_to_deg(lo_d, lo_m, lo_s, lo_h)}
     group_stations: dict[str, list[dict]] = {}
-    for gid, name, stype, ctry, lat, lon in con.execute(
-            f"SELECT CAST({q('earth_station','group_id')} AS VARCHAR), {q('earth_station','station_name')}, "
+    for gid, seq, name, stype, ctry, lat, lon in con.execute(
+            f"SELECT CAST({q('earth_station','group_id')} AS VARCHAR), {q('earth_station','seq_no')}, {q('earth_station','station_name')}, "
             f"{q('earth_station','station_type')}, {q('earth_station','country')}, {q('earth_station','lat_deg')}, "
             f"{q('earth_station','lon_deg')} FROM {M.t('space','earth_station')}").fetchall():
-        group_stations.setdefault(gid, []).append({"name": name, "type": stype, "country": ctry,
+        group_stations.setdefault(gid, []).append({"name": name, "seq_no": seq, "type": stype, "country": ctry,
                                                    "lat": None if lat is None else float(lat),
                                                    "lon": None if lon is None else float(lon)})
 

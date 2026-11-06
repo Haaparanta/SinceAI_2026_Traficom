@@ -26,6 +26,7 @@ table { border-collapse:collapse; width:100%; background:var(--card); border:1px
 th, td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
 th { font-size:12px; color:var(--muted); font-weight:600; }
 td.num { text-align:right; font-variant-numeric:tabular-nums; }
+td:first-child { white-space:nowrap; }
 .badge { display:inline-block; padding:1px 7px; border-radius:999px; font-size:11px; font-weight:700; letter-spacing:.02em; }
 .ok { background:var(--okbg); color:var(--ok); } .bad { background:var(--badbg); color:var(--bad); }
 .warn { background:var(--warnbg); color:var(--warn); }

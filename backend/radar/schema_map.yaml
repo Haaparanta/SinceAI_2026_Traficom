@@ -142,6 +142,7 @@ space:
     key: [grp_id, seq_no]
     columns:
       group_id: grp_id
+      seq_no: seq_no
       station_name: stn_name
       station_type: stn_type    # S specific (has coordinates, 2 104 in 3074 groups), T typical (no location)
       country: ctry
