@@ -1,7 +1,7 @@
-# 💬 01 — Partner Briefing Questions (Traficom)
+# 01 — Partner Briefing Questions (Traficom)
 
 > [!WARNING]
-> 🍒 **Draft — based on missing data**
+> **Draft — based on missing data**
 > This pack was generated from `README.md` alone (~180 words). There were **no datasets, sample filings, API docs, evaluation criteria or team details** available.
 > - `[README]` = stated in the README. `[HYPOTHESIS]` = our domain guess, **unverified**. `[GAP - ASK PARTNER]` = unknown; must be asked.
 > - Team size and roles (`{TEAM_SIZE}`, `{ROLES_AND_STRENGTHS}`) were not provided, so owners are role placeholders: **PM, BE** (backend/data), **AI**, **FE** (frontend).
@@ -9,7 +9,7 @@
 
 ---
 
-## ⏱️ Top 5: "If We Only Get 3 Minutes"
+## Top 5: "If We Only Get 3 Minutes"
 
 | # | Question | Why we ask → How the answer changes our code |
 |---|----------|-----------------------------------------------|
@@ -60,4 +60,4 @@
 "We ingest the full filing data, including coverage and antenna diagrams, project each footprint over Finland and run first-pass interference screening against regulatory limits. Your experts get an explained risk queue instead of starting from raw data."
 
 > [!TIP]
-> 💡 After the briefing: paste answers into `01b_Partner_Briefing_Card.html` and tap **Copy** to get a ready update prompt for Claude.
+> After the briefing: paste answers into `01b_Partner_Briefing_Card.html` and tap **Copy** to get a ready update prompt for Claude.

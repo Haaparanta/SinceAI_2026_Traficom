@@ -1,7 +1,7 @@
-# 🎀 AGENTS.md — Master Context (Filing Radar)
+# AGENTS.md — Master Context (Filing Radar)
 
 > [!WARNING]
-> 🍒 **Draft — based on missing data**
+> **Draft — based on missing data**
 > This architecture was designed from `README.md` alone. The data schemas below are **our own `[HYPOTHESIS]` model**, not ITU or Traficom formats. Do not treat any field name as an official spec. When real partner data arrives, change **only** the adapter (`backend/app/adapters/partner.py`) and, if needed, add fields to the models. See "Final Verification" at the end.
 >
 > To use: `ln -s pm_pack/06_AGENTS_Master_Context.md AGENTS.md` (and the same for `CLAUDE.md` / `.cursorrules`).
@@ -23,7 +23,7 @@ Help Traficom spectrum experts discover international satellite filings that may
 - **Backend:** Python 3.12, FastAPI, Pydantic v2, Shapely (geometry), pytest
 - **AI:** Claude API (`claude-sonnet-5-5`) with structured output for extraction and explanations. If the NDA forbids cloud models `[GAP]`, swap to a local open-weight model behind the same `LLMClient` interface.
 - **Frontend:** React + Vite + TypeScript, shadcn/ui + Tailwind CSS v4, MapLibre GL (map), Recharts (frequency chart)
-- **Design system:** 🎀 Girlypop theme v2. Import `design/girlypop.css` into `frontend/src/globals.css` and follow `design/girlypop-theme.md`. Use only theme tokens (no hex codes); risk badges use `risk-*` tokens with a text label; no emoji or playful copy on findings, decisions or exports.
+- **Design system:** Girlypop theme v2. Import `design/girlypop.css` into `frontend/src/globals.css` and follow `design/girlypop-theme.md`. Use only theme tokens (no hex codes); risk badges use `risk-*` tokens with a text label; put `bg-sigil` on the app's `<body>` for the hand-drawn cybersigilism mosaic background (see `design/sigils/preview.html`), and keep text that sits directly on it in `foreground` or `secondary-foreground`; no emoji anywhere in the UI or docs, and no playful copy on findings, decisions or exports.
 - **Storage:** JSON files in `/data` (no database needed for the hackathon)
 
 ## Folder Tree

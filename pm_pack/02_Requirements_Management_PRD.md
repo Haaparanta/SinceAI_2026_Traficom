@@ -1,7 +1,7 @@
-# 📋 02 — Requirements & PRD: "Filing Radar" (Wedge 1)
+# 02 — Requirements & PRD: "Filing Radar" (Wedge 1)
 
 > [!WARNING]
-> 🍒 **Draft — based on missing data**
+> **Draft — based on missing data**
 > Written from `README.md` only. No real filings, protected-asset lists, user interviews or evaluation criteria were available.
 > - All numbers in the before/after workflow are **`[HYPOTHESIS]` placeholders** and must be replaced with partner figures (see Q7 in `01_Partner_Briefing_Questions.md`).
 > - Owners are role placeholders (**PM, BE, AI, FE**) because team size and roles were not provided. Hour estimates assume ~4 people.
@@ -27,7 +27,7 @@
 | Explain why a filing matters | Written by the expert from scratch | Draft explanation with cited evidence, edited by expert |
 | Decision | Expert | **Still the expert** (approve / dismiss / investigate) |
 
-**Proof metrics on screen:** ① estimated expert minutes saved per circular, ② share of flags with complete source evidence (target 100 %).
+**Proof metrics on screen:** (1) estimated expert minutes saved per circular, (2) share of flags with complete source evidence (target 100 %).
 
 ---
 
@@ -35,7 +35,7 @@
 
 ```
 ┌───────────────────────────────────────────────────────────────────────┐
-│ INPUT: [Upload filing] [Sample 1] [Sample 2] [Sample 3]  ⚙ Demo Mode ◉ │
+│ INPUT: [Upload filing] [Sample 1] [Sample 2] [Sample 3] [Demo Mode: on] │
 ├───────────────────────────────┬───────────────────────────────────────┤
 │ CENTRAL VIEW                  │ ACTIONABLE OUTPUT                      │
 │  • Map: filing footprint vs   │  Risk score 0–100 + label              │
@@ -45,7 +45,7 @@
 │  • Reasoning trace (steps)    │   - [Approve] [Dismiss] [Investigate]  │
 │                               │  [Export memo]                         │
 ├───────────────────────────────┴───────────────────────────────────────┤
-│ PROOF METRICS: ⏱ minutes saved  ·  📎 evidence coverage %              │
+│ PROOF METRICS: minutes saved  ·  evidence coverage %                  │
 └───────────────────────────────────────────────────────────────────────┘
 ```
 
