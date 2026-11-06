@@ -1,5 +1,5 @@
 # Filing Radar. Step IDs refer to pm_pack/08_Build_Plan_Step_by_Step.md.
-.PHONY: doctor check-data checksums schema convert subbands ingest relevance geography findings check-evidence results pfd test api
+.PHONY: doctor check-data checksums schema convert subbands ingest relevance geography findings check-evidence results pfd diff index test api
 
 doctor:        ## A1: tools on PATH, native arm64
 	python3 scripts/doctor.py tools
@@ -50,6 +50,14 @@ results:       ## B5: results/space_$(ISSUE).csv|json + groups detail, reconcili
 
 pfd:           ## C1: worst-case pfd report reports/$(ISSUE)/06_pfd.html
 	uv run python scripts/pfd_report.py $(ISSUE)
+
+PREV ?= 3075
+
+diff:          ## C2: terrestrial change set and trend, report reports/$(ISSUE)/01_diff.html (make diff ISSUE=3076)
+	uv run python scripts/diff_report.py $(ISSUE) $(PREV)
+
+index:         ## reports/index.html: every stage report with its status
+	uv run python scripts/reports_index.py
 
 test:          ## all unit tests
 	uv run pytest -q
