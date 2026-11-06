@@ -1,0 +1,28 @@
+{
+  "source": "ECC/ERC Recommendation T/R 25-08, edition 6 June 2025 (https://docdb.cept.org/download/4789), Annex 1 section A1.2.3; values unchanged since the 28 September 2018 edition",
+  "scope": "Land mobile systems 29.7-470 MHz. Indicative coordination thresholds: co-channel, 50 % of locations, 10 % of time, 10 m receiving antenna height, reference bandwidth 25 kHz, at the border line.",
+  "unit": "dB(uV/m) per 25 kHz at 10 m height",
+  "narrowband_thresholds": [
+    {"f_min_mhz": 29.7, "f_max_mhz": 47.0,  "threshold_dbuv_m": 0},
+    {"f_min_mhz": 47.0, "f_max_mhz": 108.0, "threshold_dbuv_m": 6},
+    {"f_min_mhz": 108.0, "f_max_mhz": 380.0, "threshold_dbuv_m": 12},
+    {"f_min_mhz": 380.0, "f_max_mhz": 400.0, "threshold_dbuv_m": 18},
+    {"f_min_mhz": 400.0, "f_max_mhz": 470.0, "threshold_dbuv_m": 20}
+  ],
+  "bandwidth_correction": "For channel spacing greater than 25 kHz with uniform spectral power distribution: BC = 10 * log10(channel_spacing_kHz / 25) dB is added to the threshold (A1.2.3). Otherwise the threshold applies within every 25 kHz of the channel.",
+  "wideband_annex3": {
+    "note": "Annex 3, Table 1: partial overlap between narrowband (up to 25 kHz) and wideband (channel > 1 MHz) systems, field strength at 10 m height.",
+    "narrowband_preferential_regime_a": "20 dBuV/m/25 kHz at 40 km beyond the border line",
+    "narrowband_preferential_regime_b": "20 dBuV/m/25 kHz at 50 km beyond the border line",
+    "narrowband_non_preferential": "20 dBuV/m/25 kHz at 0 km (on the border line)",
+    "wideband_regime_a": "41 dBuV/m/25 kHz at 0 km (on the border line)",
+    "wideband_regime_b": "48 dBuV/m/25 kHz at 0 km (on the border line)"
+  },
+  "wideband_annex4_lte_cdma_400mhz": {
+    "note": "Annex 4: FDD LTE/CDMA in 410-430 / 450-470 MHz, mean field strength per 5 MHz at 3 m height. A height correction of 10 dB between 10 m and 3 m may be used for practical purposes (Annex 3).",
+    "case_a_border_dbuv_m_5mhz": 55,
+    "case_a_10km_inside_dbuv_m_5mhz": 37,
+    "case_b_border_dbuv_m_5mhz": 37
+  },
+  "propagation_model": "ITU-R P.1546 (land/sea/mixed paths, 10 % time, 50 % locations, 10 m receiving height) as required by the challenge brief."
+}

@@ -1,0 +1,12 @@
+{
+  "note": "ITU administration/geographical-area symbols as used in the SRS (adm, ctry, srv_area.ctry) and terrestrial notices (t_adm, t_ctry). Sweden is 'S' and Germany is 'D' in ITU notation, not ISO codes.",
+  "finland": "FIN",
+  "land_border_neighbours": ["RUS", "S", "NOR"],
+  "sea_neighbours": ["EST", "LVA", "LTU", "DNK", "POL", "D"],
+  "neighbours": ["RUS", "S", "NOR", "EST", "LVA", "LTU", "DNK", "POL", "D"],
+  "nordic_baltic": ["S", "NOR", "DNK", "ISL", "EST", "LVA", "LTU"],
+  "region_codes_covering_finland": ["EUR", "XEU", "XRG1", "GLOBAL", "WORLD", "ALL"],
+  "region_codes_note": "The exact geographical-area symbols come from Table 1B of the Preface to the BR IFIC. Edit this list once the Preface table is loaded; unknown symbols are treated as 'not stated', never as 'excludes Finland'.",
+  "itu_region_of_finland": 1,
+  "iso3_to_itu": {"FIN": "FIN", "SWE": "S", "NOR": "NOR", "RUS": "RUS", "EST": "EST", "LVA": "LVA", "LTU": "LTU", "DNK": "DNK", "POL": "POL", "DEU": "D", "BLR": "BLR"}
+}

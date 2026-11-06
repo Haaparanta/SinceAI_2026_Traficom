@@ -1,0 +1,13 @@
+{
+  "_comment": "Expert labels for the evaluation harness: subject_id -> true/false or A-D. Replace with the expert's verdicts on IFIC 3074 / 3076.",
+  "126001001-1": "A",
+  "126001001-2": "C",
+  "126001002-1": "B",
+  "126001003-1": "C",
+  "126001004-1": "D",
+  "126001005-1": "D",
+  "126001006-1": "C",
+  "126001007-1": "A",
+  "126001008-1": "D",
+  "126001009-1": "B"
+}

@@ -1,0 +1,9 @@
+{
+  "_comment": "Synthetic Finnish stations of special interest in the ProtectedStation shape (mirrors the XLS columns: station number, centre frequency, bandwidth, coordinates, antenna height/direction/directivity).",
+  "stations": [
+    {"station_id": "FI-0001", "name": "Kotka VHF base", "lat": 60.47, "lon": 26.95, "f_center_mhz": 160.2, "bandwidth_khz": 12.5, "service": "Maritime mobile / coast station", "antenna_height_m": 45, "antenna_azimuth_deg": 120, "antenna_directivity": "D", "gain_dbi": 6.0, "source_ref": "special-interest.xlsx row 2"},
+    {"station_id": "FI-0002", "name": "Lappeenranta PMR", "lat": 61.06, "lon": 28.19, "f_center_mhz": 453.5, "bandwidth_khz": 25.0, "service": "Radiotelephony for business activities", "antenna_height_m": 35, "antenna_directivity": "ND", "gain_dbi": 2.0, "source_ref": "special-interest.xlsx row 3"},
+    {"station_id": "FI-0003", "name": "Helsinki TETRA site", "lat": 60.20, "lon": 25.00, "f_center_mhz": 390.5, "bandwidth_khz": 25.0, "service": "Emergency services network (VIRVE)", "antenna_height_m": 60, "antenna_directivity": "ND", "gain_dbi": 3.0, "source_ref": "special-interest.xlsx row 4"},
+    {"station_id": "FI-0004", "name": "Tornio wideband link", "lat": 65.85, "lon": 24.15, "f_center_mhz": 410.5, "bandwidth_khz": 200.0, "service": "Digital wideband PMR networks for business activities", "antenna_height_m": 40, "antenna_azimuth_deg": 250, "antenna_directivity": "D", "gain_dbi": 9.0, "source_ref": "special-interest.xlsx row 5"}
+  ]
+}

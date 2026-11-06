@@ -1,0 +1,7 @@
+{
+  "_comment": "Finnish (adm FIN) satellite networks to protect. Replace with the FIN networks read from the SRS database (notice.adm = 'FIN').",
+  "networks": [
+    {"sat_name": "FIN-LEO-OBS", "freq_min_mhz": 2025, "freq_max_mhz": 2110, "emi_rcp": "R", "orbit_kind": "NGSO", "source_ref": "example"},
+    {"sat_name": "FIN-LEO-OBS", "freq_min_mhz": 8025, "freq_max_mhz": 8400, "emi_rcp": "E", "orbit_kind": "NGSO", "source_ref": "example"}
+  ]
+}
