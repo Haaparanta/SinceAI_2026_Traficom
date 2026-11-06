@@ -29,6 +29,7 @@ export interface AuditEntry { seq: number; kind: Kind; issue: number; finding_id
 export interface AuditLog { chain: { ok: boolean; entries: number; first_bad_seq: number | null; head?: string }; entries: AuditEntry[]; }
 export interface AnalysisBundle { result: AnalysisResult; context: Record<string, FindingContext>; decisions: Record<string, AuditEntry>; omitted?: { not_raised: number; note: string }; }
 // Step D2: grounded explanation and letter draft (backend/radar/llm/drafts.py).
+export interface SpecialInterestStation { station_number: string; centre_hz: number; bandwidth_hz: number; lat: number; lon: number; antenna_height_m: number | null; antenna_direction_deg: number | null; antenna_directivity: string | null; limit_value: number | null; limit_unit: string | null; tx_hz: number | null; licence_class: string | null; erp_w: number | null; antenna_gain_db: number | null; ground_height_m: number | null; source_row: number | null; quality_flags: string[]; }
 export interface Explanation { text: string; cited_evidence_ids: string[]; }
 export interface Letter { finding_id: string; to_administration: string; subject: string; body_markdown: string; cited_evidence_ids: string[]; }
 export interface DraftResult<T> { output: T; source: string; check: string; notes: string[]; }

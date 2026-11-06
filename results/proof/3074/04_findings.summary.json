@@ -96,13 +96,13 @@
       "id": "F-3074-0013",
       "notice": "124520200",
       "concern": "high",
-      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 124813282: 148 MHz to 149.9 MHz Earth-to-space; geography far (nearest earth station LATMOS (F) 1903 km from Finland)."
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 124813282: 148 MHz to 149.9 MHz Earth-to-space; geography far (nearest earth station LATMOS (F) 1800 km from Finland)."
     },
     {
       "id": "F-3074-0014",
       "notice": "124520212",
       "concern": "high",
-      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 124770975: 148.024 MHz to 148.114 MHz Earth-to-space; geography far (nearest earth station DELFT (HOL) 1479 km from Finland)."
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 124770975: 148.024 MHz to 148.114 MHz Earth-to-space; geography far (nearest earth station DELFT (HOL) 1377 km from Finland)."
     },
     {
       "id": "F-3074-0015",
@@ -114,13 +114,13 @@
       "id": "F-3074-0016",
       "notice": "324520200",
       "concern": "high",
-      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 324813282: 148 MHz to 149.9 MHz Earth-to-space; geography far (nearest earth station LATMOS (F) 1903 km from Finland)."
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 324813282: 148 MHz to 149.9 MHz Earth-to-space; geography far (nearest earth station LATMOS (F) 1800 km from Finland)."
     },
     {
       "id": "F-3074-0017",
       "notice": "324520212",
       "concern": "high",
-      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 324770975: 148.024 MHz to 148.114 MHz Earth-to-space; geography far (nearest earth station DELFT (HOL) 1479 km from Finland)."
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 324770975: 148.024 MHz to 148.114 MHz Earth-to-space; geography far (nearest earth station DELFT (HOL) 1377 km from Finland)."
     },
     {
       "id": "F-3074-0018",

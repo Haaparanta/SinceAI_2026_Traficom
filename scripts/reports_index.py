@@ -22,6 +22,7 @@ STEPS = [
     ("convert/space_3074.html", "A5", "Conversion of 3074 to DuckDB"),
     ("convert/terrestrial_3075.html", "A5", "Conversion of 3075 to DuckDB"),
     ("convert/terrestrial_3076.html", "A5", "Conversion of 3076 to DuckDB"),
+    ("reference/special_interest.html", "A3", "Special-interest stations: the Traficom table, read and checked"),
     ("reference/fi_subbands.html", "A6", "Finnish frequency table: spectrum strip"),
     ("3074/01_ingest.html", "B1", "Space 3074: notices and groups"),
     ("3074/02_relevance.html", "B2", "Space 3074: frequency relevance"),

@@ -18,7 +18,7 @@ Total on disk after the full run: about 720 MB downloaded in 79 files, plus abou
 | `finlex_m15/` | Traficom Regulation 15 "M15", licence-exempt collective frequencies 15 AV/2025 M | no | Finlex |
 | `itu_rr/` | ITU Radio Regulations, 2024 edition, English PDFs (zip) | no | ITU publications |
 | `cept/` | CEPT/ECO implementation status exports and ECC document list with frequency ranges | no | ECO documentation database |
-| `special_interest.xlsx` | Synthetic "table of frequencies of special interest" (station number, centre frequency, bandwidth, coordinates, antenna data) | yes | **Since AI platform only**, download it by hand to this path |
+| `special_interest.xlsx` | `Traficom_SinceAI_Frequencies_of_interest_v05112026.xlsx`, synthetic Finnish stations to protect, provided by Traficom on 5 Nov 2026 (874 rows; header on row 11: station number, class of licence, WGS84 longitude and latitude, ground and mast height, channel bandwidth, TX and RX frequency, antenna height AGL and ASL, gain, class of transmission, transmission bandwidth, direction, polarisation, radiated power and unit, directivity). SHA-256 `bb7f481f085fb6c457efc04b9b6bb8250c42ea81bab4b4a0e518c93834e03c8a` | yes | Since AI platform; copy it to this path by hand |
 
 ## 1. ITU BR IFIC (Space services) - `ific<NNNN>.zip`
 

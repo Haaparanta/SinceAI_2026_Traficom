@@ -70,7 +70,8 @@ def test_dms_conversion():
 def test_earth_station_distance():
     assert G.earth_station_result([{"name": "Helsinki", "country": "FIN", "lat": 60.17, "lon": 24.94}]).relevance == "near_border"
     stockholm = G.earth_station_result([{"name": "Stockholm", "country": "S", "lat": 59.33, "lon": 18.07}])
-    assert stockholm.relevance == "near_border" and 150 < stockholm.detail["nearest"]["distance_km"] < 400
+    # nearest Finnish territory is Aland (Eckeroe), about 120 km east; without Aland it was the mainland, over 150 km
+    assert stockholm.relevance == "near_border" and 100 < stockholm.detail["nearest"]["distance_km"] < 150
     assert G.earth_station_result([{"name": "Madrid", "country": "E", "lat": 40.4, "lon": -3.7}]).relevance == "far"
     assert G.earth_station_result([{"name": "T", "country": None, "lat": None, "lon": None}]).relevance == "unknown"
 
@@ -119,3 +120,9 @@ def test_bureau_named_groups_from_earlier_issues_are_screened():
         named = rel.finland_named(con)
     screened = {r.group_id: r for r in run.rows}
     assert all(g in screened and screened[g].candidate for g in named)
+
+
+def test_aland_is_finland():
+    """Natural Earth keeps Aland as its own entity (ALD); the region file merges it into FIN."""
+    from scoring.geometry import Region
+    assert Region.load().contains("FIN", 60.097, 19.935)          # Mariehamn

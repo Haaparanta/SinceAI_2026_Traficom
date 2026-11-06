@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "checks": [
+    [
+      "Every row is a station or an excluded row with a reason",
+      true,
+      "870 stations + 4 excluded = 874 rows"
+    ],
+    [
+      "Every protected frequency is a value from the sheet (RX, or TX when RX is empty)",
+      true,
+      "58 from TX"
+    ],
+    [
+      "Every station keeps its spreadsheet row",
+      true,
+      ""
+    ],
+    [
+      "Every fallback is flagged",
+      true,
+      ""
+    ]
+  ],
+  "stats": {
+    "rows": 874,
+    "stations": 870,
+    "excluded": 4,
+    "header_row": 11,
+    "by_class": {
+      "FX": 320,
+      "none given": 294,
+      "BC": 115,
+      "MVV": 63,
+      "BT": 56,
+      "MUUT": 22
+    },
+    "flagged_stations": 121,
+    "flags": {
+      "RX frequency missing: TX frequency protected": 58,
+      "position outside Finland (kept as filed)": 48,
+      "implausible antenna gain over 60 dB (kept as filed)": 17,
+      "channel bandwidth missing: transmission bandwidth used": 2,
+      "antenna above sea level below the ground (kept as filed)": 1,
+      "station number repeated with different data": 1
+    },
+    "freq_range_hz": [
+      1485000,
+      27500000000
+    ]
+  }
+}

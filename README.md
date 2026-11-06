@@ -44,7 +44,7 @@ make check-evidence ISSUE=3074       # re-open every citation; exit 1 on any mis
 
 Explanations and letter drafts use Claude (`claude-opus-5-5`, with the server-side refusal fallback) when `ANTHROPIC_API_KEY` is set in `.env`; `LLM_MODEL` changes the model and `LLM_DISABLED=1` switches it off. Without a key the same buttons give a deterministic template built from the evidence, and the screen says which one you are reading. Accepted model texts are cached in `data/cache/llm/`, so a rerun or the demo makes no call.
 
-The special-interest station table (XLS from the Since AI platform) goes to `data/raw/special_interest.xlsx` by hand. The matching rule is in `pipeline/relevance.py`; the reader for the XLS is not built yet.
+The special-interest station table (`Traficom_SinceAI_Frequencies_of_interest_v05112026.xlsx` from the Since AI platform) goes to `data/raw/special_interest.xlsx` by hand; `make special-interest` reads it (870 stations) and checks it in `reports/reference/special_interest.html`.
 
 ## How it works
 
@@ -75,7 +75,7 @@ Methods and every parameter are listed in [`results/README.md`](results/README.m
 
 | Check | Command | What it shows |
 |---|---|---|
-| Unit and data tests | `make test` | 302 Python tests: formulas against hand-worked values, golden cases, contracts, invariants on 3074 and 3076 |
+| Unit and data tests | `make test` | 333 Python tests: formulas against hand-worked values, golden cases, contracts, invariants on 3074 and 3076 |
 | P.1546 engine | part of `make test` | the ITU validation suite (52 reference cases) reproduces to 0.0 dB |
 | Evidence | `make check-evidence ISSUE=3074` | every citation re-opened; tamper tests prove a changed excerpt fails |
 | Stage reports | `make index`, then open `reports/index.html` (or the `reports` entry in `.claude/launch.json`) | one HTML page per build step: counts in and out, charts, maps, ten random rows, PASS or FAIL |
