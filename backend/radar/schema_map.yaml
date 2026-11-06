@@ -190,7 +190,8 @@ space:
     space_station_types: [G, N]
     earth_station_types: [S]
   # grp.wic_no = the issue that published the group. In 3074, 25 105 of 34 365 groups carry 3074; the rest are
-  # earlier records of the same notices, kept for context and excluded from screening by default.
+  # earlier records of the same notices, kept for context and excluded from screening by default, except the 22 in
+  # which the Bureau names Finland (provn.adm = 'FIN'), which are always screened.
   bureau_internal:              # marked "BR internal use" in the ITU docs; never build on these
     - com_el
     - freq

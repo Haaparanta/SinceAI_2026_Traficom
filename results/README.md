@@ -3,7 +3,7 @@
 The separate results files the challenge brief asks for (section 07). Space first; the terrestrial side quest is at the end.
 
 > [!IMPORTANT]
-> **Status on Fri 6 Nov 2026.** Frequency screening, geography, evidence, ranking and the worst-case power flux-density (pfd) check for GSO downlinks (build step C1) are complete. pfd is **indicative**: free-space propagation and the beam's peak gain towards Finland, so it is an upper bound. Non-GSO pfd is not evaluated yet, which is why 87 of the 99 "medium" notices are non-GSO. Every rule below is a hypothesis until the partner answers questions Q1 to Q3 (`pm_pack/01_Partner_Briefing_Questions.md`).
+> **Status on Sat 7 Nov 2026: frozen (build steps E1 to E4).** Two full runs give byte-identical files, every stage report passes, and the proof pack is in [`proof/`](proof/index.html). Frequency screening, geography, evidence, ranking and the worst-case power flux-density (pfd) check for GSO downlinks (build step C1) are complete. pfd is **indicative**: free-space propagation and the beam's peak gain towards Finland, so it is an upper bound. Non-GSO pfd is not evaluated yet, which is why 87 of the 99 "medium" notices are non-GSO. Every rule below is a hypothesis until the partner answers questions Q1 to Q3 (`pm_pack/01_Partner_Briefing_Questions.md`).
 
 ## Files
 
@@ -11,9 +11,9 @@ The separate results files the challenge brief asks for (section 07). Space firs
 |---|---|---|
 | `space_3074.csv` | 196 | One screened notice: every notice in the issue, including the ones not raised, each with its reason |
 | `space_3074.json` | 196 | The same rows as JSON (a list of `ResultRow` objects, `backend/radar/models.py`) |
-| `space_3074_groups.csv` | 8 954 | Detail: one candidate frequency group (the ITU `grp` row) after frequency and geography screening. Kept because the partner has not yet said whether accuracy is judged per notice or per group (Q3) |
+| `space_3074_groups.csv` | 8 976 | Detail: one candidate frequency group (the ITU `grp` row) after frequency and geography screening. Kept because the partner has not yet said whether accuracy is judged per notice or per group (Q3) |
 
-Notice-level counts: **21 high, 99 medium, 1 review, 14 low, 61 not raised** (135 flagged of 196). The pfd check moved five notices: CHINASAT-H-60.5E (two notices, 6.3 dB over) and INSAT-KA68ER (3.1 dB over) to high, BUL-TTC-1.9E (two notices, 28 dB under) to low.
+Notice-level counts: **23 high, 99 medium, 1 review, 12 low, 61 not raised** (135 flagged of 196). The two SECOMSAT-5-78E notices (CR/C 6344) are high because the Bureau names Finland in their UHF groups first published in IFIC 3060; until E2 those groups were outside the scope and the notices were low. The pfd check moved five notices: CHINASAT-H-60.5E (two notices, 6.3 dB over) and INSAT-KA68ER (3.1 dB over) to high, BUL-TTC-1.9E (two notices, 28 dB under) to low.
 
 ## Columns
 
@@ -50,10 +50,10 @@ The special-interest station table (XLS from the Since AI platform) is a mandato
 
 ## Method and parameters
 
-1. **Scope.** Only groups published in this issue (`grp.wic_no = 3074`): 25 105 of 34 365 groups. The other 9 260 are earlier records of the same notices.
+1. **Scope.** Groups published in this issue (`grp.wic_no = 3074`, 25 105 of 34 365), plus the 22 earlier groups of 3074 notices in which the Bureau names Finland (SECOMSAT-5-78E, CR/C 6344, first published in IFIC 3060): 25 127 screened. The other 9 238 are earlier records of the same notices.
 2. **Direction.** `grp.emi_rcp = E` is space-to-Earth for space-station notices (G, N) and Earth-to-space for earth-station notices (S). Checked against the satellite bands in 3074.
 3. **Frequency.** Every group is joined with every Finnish row it overlaps (Hz integers). Finnish rows are classified as terrestrial, space (downlink, uplink or both), passive or not allocated; CAPITALS mean primary. A part of a group with no Finnish row is reported as `uncovered`, never as "no concern".
-4. **Bureau signal.** Groups for which the Radiocommunication Bureau lists Finland as an affected administration (`provn.adm = 'FIN'`): 16 notices, 198 groups.
+4. **Bureau signal.** Groups for which the Radiocommunication Bureau lists Finland as an affected administration (`provn.adm = 'FIN'`): 18 notices, 220 groups.
 5. **Geography.**
    - GSO: elevation from the seven reference points with R = 6 378.137 km, h = 35 786 km; visible at 10 degrees or more, low elevation from 0 to 10 degrees.
    - Non-GSO: highest latitude that sees the satellite at 0 and 10 degrees (coverage at apogee); orbits around the Moon, the Sun or Jupiter are not visible.
@@ -76,6 +76,19 @@ make check-evidence ISSUE=3074                 # reopens every citation (ITU row
 ```
 
 Two runs on the same inputs produce byte-identical files (`tests/test_export.py`). The visual proof for every step is in `reports/3074/` (`make ingest relevance geography findings ISSUE=3074`).
+
+## Proof pack
+
+[`proof/index.html`](proof/index.html) links every stage report with its status, copied from `reports/` when the files were frozen (`make freeze`). Open it from disk; the reports are self-contained.
+
+| Check | Report | Result |
+|---|---|---|
+| E1 determinism | `proof/freeze/e1_determinism.html` | The whole pipeline (findings, space and terrestrial export, screen cache) run twice from DuckDB: all 7 output files identical to each other and to the committed files |
+| E2 case recognition | `proof/freeze/e2_golden.html`, `proof/accuracy.csv` | 10 of 10 golden cases; 220 of 220 groups in which the Bureau names Finland are candidates with concern high; precision on reviewer decisions waits for decisions |
+| E3 offline demo | `proof/playwright/index.html`, `tests/test_demo_mode.py` | With `DEMO_MODE=1` and the network cut, every endpoint and the whole screen work; no request leaves the machine and no Claude client is built |
+| Evidence | `proof/3074/04_findings.html` | 1 659 citations reopened, 0 mismatches |
+
+How to read the accuracy table: the golden cases are first-pass labels by the coding agent (a regression guard, not a specialist judgement); the Bureau list is also a rule input, so a hit shows the rule is wired through; reviewer decisions in the screen (approve or investigate = relevant, dismiss = not relevant) are the labels that measure precision, and the table fills in as soon as they exist.
 
 ---
 

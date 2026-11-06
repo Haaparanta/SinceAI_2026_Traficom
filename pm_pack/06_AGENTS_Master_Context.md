@@ -141,7 +141,7 @@ Names below are taken from the ITU's own schema documentation; full column lists
 | orbit (non-GSO) | `orbit`, `phase` | `ntc_id`, `orb_id`, `nbr_sat_pl`, `inclin_ang`, `apog_km`, `perig_km`, `right_asc`, `perig_arg` |
 | pfd mask (non-GSO) | `mask_info`, `mask_lnk1`–`mask_lnk3` | presence and frequency range (C1) |
 | earth station | `e_as_stn`, `e_ant`, `e_stn` | [CHECKED] `e_as_stn` links by `grp_id` (not `ntc_id`): `stn_name`, `stn_type` (S specific with `lat_dec`/`long_dec`, T typical without), `ctry`, `gain`; `e_stn` holds the station of an S notice (DMS coordinates); `e_ant` its antenna gain |
-| affected networks | `provn`, `all_aff_ntw`, `tr_aff_ntw` | administrations and networks the Bureau identified. [CHECKED] `provn.adm = 'FIN'` lists Finland as affected for 16 notices of 3074 (provisions 9.11, 9.14, 9.21/C, 11.31, AP30A): always a candidate, concern high |
+| affected networks | `provn`, `all_aff_ntw`, `tr_aff_ntw` | administrations and networks the Bureau identified. [CHECKED] `provn.adm = 'FIN'` lists Finland as affected for 18 notices of 3074 (provisions 9.11, 9.14, 9.21/C, 11.31, AP30A): always a candidate, concern high, even when the named group was first published in an earlier issue (`wic_no` older; 22 groups of SECOMSAT-5-78E) |
 | publication | `pub_ssn` | special section reference |
 
 `com_el` and `freq` exist but are marked "BR internal use"; do not build on them. Part I-S action symbols: A new, M modification, N non-basic change, R resubmission, S suppression, W withdrawn.

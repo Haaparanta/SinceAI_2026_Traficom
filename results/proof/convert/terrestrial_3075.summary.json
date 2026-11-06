@@ -1,0 +1,2361 @@
+{
+  "source": "data/raw/brific3075/brific3075.mdb",
+  "duckdb": "data/derived/terrestrial_3075.duckdb",
+  "tables": [
+    {
+      "table": "ap25_affected",
+      "columns": 4,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "coord_prov": "VARCHAR",
+        "adm": "VARCHAR",
+        "zone_id": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.04
+    },
+    {
+      "table": "circ",
+      "columns": 5,
+      "exported_rows": 1344,
+      "loaded_rows": 1344,
+      "status": "PASS",
+      "types": {
+        "circ_no": "BIGINT",
+        "d_pub": "TIMESTAMP",
+        "pub_status": "VARCHAR",
+        "src_update": "VARCHAR",
+        "d_updated": "TIMESTAMP"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.05
+    },
+    {
+      "table": "fmtv_ant_hgt",
+      "columns": 3,
+      "exported_rows": 13788,
+      "loaded_rows": 13788,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "azm": "DOUBLE",
+        "eff_hgt": "BIGINT"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.04
+    },
+    {
+      "table": "fmtv_coord",
+      "columns": 7,
+      "exported_rows": 1594,
+      "loaded_rows": 1594,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "adm": "VARCHAR",
+        "coord_prov": "VARCHAR",
+        "coord_st": "VARCHAR",
+        "src_status": "VARCHAR",
+        "d_coord_st": "TIMESTAMP",
+        "decl_affct": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.07
+    },
+    {
+      "table": "fmtv_fdg",
+      "columns": 6,
+      "exported_rows": 608,
+      "loaded_rows": 608,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "fdg_type": "VARCHAR",
+        "fdg_status": "VARCHAR",
+        "is_favorbl": "VARCHAR",
+        "d_updated": "TIMESTAMP",
+        "src_fdg": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.04
+    },
+    {
+      "table": "fmtv_fdg_act",
+      "columns": 3,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "fdg_act": "VARCHAR",
+        "d_fdg_act": "TIMESTAMP"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fmtv_fdg_ref",
+      "columns": 2,
+      "exported_rows": 101,
+      "loaded_rows": 101,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "fdg_ref": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fmtv_ge06_plan_rmks",
+      "columns": 3,
+      "exported_rows": 19,
+      "loaded_rows": 19,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "plan_rmk_type": "VARCHAR",
+        "adm": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fmtv_geography",
+      "columns": 2,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "geo_shape": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fmtv_history",
+      "columns": 5,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "d_fms_hist": "TIMESTAMP",
+        "fms_status": "VARCHAR",
+        "user_id": "VARCHAR",
+        "hist_text": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fmtv_op_prd",
+      "columns": 3,
+      "exported_rows": 93,
+      "loaded_rows": 93,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "op_hh_fr": "BIGINT",
+        "op_hh_to": "BIGINT"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fmtv_pub_hist",
+      "columns": 6,
+      "exported_rows": 669,
+      "loaded_rows": 669,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "pub_no": "BIGINT",
+        "pub_prefix": "VARCHAR",
+        "pub_part": "VARCHAR",
+        "addendum": "BIGINT",
+        "corrigendum": "BIGINT"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fmtv_rmks",
+      "columns": 4,
+      "exported_rows": 23,
+      "loaded_rows": 23,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "rmk_type": "VARCHAR",
+        "rmk_code": "VARCHAR",
+        "rmk_text": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fmtv_sound",
+      "columns": 5,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "freq_scarr": "DOUBLE",
+        "bdwdth": "DOUBLE",
+        "emi_cls": "VARCHAR",
+        "pwr_ratio": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fmtv_status",
+      "columns": 4,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "status_typ": "VARCHAR",
+        "status": "VARCHAR",
+        "d_status_eff": "TIMESTAMP"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fmtv_terra",
+      "columns": 89,
+      "exported_rows": 388,
+      "loaded_rows": 388,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "intent": "VARCHAR",
+        "mod_type": "VARCHAR",
+        "fragment": "VARCHAR",
+        "assgn_id": "VARCHAR",
+        "adm_ref_id": "VARCHAR",
+        "plan_adm_ref_id": "VARCHAR",
+        "notice_typ": "VARCHAR",
+        "adm": "VARCHAR",
+        "ctry": "VARCHAR",
+        "call_sign": "VARCHAR",
+        "stn_id": "VARCHAR",
+        "addr_code": "VARCHAR",
+        "op_agcy": "VARCHAR",
+        "d_adm_ntc": "TIMESTAMP",
+        "d_inuse": "TIMESTAMP",
+        "d_rcv": "TIMESTAMP",
+        "d_expiry": "TIMESTAMP",
+        "prov": "VARCHAR",
+        "region": "VARCHAR",
+        "freq_assgn": "DOUBLE",
+        "freq_vcarr": "DOUBLE",
+        "freq_scarr": "DOUBLE",
+        "tv_chan": "VARCHAR",
+        "freq_stabl": "VARCHAR",
+        "oset_v_12": "BIGINT",
+        "oset_v_khz": "DOUBLE",
+        "oset_s_12": "BIGINT",
+        "oset_s_khz": "DOUBLE",
+        "offset_khz": "DOUBLE",
+        "stn_cls": "VARCHAR",
+        "tran_sys": "VARCHAR",
+        "color": "VARCHAR",
+        "emi_cls": "VARCHAR",
+        "bdwdth": "DOUBLE",
+        "hgt_agl": "DOUBLE",
+        "eff_hgtmax": "BIGINT",
+        "erp_dbw": "DOUBLE",
+        "erp_kw": "DOUBLE",
+        "erp_h_dbw": "DOUBLE",
+        "erp_h_kw": "DOUBLE",
+        "erp_v_dbw": "DOUBLE",
+        "erp_v_kw": "DOUBLE",
+        "erp_beam_tilt_dbw": "DOUBLE",
+        "beam_tilt_angle": "DOUBLE",
+        "polar": "VARCHAR",
+        "ant_dir": "VARCHAR",
+        "azm_max_e": "DOUBLE",
+        "pwr_ratio": "DOUBLE",
+        "site_name": "VARCHAR",
+        "seconds_in_use": "VARCHAR",
+        "long_dec": "DOUBLE",
+        "lat_dec": "DOUBLE",
+        "longitude_dms": "DOUBLE",
+        "latitude_dms": "DOUBLE",
+        "site_alt": "BIGINT",
+        "eu_ref": "DOUBLE",
+        "eu": "DOUBLE",
+        "fdg_observ": "VARCHAR",
+        "d_recog": "TIMESTAMP",
+        "src_notice": "VARCHAR",
+        "d_updated": "TIMESTAMP",
+        "src_update": "VARCHAR",
+        "stage": "VARCHAR",
+        "amend_type": "VARCHAR",
+        "is_notice": "VARCHAR",
+        "is_public": "VARCHAR",
+        "is_resub": "VARCHAR",
+        "is_digital": "VARCHAR",
+        "is_pub_req": "VARCHAR",
+        "d_pub_req": "TIMESTAMP",
+        "plan_entry": "VARCHAR",
+        "assgn_code": "VARCHAR",
+        "are_rmk_conds_met": "VARCHAR",
+        "has_signed_commitment": "VARCHAR",
+        "sfn_id": "VARCHAR",
+        "assoc_allot_id": "VARCHAR",
+        "assoc_allot_sfn_id": "VARCHAR",
+        "spect_mask": "VARCHAR",
+        "rx_mode": "VARCHAR",
+        "ref_plan_cfg": "VARCHAR",
+        "freq_block": "VARCHAR",
+        "pwr_dens": "DOUBLE",
+        "pwr_dens_reference": "VARCHAR",
+        "freq_min": "DOUBLE",
+        "freq_max": "DOUBLE",
+        "is_allot": "VARCHAR",
+        "allot_name": "VARCHAR",
+        "typ_ref_netwk": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.08
+    },
+    {
+      "table": "fxm_alt_site_name",
+      "columns": 2,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "geo_key": "BIGINT",
+        "site_name": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_ant",
+      "columns": 22,
+      "exported_rows": 11303,
+      "loaded_rows": 11303,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "ant_key": "BIGINT",
+        "pwr_xyz": "VARCHAR",
+        "pwr_ant": "DOUBLE",
+        "pwr_dbw": "DOUBLE",
+        "pwr_eiv": "VARCHAR",
+        "ant_dir": "VARCHAR",
+        "azm_max_e": "DOUBLE",
+        "gain_max": "DOUBLE",
+        "gain_type": "VARCHAR",
+        "bmwdth": "DOUBLE",
+        "ant_ref": "VARCHAR",
+        "elev": "DOUBLE",
+        "polar": "VARCHAR",
+        "hgt_agl": "DOUBLE",
+        "dist_max": "DOUBLE",
+        "is_rot": "VARCHAR",
+        "pwr_dens": "DOUBLE",
+        "pwr_range": "DOUBLE",
+        "tx_rx": "VARCHAR",
+        "gain_max_horizon": "DOUBLE",
+        "eff_hgtmax": "BIGINT"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.14
+    },
+    {
+      "table": "fxm_ant_diag",
+      "columns": 5,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "ant_key": "BIGINT",
+        "polar": "VARCHAR",
+        "azm": "DOUBLE",
+        "attn": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.03
+    },
+    {
+      "table": "fxm_ant_hgt",
+      "columns": 4,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "ant_key": "BIGINT",
+        "azm": "DOUBLE",
+        "eff_hgt": "BIGINT"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_call_sign",
+      "columns": 2,
+      "exported_rows": 21,
+      "loaded_rows": 21,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "call_sign": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_cst_stn",
+      "columns": 2,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "geo_key": "BIGINT"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_fdg",
+      "columns": 6,
+      "exported_rows": 4352,
+      "loaded_rows": 4352,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "fdg_type": "VARCHAR",
+        "fdg_status": "VARCHAR",
+        "is_favorbl": "VARCHAR",
+        "d_updated": "TIMESTAMP",
+        "src_fdg": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.06
+    },
+    {
+      "table": "fxm_fdg_act",
+      "columns": 3,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "fdg_act": "VARCHAR",
+        "d_fdg_act": "TIMESTAMP"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_fdg_bss",
+      "columns": 14,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "ant_key": "BIGINT",
+        "adm": "VARCHAR",
+        "bss_sat_name": "VARCHAR",
+        "bss_beam_name": "VARCHAR",
+        "bss_freq_assgn": "DOUBLE",
+        "bss_bdwdth": "DOUBLE",
+        "bss_notice_id": "BIGINT",
+        "bss_group_id": "BIGINT",
+        "orbit_position": "DOUBLE",
+        "pfd_calc": "DOUBLE",
+        "pfd_limit": "DOUBLE",
+        "distance_km": "DOUBLE",
+        "is_favorbl": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_fdg_downlink",
+      "columns": 20,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "adm": "VARCHAR",
+        "ctry": "VARCHAR",
+        "station_name": "VARCHAR",
+        "stn_cls": "VARCHAR",
+        "sat_name": "VARCHAR",
+        "freq_assgn": "DOUBLE",
+        "bdwdth": "DOUBLE",
+        "es_notice_id": "BIGINT",
+        "es_group_id": "BIGINT",
+        "diag_escc_id": "BIGINT",
+        "diag_contour_index": "BIGINT",
+        "azimuth": "DOUBLE",
+        "distance_km": "DOUBLE",
+        "distance_mod1_km": "DOUBLE",
+        "distance_mod2_km": "DOUBLE",
+        "is_favorbl": "VARCHAR",
+        "longitude_dms": "DOUBLE",
+        "latitude_dms": "DOUBLE",
+        "seconds_in_use": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_fdg_ref",
+      "columns": 2,
+      "exported_rows": 16,
+      "loaded_rows": 16,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "fdg_ref": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_fdg_uplink",
+      "columns": 8,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "ant_key": "BIGINT",
+        "uplink_seq_no": "BIGINT",
+        "orbit_separation": "DOUBLE",
+        "calc_eirp_limit": "DOUBLE",
+        "calc_pwr_ant_limit": "DOUBLE",
+        "calc_azimuth": "DOUBLE",
+        "calc_distance": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_geo",
+      "columns": 14,
+      "exported_rows": 8781,
+      "loaded_rows": 8781,
+      "status": "PASS",
+      "types": {
+        "geo_key": "BIGINT",
+        "geo_type": "VARCHAR",
+        "ctry": "VARCHAR",
+        "site_name": "VARCHAR",
+        "zone_id": "VARCHAR",
+        "radius": "DOUBLE",
+        "d_updated": "TIMESTAMP",
+        "src_update": "VARCHAR",
+        "longitude_dms": "DOUBLE",
+        "latitude_dms": "DOUBLE",
+        "seconds_in_use": "VARCHAR",
+        "long_dec": "DOUBLE",
+        "lat_dec": "DOUBLE",
+        "site_alt": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.14
+    },
+    {
+      "table": "fxm_geo_pt",
+      "columns": 7,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "geo_key": "BIGINT",
+        "geo_pt": "BIGINT",
+        "seconds_in_use": "VARCHAR",
+        "longitude_dms": "DOUBLE",
+        "latitude_dms": "DOUBLE",
+        "long_dec": "DOUBLE",
+        "lat_dec": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_haps_ant",
+      "columns": 8,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "ant_key": "BIGINT",
+        "beam_id": "VARCHAR",
+        "beam_type": "VARCHAR",
+        "beam_track": "VARCHAR",
+        "beam_mode": "VARCHAR",
+        "diameter": "BIGINT",
+        "noise_temp": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_haps_ant_diag",
+      "columns": 4,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "ant_key": "BIGINT",
+        "offaxis": "BIGINT",
+        "attn": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_haps_attr",
+      "columns": 7,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "lat_tol_north": "DOUBLE",
+        "lat_tol_south": "DOUBLE",
+        "long_tol_east": "DOUBLE",
+        "long_tol_west": "DOUBLE",
+        "site_alt_tol": "DOUBLE",
+        "link_dir": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_haps_gain_contour",
+      "columns": 4,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "ant_key": "BIGINT",
+        "gain_contour_key": "BIGINT",
+        "contour_gain": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_haps_rx_ant_diag",
+      "columns": 5,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "ant_key": "BIGINT",
+        "geo_key": "BIGINT",
+        "offaxis": "BIGINT",
+        "attn": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_haps_tx_ant_diag",
+      "columns": 5,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "ant_key": "BIGINT",
+        "geo_key": "BIGINT",
+        "offaxis": "BIGINT",
+        "attn": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_mar_mob_cex_result",
+      "columns": 5,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "chn_no": "BIGINT",
+        "adm": "VARCHAR",
+        "allot_area": "VARCHAR",
+        "affect": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_mar_mob_coord",
+      "columns": 9,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "chn_no": "BIGINT",
+        "chn_status": "VARCHAR",
+        "adm": "VARCHAR",
+        "coord_prov": "VARCHAR",
+        "coord_st": "VARCHAR",
+        "d_coord_st": "TIMESTAMP",
+        "src_status": "VARCHAR",
+        "decl_affct": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_nat_serv",
+      "columns": 2,
+      "exported_rows": 8365,
+      "loaded_rows": 8365,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "nat_srv": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.03
+    },
+    {
+      "table": "fxm_op_agcy",
+      "columns": 2,
+      "exported_rows": 7762,
+      "loaded_rows": 7762,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "op_agcy": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.03
+    },
+    {
+      "table": "fxm_peak",
+      "columns": 3,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "peak_hh_fr": "BIGINT",
+        "peak_hh_to": "BIGINT"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_pub_hist",
+      "columns": 6,
+      "exported_rows": 11673,
+      "loaded_rows": 11673,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "pub_no": "BIGINT",
+        "pub_prefix": "VARCHAR",
+        "pub_part": "VARCHAR",
+        "addendum": "BIGINT",
+        "corrigendum": "BIGINT"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.05
+    },
+    {
+      "table": "fxm_ref_entry",
+      "columns": 4,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "assgn_id": "VARCHAR",
+        "entry_seq_nbr": "VARCHAR",
+        "freq_carr": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_region",
+      "columns": 2,
+      "exported_rows": 8801,
+      "loaded_rows": 8801,
+      "status": "PASS",
+      "types": {
+        "geo_key": "BIGINT",
+        "region": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.03
+    },
+    {
+      "table": "fxm_rmks",
+      "columns": 4,
+      "exported_rows": 127,
+      "loaded_rows": 127,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "rmk_type": "VARCHAR",
+        "rmk_code": "VARCHAR",
+        "rmk_text": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_rot",
+      "columns": 4,
+      "exported_rows": 139,
+      "loaded_rows": 139,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "ant_key": "BIGINT",
+        "azm_fr": "DOUBLE",
+        "azm_to": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_rrc06",
+      "columns": 2,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "is_in_ref_sit": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_rx",
+      "columns": 5,
+      "exported_rows": 10466,
+      "loaded_rows": 10466,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "ant_key": "BIGINT",
+        "geo_key": "BIGINT",
+        "noise_temp": "DOUBLE",
+        "ground_ant_ref": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.04
+    },
+    {
+      "table": "fxm_system_type",
+      "columns": 2,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "system_type": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_target",
+      "columns": 3,
+      "exported_rows": 1867,
+      "loaded_rows": 1867,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "target": "BIGINT",
+        "action": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_terra",
+      "columns": 56,
+      "exported_rows": 8373,
+      "loaded_rows": 8373,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "fragment": "VARCHAR",
+        "adm": "VARCHAR",
+        "addr_code": "VARCHAR",
+        "freq_assgn": "DOUBLE",
+        "chn_no": "BIGINT",
+        "op_hh_fr": "BIGINT",
+        "op_hh_to": "BIGINT",
+        "op_prd_cde": "VARCHAR",
+        "traffic": "BIGINT",
+        "stn_cls": "VARCHAR",
+        "emi_cls": "VARCHAR",
+        "bdwdth": "DOUBLE",
+        "bdwdth_cde": "VARCHAR",
+        "geo_key": "BIGINT",
+        "freq_carr": "DOUBLE",
+        "d_inuse": "TIMESTAMP",
+        "notice_typ": "VARCHAR",
+        "stn_id": "VARCHAR",
+        "stn_type": "VARCHAR",
+        "intent": "VARCHAR",
+        "mod_type": "VARCHAR",
+        "prov": "VARCHAR",
+        "d_rcv": "TIMESTAMP",
+        "d_updated": "TIMESTAMP",
+        "src_update": "VARCHAR",
+        "stage": "VARCHAR",
+        "amend_type": "VARCHAR",
+        "is_notice": "VARCHAR",
+        "is_public": "VARCHAR",
+        "is_resub": "VARCHAR",
+        "is_allot": "VARCHAR",
+        "is_pub_req": "VARCHAR",
+        "d_pub_req": "TIMESTAMP",
+        "src_notice": "VARCHAR",
+        "assgn_id": "VARCHAR",
+        "adm_ref_id": "VARCHAR",
+        "plan_adm_ref_id": "VARCHAR",
+        "d_adm_ntc": "TIMESTAMP",
+        "fdg_observ": "VARCHAR",
+        "d_recog": "TIMESTAMP",
+        "band_pref": "BIGINT",
+        "chn_pref": "BIGINT",
+        "chn_alt": "BIGINT",
+        "freq_dev": "DOUBLE",
+        "energy_dsp": "DOUBLE",
+        "freq_min": "DOUBLE",
+        "freq_max": "DOUBLE",
+        "is_restricted": "VARCHAR",
+        "exam_category": "VARCHAR",
+        "d_expiry": "TIMESTAMP",
+        "pwr_dens_reference": "VARCHAR",
+        "has_signed_commitment": "VARCHAR",
+        "are_rmk_conds_met": "VARCHAR",
+        "assgn_category": "VARCHAR",
+        "in_accord_with_itu_purposes": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.42
+    },
+    {
+      "table": "fxm_tx",
+      "columns": 4,
+      "exported_rows": 833,
+      "loaded_rows": 833,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "ant_key": "BIGINT",
+        "geo_key": "BIGINT",
+        "ground_ant_ref": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ge06_adm_affected_broad",
+      "columns": 2,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "groupkey": "BIGINT",
+        "adm": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ge06_affected_os",
+      "columns": 2,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "fs_contourkey": "BIGINT",
+        "terrakey_os": "BIGINT"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ge06_conf_pot_affected_os",
+      "columns": 2,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "fs_contourkey": "BIGINT",
+        "terrakey_os": "BIGINT"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ge06_conformity_calc_pt",
+      "columns": 16,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "groupkey": "BIGINT",
+        "azm": "DOUBLE",
+        "dist": "DOUBLE",
+        "long_dec": "DOUBLE",
+        "lat_dec": "DOUBLE",
+        "impl_fs": "DOUBLE",
+        "impl_fs_h": "DOUBLE",
+        "impl_fs_v": "DOUBLE",
+        "envelope_fs": "DOUBLE",
+        "envelope_fs_h": "DOUBLE",
+        "envelope_fs_v": "DOUBLE",
+        "rx_ant_hgt": "DOUBLE",
+        "system_type": "VARCHAR",
+        "delta_fs": "DOUBLE",
+        "delta_fs_h": "DOUBLE",
+        "delta_fs_v": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.03
+    },
+    {
+      "table": "ge06_fs_contour",
+      "columns": 5,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "groupkey": "BIGINT",
+        "system_type": "VARCHAR",
+        "fs_contourkey": "BIGINT",
+        "tfs": "DOUBLE",
+        "rx_ant_hgt": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.03
+    },
+    {
+      "table": "ge06_fs_contour_pt",
+      "columns": 6,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "fs_contourkey": "BIGINT",
+        "azm": "DOUBLE",
+        "long_dec": "DOUBLE",
+        "lat_dec": "DOUBLE",
+        "fs": "DOUBLE",
+        "dist": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ge06_geom_contour",
+      "columns": 3,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "groupkey": "BIGINT",
+        "dist": "DOUBLE",
+        "geom_contourkey": "BIGINT"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ge06_geom_contour_pt",
+      "columns": 4,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "geom_contourkey": "BIGINT",
+        "azm": "DOUBLE",
+        "long_dec": "DOUBLE",
+        "lat_dec": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ge06_ref_pt",
+      "columns": 3,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "groupkey": "BIGINT",
+        "long_dec": "DOUBLE",
+        "lat_dec": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ge06_sub_area",
+      "columns": 12,
+      "exported_rows": 5,
+      "loaded_rows": 5,
+      "status": "PASS",
+      "types": {
+        "ge06_sub_area_key": "BIGINT",
+        "geo_area": "VARCHAR",
+        "long_min_dec": "DOUBLE",
+        "long_max_dec": "DOUBLE",
+        "lat_min_dec": "DOUBLE",
+        "lat_max_dec": "DOUBLE",
+        "long_min_rdn": "DOUBLE",
+        "long_max_rdn": "DOUBLE",
+        "lat_min_rdn": "DOUBLE",
+        "lat_max_rdn": "DOUBLE",
+        "d_updated": "TIMESTAMP",
+        "src_update": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ge06_sub_area_adm",
+      "columns": 11,
+      "exported_rows": 5,
+      "loaded_rows": 5,
+      "status": "PASS",
+      "types": {
+        "ge06_sub_area_key": "BIGINT",
+        "adm": "VARCHAR",
+        "contour_id": "BIGINT",
+        "ctry": "VARCHAR",
+        "notice_typ": "VARCHAR",
+        "assgn_id": "VARCHAR",
+        "d_rcv": "TIMESTAMP",
+        "d_updated": "TIMESTAMP",
+        "src_update": "VARCHAR",
+        "src_notice": "VARCHAR",
+        "is_public": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ge06_sub_area_geography",
+      "columns": 2,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "ge06_sub_area_key": "BIGINT",
+        "geo_shape": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ge06_sub_area_pt",
+      "columns": 7,
+      "exported_rows": 140,
+      "loaded_rows": 140,
+      "status": "PASS",
+      "types": {
+        "ge06_sub_area_key": "BIGINT",
+        "geo_pt": "BIGINT",
+        "seconds_in_use": "VARCHAR",
+        "longitude_dms": "DOUBLE",
+        "latitude_dms": "DOUBLE",
+        "long_dec": "DOUBLE",
+        "lat_dec": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.07
+    },
+    {
+      "table": "ge06_sub_area_rmks",
+      "columns": 4,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "ge06_sub_area_key": "BIGINT",
+        "rmk_type": "VARCHAR",
+        "rmk_code": "VARCHAR",
+        "rmk_text": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.04
+    },
+    {
+      "table": "ge84_ref_sit_eu_aff",
+      "columns": 4,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "aff_terrakey": "BIGINT",
+        "eni": "DOUBLE",
+        "calculated_eu": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "lfmf_augs",
+      "columns": 7,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "op_prd_cde": "VARCHAR",
+        "op_prd_no": "BIGINT",
+        "aug_no": "BIGINT",
+        "aug_azm": "DOUBLE",
+        "aug_span": "DOUBLE",
+        "aug_e": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "lfmf_coord",
+      "columns": 7,
+      "exported_rows": 2,
+      "loaded_rows": 2,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "coord_prov": "VARCHAR",
+        "adm": "VARCHAR",
+        "coord_st": "VARCHAR",
+        "d_coord_st": "TIMESTAMP",
+        "src_status": "VARCHAR",
+        "decl_affct": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "lfmf_fdg",
+      "columns": 6,
+      "exported_rows": 5,
+      "loaded_rows": 5,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "fdg_type": "VARCHAR",
+        "fdg_status": "VARCHAR",
+        "is_favorbl": "VARCHAR",
+        "d_updated": "TIMESTAMP",
+        "src_fdg": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "lfmf_fdg_act",
+      "columns": 3,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "fdg_act": "VARCHAR",
+        "d_fdg_act": "TIMESTAMP"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "lfmf_fdg_ref",
+      "columns": 2,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "fdg_ref": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "lfmf_geography",
+      "columns": 2,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "geo_shape": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "lfmf_history",
+      "columns": 5,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "d_fms_hist": "TIMESTAMP",
+        "fms_status": "VARCHAR",
+        "user_id": "VARCHAR",
+        "hist_text": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "lfmf_oper_r13",
+      "columns": 17,
+      "exported_rows": 8,
+      "loaded_rows": 8,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "op_prd_cde": "VARCHAR",
+        "op_prd_no": "BIGINT",
+        "pwr_kw": "DOUBLE",
+        "pwr_dbw": "DOUBLE",
+        "bdwdth": "DOUBLE",
+        "emi_cls": "VARCHAR",
+        "tran_sys": "VARCHAR",
+        "adj_ratio": "DOUBLE",
+        "ant_type": "VARCHAR",
+        "azm_max_e": "DOUBLE",
+        "e_max": "DOUBLE",
+        "emrp_kw": "DOUBLE",
+        "emrp_dbw": "DOUBLE",
+        "ant_hgt_m": "DOUBLE",
+        "op_hh_fr": "BIGINT",
+        "op_hh_to": "BIGINT"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.03
+    },
+    {
+      "table": "lfmf_oper_r2",
+      "columns": 16,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "op_prd_cde": "VARCHAR",
+        "op_prd_no": "BIGINT",
+        "rj81_list": "VARCHAR",
+        "is_suspend": "VARCHAR",
+        "pwr_kw": "DOUBLE",
+        "pwr_dbw": "DOUBLE",
+        "bdwdth": "DOUBLE",
+        "emi_cls": "VARCHAR",
+        "tran_sys": "VARCHAR",
+        "ant_type": "VARCHAR",
+        "ptrn_type": "VARCHAR",
+        "e_rms": "DOUBLE",
+        "q_fact": "DOUBLE",
+        "op_hh_fr": "BIGINT",
+        "op_hh_to": "BIGINT"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "lfmf_pub_hist",
+      "columns": 4,
+      "exported_rows": 5,
+      "loaded_rows": 5,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "pub_no": "BIGINT",
+        "pub_prefix": "VARCHAR",
+        "pub_part": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.03
+    },
+    {
+      "table": "lfmf_rmks",
+      "columns": 6,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "op_prd_cde": "VARCHAR",
+        "op_prd_no": "BIGINT",
+        "rmk_type": "VARCHAR",
+        "rmk_code": "VARCHAR",
+        "rmk_text": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.03
+    },
+    {
+      "table": "lfmf_status",
+      "columns": 4,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "status_typ": "VARCHAR",
+        "status": "VARCHAR",
+        "d_status_eff": "TIMESTAMP"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "lfmf_target",
+      "columns": 3,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "target": "BIGINT",
+        "action": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "lfmf_terra",
+      "columns": 43,
+      "exported_rows": 4,
+      "loaded_rows": 4,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "intent": "VARCHAR",
+        "assgn_id": "VARCHAR",
+        "adm": "VARCHAR",
+        "adm_ref_id": "VARCHAR",
+        "addr_code": "VARCHAR",
+        "call_sign": "VARCHAR",
+        "stn_id": "VARCHAR",
+        "ctry": "VARCHAR",
+        "d_adm_ntc": "TIMESTAMP",
+        "d_inuse": "TIMESTAMP",
+        "d_rcv": "TIMESTAMP",
+        "notice_typ": "VARCHAR",
+        "op_agcy": "VARCHAR",
+        "fragment": "VARCHAR",
+        "prov": "VARCHAR",
+        "region": "VARCHAR",
+        "freq_assgn": "DOUBLE",
+        "seconds_in_use": "VARCHAR",
+        "lat_dec": "DOUBLE",
+        "latitude_dms": "DOUBLE",
+        "long_dec": "DOUBLE",
+        "longitude_dms": "DOUBLE",
+        "site_name": "VARCHAR",
+        "sync_net": "VARCHAR",
+        "gnd_cond": "DOUBLE",
+        "rj81_id": "BIGINT",
+        "rj81_cls": "VARCHAR",
+        "noise_zn": "VARCHAR",
+        "src_notice": "VARCHAR",
+        "d_updated": "TIMESTAMP",
+        "src_update": "VARCHAR",
+        "stage": "VARCHAR",
+        "is_notice": "VARCHAR",
+        "is_public": "VARCHAR",
+        "is_resub": "VARCHAR",
+        "amend_type": "VARCHAR",
+        "is_pub_req": "VARCHAR",
+        "d_pub_req": "TIMESTAMP",
+        "fdg_observ": "VARCHAR",
+        "d_recog": "TIMESTAMP",
+        "freq_min": "DOUBLE",
+        "freq_max": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.03
+    },
+    {
+      "table": "lfmf_top_qrm",
+      "columns": 6,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "op_prd_cde": "VARCHAR",
+        "op_prd_no": "BIGINT",
+        "azm": "DOUBLE",
+        "qrm_key": "BIGINT",
+        "qrm_contrb": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "pub",
+      "columns": 5,
+      "exported_rows": 2750,
+      "loaded_rows": 2750,
+      "status": "PASS",
+      "types": {
+        "pub_no": "BIGINT",
+        "pub_prefix": "VARCHAR",
+        "circ_no": "BIGINT",
+        "addendum": "BIGINT",
+        "corrigendum": "BIGINT"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "pub_current_circ",
+      "columns": 3,
+      "exported_rows": 1,
+      "loaded_rows": 1,
+      "status": "PASS",
+      "types": {
+        "circ_no": "BIGINT",
+        "d_pub": "TIMESTAMP",
+        "copy_to_brific_is_needed": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "pub_totals",
+      "columns": 6,
+      "exported_rows": 7203,
+      "loaded_rows": 7203,
+      "status": "PASS",
+      "types": {
+        "pub_no": "BIGINT",
+        "pub_prefix": "VARCHAR",
+        "pub_part": "VARCHAR",
+        "no_publish": "BIGINT",
+        "addendum": "BIGINT",
+        "corrigendum": "BIGINT"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.04
+    },
+    {
+      "table": "ref_adm",
+      "columns": 1,
+      "exported_rows": 199,
+      "loaded_rows": 199,
+      "status": "PASS",
+      "types": {
+        "adm": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_ap25_freq_assgn_chn_no",
+      "columns": 3,
+      "exported_rows": 240,
+      "loaded_rows": 240,
+      "status": "PASS",
+      "types": {
+        "ap25_freq_id": "VARCHAR",
+        "freq_assgn": "DOUBLE",
+        "chn_no": "BIGINT"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_ctry",
+      "columns": 1,
+      "exported_rows": 269,
+      "loaded_rows": 269,
+      "status": "PASS",
+      "types": {
+        "ctry": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_fm_emi_cls",
+      "columns": 5,
+      "exported_rows": 30,
+      "loaded_rows": 30,
+      "status": "PASS",
+      "types": {
+        "tran_sys": "VARCHAR",
+        "bdwdth_khz_min": "DOUBLE",
+        "bdwdth_khz_max": "DOUBLE",
+        "emi_cls": "VARCHAR",
+        "is_default_emi_cls": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_haps",
+      "columns": 9,
+      "exported_rows": 46,
+      "loaded_rows": 46,
+      "status": "PASS",
+      "types": {
+        "haps_key": "BIGINT",
+        "range_id": "VARCHAR",
+        "freq_min": "DOUBLE",
+        "freq_max": "DOUBLE",
+        "link_dir": "VARCHAR",
+        "d_effective": "TIMESTAMP",
+        "d_until": "TIMESTAMP",
+        "d_updated": "TIMESTAMP",
+        "src_update": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_haps_ant_ref",
+      "columns": 2,
+      "exported_rows": 8,
+      "loaded_rows": 8,
+      "status": "PASS",
+      "types": {
+        "symbol": "VARCHAR",
+        "description": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_haps_footnote",
+      "columns": 2,
+      "exported_rows": 2,
+      "loaded_rows": 2,
+      "status": "PASS",
+      "types": {
+        "haps_key": "BIGINT",
+        "footnote_number": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_haps_geo_area",
+      "columns": 2,
+      "exported_rows": 233,
+      "loaded_rows": 233,
+      "status": "PASS",
+      "types": {
+        "haps_key": "BIGINT",
+        "geo_area": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_haps_rr_ref",
+      "columns": 2,
+      "exported_rows": 26,
+      "loaded_rows": 26,
+      "status": "PASS",
+      "types": {
+        "haps_key": "BIGINT",
+        "rr_ref": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_haps_stn_cls",
+      "columns": 2,
+      "exported_rows": 50,
+      "loaded_rows": 50,
+      "status": "PASS",
+      "types": {
+        "haps_key": "BIGINT",
+        "stn_cls": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_notice_typ",
+      "columns": 5,
+      "exported_rows": 49,
+      "loaded_rows": 49,
+      "status": "PASS",
+      "types": {
+        "notice_typ": "VARCHAR",
+        "domain": "VARCHAR",
+        "is_exclusive_ge06": "VARCHAR",
+        "is_grandfathered": "VARCHAR",
+        "description": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_notice_typ_action",
+      "columns": 2,
+      "exported_rows": 93,
+      "loaded_rows": 93,
+      "status": "PASS",
+      "types": {
+        "notice_typ": "VARCHAR",
+        "action": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_notice_typ_stn_cls",
+      "columns": 2,
+      "exported_rows": 113,
+      "loaded_rows": 113,
+      "status": "PASS",
+      "types": {
+        "notice_typ": "VARCHAR",
+        "stn_cls": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_notice_typ_sub_action",
+      "columns": 3,
+      "exported_rows": 96,
+      "loaded_rows": 96,
+      "status": "PASS",
+      "types": {
+        "notice_typ": "VARCHAR",
+        "action": "VARCHAR",
+        "sub_action": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_req_agrt",
+      "columns": 11,
+      "exported_rows": 90,
+      "loaded_rows": 90,
+      "status": "PASS",
+      "types": {
+        "ref_req_agrt_key": "BIGINT",
+        "range_id": "VARCHAR",
+        "domain": "VARCHAR",
+        "freq_min": "DOUBLE",
+        "freq_max": "DOUBLE",
+        "prot_crit": "VARCHAR",
+        "foot_note_number": "VARCHAR",
+        "d_from": "TIMESTAMP",
+        "d_until": "TIMESTAMP",
+        "d_updated": "TIMESTAMP",
+        "src_update": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_req_agrt_b6_applic",
+      "columns": 6,
+      "exported_rows": 68,
+      "loaded_rows": 68,
+      "status": "PASS",
+      "types": {
+        "ref_req_agrt_key": "BIGINT",
+        "freq_min": "DOUBLE",
+        "freq_max": "DOUBLE",
+        "alloc_srv": "VARCHAR",
+        "protec_srv": "VARCHAR",
+        "chapter": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_req_agrt_geo_area",
+      "columns": 3,
+      "exported_rows": 1042,
+      "loaded_rows": 1042,
+      "status": "PASS",
+      "types": {
+        "ref_req_agrt_key": "BIGINT",
+        "geo_area": "VARCHAR",
+        "include_exclude": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_req_agrt_nat_srv",
+      "columns": 2,
+      "exported_rows": 106,
+      "loaded_rows": 106,
+      "status": "PASS",
+      "types": {
+        "ref_req_agrt_key": "BIGINT",
+        "nat_srv": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_req_agrt_prot_area",
+      "columns": 2,
+      "exported_rows": 128,
+      "loaded_rows": 128,
+      "status": "PASS",
+      "types": {
+        "ref_req_agrt_key": "BIGINT",
+        "geo_area": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_req_agrt_prot_crit",
+      "columns": 2,
+      "exported_rows": 90,
+      "loaded_rows": 90,
+      "status": "PASS",
+      "types": {
+        "ref_req_agrt_key": "BIGINT",
+        "prot_crit": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_std_area",
+      "columns": 2,
+      "exported_rows": 751,
+      "loaded_rows": 751,
+      "status": "PASS",
+      "types": {
+        "std_area": "VARCHAR",
+        "area_type": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.05
+    },
+    {
+      "table": "ref_std_area_region",
+      "columns": 2,
+      "exported_rows": 980,
+      "loaded_rows": 980,
+      "status": "PASS",
+      "types": {
+        "std_area": "VARCHAR",
+        "region": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_stn_cls",
+      "columns": 2,
+      "exported_rows": 28,
+      "loaded_rows": 28,
+      "status": "PASS",
+      "types": {
+        "stn_cls": "VARCHAR",
+        "description": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_stn_cls_nat_srv",
+      "columns": 4,
+      "exported_rows": 138,
+      "loaded_rows": 138,
+      "status": "PASS",
+      "types": {
+        "stn_cls": "VARCHAR",
+        "nat_srv": "VARCHAR",
+        "is_fully_automated": "VARCHAR",
+        "is_valid_for_ge06": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_stn_cls_system_type",
+      "columns": 2,
+      "exported_rows": 314,
+      "loaded_rows": 314,
+      "status": "PASS",
+      "types": {
+        "system_type": "VARCHAR",
+        "stn_cls": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_system_type",
+      "columns": 7,
+      "exported_rows": 40,
+      "loaded_rows": 40,
+      "status": "PASS",
+      "types": {
+        "system_type": "VARCHAR",
+        "freq_min": "DOUBLE",
+        "freq_max": "DOUBLE",
+        "protection_vis_a_vis": "VARCHAR",
+        "is_grandfathered": "VARCHAR",
+        "src_update": "VARCHAR",
+        "d_updated": "TIMESTAMP"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.03
+    },
+    {
+      "table": "ref_tv_chan",
+      "columns": 9,
+      "exported_rows": 38810,
+      "loaded_rows": 38810,
+      "status": "PASS",
+      "types": {
+        "tv_chan_key": "BIGINT",
+        "adm": "VARCHAR",
+        "ctry": "VARCHAR",
+        "tran_sys": "VARCHAR",
+        "is_digital": "VARCHAR",
+        "freq_assgn": "DOUBLE",
+        "tv_chan": "VARCHAR",
+        "src_update": "VARCHAR",
+        "d_updated": "TIMESTAMP"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.29
+    },
+    {
+      "table": "ref_tv_tran_sys",
+      "columns": 10,
+      "exported_rows": 59,
+      "loaded_rows": 59,
+      "status": "PASS",
+      "types": {
+        "tran_sys": "VARCHAR",
+        "is_digital": "VARCHAR",
+        "bdwdth_khz": "DOUBLE",
+        "emi_cls": "VARCHAR",
+        "freq_assgn_above_vcarr": "DOUBLE",
+        "freq_scarr_above_vcarr": "DOUBLE",
+        "freq_line_khz": "DOUBLE",
+        "description": "VARCHAR",
+        "src_update": "VARCHAR",
+        "d_updated": "TIMESTAMP"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_tv_tran_sys_color",
+      "columns": 4,
+      "exported_rows": 70,
+      "loaded_rows": 70,
+      "status": "PASS",
+      "types": {
+        "tran_sys": "VARCHAR",
+        "is_digital": "VARCHAR",
+        "color": "VARCHAR",
+        "fragment": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_tv_tran_sys_fragment",
+      "columns": 3,
+      "exported_rows": 137,
+      "loaded_rows": 137,
+      "status": "PASS",
+      "types": {
+        "tran_sys": "VARCHAR",
+        "is_digital": "VARCHAR",
+        "fragment": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "terraq_export_stat",
+      "columns": 8,
+      "exported_rows": 1,
+      "loaded_rows": 1,
+      "status": "PASS",
+      "types": {
+        "fmtv": "BIGINT",
+        "lfmf": "BIGINT",
+        "fxm": "BIGINT",
+        "data_source": "VARCHAR",
+        "data_format": "BIGINT",
+        "db_version": "BIGINT",
+        "d_exported": "TIMESTAMP",
+        "operator": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "vw_processing_group",
+      "columns": 9,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "domain": "VARCHAR",
+        "location": "VARCHAR",
+        "group_id": "BIGINT",
+        "fragment": "VARCHAR",
+        "group_type": "VARCHAR",
+        "d_proc": "TIMESTAMP",
+        "src_update": "VARCHAR",
+        "d_updated": "TIMESTAMP"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fmtv_ant_diag",
+      "columns": 4,
+      "exported_rows": 8280,
+      "loaded_rows": 8280,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "azm": "DOUBLE",
+        "polar": "VARCHAR",
+        "attn": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.04
+    },
+    {
+      "table": "fmtv_ge06_sub_area_xref",
+      "columns": 4,
+      "exported_rows": 5,
+      "loaded_rows": 5,
+      "status": "PASS",
+      "types": {
+        "ge06_sub_area_key": "BIGINT",
+        "terrakey": "BIGINT",
+        "freq_assgn": "DOUBLE",
+        "is_notice": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fmtv_target",
+      "columns": 3,
+      "exported_rows": 138,
+      "loaded_rows": 138,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "target": "BIGINT",
+        "action": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_coord",
+      "columns": 7,
+      "exported_rows": 1023,
+      "loaded_rows": 1023,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "coord_prov": "VARCHAR",
+        "adm": "VARCHAR",
+        "coord_st": "VARCHAR",
+        "d_coord_st": "TIMESTAMP",
+        "src_status": "VARCHAR",
+        "decl_affct": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.06
+    },
+    {
+      "table": "fxm_fdg_nbss",
+      "columns": 10,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "adm": "VARCHAR",
+        "nbss_sat_name": "VARCHAR",
+        "nbss_freq_assgn": "DOUBLE",
+        "nbss_bdwdth": "DOUBLE",
+        "nbss_notice_id": "BIGINT",
+        "nbss_group_id": "BIGINT",
+        "nbss_aff_srv_area": "VARCHAR",
+        "d_updated": "TIMESTAMP",
+        "src_update": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.03
+    },
+    {
+      "table": "fxm_geography",
+      "columns": 2,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "geo_key": "BIGINT",
+        "geo_shape": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_history",
+      "columns": 5,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "d_fms_hist": "TIMESTAMP",
+        "fms_status": "VARCHAR",
+        "user_id": "VARCHAR",
+        "hist_text": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_ref_assgn",
+      "columns": 4,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "assgn_id": "VARCHAR",
+        "geo_key": "BIGINT",
+        "assgn_id_related": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "fxm_status",
+      "columns": 4,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "status_typ": "VARCHAR",
+        "status": "VARCHAR",
+        "d_status_eff": "TIMESTAMP"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ge06_adm_in_1000",
+      "columns": 2,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "groupkey": "BIGINT",
+        "adm": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ge06_notice_group",
+      "columns": 2,
+      "exported_rows": 31,
+      "loaded_rows": 31,
+      "status": "PASS",
+      "types": {
+        "groupkey": "BIGINT",
+        "terrakey": "BIGINT"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "lfmf_gain",
+      "columns": 6,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "op_prd_cde": "VARCHAR",
+        "op_prd_no": "BIGINT",
+        "azm": "DOUBLE",
+        "elev": "DOUBLE",
+        "gain": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "lfmf_ref",
+      "columns": 7,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "op_prd_cde": "VARCHAR",
+        "op_prd_no": "BIGINT",
+        "azm": "DOUBLE",
+        "gw_sw": "VARCHAR",
+        "eu": "DOUBLE",
+        "dist_u": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "lfmf_towers",
+      "columns": 14,
+      "exported_rows": 0,
+      "loaded_rows": 0,
+      "status": "PASS",
+      "types": {
+        "terrakey": "BIGINT",
+        "op_prd_cde": "VARCHAR",
+        "op_prd_no": "BIGINT",
+        "twr_no": "BIGINT",
+        "fld_ratio": "DOUBLE",
+        "phase_diff": "DOUBLE",
+        "spacing": "DOUBLE",
+        "orient": "DOUBLE",
+        "hgt_elec": "DOUBLE",
+        "structure": "BIGINT",
+        "tls_a": "DOUBLE",
+        "tls_b": "DOUBLE",
+        "tls_c": "DOUBLE",
+        "tls_d": "DOUBLE"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_fm_tran_sys",
+      "columns": 5,
+      "exported_rows": 11,
+      "loaded_rows": 11,
+      "status": "PASS",
+      "types": {
+        "tran_sys": "VARCHAR",
+        "is_digital": "VARCHAR",
+        "description": "VARCHAR",
+        "src_update": "VARCHAR",
+        "d_updated": "TIMESTAMP"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_nat_srv",
+      "columns": 2,
+      "exported_rows": 18,
+      "loaded_rows": 18,
+      "status": "PASS",
+      "types": {
+        "nat_srv": "VARCHAR",
+        "description": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_notice_typ_fragment_prov",
+      "columns": 4,
+      "exported_rows": 81,
+      "loaded_rows": 81,
+      "status": "PASS",
+      "types": {
+        "notice_typ": "VARCHAR",
+        "fragment": "VARCHAR",
+        "prov": "VARCHAR",
+        "description": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_req_agrt_stn_cls",
+      "columns": 2,
+      "exported_rows": 404,
+      "loaded_rows": 404,
+      "status": "PASS",
+      "types": {
+        "ref_req_agrt_key": "BIGINT",
+        "stn_cls": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.02
+    },
+    {
+      "table": "ref_tv_chan_fragment",
+      "columns": 2,
+      "exported_rows": 63219,
+      "loaded_rows": 63219,
+      "status": "PASS",
+      "types": {
+        "tv_chan_key": "BIGINT",
+        "fragment": "VARCHAR"
+      },
+      "invalid_dates_to_null": {},
+      "seconds": 0.1
+    }
+  ],
+  "total_rows": 229150,
+  "failed": [],
+  "invalid_dates_to_null": 0,
+  "seconds": 4.3,
+  "size_mb": 21.8
+}

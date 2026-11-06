@@ -129,7 +129,8 @@ def test_without_credentials_no_call_is_made_and_the_template_is_grounded(first,
 
 def test_disabled_switch(monkeypatch):
     monkeypatch.setenv("LLM_DISABLED", "1")
-    assert C.status() == {"available": False, "model": settings.llm_model, "reason": "LLM_DISABLED=1"}
+    monkeypatch.delenv("DEMO_MODE", raising=False)
+    assert C.status() == {"available": False, "model": settings.llm_model, "reason": "LLM_DISABLED=1", "demo_mode": False}
 
 
 @pytest.mark.parametrize("kind, issue", [("space", 3074), ("terrestrial", 3076)])

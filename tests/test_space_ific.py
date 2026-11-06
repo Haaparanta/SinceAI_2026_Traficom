@@ -56,7 +56,7 @@ def test_counts_reconcile_with_the_database(result):
     st = result.stats
     assert st["notices"] == 196
     assert st["groups_in_db"] == 34365
-    assert st["groups_kept"] == 25105
+    assert st["groups_kept"] == 25127   # 25 105 published in 3074 + 22 earlier groups the Bureau names Finland in
     assert st["groups_kept"] + st["groups_excluded"] == st["groups_in_db"]
 
 

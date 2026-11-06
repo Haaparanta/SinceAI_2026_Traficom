@@ -109,17 +109,25 @@ The synthetic special-interest XLS is on the Since AI platform and must be downl
 
 PM narrates, FE drives the screen, BE and AI watch for errors. One take per shot, no editing beyond cuts.
 
-| Time | Shot | Requirement |
-|---|---|---|
-| 0:00-0:10 | Title, one sentence of the problem in the brief's words | |
-| 0:10-0:30 | Select Space 3074; the Finnish table loads, 5 917 rows, every row keeps its ID | M1, M2 |
-| 0:30-0:50 | Ranked list appears; counter shows screened versus flagged | M3, M4, S5 |
-| 0:50-1:05 | Calculation tab: inputs, formula, limit, margin | M5 |
-| 1:05-1:20 | Click evidence: the SRS row and the Traficom table row open | M7, S3 |
-| 1:20-1:30 | Draft letter to the administration, edit one line | S2 |
-| 1:30-1:40 | Approve, audit log line | S4 |
-| 1:40-1:55 | Switch to Terrestrial 3076: diff counts, field-strength trace at the border | S1, S6 |
-| 1:55-2:00 | Results files written; one-line pitch | M8 |
+**Before recording** (checked against the built screen on Sat 7 Nov 2026):
+
+1. `make freeze` ends with `proof pack: 20 of 20 reports, 0 failing`; `make status` shows no FAIL.
+2. Start the demo with a throwaway decision log, so the recording does not write into the real one:
+   `DECISIONS_DIR=reports/demo-decisions make api-demo` and `make frontend`. The header must read
+   "Offline demo: cached analysis, no network or language-model calls."
+3. Wi-Fi off. Browser at 100 % zoom, 1500 x 950 window, light theme. Type the reviewer name before the first shot.
+
+| Time | Shot | On screen | Requirement |
+|---|---|---|---|
+| 0:00-0:10 | Title, one sentence of the problem in the brief's words | Header: "The tool suggests; a specialist decides." | |
+| 0:10-0:30 | Space 3074 selected; Spectrum tab of F-3074-0001 | The lead group against the Finnish table rows, each with its ID | M1, M2 |
+| 0:30-0:50 | Ranked list and the three proof tiles | 196 notices screened, 135 flagged, 100 % provenance; concern filter chips | M3, M4, S5 |
+| 0:50-1:05 | Calculation tab | Inputs with evidence links, formula, -107.20 against -113.48, margin -6.28 dB, "Indicative" | M5 |
+| 1:05-1:20 | Click E-012 (P_d) in the Calculation tab, then a Finnish table item in the card | The ITU `emiss` row highlighted in the evidence list, then the Traficom row with its ID | M7, S3 |
+| 1:20-1:30 | "Draft letter", edit one line | Draft banner, "To the Administration of CHN", no send button | S2 |
+| 1:30-1:40 | Investigate with a note, then the Audit log tab | "Decision saved"; "Audit chain verified" | S4 |
+| 1:40-1:55 | Terrestrial 3076; RUS KRL KOSTOMUKSHA, Map then Calculation | Station 31.5 km from Finland; P.1546 field strength 25 dB(uV/m) against the 12 dB(uV/m) trigger | S1, S6 |
+| 1:55-2:00 | "Export results"; one-line pitch | The CSV downloads; `results/proof/index.html` all PASS | M8 |
 
 ### Submission package, 07:15 to 09:15
 

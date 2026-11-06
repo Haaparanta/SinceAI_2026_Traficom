@@ -1,0 +1,99 @@
+{
+  "status": "PASS",
+  "issue": 3074,
+  "pfd_status": {
+    "no_limit": 201,
+    "computed": 568,
+    "no_input": 4
+  },
+  "vectors_ok": true,
+  "pfd_range_ok": true,
+  "exceeding_groups": 343,
+  "exceeding_notices": [
+    "124520183",
+    "124520184",
+    "124520214",
+    "125500068",
+    "324520183",
+    "324520184",
+    "324520214"
+  ],
+  "medium_why": {
+    "pfd computed, within 15 dB of the limit": 4,
+    "non-GSO: pfd not evaluated in C1": 87,
+    "other: no_input": 1,
+    "no Article 21 limit in this band": 7
+  },
+  "worst": [
+    {
+      "group": "124794008",
+      "notice": "124520183",
+      "margin_db": -6.28,
+      "pfd": -107.2,
+      "limit": -113.48
+    },
+    {
+      "group": "124794009",
+      "notice": "124520183",
+      "margin_db": -6.28,
+      "pfd": -107.2,
+      "limit": -113.48
+    },
+    {
+      "group": "324794008",
+      "notice": "324520183",
+      "margin_db": -6.28,
+      "pfd": -107.2,
+      "limit": -113.48
+    },
+    {
+      "group": "324794009",
+      "notice": "324520183",
+      "margin_db": -6.28,
+      "pfd": -107.2,
+      "limit": -113.48
+    },
+    {
+      "group": "124794016",
+      "notice": "124520183",
+      "margin_db": -5.08,
+      "pfd": -108.4,
+      "limit": -113.48
+    },
+    {
+      "group": "324794016",
+      "notice": "324520183",
+      "margin_db": -5.08,
+      "pfd": -108.4,
+      "limit": -113.48
+    },
+    {
+      "group": "124793617",
+      "notice": "124520184",
+      "margin_db": -4.66,
+      "pfd": -107.13,
+      "limit": -111.79
+    },
+    {
+      "group": "124793618",
+      "notice": "124520184",
+      "margin_db": -4.66,
+      "pfd": -107.13,
+      "limit": -111.79
+    },
+    {
+      "group": "324793617",
+      "notice": "324520184",
+      "margin_db": -4.66,
+      "pfd": -107.13,
+      "limit": -111.79
+    },
+    {
+      "group": "324793618",
+      "notice": "324520184",
+      "margin_db": -4.66,
+      "pfd": -107.13,
+      "limit": -111.79
+    }
+  ]
+}

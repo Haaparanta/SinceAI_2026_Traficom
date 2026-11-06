@@ -5,7 +5,7 @@
 * Server-side refusal fallback is on (betas server-side-fallback-2026-07-01, fallbacks="default"), so a safety
   decline is retried on another model inside the same call instead of failing the demo; the final stop_reason is
   still checked before the content is read.
-* LLM_DISABLED=1, or no credentials, means no call is made: callers fall back to their deterministic template.
+* DEMO_MODE=1, LLM_DISABLED=1, or no credentials, means no call is made: callers fall back to their deterministic template.
 """
 from __future__ import annotations
 
@@ -49,13 +49,20 @@ def credentials_present() -> bool:
     return (Path.home() / ".config" / "anthropic").exists()
 
 
+def demo_mode() -> bool:
+    return os.environ.get("DEMO_MODE", "1" if settings.demo_mode else "0") == "1"
+
+
 def status() -> dict:
+    base = {"model": settings.llm_model, "demo_mode": demo_mode()}
+    if demo_mode():
+        return {**base, "available": False, "reason": "DEMO_MODE=1: no network calls; cached or template text only"}
     if os.environ.get("LLM_DISABLED", "1" if settings.llm_disabled else "0") == "1":
-        return {"available": False, "model": settings.llm_model, "reason": "LLM_DISABLED=1"}
+        return {**base, "available": False, "reason": "LLM_DISABLED=1"}
     if not credentials_present():
-        return {"available": False, "model": settings.llm_model,
+        return {**base, "available": False,
                 "reason": "no Claude API credentials (set ANTHROPIC_API_KEY or run `ant auth login`)"}
-    return {"available": True, "model": settings.llm_model, "reason": ""}
+    return {**base, "available": True, "reason": ""}
 
 
 def get_client():

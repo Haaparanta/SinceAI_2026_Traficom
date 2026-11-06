@@ -1,0 +1,4 @@
+label_source,cases,labelled_by,tp,fp,fn,tn,precision,recall
+Golden cases (tests/golden),10,claude-first-pass,3,0,0,7,1.00,1.00
+Bureau names Finland (provn),220,ITU BR (also a rule input),220,0,0,-,-,1.00
+Reviewer decisions (audit log),0,Traficom reviewers,0,0,0,-,n/a,n/a

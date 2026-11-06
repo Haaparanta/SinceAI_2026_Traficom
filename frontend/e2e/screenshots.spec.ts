@@ -54,3 +54,17 @@ test("d2: explanation and letter draft", async ({ page }, info) => {
   await letter.scrollIntoViewIfNeeded();
   await shot(page, info, "2-letter", "Letter draft");
 });
+
+test("e: offline demo, accuracy and proof pack", async ({ page }, info) => {
+  test.skip(step !== "e");
+  await open(page);
+  await expect(page.getByRole("status", { name: "Data source" })).toHaveText(/Offline demo/);
+  await shot(page, info, "1-demo-mode");
+  const proof = new URL("../../results/proof/", import.meta.url).href;
+  await page.goto(`${proof}freeze/e2_golden.html`);
+  await expect(page.getByRole("heading", { name: /Case recognition accuracy/ })).toBeVisible();
+  await shot(page, info, "2-accuracy");
+  await page.goto(`${proof}index.html`);
+  await expect(page.getByRole("heading", { name: "Filing Radar: stage reports" })).toBeVisible();
+  await page.screenshot({ path: `../docs/screenshots/${step}/3-proof-pack-${info.project.name}.png`, fullPage: info.project.name !== "phone" });
+});

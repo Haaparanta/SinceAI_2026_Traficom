@@ -15,7 +15,7 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  reporter: [["list"], ["html", { outputFolder: "../reports/playwright", open: "never" }]],
+  reporter: [["list"], ["html", { outputFolder: "../reports/playwright", open: "never" }], ["json", { outputFile: "../reports/playwright-results.json" }]],
   outputDir: "../reports/playwright-artifacts",
   use: {
     baseURL: `http://127.0.0.1:${WEB_PORT}`,
@@ -31,7 +31,7 @@ export default defineConfig({
     {
       command: `uv run uvicorn radar.main:app --app-dir backend --host 127.0.0.1 --port ${API_PORT}`,
       cwd: "..",
-      env: { DECISIONS_DIR: "reports/e2e-decisions", LLM_DISABLED: "1" },
+      env: { DECISIONS_DIR: "reports/e2e-decisions", LLM_DISABLED: "1", DEMO_MODE: "1" },
       url: `http://127.0.0.1:${API_PORT}/issues`,
       reuseExistingServer: false,
       timeout: 60_000,

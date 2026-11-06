@@ -2,8 +2,10 @@
 
 Every ITU name comes from schema_map.yaml. Missing values stay None (rule 3: unknown stays unknown).
 
-Scope: by default only groups published in this issue (grp.wic_no == issue) are screened. Groups of the same
-notices published in earlier issues are returned in `excluded` with the reason, so nothing disappears silently.
+Scope: by default only groups published in this issue (grp.wic_no == issue) are screened, plus any earlier group of
+a notice in this issue where the Bureau lists Finland as an affected administration (provn.adm = 'FIN'): the Bureau's
+own finding is never left out (3074: SECOMSAT-5-78E, CR/C 6344, has its Finland-affecting UHF groups in IFIC 3060).
+Other groups published in earlier issues are returned in `excluded` with the reason, so nothing disappears silently.
 
 Direction: grp.emi_rcp describes the notified station. For space-station notices (G, N) E means space-to-Earth;
 for earth-station notices (S) E means Earth-to-space. Checked on 3074 against the usual satellite bands
@@ -168,6 +170,8 @@ def load(issue: int, include_earlier_groups: bool = False, con: duckdb.DuckDBPyC
         ORDER BY 2, 1
     """
     group_rows = con.execute(groups_sql).fetchall()
+    from radar.pipeline.relevance import finland_named
+    bureau_named = set(finland_named(con))
     if own:
         con.close()
 
@@ -179,7 +183,7 @@ def load(issue: int, include_earlier_groups: bool = False, con: duckdb.DuckDBPyC
     t_emiss, c_pd = M.table(KIND, "emission"), M.col(KIND, "emission", "max_power_density_dbw_hz")
     for gid, nid, emi_rcp, beam, fmin, fmax, wic_no, pd, gain, areas, _row, pep, emi in group_rows:
         gid, nid = str(gid), str(nid)
-        if not include_earlier_groups and wic_no != issue:
+        if not include_earlier_groups and wic_no != issue and gid not in bureau_named:
             excluded.append(Excluded(gid, nid, f"published in an earlier issue (wic_no={wic_no})"))
             continue
         lo, hi = mhz_to_hz(fmin), mhz_to_hz(fmax)

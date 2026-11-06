@@ -1,0 +1,304 @@
+{
+  "status": "PASS",
+  "issue": 3074,
+  "notices": 196,
+  "notices_in_db": 196,
+  "groups_in_db": 34365,
+  "groups_kept": 25127,
+  "groups_excluded": 9238,
+  "include_earlier_groups": false,
+  "anomalies": [
+    {
+      "group_id": "126662625",
+      "notice_id": "126545057",
+      "field": "power_density_dbw_hz",
+      "value": 73.0,
+      "reason": "outside the plausible range -120 to 20 dBW/Hz",
+      "cross_check": "peak power -4 dBW over the necessary bandwidth of 8M00G2D-- (8 MHz) implies about -73.0 dBW/Hz",
+      "source_ref": "emiss.grp_id=126662625 (pwr_ds_max)"
+    }
+  ],
+  "excluded_by_reason": {
+    "published in an earlier issue": 9238
+  },
+  "direction": {
+    "space_to_earth": 15430,
+    "earth_to_space": 9697
+  },
+  "out_of_range": {
+    "freq_min_hz": 0,
+    "freq_max_hz": 0,
+    "power_density_dbw_hz": 0,
+    "max_gain_dbi": 0
+  },
+  "null_share": {
+    "freq_min_hz": 0.0,
+    "freq_max_hz": 0.0,
+    "power_density_dbw_hz": 0.0056,
+    "max_gain_dbi": 0.004
+  },
+  "notices_by_section": {
+    "Part I-S": 18,
+    "Part II-S": 41,
+    "CR/C": 76,
+    "API/A": 50,
+    "Part III-S": 6,
+    "RES49": 5
+  },
+  "notices_by_orbit": {
+    "GSO": 79,
+    "NGSO": 112,
+    "unknown": 5
+  },
+  "notices_without_groups": [
+    "321545314",
+    "322545208"
+  ],
+  "histogram": [
+    {
+      "from_hz": 100000000,
+      "to_hz": 125892541,
+      "space_to_earth": 0,
+      "earth_to_space": 0,
+      "unknown": 0
+    },
+    {
+      "from_hz": 125892541,
+      "to_hz": 158489319,
+      "space_to_earth": 13,
+      "earth_to_space": 20,
+      "unknown": 0
+    },
+    {
+      "from_hz": 158489319,
+      "to_hz": 199526231,
+      "space_to_earth": 1,
+      "earth_to_space": 14,
+      "unknown": 0
+    },
+    {
+      "from_hz": 199526231,
+      "to_hz": 251188643,
+      "space_to_earth": 22,
+      "earth_to_space": 0,
+      "unknown": 0
+    },
+    {
+      "from_hz": 251188643,
+      "to_hz": 316227766,
+      "space_to_earth": 88,
+      "earth_to_space": 122,
+      "unknown": 0
+    },
+    {
+      "from_hz": 316227766,
+      "to_hz": 398107171,
+      "space_to_earth": 48,
+      "earth_to_space": 77,
+      "unknown": 0
+    },
+    {
+      "from_hz": 398107171,
+      "to_hz": 501187234,
+      "space_to_earth": 27,
+      "earth_to_space": 27,
+      "unknown": 0
+    },
+    {
+      "from_hz": 501187234,
+      "to_hz": 630957344,
+      "space_to_earth": 1,
+      "earth_to_space": 1,
+      "unknown": 0
+    },
+    {
+      "from_hz": 630957344,
+      "to_hz": 794328235,
+      "space_to_earth": 3,
+      "earth_to_space": 3,
+      "unknown": 0
+    },
+    {
+      "from_hz": 794328235,
+      "to_hz": 1000000000,
+      "space_to_earth": 7,
+      "earth_to_space": 9,
+      "unknown": 0
+    },
+    {
+      "from_hz": 1000000000,
+      "to_hz": 1258925412,
+      "space_to_earth": 93,
+      "earth_to_space": 4,
+      "unknown": 0
+    },
+    {
+      "from_hz": 1258925412,
+      "to_hz": 1584893192,
+      "space_to_earth": 289,
+      "earth_to_space": 27,
+      "unknown": 0
+    },
+    {
+      "from_hz": 1584893192,
+      "to_hz": 1995262315,
+      "space_to_earth": 26,
+      "earth_to_space": 136,
+      "unknown": 0
+    },
+    {
+      "from_hz": 1995262315,
+      "to_hz": 2511886432,
+      "space_to_earth": 385,
+      "earth_to_space": 148,
+      "unknown": 0
+    },
+    {
+      "from_hz": 2511886432,
+      "to_hz": 3162277660,
+      "space_to_earth": 1,
+      "earth_to_space": 8,
+      "unknown": 0
+    },
+    {
+      "from_hz": 3162277660,
+      "to_hz": 3981071706,
+      "space_to_earth": 643,
+      "earth_to_space": 6,
+      "unknown": 0
+    },
+    {
+      "from_hz": 3981071706,
+      "to_hz": 5011872336,
+      "space_to_earth": 23,
+      "earth_to_space": 4,
+      "unknown": 0
+    },
+    {
+      "from_hz": 5011872336,
+      "to_hz": 6309573445,
+      "space_to_earth": 48,
+      "earth_to_space": 325,
+      "unknown": 0
+    },
+    {
+      "from_hz": 6309573445,
+      "to_hz": 7943282347,
+      "space_to_earth": 92,
+      "earth_to_space": 514,
+      "unknown": 0
+    },
+    {
+      "from_hz": 7943282347,
+      "to_hz": 10000000000,
+      "space_to_earth": 87,
+      "earth_to_space": 91,
+      "unknown": 0
+    },
+    {
+      "from_hz": 10000000000,
+      "to_hz": 12589254118,
+      "space_to_earth": 2075,
+      "earth_to_space": 5,
+      "unknown": 0
+    },
+    {
+      "from_hz": 12589254118,
+      "to_hz": 15848931925,
+      "space_to_earth": 728,
+      "earth_to_space": 1119,
+      "unknown": 0
+    },
+    {
+      "from_hz": 15848931925,
+      "to_hz": 19952623150,
+      "space_to_earth": 8546,
+      "earth_to_space": 384,
+      "unknown": 0
+    },
+    {
+      "from_hz": 19952623150,
+      "to_hz": 25118864315,
+      "space_to_earth": 608,
+      "earth_to_space": 169,
+      "unknown": 0
+    },
+    {
+      "from_hz": 25118864315,
+      "to_hz": 31622776602,
+      "space_to_earth": 27,
+      "earth_to_space": 5219,
+      "unknown": 0
+    },
+    {
+      "from_hz": 31622776602,
+      "to_hz": 39810717055,
+      "space_to_earth": 518,
+      "earth_to_space": 4,
+      "unknown": 0
+    },
+    {
+      "from_hz": 39810717055,
+      "to_hz": 50118723363,
+      "space_to_earth": 948,
+      "earth_to_space": 654,
+      "unknown": 0
+    },
+    {
+      "from_hz": 50118723363,
+      "to_hz": 63095734448,
+      "space_to_earth": 3,
+      "earth_to_space": 571,
+      "unknown": 0
+    },
+    {
+      "from_hz": 63095734448,
+      "to_hz": 79432823472,
+      "space_to_earth": 48,
+      "earth_to_space": 8,
+      "unknown": 0
+    },
+    {
+      "from_hz": 79432823472,
+      "to_hz": 100000000000,
+      "space_to_earth": 0,
+      "earth_to_space": 16,
+      "unknown": 0
+    },
+    {
+      "from_hz": 100000000000,
+      "to_hz": 125892541179,
+      "space_to_earth": 4,
+      "earth_to_space": 4,
+      "unknown": 0
+    },
+    {
+      "from_hz": 125892541179,
+      "to_hz": 158489319246,
+      "space_to_earth": 10,
+      "earth_to_space": 2,
+      "unknown": 0
+    },
+    {
+      "from_hz": 158489319246,
+      "to_hz": 199526231497,
+      "space_to_earth": 16,
+      "earth_to_space": 4,
+      "unknown": 0
+    },
+    {
+      "from_hz": 199526231497,
+      "to_hz": 251188643151,
+      "space_to_earth": 2,
+      "earth_to_space": 2,
+      "unknown": 0
+    },
+    {
+      "from_hz": 251188643151,
+      "to_hz": 316227766017,
+      "space_to_earth": 0,
+      "earth_to_space": 0,
+      "unknown": 0
+    }
+  ]
+}
