@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Traficom Briefing Card</title>
+<style>
+  :root {
+    --bg: #0f1216; --card: #1a1f26; --line: #2c333d; --text: #e7ecf2;
+    --muted: #9aa6b4; --accent: #5fb3ff; --warn: #f2b84b; --ok: #4fd18b;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 16px 16px 96px; }
+  h1 { font-size: 1.3rem; margin: 8px 0 4px; }
+  h2 { font-size: 1rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 10px; }
+  .warn { background: #3a2e12; border: 1px solid var(--warn); color: #ffe2a6; border-radius: 10px; padding: 10px 12px; font-size: .9rem; }
+  .wedge { display: block; width: 100%; text-align: left; background: var(--card); color: var(--text);
+    border: 2px solid var(--line); border-radius: 12px; padding: 12px; margin-bottom: 10px; font: inherit; cursor: pointer; }
+  .wedge[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+  .wedge b { display: block; margin-bottom: 4px; }
+  .wedge span { color: var(--muted); font-size: .92rem; }
+  .q { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin-bottom: 10px; }
+  .q label { display: block; font-weight: 600; margin-bottom: 6px; }
+  .q small { display: block; color: var(--muted); margin-bottom: 8px; }
+  textarea { width: 100%; min-height: 64px; background: #0b0e12; color: var(--text); border: 1px solid var(--line);
+    border-radius: 8px; padding: 8px; font: inherit; resize: vertical; }
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; background: rgba(15,18,22,.96); border-top: 1px solid var(--line); padding: 12px 16px; }
+  .bar button { display: block; width: 100%; max-width: 640px; margin: 0 auto; background: var(--accent); color: #04121f;
+    border: 0; border-radius: 10px; padding: 14px; font: inherit; font-weight: 600; cursor: pointer; }
+  #status { text-align: center; color: var(--ok); font-size: .85rem; min-height: 1.2em; margin-top: 6px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Traficom briefing card</h1>
+  <p class="warn">⚠️ Draft based on missing data: built from README.md only. All product ideas and questions are assumptions until the partner confirms. Answers are saved on this phone only.</p>
+
+  <h2>Pick the wedge</h2>
+  <button class="wedge" data-wedge="1" aria-pressed="true"><b>1 · Filing Radar (recommended)</b><span>Load a filing → see overlap with Finland's protected systems on one screen, ranked score, every flag cited, expert approves/dismisses.</span></button>
+  <button class="wedge" data-wedge="2" aria-pressed="false"><b>2 · Circular Triage Agent</b><span>Data-light. Reads each ITU circular, triages filings against rules, tracks deadlines, drafts a memo for sign-off.</span></button>
+  <button class="wedge" data-wedge="3" aria-pressed="false"><b>3 · Interference Screening Pipeline</b><span>Data-heavy. Ingests full filing data + diagrams, projects footprints over Finland, first-pass interference screening.</span></button>
+
+  <h2>Top 10 questions</h2>
+  <div id="questions"></div>
+</main>
+<div class="bar">
+  <button id="copy">Copy Partner Answers as Claude Update Prompt</button>
+  <div id="status" role="status"></div>
+</div>
+<script>
+  const QUESTIONS = [
+    ["What data can we have tonight?", "Real ITU filings (SRS, .mdb/GXT, BR IFIC PDFs), a sample, or nothing? → Branch A vs B."],
+    ["What are we protecting?", "List of Finnish assignments / earth stations / protected services to match against?"],
+    ["Can the data go to cloud LLM APIs?", "Or must it stay on local / open-weight models?"],
+    ["What does an expert produce today after a review?", "Memo, ITU comment/objection, coordination request, nothing?"],
+    ["What on screen on Sunday separates 1st from 2nd?", "The single live action or metric evaluators judge."],
+    ["How many filings per circular, and how many get a close look?", "Baseline for our time-saved metric."],
+    ["Which parameters decide whether a filing matters?", "Band, service area, power, orbit, filing stage?"],
+    ["Which sources do experts cross-check today?", "Radio Regulations, Finnish frequency plan, past correspondence, other DBs?"],
+    ["Can you share one past real case (anonymised)?", "Becomes our golden demo sample."],
+    ["What must the tool never do on its own?", "Guard rails: no auto-send, no silent dismissal, audit log?"]
+  ];
+  const KEY = "traficom-briefing-v1";
+  let state = { wedge: "1", answers: {} };
+  try { const s = JSON.parse(localStorage.getItem(KEY)); if (s) state = s; } catch (e) {}
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+
+  const box = document.getElementById("questions");
+  QUESTIONS.forEach(([q, hint], i) => {
+    const d = document.createElement("div"); d.className = "q";
+    d.innerHTML = `<label for="a${i}">${i + 1}. ${q}</label><small>${hint}</small><textarea id="a${i}" placeholder="Partner's answer…"></textarea>`;
+    box.appendChild(d);
+    const ta = d.querySelector("textarea");
+    ta.value = state.answers[i] || "";
+    ta.addEventListener("input", () => { state.answers[i] = ta.value; save(); });
+  });
+
+  const wedges = document.querySelectorAll(".wedge");
+  const paintWedges = () => wedges.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.wedge === state.wedge)));
+  wedges.forEach(b => b.addEventListener("click", () => { state.wedge = b.dataset.wedge; save(); paintWedges(); }));
+  paintWedges();
+
+  document.getElementById("copy").addEventListener("click", async () => {
+    const lines = QUESTIONS.map(([q], i) => `${i + 1}. ${q}\n   ANSWER: ${(state.answers[i] || "").trim() || "[no answer — keep as GAP - ASK PARTNER]"}`);
+    const prompt = `Partner briefing answers from Traficom are in. Locked wedge: ${state.wedge}.\n\n` +
+      `Update every file in ./pm_pack/: replace each matching [GAP - ASK PARTNER] and [HYPOTHESIS] with the confirmed answer, ` +
+      `mark it [PARTNER CONFIRMED], remove the "missing data" warning only where every gap in that file is resolved, ` +
+      `and list any architecture changes needed in 06_AGENTS_Master_Context.md.\n\n` + lines.join("\n");
+    const status = document.getElementById("status");
+    try { await navigator.clipboard.writeText(prompt); status.textContent = "Copied ✓"; }
+    catch (e) {
+      const t = document.createElement("textarea"); t.value = prompt; document.body.appendChild(t); t.select();
+      try { document.execCommand("copy"); status.textContent = "Copied ✓"; } catch (e2) { status.textContent = "Copy failed — select text manually"; }
+      t.remove();
+    }
+    setTimeout(() => status.textContent = "", 2500);
+  });
+</script>
+</body>
+</html>
