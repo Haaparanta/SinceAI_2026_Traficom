@@ -11,6 +11,7 @@ hard-code a table or column name that this script has not shown.
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import shutil
 import subprocess
@@ -29,14 +30,27 @@ def run(cmd: list[str], timeout: int = 600) -> str:
         return ""
 
 
-def inspect(path: Path) -> dict:
+csv.field_size_limit(1 << 30)  # some SNS memo fields exceed the 128 KB default
+
+
+def inspect(path: Path, sample_rows: int = 3) -> dict:
+    """Stream every table through the csv module, so quoted line breaks do not inflate the row count."""
     tables = [t for t in run(["mdb-tables", "-1", str(path)]).split("\n") if t.strip()]
     result = {"file": str(path), "tables": {}}
     for table in tables:
-        export = run(["mdb-export", str(path), table])
-        lines = export.splitlines()
-        columns = [c.strip('"') for c in lines[0].split(",")] if lines else []
-        result["tables"][table] = {"rows": max(len(lines) - 1, 0), "columns": columns}
+        proc = subprocess.Popen(["mdb-export", "-D", "%Y-%m-%d", "-T", "%Y-%m-%d %H:%M:%S", "-b", "strip", str(path), table],
+                                stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, errors="replace")
+        reader = csv.reader(proc.stdout)
+        columns = next(reader, [])
+        rows, samples = 0, []
+        for row in reader:
+            rows += 1
+            if len(samples) < sample_rows:
+                samples.append(row)
+        proc.wait()
+        if proc.returncode:
+            sys.stderr.write(f"warning: mdb-export {table} exited {proc.returncode}: {proc.stderr.read().strip()}\n")
+        result["tables"][table] = {"rows": rows, "columns": columns, "sample": samples}
     return result
 
 
