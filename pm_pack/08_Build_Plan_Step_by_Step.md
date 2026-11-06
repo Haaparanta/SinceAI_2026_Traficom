@@ -8,6 +8,33 @@ How we build Filing Radar from an empty `backend/` to the two graded results fil
 
 ---
 
+## Status (Fri 6 Nov 2026, late evening)
+
+| Step | State | Proof | PR |
+|---|---|---|---|
+| A1, A2 tools and data | done | `make doctor check-data checksums` | #16 |
+| A3 special-interest XLS | **waiting**: download by hand from the Since AI platform | `make check-data` shows WAITING | |
+| A4 schema | done; all expected tables found | `reports/schema/*.html` | #17 |
+| A5 DuckDB, A6 Finnish table | done; row counts match, 5 917 rows | `reports/convert/*.html`, `reports/reference/fi_subbands.html` | #18 |
+| B1 to B5 space 3074 | done; 196 notices, 135 flagged, results files written | `reports/3074/01-05_*.html`, `results/space_3074.*` | #19 to #23 |
+| C1 worst-case pfd | done; limits re-transcribed from RR 2024 (second reviewer pending) | `reports/3074/06_pfd.html` | #24 |
+| C2 terrestrial diff | done; each extract is a change set | `reports/3076/01_diff.html` | #25 |
+| C3 P.1546 at the border | done; ITU reference code, 52 validation cases at 0.0 dB | `reports/3076/02_field_strength.html`, `results/terrestrial_3076.*` | #26 |
+| D1 one screen | done (built by Claude Code at the user's request; file 06 gives `frontend/` to Cursor) | `make frontend`, Playwright `make e2e` | #27, this PR |
+| D2 explanation and letter | next | | |
+| D3 decisions and audit log | next | | |
+| E1 to E5 freeze and ship | E1 (byte-identical reruns) already holds; the rest pending | | |
+
+Facts the real files changed (also recorded in file 06 and `backend/radar/schema_map.yaml`):
+
+- The terrestrial extracts are Access `.mdb`, not SQLite, and each is the **change set** of its issue: the diff uses the Bureau's intent (ADD, MODIFY, SUPPRESS, RECORDED), the comparison with the previous issue is a trend.
+- `grp.wic_no` marks the issue that published a group (25 105 of 34 365 groups in 3074); `grp.emi_rcp` flips meaning for earth-station notices.
+- `e_as_stn` links through `grp_id`; `site_alt` is in `fxm_geo`.
+- `provn.adm = 'FIN'` is the Bureau's own list of notices affecting Finland (16 in 3074), the strongest relevance signal.
+- The IFIC database has no beam boresight or gain contours: pfd exceedances count as high only for steerable beams.
+- Mariehamn was added to the reference points (westernmost point decides visibility of western GSO satellites).
+- Solution plan 01 had a 36 dB slip in its pfd example (corrected in C1).
+
 ## 0. How to read this plan
 
 Each step has the same five parts:

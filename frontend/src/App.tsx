@@ -22,20 +22,27 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    api.issues().then((xs) => { setIssues(xs); if (xs.length) setCurrent({ kind: xs[0].kind, issue: xs[0].issue }); }).catch((e) => setError(String(e)));
+    // Default to the first issue only if the user has not chosen one yet: a late response must not undo a click.
+    api.issues().then((xs) => {
+      setIssues(xs);
+      if (xs.length) setCurrent((c) => c ?? { kind: xs[0].kind, issue: xs[0].issue });
+    }).catch((e) => setError(String(e)));
     api.region().then(setRegion).catch(() => undefined);
     api.points().then(setPoints).catch(() => undefined);
   }, []);
 
   useEffect(() => {
     if (!current) return;
+    let stale = false;            // ignore a response for an issue that is no longer selected
     setBundle(null);
     api.analysis(current.kind, current.issue).then((b) => {
+      if (stale) return;
       setBundle(b);
       const first = b.result.findings.find((f) => f.concern !== "none") ?? b.result.findings[0];
       setSelected(first?.id ?? null);
       setTab(first?.calc.method !== "none" ? "calculation" : "spectrum");
-    }).catch((e) => setError(String(e)));
+    }).catch((e) => { if (!stale) setError(String(e)); });
+    return () => { stale = true; };
   }, [current]);
 
   const finding = bundle?.result.findings.find((f) => f.id === selected) ?? null;

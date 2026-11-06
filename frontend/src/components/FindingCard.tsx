@@ -33,9 +33,10 @@ export function FindingCard({ finding, ctx, highlight }: { finding: Finding; ctx
       )}
       <section>
         <h3 className="text-sm font-semibold mb-2">Evidence ({finding.evidence.length})</h3>
-        <ol className="space-y-2">
+        <ol className="space-y-2" aria-label="Evidence">
           {finding.evidence.map((e) => (
-            <li key={e.id} ref={(el) => { refs.current[e.id] = el; }}
+            <li key={e.id} ref={(el) => { refs.current[e.id] = el; }} data-evidence-id={e.id}
+              aria-current={highlight === e.id ? "true" : undefined}
               className={`rounded-xl border p-2.5 text-sm transition-colors ${highlight === e.id ? "border-ring bg-secondary" : "border-border"}`}>
               <div className="flex items-center gap-2 text-xs text-muted-foreground">
                 <span className="num font-semibold text-foreground">{e.id}</span><span>{KIND_LABEL[e.kind]}</span>
