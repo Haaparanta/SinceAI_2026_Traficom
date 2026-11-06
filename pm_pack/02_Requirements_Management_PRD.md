@@ -1,6 +1,7 @@
-# 02 — Requirements & PRD: "Filing Radar" (Wedge 1)
+# 📋 02 — Requirements & PRD: "Filing Radar" (Wedge 1)
 
-> ⚠️ **DRAFT — BASED ON MISSING DATA**
+> [!WARNING]
+> 🍒 **Draft — based on missing data**
 > Written from `README.md` only. No real filings, protected-asset lists, user interviews or evaluation criteria were available.
 > - All numbers in the before/after workflow are **`[HYPOTHESIS]` placeholders** and must be replaced with partner figures (see Q7 in `01_Partner_Briefing_Questions.md`).
 > - Owners are role placeholders (**PM, BE, AI, FE**) because team size and roles were not provided. Hour estimates assume ~4 people.

@@ -1,6 +1,7 @@
-# 05 — Execution Roadmap & Milestones (EET)
+# 🌸 05 — Execution Roadmap & Milestones (EET)
 
-> ⚠️ **DRAFT — BASED ON MISSING DATA**
+> [!WARNING]
+> 🍒 **Draft — based on missing data**
 > The schedule assumes ~4 people (team size not provided) and that partner data may be missing. Gate 1 explicitly accepts **synthetic data** so the plan works either way. Re-plan sprint owners once `{TEAM_SIZE}` and `{ROLES_AND_STRENGTHS}` are known.
 
 **Fixed times:** Build starts **Fri 19:30** · Partner Q&A **Sat morning/afternoon** · Internal FINAL **Sun 09:15** · Hard deadline **Sun 10:00**.
