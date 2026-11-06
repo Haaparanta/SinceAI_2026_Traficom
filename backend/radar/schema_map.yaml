@@ -51,7 +51,7 @@ space:
     columns:
       notice_id: ntc_id
       satellite_name: sat_name
-      reference_body: ref_body
+      reference_body: ref_body  # T Earth (102 in 3074), L Moon 6, J Jupiter 2, S Sun 1, NULL 1
   group:                        # 34 365 rows: every group of every notice in the issue, including historical ones
     table: grp
     key: grp_id
@@ -143,6 +143,8 @@ space:
     columns:
       group_id: grp_id
       station_name: stn_name
+      station_type: stn_type    # S specific (has coordinates, 2 104 in 3074 groups), T typical (no location)
+      country: ctry
       lon_deg: long_dec
       lat_deg: lat_dec
       gain_dbi: gain
@@ -164,6 +166,14 @@ space:
       station_name: stn_name
       satellite_name: sat_name
       satellite_longitude_deg: long_nom   # NULL for non-GSO satellites (e.g. ARCTICA-M)
+      lon_deg: long_deg         # degrees/minutes/seconds with hemisphere letter
+      lon_hemisphere: long_ew
+      lon_min: long_min
+      lon_sec: long_sec
+      lat_deg: lat_deg
+      lat_hemisphere: lat_ns
+      lat_min: lat_min
+      lat_sec: lat_sec
   earth_antenna:                # 25 rows: earth station antenna per beam, the S-notice counterpart of s_beam
     table: e_ant
     key: [ntc_id, emi_rcp, beam_name]
