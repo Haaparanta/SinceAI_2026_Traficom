@@ -27,7 +27,8 @@ import pyarrow as pa
 from radar.adapters import traficom_table
 from radar.models import FinnishSubBand, FrequencyGroup, Notice, SpecialInterestStation
 
-CANDIDATE_PATHS = ("special_interest", "pfd_terrestrial", "passive_service", "space_cofrequency", "uncovered")
+CANDIDATE_PATHS = ("special_interest", "pfd_terrestrial", "passive_service", "space_cofrequency", "uncovered",
+                   "uplink_near_finland")
 INFORMATIONAL_PATHS = ("uplink_terrestrial", "uplink_space", "uplink_passive", "uplink_uncovered")
 
 
@@ -86,6 +87,8 @@ class GroupRelevance:
     primary_terrestrial: bool             # at least one primary terrestrial row on the pfd path
     matched_station_numbers: list[str] = field(default_factory=list)
     finland_named_provisions: list[str] = field(default_factory=list)   # Bureau lists FIN as affected (provn)
+    geo_relevance: str = "unknown"        # set by geography.apply (B3)
+    geo_note: str = ""
     candidate: bool = False
     drop_reason: str | None = None
 
