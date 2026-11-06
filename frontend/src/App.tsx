@@ -8,6 +8,7 @@ import { FindingCard } from "./components/FindingCard";
 import { MapView } from "./components/MapView";
 import { RankedList } from "./components/RankedList";
 import { SpectrumView } from "./components/SpectrumView";
+import { ThemeSwitch } from "./components/ThemeSwitch";
 import { Card, Empty, Segmented, Stat } from "./components/ui";
 import type { AnalysisBundle, AuditEntry, IssueInfo, Kind, RefPoint, Region } from "./types";
 
@@ -77,7 +78,10 @@ export default function App() {
       <div className="mx-auto max-w-[1600px] px-4 py-4 flex flex-col gap-4 lg:h-screen">
         <header className="flex flex-wrap items-end gap-4">
           <div className="mr-auto">
-            <h1 className="font-display text-2xl font-bold tracking-tight text-foreground">Filing Radar</h1>
+            <h1 className="font-display text-2xl font-bold tracking-tight text-foreground inline-flex items-center gap-2">
+              <img src="/favicon.svg" alt="" width="28" height="28" className="rounded-lg shadow-soft" />
+              Filing Radar
+            </h1>
             <p className="text-sm text-secondary-foreground">ITU BR IFIC notices that may affect radio frequency use in Finland. The tool suggests; a specialist decides.</p>
             {(demo || r?.from_cache) && (
               <p role="status" aria-label="Data source" className="mt-1 text-xs text-muted-foreground">
@@ -85,6 +89,7 @@ export default function App() {
               </p>
             )}
           </div>
+          <ThemeSwitch />
           <label className="flex flex-col text-xs text-secondary-foreground">
             Reviewer
             <input value={reviewer} onChange={(e) => setReviewer(e.target.value)} placeholder="Your name" aria-label="Reviewer"

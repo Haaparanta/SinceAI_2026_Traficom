@@ -223,3 +223,10 @@ Warm, encouraging, competent — like a friend who is very good at their job.
 - [ ] No emoji anywhere; no playful copy on findings, decisions or exports.
 - [ ] Sigil background is on the page root only (one class per page), sits behind content, and is hidden for reduced transparency, high contrast and print.
 - [ ] Works with reduced motion, reduced transparency and high contrast.
+
+## v3 (7 Nov 2026): white-pink light mode, theme switch
+
+- Light tokens moved from blush grey and lavender to white pink: `--background` #fff9fd, `--secondary` strawberry milk, `--primary` hot pink `oklch(0.575 0.21 354)`, raspberry ink. Every text pair re-checked for AA (primary with white 4.8:1, muted text 6.0:1 on background).
+- New token `--page-wash`: a soft pink glow behind the page, faint in dark mode.
+- The mosaic sigil tile is served as a pre-rendered alpha PNG (`sigils/mosaic.png`); as an SVG mask it blocked a phone's main thread for about 6 s. Re-render it when `generate.py` changes `mosaic.svg`.
+- The app has a Light / Dark switch (`frontend/src/components/ThemeSwitch.tsx`); the choice is saved, and without one the system setting decides.

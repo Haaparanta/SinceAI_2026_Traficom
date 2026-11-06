@@ -12,9 +12,18 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#fdf8fa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#fff9fd" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#170a16" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
+    <!-- apply the saved or system theme before the first paint (same rule as src/theme.ts) -->
+    <script>
+      try {
+        var t = localStorage.getItem("filing-radar.theme");
+        if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.classList.toggle("dark", t === "dark");
+        document.documentElement.style.colorScheme = t;
+      } catch (e) {}
+    </script>
 
     <!-- link previews (Open Graph, X/Twitter, Slack, Teams, LinkedIn) -->
     <meta property="og:type" content="website" />
