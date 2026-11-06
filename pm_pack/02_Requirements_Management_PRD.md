@@ -39,7 +39,7 @@ BR IFICs are published every second Tuesday `[SOURCE DATA: ITU schedule; 3084 la
 | Tabs: Spectrum | Map | Calculation| Finding card for the selected notice           |
 |                                  |   Concern: High . Band 10.95-11.2 GHz          |
 | Spectrum: notice groups as bars  |   Reason (2 lines, cites evidence IDs)         |
-|   over Finnish sub-bands from    |   Evidence: com_el row, grp rows, Traficom rows|
+|   over Finnish sub-bands from    |   Evidence: notice row, grp rows, Traficom rows|
 |   the Traficom table             |             RR 21.16 limit row                 |
 | Map: Finland outline, GSO        |   [Draft correspondence] [Export row]          |
 |   elevation contours or station  |   [Approve] [Dismiss] [Investigate]            |
@@ -64,7 +64,7 @@ BR IFICs are published every second Tuesday `[SOURCE DATA: ITU schedule; 3084 la
 
 | ID | Requirement | Acceptance test | Owner | Est. h |
 |---|---|---|---|---|
-| M1 | **Ingest Space IFIC 3074.** Download the ITU zip, convert the `.mdb` databases to DuckDB or SQLite, keep table and row identifiers `[SOURCE DATA: zip 60.8 MB, Version 10 databases]` `[HYPOTHESIS: mdbtools can read them]` | `make data` ends with `data/derived/ific3074.duckdb`; row counts per table logged; `com_el`, `grp`, `freq`, `emiss`, `s_beam`, `geo`, `orbit` present or an equivalent named mapping documented `[HYPOTHESIS table names, verify against SRSDiagramV9_1.pdf]` | BE | 5 |
+| M1 | **Ingest Space IFIC 3074.** Download the ITU zip, convert the `.mdb` databases to DuckDB or SQLite, keep table and row identifiers `[SOURCE DATA: zip 60.8 MB, Version 10 databases]` `[HYPOTHESIS: mdbtools can read them]` | `make data` ends with `data/derived/ific3074.duckdb`; row counts per table logged; `notice`, `grp`, `assgn`, `emiss`, `s_beam`, `srv_area`, `geo`, `orbit` present or an equivalent named mapping documented `[SOURCE DATA: Space Preface Section III; see 07_Solution_Catalogue.md section 2]` | BE | 5 |
 | M2 | **Finnish reference data.** Cache the Traficom table (5 917 rows) as Parquet; load the special-interest XLS once available `[SOURCE DATA: API fields; XLS columns from brief 05]` `[GAP: Q4]` | `GET /reference/subbands?hz=11000000000` returns the matching rows with `Services_in_Finland` and `Comment`; XLS loader validates station number, centre frequency, bandwidth, coordinates, antenna height, direction, directivity | BE | 2 |
 | M3 | **Frequency relevance.** For every group in the issue, compute overlap in MHz with Finnish sub-bands and with special-interest stations, direction-aware (space-to-Earth against terrestrial use; Earth-to-space against Finnish space use) `[HYPOTHESIS rule]` `[GAP: Q1]` | Full 3074 screened in under 5 minutes on a laptop; Sample 3 pattern yields no space overlap; every overlap row references the SRS group row and the Traficom row ID | BE | 5 |
 | M4 | **Geographic relevance.** GSO: elevation angle from four Finnish reference points to the nominal longitude; visible if above 0 degrees, low-elevation flag below 10 degrees. Non-GSO: relevant unless the service area excludes Finland. Service area codes containing FIN or a region including Finland count `[HYPOTHESIS]` `[GAP: Q1]` | Elevation table for Samples 1 and 2 matches a hand calculation within 0.5 degrees | AI | 3 |

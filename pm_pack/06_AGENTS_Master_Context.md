@@ -4,7 +4,7 @@ Shared context for every coding agent on the team (Claude Code, Cursor, Codex, A
 
 > [!NOTE]
 > **Grounding.** Designed on Fri 6 Nov 2026 from the Traficom challenge brief, `README.md`, and the live ITU, Finlex and Traficom sources. Tags: `[SOURCE DATA]` stated by the partner or a linked page, `[HYPOTHESIS]` our assumption until verified, `[GAP - ASK PARTNER: Qn]` open question in `pm_pack/01_Partner_Briefing_Questions.md`.
-> The ITU database table and field names below are `[HYPOTHESIS]`. The first engineering task is to print the real schema and fill `backend/radar/schema_map.yaml`; nothing else may hard-code a table or column name.
+> The ITU database table and field names below come from the ITU's schema documentation (see `pm_pack/07_Solution_Catalogue.md`, section 2) but have not yet been checked against the files inside the 3074 and 3076 zips. The first engineering task is to print the real schema and fill `backend/radar/schema_map.yaml`; nothing else may hard-code a table or column name.
 >
 > To use: `ln -s pm_pack/06_AGENTS_Master_Context.md AGENTS.md` and the same for `CLAUDE.md` and `.cursorrules`.
 
@@ -122,22 +122,30 @@ The special-interest XLS comes from the Since AI platform: save it as `data/raw/
 
 Then `python scripts/inspect_mdb.py data/raw/ific3074/*.mdb` and fill `schema_map.yaml`. Only after that may `space_ific.py` be written.
 
-### ITU tables we expect `[HYPOTHESIS: names from the SRS structure; verify against SRSDiagramV9_1.pdf and legend_E.pdf]`
+### ITU tables we expect `[SOURCE DATA: Space Preface Oct 2026, Section III Ch. 1; terrestrial FXM diagram and Preface ed. 3083. Confirm with scripts/inspect_mdb.py]`
 
-| Our name | Expected SRS table | Fields we need |
+Names below are taken from the ITU's own schema documentation; full column lists and sources are in `pm_pack/07_Solution_Catalogue.md`, section 2. They still go through `schema_map.yaml`, because the files inside the 3074 zip have not been opened yet.
+
+| Our name | SNS v10 table | Fields we need |
 |---|---|---|
-| notice | `com_el` | `ntc_id`, `adm`, `sat_name`, `ntwk_org`, `ntc_type` (GSO or non-GSO), `long_nom`, `d_rcv`, special section reference and number |
-| group | `grp` | `grp_id`, `ntc_id`, `beam_name`, `emi_rcp` (E = space station emits, R = receives), `freq_min`, `freq_max`, `d_inuse` |
-| frequency | `freq` | `grp_id`, `freq_assgn` |
-| emission | `emiss` | `grp_id`, `design_emi`, `pwr_ds_max` (dBW/Hz), `pwr_tot_pk` |
-| beam | `s_beam` | `ntc_id`, `beam_name`, `emi_rcp`, `gain` (max dBi) |
-| service area | `geo` or `srv_area` | `grp_id`, area or country codes |
-| service class | `srv_cls` | `grp_id`, `stn_cls`, service |
-| orbit (non-GSO) | `orbit` | `ntc_id`, planes, satellites per plane, inclination, apogee, perigee |
-| pfd mask (non-GSO) | mask tables | presence only (C1) |
-| earth station | `e_stn` | `ntc_id`, `stn_name`, country, coordinates |
+| notice | `notice` | `ntc_id`, `adm`, `ntwk_org`, `ntc_type` (G GSO, N non-GSO, S specific earth station, T typical earth station, R radio astronomy), `ntf_rsn` (A API, C coordination, N notification), `prov`, `act_code`, `d_rcv`, `wic_no`, `wic_part`, `d_wic`, `tgt_ntc_id` |
+| GSO station | `geo` | `ntc_id`, `sat_name`, `long_nom` (minus = West) |
+| non-GSO station | `non_geo` | `ntc_id`, `sat_name`, `ref_body` |
+| group | `grp` | `grp_id`, `ntc_id`, `beam_name`, `emi_rcp` (E = space station emits, R = receives), `freq_min`, `freq_max` (MHz), `bdwdth` (kHz), `d_inuse`, `adm_resp`, `op_agcy` |
+| frequency | `assgn` | assigned frequency; `pfd` and its `bdwdth` where declared |
+| emission | `emiss` | `grp_id`, `seq_no`, `design_emi`, `pep_max` (dBW), `pwr_ds_max` (dBW/Hz), `pwr_ds_nbw` |
+| beam | `s_beam` | `ntc_id`, `emi_rcp`, `beam_name`, `gain` (max dBi), `f_steer` |
+| service area | `srv_area` | `grp_id`, `ctry` (country or area symbol), `f_excl_api` |
+| service class | `srv_cls` | `grp_id`, nature of service, class of station |
+| orbit (non-GSO) | `orbit`, `phase` | `ntc_id`, `orb_id`, `nbr_sat_pl`, `inclin_ang`, `apog_km`, `perig_km`, `right_asc`, `perig_arg` |
+| pfd mask (non-GSO) | `mask_info`, `mask_lnk1`–`mask_lnk3` | presence and frequency range (C1) |
+| earth station | `e_as_stn`, `e_ant` | `ntc_id`, `ctry`, antenna `gain` |
+| affected networks | `provn`, `all_aff_ntw`, `tr_aff_ntw` | administrations and networks the Bureau identified |
+| publication | `pub_ssn` | special section reference |
 
-Terrestrial MDB extract: read `ReadMe_3076.pdf` first. We expect one notice table with administration, notice type (add, modify, suppress), station class, country, site name and coordinates, assigned frequency, bandwidth, power or ERP, antenna height, azimuth and polarisation `[HYPOTHESIS]`.
+`com_el` and `freq` exist but are marked "BR internal use"; do not build on them. Part I-S action symbols: A new, M modification, N non-basic change, R resubmission, S suppression, W withdrawn.
+
+Terrestrial MDB extract: land-mobile notices are in the FXM domain, spread over several tables, not one. `fxm_terra` (`terrakey`, `adm`, `fragment`, `freq_assgn`, `freq_min`, `freq_max`, `bdwdth`, `emi_cls`, `stn_cls`, `notice_typ`, `intent` = ADD, MODIFY, SUPPRESS or WITHDRAW, `d_rcv`, `geo_key`), `fxm_geo` and `fxm_geo_pt` (`ctry`, `site_name`, `long_dec`, `lat_dec`, `site_alt`), `fxm_ant` (`pwr_ant` dBW, `gain_max`, `gain_type`, `ant_dir`, `azm_max_e`, `hgt_agl`, `eff_hgtmax`, `polar`) and `fxm_ant_hgt` (effective height per azimuth, the P.1546 input). Land-mobile notice forms: T12 transmitting stations, T13 receiving land stations, T14 typical stations. Station classes: FB base, FL land, ML land mobile, MO mobile. The full TerRaBase is SQLite (`BRIFIC_<NNNN>.db3`); the per-issue extract format is still to be confirmed by unzipping.
 
 ---
 
@@ -204,7 +212,7 @@ class Evidence(BaseModel):
     id: str                                   # "E-0001"
     kind: Literal["itu_row", "finnish_table_row", "special_interest_row", "regulation", "calculation"]
     source: str                               # file name, URL or document title
-    locator: str                              # "com_el.ntc_id=123456789" | "Taajuusjakotaulukko.ID=4123" | "RR Art. 21 Table 21-4"
+    locator: str                              # "notice.ntc_id=123456789" | "Taajuusjakotaulukko.ID=4123" | "RR Art. 21 Table 21-4"
     excerpt: str                              # the value or sentence as found
 
 class FrequencyGroup(BaseModel):
