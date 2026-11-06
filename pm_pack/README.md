@@ -15,6 +15,7 @@ Plan, questions and agent context for the Traficom challenge at Since AI 2026 (T
 | [05_Execution_Roadmap_and_Milestones.md](05_Execution_Roadmap_and_Milestones.md) | Running the weekend. Sprints, gates, the first 90 minutes, the Sunday run-sheet. |
 | [06_AGENTS_Master_Context.md](06_AGENTS_Master_Context.md) | Before any coding agent touches the repo. Stack, folder tree, contracts, calculations, LLM rules, agent ownership. Symlinked as `AGENTS.md`, `CLAUDE.md` and `.cursorrules` in the repo root. |
 | [07_Solution_Catalogue.md](07_Solution_Catalogue.md) | Looking up the verified ITU table and column names, choosing what to build next, or checking a speed budget. 27 candidate solutions with inputs and effort, per-stage time budgets, the formula sheet, T/R 25-08 values. |
+| [08_Build_Plan_Step_by_Step.md](08_Build_Plan_Step_by_Step.md) | Building. Every step with what to do, what to see, red flags, the visual proof (stage reports, DuckDB UI, evidence resolver) and the check that marks it done. Hardware notes for the M1. |
 
 ## How the pack stays current
 
