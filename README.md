@@ -37,15 +37,6 @@ Finnish Radio Frequency Regulation, including the table of frequencies in Finlan
 - Radio frequency table API (Swagger): https://opendata.traficom.fi/swagger/ui/index#/Taajuusjakotaulukko
 - Radio frequency table API endpoint: https://opendata.traficom.fi/api/v13/Taajuusjakotaulukko
 
-## Project Documents
+## Team plan
 
-Planning material lives in `pm_pack/`. Docs 01–06 were drafted from this README before the official brief arrived; doc 07 is based on the official brief and on verified ITU, CEPT and Traficom sources and takes precedence where they differ.
-
-- [01 Partner briefing questions](pm_pack/01_Partner_Briefing_Questions.md)
-- [02 Requirements and PRD](pm_pack/02_Requirements_Management_PRD.md)
-- [03 Strategic SWOT and competitor matrix](pm_pack/03_Strategic_SWOT_and_Competitor_Matrix.md)
-- [04 Risk register](pm_pack/04_Risk_Register_and_Mitigation.md)
-- [05 Execution roadmap](pm_pack/05_Execution_Roadmap_and_Milestones.md)
-- [06 Agents master context](pm_pack/06_AGENTS_Master_Context.md)
-- [07 Solution catalogue: solutions, what each needs, what is fast enough, logic-based components](pm_pack/07_Solution_Catalogue.md)
-- [Official challenge brief (PDF)](Since_AI_Traficom_Challenge_Brief_FINAL_04112026.pdf)
+The engineering plan, partner questions and agent context live in [`pm_pack/`](pm_pack/README.md). Start with `scripts/fetch_data.sh` (the graded issues, M4 and the Finnish frequency table; `scripts/download_data.sh` fetches every 2026 IFIC issue and the optional sources, see [`data/SOURCES.md`](data/SOURCES.md)), then `python3 scripts/inspect_mdb.py data/raw/ific3074/*.mdb`. `AGENTS.md`, `CLAUDE.md` and `.cursorrules` point at the master context for coding agents.
