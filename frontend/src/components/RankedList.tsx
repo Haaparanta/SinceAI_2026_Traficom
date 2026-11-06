@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { fmtHz } from "../api";
+import { DECISION_LABEL, fmtHz } from "../api";
 import type { AnalysisBundle, Concern, Finding } from "../types";
 import { ConcernBadge } from "./ui";
 
@@ -51,6 +51,7 @@ export function RankedList({ bundle, selected, onSelect }: {
         {rows.map((f) => {
           const ctx = bundle.context[f.id];
           const g = ctx?.group;
+          const d = bundle.decisions?.[f.id];
           return (
             <li key={f.id}>
               <button onClick={() => onSelect(f.id)} aria-current={selected === f.id}
@@ -58,7 +59,8 @@ export function RankedList({ bundle, selected, onSelect }: {
                 <div className="flex items-center gap-2">
                   <ConcernBadge concern={f.concern} />
                   <span className="text-sm font-medium truncate">{ctx?.title ?? f.notice_id}</span>
-                  <span className="num ml-auto text-xs text-muted-foreground">{keyNumber(f)}</span>
+                  {d && <span className="shrink-0 rounded-full border border-border px-2 py-0.5 text-[11px] text-secondary-foreground" title={`${d.reviewer}: ${d.note ?? ""}`}>{DECISION_LABEL[d.decision]}</span>}
+                  <span className="num ml-auto shrink-0 whitespace-nowrap text-xs text-muted-foreground">{keyNumber(f)}</span>
                 </div>
                 <div className="num text-xs text-muted-foreground mt-0.5 truncate">
                   {f.id} · {g ? `${fmtHz(g.freq_min_hz)} to ${fmtHz(g.freq_max_hz)}` : "no group"} · {f.geo_relevance.replace("_", " ")}

@@ -1,4 +1,4 @@
-import type { AnalysisBundle, IssueInfo, Kind, RefPoint, Region } from "./types";
+import type { AnalysisBundle, AuditEntry, AuditLog, DecisionKind, IssueInfo, Kind, RefPoint, Region } from "./types";
 
 async function get<T>(path: string): Promise<T> {
   const r = await fetch(`/api${path}`);
@@ -12,7 +12,23 @@ export const api = {
   region: () => get<Region>("/reference/region"),
   points: () => get<RefPoint[]>("/reference/points"),
   exportUrl: (kind: Kind, issue: number) => `/api/export/${issue}?kind=${kind}`,
+  audit: (kind: Kind, issue: number) => get<AuditLog>(`/audit?issue=${issue}&kind=${kind}`),
+  findingDecisions: (id: string) => get<AuditEntry[]>(`/findings/${id}/decisions`),
+  decide: async (id: string, body: { decision: DecisionKind; reviewer: string; note: string }): Promise<AuditEntry> => {
+    const r = await fetch(`/api/findings/${id}/decision`, {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
+    });
+    if (!r.ok) throw new Error(`${r.status}: ${await r.text()}`);
+    return r.json() as Promise<AuditEntry>;
+  },
 };
+
+export const DECISION_LABEL: Record<DecisionKind, string> = { approve: "Approved", dismiss: "Dismissed", investigate: "Investigate" };
+
+export function fmtTime(iso: string): string {
+  const d = new Date(iso);
+  return `${d.toLocaleDateString("en-GB")} ${d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}`;
+}
 
 export function fmtHz(hz: number | null | undefined): string {
   if (hz == null) return "unknown";

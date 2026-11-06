@@ -1,10 +1,15 @@
 import { defineConfig, devices } from "@playwright/test";
 
 // End-to-end tests of the one screen against the real API and the committed data/cache files.
-// Both servers start automatically; locally an already running `make api` / `make frontend` is reused.
-// The HTML report lands in reports/playwright/ so it shows up on the stage-report index (make index).
+// The tests start their own API (port 8100) and dev server (port 5180), so they never reuse a server you are
+// working with, and the API writes reviewer decisions to a throwaway folder (reports/e2e-decisions, emptied first).
+// The HTML report lands in reports/playwright/ and is linked from the stage-report index (make index).
+const API_PORT = 8100;
+const WEB_PORT = 5180;
+
 export default defineConfig({
   testDir: "./e2e",
+  globalSetup: "./e2e/global-setup.ts",
   timeout: 30_000,
   expect: { timeout: 10_000 },
   fullyParallel: true,
@@ -13,7 +18,7 @@ export default defineConfig({
   reporter: [["list"], ["html", { outputFolder: "../reports/playwright", open: "never" }]],
   outputDir: "../reports/playwright-artifacts",
   use: {
-    baseURL: "http://127.0.0.1:5173",
+    baseURL: `http://127.0.0.1:${WEB_PORT}`,
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
   },
@@ -24,16 +29,18 @@ export default defineConfig({
   ],
   webServer: [
     {
-      command: "uv run uvicorn radar.main:app --app-dir backend --host 127.0.0.1 --port 8000",
+      command: `uv run uvicorn radar.main:app --app-dir backend --host 127.0.0.1 --port ${API_PORT}`,
       cwd: "..",
-      url: "http://127.0.0.1:8000/issues",
-      reuseExistingServer: !process.env.CI,
+      env: { DECISIONS_DIR: "reports/e2e-decisions" },
+      url: `http://127.0.0.1:${API_PORT}/issues`,
+      reuseExistingServer: false,
       timeout: 60_000,
     },
     {
-      command: "npm run dev -- --host 127.0.0.1 --port 5173 --strictPort",
-      url: "http://127.0.0.1:5173",
-      reuseExistingServer: !process.env.CI,
+      command: `npm run dev -- --host 127.0.0.1 --port ${WEB_PORT} --strictPort`,
+      env: { API_PORT: String(API_PORT) },
+      url: `http://127.0.0.1:${WEB_PORT}`,
+      reuseExistingServer: false,
       timeout: 60_000,
     },
   ],

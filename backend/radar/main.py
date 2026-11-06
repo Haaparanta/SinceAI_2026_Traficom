@@ -8,16 +8,21 @@ from these files: findings, CalcTraces and counted queries, never a literal in t
 """
 from __future__ import annotations
 
+import csv
+import io
 import json
 from functools import lru_cache
 from pathlib import Path
+from typing import Literal
 
 from fastapi import FastAPI, HTTPException, Query
-from fastapi.responses import FileResponse
+from fastapi.responses import Response
+from pydantic import BaseModel, Field
 
+from radar import decisions
 from radar.adapters import traficom_table
 from radar.config import ROOT, settings
-from radar.models import AnalysisResult, FinnishSubBand
+from radar.models import AnalysisResult, FinnishSubBand, ReviewDecision
 
 app = FastAPI(title="Filing Radar", version="0.2.0")
 CACHE = settings.data_dir / "cache"
@@ -57,8 +62,8 @@ def issues() -> list[dict]:
 
 @app.get("/analysis/{kind}/{issue}")
 def analysis(kind: str, issue: int) -> dict:
-    """The whole analysis for the screen: AnalysisResult plus the per-finding context."""
-    return bundle(kind, issue)
+    """The whole analysis for the screen: AnalysisResult, the per-finding context and the latest decisions."""
+    return {**bundle(kind, issue), "decisions": decisions.latest(kind, issue)}
 
 
 @app.get("/findings")
@@ -66,15 +71,54 @@ def findings(issue: int = Query(...), kind: str = Query("space")) -> list[dict]:
     return bundle(kind, issue)["result"]["findings"]
 
 
-@app.get("/findings/{finding_id}")
-def finding(finding_id: str) -> dict:
+def _locate(finding_id: str) -> tuple[str, int, dict, dict]:
     for p in _cache_files():
         kind, issue = p.stem.split("_", 1)
+        if kind not in KINDS:
+            continue
         b = bundle(kind, int(issue))
         for f in b["result"]["findings"]:
             if f["id"] == finding_id:
-                return {"finding": f, "context": b["context"].get(finding_id)}
+                return kind, int(issue), f, b
     raise HTTPException(404, f"finding {finding_id} not found")
+
+
+@app.get("/findings/{finding_id}")
+def finding(finding_id: str) -> dict:
+    kind, issue, f, b = _locate(finding_id)
+    return {"finding": f, "context": b["context"].get(finding_id),
+            "decisions": [e for e in decisions.log(kind, issue) if e["finding_id"] == finding_id]}
+
+
+class DecisionIn(BaseModel):
+    decision: Literal["approve", "dismiss", "investigate"]
+    reviewer: str = Field(min_length=2, max_length=80)
+    note: str = Field(min_length=3, max_length=500)
+
+
+@app.post("/findings/{finding_id}/decision", status_code=201)
+def decide(finding_id: str, body: DecisionIn) -> dict:
+    """Append a reviewer decision to the audit log. The computed concern is never changed (pm_pack/06 rule 1)."""
+    kind, issue, f, _ = _locate(finding_id)
+    d = ReviewDecision(finding_id=finding_id, decision=body.decision, reviewer=body.reviewer.strip(),
+                       note=body.note.strip(), at=decisions.now())
+    try:
+        return decisions.record(kind, issue, finding_id=finding_id, notice_id=f["notice_id"], concern=f["concern"], decision=d)
+    except ValueError as exc:
+        raise HTTPException(409, str(exc)) from exc
+
+
+@app.get("/findings/{finding_id}/decisions")
+def finding_decisions(finding_id: str) -> list[dict]:
+    kind, issue, _, _ = _locate(finding_id)
+    return [e for e in decisions.log(kind, issue) if e["finding_id"] == finding_id]
+
+
+@app.get("/audit")
+def audit(issue: int = Query(...), kind: str = Query("space")) -> dict:
+    """Every decision for the analysis, newest first, and the result of re-checking the hash chain."""
+    bundle(kind, issue)
+    return {"chain": decisions.verify(kind, issue), "entries": list(reversed(decisions.log(kind, issue)))}
 
 
 @app.get("/metrics")
@@ -89,11 +133,28 @@ def metrics(issue: int = Query(...), kind: str = Query("space")) -> dict:
 
 
 @app.get("/export/{issue}")
-def export(issue: int, kind: str = Query("space")) -> FileResponse:
+def export(issue: int, kind: str = Query("space")) -> Response:
+    """The results file with the latest reviewer decision per notice in the decision column."""
     p = ROOT / "results" / f"{kind}_{issue}.csv"
     if not p.exists():
         raise HTTPException(404, f"{p.name} not written yet")
-    return FileResponse(p, media_type="text/csv", filename=p.name)
+    latest = decisions.latest(kind, issue)
+    by_notice: dict[str, dict] = {}
+    for e in latest.values():                      # one decision per notice: the most recent one
+        if e["notice_id"] not in by_notice or e["seq"] > by_notice[e["notice_id"]]["seq"]:
+            by_notice[e["notice_id"]] = e
+    src = io.StringIO(p.read_text(encoding="utf-8"))
+    reader = csv.DictReader(src)
+    out = io.StringIO()
+    w = csv.DictWriter(out, fieldnames=reader.fieldnames, lineterminator="\n")
+    w.writeheader()
+    for row in reader:
+        e = by_notice.get(row["notice_id"])
+        if e:
+            row["decision"] = decisions.export_value(e)
+        w.writerow(row)
+    return Response(out.getvalue(), media_type="text/csv",
+                    headers={"Content-Disposition": f'attachment; filename="{p.name}"'})
 
 
 @app.get("/reference/subbands", response_model=list[FinnishSubBand])

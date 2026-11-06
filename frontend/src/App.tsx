@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import { api } from "./api";
+import { AuditLogView } from "./components/AuditLogView";
 import { CalcTraceView } from "./components/CalcTraceView";
+import { DecisionPanel } from "./components/DecisionPanel";
 import { FindingCard } from "./components/FindingCard";
 import { MapView } from "./components/MapView";
 import { RankedList } from "./components/RankedList";
 import { SpectrumView } from "./components/SpectrumView";
 import { Card, Empty, Segmented, Stat } from "./components/ui";
-import type { AnalysisBundle, IssueInfo, Kind, RefPoint, Region } from "./types";
+import type { AnalysisBundle, AuditEntry, IssueInfo, Kind, RefPoint, Region } from "./types";
 
-type Tab = "spectrum" | "map" | "calculation";
+type Tab = "spectrum" | "map" | "calculation" | "audit";
+const REVIEWER_KEY = "filing-radar.reviewer";
+
+function storedReviewer(): string {
+  try { return localStorage.getItem(REVIEWER_KEY) ?? ""; } catch { return ""; }
+}
 
 export default function App() {
   const [issues, setIssues] = useState<IssueInfo[]>([]);
@@ -20,6 +27,17 @@ export default function App() {
   const [region, setRegion] = useState<Region | null>(null);
   const [points, setPoints] = useState<RefPoint[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [reviewer, setReviewer] = useState<string>(storedReviewer);
+  const [auditVersion, setAuditVersion] = useState(0);
+
+  useEffect(() => {
+    try { localStorage.setItem(REVIEWER_KEY, reviewer); } catch { /* storage unavailable: name lasts for this visit */ }
+  }, [reviewer]);
+
+  const onDecided = (e: AuditEntry) => {
+    setBundle((b) => (b ? { ...b, decisions: { ...b.decisions, [e.finding_id]: e } } : b));
+    setAuditVersion((v) => v + 1);
+  };
 
   useEffect(() => {
     // Default to the first issue only if the user has not chosen one yet: a late response must not undo a click.
@@ -58,6 +76,11 @@ export default function App() {
             <h1 className="font-display text-2xl font-bold tracking-tight text-foreground">Filing Radar</h1>
             <p className="text-sm text-secondary-foreground">ITU BR IFIC notices that may affect radio frequency use in Finland. The tool suggests; a specialist decides.</p>
           </div>
+          <label className="flex flex-col text-xs text-secondary-foreground">
+            Reviewer
+            <input value={reviewer} onChange={(e) => setReviewer(e.target.value)} placeholder="Your name" aria-label="Reviewer"
+              className="mt-1 w-44 rounded-xl border border-input bg-card px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" />
+          </label>
           {issues.length > 0 && current && (
             <Segmented label="Issue" value={`${current.kind}:${current.issue}`}
               options={issues.map((i) => ({ value: `${i.kind}:${i.issue}`, label: `${i.kind === "space" ? "Space" : "Terrestrial"} ${i.issue}` }))}
@@ -86,15 +109,19 @@ export default function App() {
             <Card className="min-h-0 overflow-y-auto">
               <div className="p-3 border-b border-border flex items-center gap-3">
                 <Segmented label="Central view" value={tab} onChange={setTab}
-                  options={[{ value: "spectrum", label: "Spectrum" }, { value: "map", label: "Map" }, { value: "calculation", label: "Calculation" }]} />
+                  options={[{ value: "spectrum", label: "Spectrum" }, { value: "map", label: "Map" }, { value: "calculation", label: "Calculation" }, { value: "audit", label: "Audit log" }]} />
               </div>
-              {!finding || !ctx ? <Empty>Select a finding.</Empty>
+              {tab === "audit" ? <AuditLogView kind={bundle.result.kind} issue={bundle.result.issue} version={auditVersion} onSelect={setSelected} />
+                : !finding || !ctx ? <Empty>Select a finding.</Empty>
                 : tab === "spectrum" ? <SpectrumView ctx={ctx} />
                 : tab === "map" ? <MapView ctx={ctx} region={region} points={points} />
                 : <CalcTraceView calc={finding.calc} onEvidence={showEvidence} />}
             </Card>
             <Card className="min-h-0 overflow-y-auto">
-              {finding ? <FindingCard finding={finding} ctx={ctx} highlight={highlight} /> : <Empty>Select a finding.</Empty>}
+              {finding ? (
+                <FindingCard finding={finding} ctx={ctx} highlight={highlight}
+                  decision={<DecisionPanel findingId={finding.id} reviewer={reviewer} onDecided={onDecided} />} />
+              ) : <Empty>Select a finding.</Empty>}
             </Card>
           </main>
         )}
