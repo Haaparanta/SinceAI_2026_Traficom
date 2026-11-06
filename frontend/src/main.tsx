@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import { applyTheme, currentTheme } from "./theme";
 
-// The theme switches with the .dark class: the user's choice (ThemeSwitch), otherwise the operating system setting.
+// The theme switches with the .dark class: dark by default, light when chosen in ThemeSwitch.
 applyTheme(currentTheme());
 
 createRoot(document.getElementById("root")!).render(
