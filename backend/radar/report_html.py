@@ -40,7 +40,7 @@ def esc(v: object) -> str:
 
 
 def badge(status: str) -> str:
-    cls = {"PASS": "ok", "FOUND": "ok", "FAIL": "bad", "MISSING": "bad"}.get(status, "warn")
+    cls = {"PASS": "ok", "FOUND": "ok", "FAIL": "bad", "MISSING": "bad", "FLAGGED": "warn"}.get(status, "warn")
     return f'<span class="badge {cls}">{esc(status)}</span>'
 
 

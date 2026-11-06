@@ -58,7 +58,7 @@ space:
     columns:
       group_id: grp_id
       notice_id: ntc_id
-      direction: emi_rcp        # E space station emits (space-to-Earth), R receives
+      direction: emi_rcp        # meaning depends on notice.ntc_type, see direction_rule below
       beam_name: beam_name
       freq_min_mhz: freq_min    # MHz [CHECKED: 6168-6182 with bdwdth 14000]
       freq_max_mhz: freq_max    # MHz [CHECKED]
@@ -156,6 +156,30 @@ space:
       country: ctry
   affected_networks:
     table: all_aff_ntw          # 15 882 rows
+  earth_station_notice:         # 12 rows: one per specific earth station notice (ntc_type S)
+    table: e_stn
+    key: ntc_id
+    columns:
+      notice_id: ntc_id
+      station_name: stn_name
+      satellite_name: sat_name
+      satellite_longitude_deg: long_nom   # NULL for non-GSO satellites (e.g. ARCTICA-M)
+  earth_antenna:                # 25 rows: earth station antenna per beam, the S-notice counterpart of s_beam
+    table: e_ant
+    key: [ntc_id, emi_rcp, beam_name]
+    columns:
+      notice_id: ntc_id
+      direction: emi_rcp
+      beam_name: beam_name
+      max_gain_dbi: gain
+  # grp.emi_rcp describes the station the notice is about [CHECKED 3074 against known bands]:
+  #   G, N (space station): E groups 6232 in downlink bands vs 334 in uplink bands -> E = space-to-Earth
+  #   S (earth station):    E groups 0 in downlink bands, R groups 14 in downlink bands -> E = Earth-to-space
+  direction_rule:
+    space_station_types: [G, N]
+    earth_station_types: [S]
+  # grp.wic_no = the issue that published the group. In 3074, 25 105 of 34 365 groups carry 3074; the rest are
+  # earlier records of the same notices, kept for context and excluded from screening by default.
   bureau_internal:              # marked "BR internal use" in the ITU docs; never build on these
     - com_el
     - freq

@@ -1,5 +1,5 @@
 # Filing Radar. Step IDs refer to pm_pack/08_Build_Plan_Step_by_Step.md.
-.PHONY: doctor check-data checksums schema convert subbands test api
+.PHONY: doctor check-data checksums schema convert subbands ingest test api
 
 doctor:        ## A1: tools on PATH, native arm64
 	python3 scripts/doctor.py tools
@@ -26,6 +26,11 @@ convert:       ## A5: .mdb -> DuckDB with row-count check and report (about 25 s
 subbands:      ## A6: Finnish table -> Parquet, spectrum strip report
 	PYTHONPATH=backend uv run python -m radar.adapters.traficom_table
 	uv run python scripts/subbands_report.py
+
+ISSUE ?= 3074
+
+ingest:        ## B1: space notices and groups, report reports/$(ISSUE)/01_ingest.html (fails on unflagged red flags)
+	uv run python scripts/ingest_report.py $(ISSUE)
 
 test:          ## all unit tests
 	uv run pytest -q
