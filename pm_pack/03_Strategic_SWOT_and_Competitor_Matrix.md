@@ -1,6 +1,7 @@
-# 03 — Strategic SWOT & Competitor Matrix
+# ✨ 03 — Strategic SWOT & Competitor Matrix
 
-> ⚠️ **DRAFT — BASED ON MISSING DATA**
+> [!WARNING]
+> 🍒 **Draft — based on missing data**
 > Written from `README.md` only. We do not know what data, tools or criteria Traficom will share, or what other teams will build. Competitor entries are **predictions** `[HYPOTHESIS]`, not observations. Re-check after the Friday briefing and the Saturday Q&A.
 
 ---

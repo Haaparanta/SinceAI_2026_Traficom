@@ -5,40 +5,104 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Traficom Briefing Card</title>
 <style>
+  /* 🎀 Girlypop theme v2 tokens (subset of design/girlypop.css) */
   :root {
-    --bg: #0f1216; --card: #1a1f26; --line: #2c333d; --text: #e7ecf2;
-    --muted: #9aa6b4; --accent: #5fb3ff; --warn: #f2b84b; --ok: #4fd18b;
+    --radius: 0.875rem;
+    --background: oklch(0.985 0.008 350);
+    --foreground: oklch(0.24 0.04 340);
+    --card: oklch(1 0 0);
+    --popover: oklch(1 0 0 / 0.8);
+    --muted: oklch(0.96 0.015 350);
+    --muted-foreground: oklch(0.52 0.03 340);
+    --primary: oklch(0.57 0.2 352);
+    --primary-foreground: oklch(0.99 0.005 350);
+    --secondary: oklch(0.94 0.035 310);
+    --secondary-foreground: oklch(0.32 0.08 310);
+    --risk-high: oklch(0.94 0.04 20);
+    --risk-high-foreground: oklch(0.46 0.17 25);
+    --destructive: oklch(0.55 0.21 27);
+    --success: oklch(0.45 0.11 160);
+    --border: oklch(0.91 0.025 350);
+    --ring: oklch(0.57 0.2 352);
+    --gloss: linear-gradient(135deg, oklch(0.8 0.13 352), oklch(0.82 0.1 310));
+    --shadow-soft: 0 1px 2px oklch(0.6 0.15 352 / 0.08), 0 8px 24px oklch(0.6 0.15 352 / 0.12);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
+    --font-display: ui-rounded, "SF Pro Rounded", "Nunito", var(--font-sans);
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: oklch(0.17 0.03 330);
+      --foreground: oklch(0.96 0.015 350);
+      --card: oklch(0.21 0.035 330);
+      --popover: oklch(0.21 0.035 330 / 0.8);
+      --muted: oklch(0.26 0.03 330);
+      --muted-foreground: oklch(0.72 0.03 340);
+      --primary: oklch(0.75 0.17 352);
+      --primary-foreground: oklch(0.18 0.04 340);
+      --secondary: oklch(0.3 0.06 310);
+      --secondary-foreground: oklch(0.94 0.03 310);
+      --risk-high: oklch(0.32 0.08 22);
+      --risk-high-foreground: oklch(0.86 0.08 20);
+      --destructive: oklch(0.68 0.2 20);
+      --success: oklch(0.78 0.12 160);
+      --border: oklch(1 0 0 / 0.1);
+      --ring: oklch(0.75 0.17 352);
+      --gloss: linear-gradient(135deg, oklch(0.6 0.15 352), oklch(0.55 0.1 310));
+      --shadow-soft: 0 1px 2px oklch(0 0 0 / 0.3), 0 8px 24px oklch(0 0 0 / 0.35);
+    }
   }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--text);
-    font: 16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-  main { max-width: 640px; margin: 0 auto; padding: 16px 16px 96px; }
-  h1 { font-size: 1.3rem; margin: 8px 0 4px; }
-  h2 { font-size: 1rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin: 28px 0 10px; }
-  .warn { background: #3a2e12; border: 1px solid var(--warn); color: #ffe2a6; border-radius: 10px; padding: 10px 12px; font-size: .9rem; }
-  .wedge { display: block; width: 100%; text-align: left; background: var(--card); color: var(--text);
-    border: 2px solid var(--line); border-radius: 12px; padding: 12px; margin-bottom: 10px; font: inherit; cursor: pointer; }
-  .wedge[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
-  .wedge b { display: block; margin-bottom: 4px; }
-  .wedge span { color: var(--muted); font-size: .92rem; }
-  .q { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin-bottom: 10px; }
-  .q label { display: block; font-weight: 600; margin-bottom: 6px; }
-  .q small { display: block; color: var(--muted); margin-bottom: 8px; }
-  textarea { width: 100%; min-height: 64px; background: #0b0e12; color: var(--text); border: 1px solid var(--line);
-    border-radius: 8px; padding: 8px; font: inherit; resize: vertical; }
-  .bar { position: fixed; left: 0; right: 0; bottom: 0; background: rgba(15,18,22,.96); border-top: 1px solid var(--line); padding: 12px 16px; }
-  .bar button { display: block; width: 100%; max-width: 640px; margin: 0 auto; background: var(--accent); color: #04121f;
-    border: 0; border-radius: 10px; padding: 14px; font: inherit; font-weight: 600; cursor: pointer; }
-  #status { text-align: center; color: var(--ok); font-size: .85rem; min-height: 1.2em; margin-top: 6px; }
+  body { margin: 0; background: var(--background); color: var(--foreground);
+    font: 17px/24px var(--font-sans); -webkit-font-smoothing: antialiased; }
+  main { max-width: 640px; margin: 0 auto; padding: 24px 16px 128px; }
+  h1 { font: 700 28px/34px var(--font-display); letter-spacing: -0.01em; margin: 8px 0 4px; }
+  .subtitle { color: var(--muted-foreground); font-size: 15px; margin: 0 0 16px; }
+  h2 { font: 600 12px/16px var(--font-sans); color: var(--muted-foreground); text-transform: uppercase;
+    letter-spacing: .08em; margin: 32px 0 12px; }
+  .callout { background: var(--risk-high); color: var(--risk-high-foreground); border-left: 4px solid var(--destructive);
+    border-radius: var(--radius); padding: 12px 16px; font-size: 15px; line-height: 21px; }
+  .wedge { display: block; width: 100%; text-align: left; background: var(--card); color: var(--foreground);
+    border: 2px solid var(--border); border-radius: 16px; padding: 16px; margin-bottom: 12px; font: inherit;
+    cursor: pointer; box-shadow: var(--shadow-soft);
+    transition: transform 220ms var(--ease-spring), border-color 200ms, background 200ms; }
+  .wedge:active { transform: scale(0.98); }
+  .wedge[aria-pressed="true"] { border-color: var(--primary); background: var(--secondary); color: var(--secondary-foreground); }
+  .wedge b { display: block; font: 600 17px/22px var(--font-sans); margin-bottom: 4px; }
+  .wedge span { font-size: 15px; line-height: 21px; opacity: .85; }
+  .wedge .tag { display: inline-block; margin-left: 6px; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600;
+    background: var(--primary); color: var(--primary-foreground); opacity: 1; vertical-align: 1px; }
+  .q { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; margin-bottom: 12px;
+    box-shadow: var(--shadow-soft); }
+  .q label { display: block; font: 600 17px/22px var(--font-sans); margin-bottom: 4px; }
+  .q small { display: block; color: var(--muted-foreground); font-size: 13px; line-height: 18px; margin-bottom: 8px; }
+  textarea { width: 100%; min-height: 72px; background: var(--muted); color: var(--foreground); border: 1px solid var(--border);
+    border-radius: 12px; padding: 10px 12px; font: 16px/22px var(--font-sans); resize: vertical; }
+  textarea:focus-visible, button:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    background: var(--popover); border-top: 1px solid var(--border);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4); backdrop-filter: blur(20px) saturate(1.4); }
+  @supports not (backdrop-filter: blur(1px)) { .bar { background: var(--card); } }
+  .cta { position: relative; overflow: hidden; display: block; width: 100%; max-width: 640px; min-height: 48px; margin: 0 auto;
+    background: var(--primary); color: var(--primary-foreground); border: 0; border-radius: 999px; padding: 14px 20px;
+    font: 600 17px/22px var(--font-sans); cursor: pointer; transition: transform 220ms var(--ease-spring); }
+  .cta::after { content: ""; position: absolute; inset: 0; background: var(--gloss); opacity: 0; mix-blend-mode: soft-light;
+    transition: opacity 200ms; }
+  .cta:hover::after { opacity: .6; }
+  .cta:active { transform: scale(0.97); }
+  #status { text-align: center; color: var(--success); font-size: 13px; line-height: 18px; min-height: 18px; margin-top: 6px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
 <body>
 <main>
-  <h1>Traficom briefing card</h1>
-  <p class="warn">⚠️ Draft based on missing data: built from README.md only. All product ideas and questions are assumptions until the partner confirms. Answers are saved on this phone only.</p>
+  <h1>🎀 Traficom briefing card</h1>
+  <p class="subtitle">Pick a wedge, capture answers, copy them back to Claude.</p>
+  <p class="callout">🍒 Draft based on missing data: built from README.md only. All product ideas and questions are assumptions until the partner confirms. Answers are saved on this phone only.</p>
 
   <h2>Pick the wedge</h2>
-  <button class="wedge" data-wedge="1" aria-pressed="true"><b>1 · Filing Radar (recommended)</b><span>Load a filing → see overlap with Finland's protected systems on one screen, ranked score, every flag cited, expert approves/dismisses.</span></button>
+  <button class="wedge" data-wedge="1" aria-pressed="true"><b>1 · Filing Radar <span class="tag">Recommended</span></b><span>Load a filing → see overlap with Finland's protected systems on one screen, ranked score, every flag cited, expert approves or dismisses.</span></button>
   <button class="wedge" data-wedge="2" aria-pressed="false"><b>2 · Circular Triage Agent</b><span>Data-light. Reads each ITU circular, triages filings against rules, tracks deadlines, drafts a memo for sign-off.</span></button>
   <button class="wedge" data-wedge="3" aria-pressed="false"><b>3 · Interference Screening Pipeline</b><span>Data-heavy. Ingests full filing data + diagrams, projects footprints over Finland, first-pass interference screening.</span></button>
 
@@ -46,7 +110,7 @@
   <div id="questions"></div>
 </main>
 <div class="bar">
-  <button id="copy">Copy Partner Answers as Claude Update Prompt</button>
+  <button id="copy" class="cta">Copy Partner Answers as Claude Update Prompt</button>
   <div id="status" role="status"></div>
 </div>
 <script>
@@ -89,10 +153,10 @@
       `mark it [PARTNER CONFIRMED], remove the "missing data" warning only where every gap in that file is resolved, ` +
       `and list any architecture changes needed in 06_AGENTS_Master_Context.md.\n\n` + lines.join("\n");
     const status = document.getElementById("status");
-    try { await navigator.clipboard.writeText(prompt); status.textContent = "Copied ✓"; }
+    try { await navigator.clipboard.writeText(prompt); status.textContent = "Copied — paste it into Claude ✨"; }
     catch (e) {
       const t = document.createElement("textarea"); t.value = prompt; document.body.appendChild(t); t.select();
-      try { document.execCommand("copy"); status.textContent = "Copied ✓"; } catch (e2) { status.textContent = "Copy failed — select text manually"; }
+      try { document.execCommand("copy"); status.textContent = "Copied — paste it into Claude ✨"; } catch (e2) { status.textContent = "Couldn't copy. Select the text and copy it manually."; }
       t.remove();
     }
     setTimeout(() => status.textContent = "", 2500);

@@ -1,6 +1,7 @@
-# 04 — Risk Register & Mitigation
+# 🫧 04 — Risk Register & Mitigation
 
-> ⚠️ **DRAFT — BASED ON MISSING DATA**
+> [!WARNING]
+> 🍒 **Draft — based on missing data**
 > Likelihood (L) and impact (I) scores are our estimates from `README.md` alone. The single biggest risk is the missing data itself (R1, R2, R5). Rescore every row after the Friday 19:30 briefing. Owners are role placeholders (**PM, BE, AI, FE**).
 
 Score = L × I. Act on anything ≥ 12 before Gate 1.
