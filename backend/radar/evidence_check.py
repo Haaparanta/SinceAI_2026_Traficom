@@ -16,6 +16,7 @@ from dataclasses import dataclass
 import duckdb
 
 from radar.adapters import space_ific, traficom_table
+from radar.adapters import special_interest as SI
 from radar.evidence import parse_excerpt, parse_locator, row_excerpt
 from radar.models import AnalysisResult
 from radar.calc import pfd as PFD
@@ -48,6 +49,9 @@ def check(result: AnalysisResult) -> list[Check]:
             if e.kind == "itu_row":
                 table, keys = parse_locator(e.locator)
                 found = row_excerpt(con, table, keys, parse_excerpt(e.excerpt))
+            elif e.kind == "special_interest_row":
+                st = SI.by_row().get(int(e.locator.split("=", 1)[1]))
+                found = SI.excerpt(st) if st else None
             elif e.kind == "finnish_table_row":
                 bid = int(e.locator.split("=", 1)[1])
                 found = traficom_table.evidence(bands[bid], e.id).excerpt if bid in bands else None
@@ -63,7 +67,8 @@ def check(result: AnalysisResult) -> list[Check]:
                 n = next((n for n in ingest.notices if g and n.notice_id == g.notice_id), None)
                 gi = PFD.load_inputs(con, [gid]).get(gid)
                 if g and n and gi:
-                    r = PFD.worst_case(g.freq_min_hz, g.freq_max_hz, n.longitude_deg, gi.emissions, gi.gain_dbi, gi.steerable)
+                    r = PFD.worst_case(g.freq_min_hz, g.freq_max_hz, n.longitude_deg, gi.emissions, gi.gain_dbi, gi.steerable,
+                                       extra_points=G.station_points(f.matched_station_numbers, n.longitude_deg, list(SI.stations())))
                     w = r.worst
                     found = (f"pfd {r.pfd_db:.2f} dB(W/m2) in {PFD.fmt_bw(w['bandwidth_hz'])} at {w['point']}; "
                              f"limit {r.limit_db:.2f}; margin {r.margin_db:.2f} dB") if r.status == "computed" else r.status

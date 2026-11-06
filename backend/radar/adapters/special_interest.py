@@ -250,8 +250,27 @@ def stations() -> tuple[SpecialInterestStation, ...]:
     return tuple(load(p).stations) if p.exists() else ()
 
 
+SOURCE_NAME = "Traficom_SinceAI_Frequencies_of_interest_v05112026.xlsx (data/raw/special_interest.xlsx)"
+
+
 def locator(s: SpecialInterestStation) -> str:
-    return f"special_interest.xlsx row {s.source_row} (Station number={s.station_number})"
+    return f"special_interest.xlsx row={s.source_row}"
+
+
+def excerpt(s: SpecialInterestStation) -> str:
+    """The station as read; evidence_check rebuilds it from the sheet and compares."""
+    return (f"Station number={s.station_number}; Class of licence={s.licence_class or 'none'}; "
+            f"protected RX {s.centre_hz} Hz +- {s.bandwidth_hz // 2} Hz; lat {s.lat}; lon {s.lon}"
+            + (f"; flags: {'; '.join(s.quality_flags)}" if s.quality_flags else ""))
+
+
+def evidence(s: SpecialInterestStation, evidence_id: str):
+    from radar.models import Evidence
+    return Evidence(id=evidence_id, kind="special_interest_row", source=SOURCE_NAME, locator=locator(s), excerpt=excerpt(s))
+
+
+def by_row() -> dict[int, SpecialInterestStation]:
+    return {s.source_row: s for s in stations()}
 
 
 if __name__ == "__main__":

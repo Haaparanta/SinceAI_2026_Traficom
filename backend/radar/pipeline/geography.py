@@ -222,7 +222,65 @@ def group_relevance(geo: IssueGeography, notice_id: str, group_id: str, directio
 # ---------------------------------------------------------------------------------------------------------------
 # Applying geography to the frequency screen (B2 -> B3)
 
-def apply(rows, geo: IssueGeography, notice_types: dict[str, str]) -> None:
+def station_reach(direction: str, gres: GeoResult, notice_type: str | None,
+                  stations: list) -> tuple[list[str], dict[str, dict], list[str]]:
+    """Which matched special-interest stations the group can actually reach, from each station's own position.
+
+    * GSO space station, downlink: the station sees the satellite above the horizon (elevation > 0 deg).
+    * Non-GSO space station, downlink: the station's latitude is inside the orbit's coverage at 0 deg.
+    * Earth station (an uplink, or a receiving earth-station notice): within NEAR_BORDER_KM of the station.
+    * Downlink with unknown geography: kept, as for Finland as a whole (unknown is never treated as safe). An uplink
+      from an earth station with no location (a typical station) is not promoted, as for Finland.
+    Returns (kept station numbers, geometry per kept station, reasons for the dropped ones).
+    """
+    kept, detail, dropped = [], {}, []
+    for s in stations:
+        if gres.method == "gso_elevation" and direction == "space_to_earth":
+            el, d = gso_look(s.lat, s.lon, gres.detail["satellite_longitude_deg"])
+            if el > 0:
+                kept.append(s.station_number)
+                detail[s.station_number] = {"elevation_deg": round(el, 3), "slant_range_km": round(d, 1)}
+            else:
+                dropped.append(f"{s.station_number}: satellite {el:.1f} deg below its horizon")
+        elif gres.method == "ngso_coverage" and direction == "space_to_earth":
+            if s.lat <= gres.detail["lat_limit_0deg"]:
+                kept.append(s.station_number)
+                detail[s.station_number] = {"coverage_lat_limit_deg": gres.detail["lat_limit_0deg"]}
+            else:
+                dropped.append(f"{s.station_number}: at {s.lat:.2f} N, beyond the orbit's coverage")
+        elif gres.method == "earth_station_distance":
+            es = gres.detail["nearest"]
+            d = _haversine_km(es["lat"], es["lon"], s.lat, s.lon)
+            if d <= NEAR_BORDER_KM:
+                kept.append(s.station_number)
+                detail[s.station_number] = {"earth_station": es["name"], "distance_km": round(d, 1)}
+            else:
+                dropped.append(f"{s.station_number}: earth station {es['name']} {d:.0f} km away")
+        elif gres.relevance == "unknown" and direction == "space_to_earth":
+            kept.append(s.station_number)
+            detail[s.station_number] = {"note": "geography unknown"}
+        elif gres.relevance == "unknown":
+            dropped.append(f"{s.station_number}: earth station location not filed ({gres.note})")
+        else:
+            dropped.append(f"{s.station_number}: {gres.relevance}")
+    return kept, detail, dropped
+
+
+def station_points(numbers: list[str], sat_lon_deg: float, stations: list) -> list[tuple[str, float, float]]:
+    """pfd points for matched stations that see a GSO satellite: (name, lat, lon). Shared by assemble and
+    evidence_check so the recomputed pfd uses exactly the same points."""
+    wanted = set(numbers)
+    return [(f"station {s.station_number}", s.lat, s.lon) for s in stations
+            if s.station_number in wanted and gso_look(s.lat, s.lon, sat_lon_deg)[0] > 0]
+
+
+def _haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    p1, p2 = math.radians(lat1), math.radians(lat2)
+    a = math.sin((p2 - p1) / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(math.radians(lon2 - lon1) / 2) ** 2
+    return 2 * R_EARTH_KM * math.asin(math.sqrt(a))
+
+
+def apply(rows, geo: IssueGeography, notice_types: dict[str, str], stations: list | None = None) -> None:
     """Set geo fields on relevance rows and update `candidate` [HYPOTHESIS rules until Q1]:
 
     * downlink of a space station: kept if visible, low_elevation or unknown; dropped if not_visible.
@@ -230,10 +288,30 @@ def apply(rows, geo: IssueGeography, notice_types: dict[str, str]) -> None:
     * uplink (any): promoted to candidate when the transmitting earth station is near or inside Finland and the
       group overlaps a Finnish terrestrial or passive row; otherwise informational.
     * groups where the Bureau names Finland stay candidates whatever the geography.
+    * special-interest stations: a match stays only if the group reaches that station (station_reach); an uplink
+      from an earth station within NEAR_BORDER_KM of a matched station is a candidate (path uplink_near_station).
     """
+    from radar.pipeline.relevance import CANDIDATE_PATHS
+
+    by_number: dict[str, list] = {}
+    for s in stations or []:
+        by_number.setdefault(s.station_number, []).append(s)
     for r in rows:
         g = group_relevance(geo, r.notice_id, r.group_id, r.direction)
         r.geo_relevance, r.geo_note = g.relevance, g.note
+        if r.matched_station_numbers:
+            matched = [s for num in r.matched_station_numbers for s in by_number.get(num, [])]
+            kept, detail, dropped = station_reach(r.direction, g, notice_types.get(r.notice_id), matched)
+            r.matched_station_numbers, r.station_reach = list(dict.fromkeys(kept)), detail
+            if not kept:
+                r.paths.pop("special_interest", None)
+                was = r.candidate
+                r.candidate = any(p in r.paths for p in CANDIDATE_PATHS)
+                if was and not r.candidate:
+                    r.drop_reason = f"special-interest station(s) out of reach ({dropped[0]}{'; ...' if len(dropped) > 1 else ''})"
+            elif r.direction == "earth_to_space":
+                r.paths.pop("special_interest", None)
+                r.paths.setdefault("uplink_near_station", [])
         if r.finland_named_provisions:
             r.candidate, r.drop_reason = True, None
             continue
@@ -244,7 +322,8 @@ def apply(rows, geo: IssueGeography, notice_types: dict[str, str]) -> None:
             if earth_station_notice:
                 ok = g.relevance == "near_border"
             else:
-                ok = g.relevance in ("visible", "low_elevation", "unknown")
+                # a protected station that sees the satellite keeps the group, even if no reference point does
+                ok = g.relevance in ("visible", "low_elevation", "unknown") or bool(r.matched_station_numbers)
             if not ok:
                 r.candidate, r.drop_reason = False, f"geography: {g.relevance} ({g.note})"
         elif r.direction == "earth_to_space":
