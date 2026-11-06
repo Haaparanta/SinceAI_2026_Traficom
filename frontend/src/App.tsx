@@ -3,6 +3,7 @@ import { api } from "./api";
 import { AuditLogView } from "./components/AuditLogView";
 import { CalcTraceView } from "./components/CalcTraceView";
 import { DecisionPanel } from "./components/DecisionPanel";
+import { DraftsPanel } from "./components/DraftsPanel";
 import { FindingCard } from "./components/FindingCard";
 import { MapView } from "./components/MapView";
 import { RankedList } from "./components/RankedList";
@@ -120,6 +121,7 @@ export default function App() {
             <Card className="min-h-0 overflow-y-auto">
               {finding ? (
                 <FindingCard finding={finding} ctx={ctx} highlight={highlight}
+                  drafts={<DraftsPanel findingId={finding.id} onEvidence={showEvidence} />}
                   decision={<DecisionPanel findingId={finding.id} reviewer={reviewer} onDecided={onDecided} />} />
               ) : <Empty>Select a finding.</Empty>}
             </Card>

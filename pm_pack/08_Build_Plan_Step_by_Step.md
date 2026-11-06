@@ -21,8 +21,8 @@ How we build Filing Radar from an empty `backend/` to the two graded results fil
 | C2 terrestrial diff | done; each extract is a change set | `reports/3076/01_diff.html` | #25 |
 | C3 P.1546 at the border | done; ITU reference code, 52 validation cases at 0.0 dB | `reports/3076/02_field_strength.html`, `results/terrestrial_3076.*` | #26 |
 | D1 one screen | done (built by Claude Code at the user's request; file 06 gives `frontend/` to Cursor) | `make frontend`, Playwright `make e2e` | #27, #28 |
-| D2 explanation and letter | next | | |
-| D3 decisions and audit log | done; append-only log with a SHA-256 chain, export carries the decision, concern never changes | `make e2e`, `docs/screenshots/d3/` | this PR |
+| D2 explanation and letter | done; Claude (claude-opus-5-5, refusal fallback on) when credentials exist, else a grounded template; validator rejects unknown IDs and new numbers; letters are drafts, never sent | `make explanations`, `reports/3074/07_explanations.html`, `docs/screenshots/d2/` | this PR |
+| D3 decisions and audit log | done; append-only log with a SHA-256 chain, export carries the decision, concern never changes | `make e2e`, `docs/screenshots/d3/` | #29 |
 | E1 to E5 freeze and ship | E1 (byte-identical reruns) already holds; the rest pending | | |
 
 Facts the real files changed (also recorded in file 06 and `backend/radar/schema_map.yaml`):
@@ -308,7 +308,7 @@ Then fill `backend/radar/schema_map.yaml` from what was printed, table by table,
 
 **Must not see** a new number in the text; a letter that says it was sent.
 
-**Visual proof** `reports/3074/06_explanations.html`: for 20 findings the explanation beside the evidence table, with every cited ID and every number highlighted green when it matches and red when it does not.
+**Visual proof** `reports/3074/07_explanations.html` (06 is the pfd report): for 20 findings the explanation beside the evidence table, with every cited ID and every number highlighted green when it matches and red when it does not.
 
 #### Step D3. Decisions and audit log · FE and BE · 1.5 h
 

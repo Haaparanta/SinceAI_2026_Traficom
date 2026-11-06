@@ -9,7 +9,7 @@ make frontend     # this screen on http://127.0.0.1:5173, /api proxied to the AP
 make cache        # rebuild data/cache from a live pipeline run (needs data/derived)
 make frontend-build
 make e2e                      # Playwright: own API (8100) and dev server (5180), throwaway decision log
-make screenshots STEP=d3      # PR screenshots into docs/screenshots/d3/
+make screenshots STEP=d2      # PR screenshots into docs/screenshots/d2/
 ```
 
 | Part | File |
@@ -21,6 +21,7 @@ make screenshots STEP=d3      # PR screenshots into docs/screenshots/d3/
 | Calculation tab: inputs with evidence links, formula, result, limit, margin | `src/components/CalcTraceView.tsx` |
 | Finding card: concern, reason, every evidence item, score factors | `src/components/FindingCard.tsx` |
 | Decision: approve, investigate, dismiss with a required note; the finding's history | `src/components/DecisionPanel.tsx` |
+| Explanation and letter draft: grounded text, cited evidence links, editable draft, copy and download, no send | `src/components/DraftsPanel.tsx` |
 | Audit log tab: every decision of the issue and the server's hash-chain check | `src/components/AuditLogView.tsx` |
 | Contract types (mirror `backend/radar/models.py`) | `src/types.ts` |
 

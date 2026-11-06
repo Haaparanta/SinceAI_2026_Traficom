@@ -3,7 +3,7 @@
 Turns an ITU BR IFIC issue into a ranked, cited, expert-reviewable list of notices that may affect radio frequency use in Finland. Built for the Traficom challenge at Since AI 2026. The tool suggests; a specialist decides.
 
 > [!NOTE]
-> **Status on Fri 6 Nov 2026.** The space pipeline (Space IFIC 3074) and the terrestrial side quest (Terrestrial IFIC 3076) run end to end, the graded results files are in [`results/`](results/README.md), and the one-screen UI runs on the cached analyses. Every finding carries evidence that a script re-opens and checks. Reviewers approve, investigate or dismiss findings into a hash-chained audit log (D3). Still to come: the grounded explanation and letter draft (D2), demo packaging (E). All thresholds marked *hypothesis* wait for the partner's answers ([questions](pm_pack/01_Partner_Briefing_Questions.md)).
+> **Status on Fri 6 Nov 2026.** The space pipeline (Space IFIC 3074) and the terrestrial side quest (Terrestrial IFIC 3076) run end to end, the graded results files are in [`results/`](results/README.md), and the one-screen UI runs on the cached analyses. Every finding carries evidence that a script re-opens and checks. Reviewers approve, investigate or dismiss findings into a hash-chained audit log (D3). Each finding can be explained in plain language and turned into a letter draft to the notifying administration (D2): Claude writes them when credentials are present, a deterministic template otherwise, and a validator rejects any text that cites an evidence ID outside the finding or writes a number that is not in it. Still to come: demo packaging (E). All thresholds marked *hypothesis* wait for the partner's answers ([questions](pm_pack/01_Partner_Briefing_Questions.md)).
 
 ## What it finds
 
@@ -39,6 +39,8 @@ make cache                           # data/cache/*.json for the screen
 make check-evidence ISSUE=3074       # re-open every citation; exit 1 on any mismatch
 ```
 
+Explanations and letter drafts use Claude (`claude-opus-5-5`, with the server-side refusal fallback) when `ANTHROPIC_API_KEY` is set in `.env`; `LLM_MODEL` changes the model and `LLM_DISABLED=1` switches it off. Without a key the same buttons give a deterministic template built from the evidence, and the screen says which one you are reading. Accepted model texts are cached in `data/cache/llm/`, so a rerun or the demo makes no call.
+
 The special-interest station table (XLS from the Since AI platform) goes to `data/raw/special_interest.xlsx` by hand; the station rule is built and waits for the file.
 
 ## How it works
@@ -61,6 +63,7 @@ issue number
 | Unknown stays unknown | Missing values stay `None`; a gap in the Finnish table is "uncovered", never "no concern"; implausible filed values are flagged, not corrected |
 | Deterministic first | Plain code with tests; two runs give byte-identical results files |
 | Every number shows its working | `CalcTrace`: inputs with evidence IDs, formula, result, limit, margin, label `indicative` |
+| The language model explains, it never decides | It sees only the finding and its evidence; output must cite IDs of that finding and contain no number missing from it, otherwise the template is shown with the reason; it never sets the concern; letters are drafts with a banner, edited and copied by a person, never sent |
 | The tool suggests, a person decides | No automatic sending or dismissing; a reviewer approves, investigates or dismisses with a required note; the decision goes to an append-only, SHA-256-chained audit log (`data/decisions/`, git-ignored) and never changes the computed concern; the export carries the latest decision |
 
 Methods and every parameter are listed in [`results/README.md`](results/README.md). Reference data with a source per row: [`pfd_limits.csv`](data/reference/pfd_limits.csv) (RR 2024 Table 21-4, 38 rows with page numbers), [`tr2508_thresholds.csv`](data/reference/tr2508_thresholds.csv), [`fi_reference_points.csv`](data/reference/fi_reference_points.csv).
@@ -69,12 +72,13 @@ Methods and every parameter are listed in [`results/README.md`](results/README.m
 
 | Check | Command | What it shows |
 |---|---|---|
-| Unit and data tests | `make test` | 244 Python tests: formulas against hand-worked values, golden cases, contracts, invariants on 3074 and 3076 |
+| Unit and data tests | `make test` | 257 Python tests: formulas against hand-worked values, golden cases, contracts, invariants on 3074 and 3076 |
 | P.1546 engine | part of `make test` | the ITU validation suite (52 reference cases) reproduces to 0.0 dB |
 | Evidence | `make check-evidence ISSUE=3074` | every citation re-opened; tamper tests prove a changed excerpt fails |
 | Stage reports | `make index`, then open `reports/index.html` (or the `reports` entry in `.claude/launch.json`) | one HTML page per build step: counts in and out, charts, maps, ten random rows, PASS or FAIL |
-| End-to-end UI | `make e2e` | Playwright drives the real screen and API in Chromium: both issues, all tabs, evidence links, filters, decisions and the audit chain, export, dark and light, phone width |
-| Screenshots | `make screenshots STEP=d3` | the views a pull request changes, in `docs/screenshots/<step>/` |
+| End-to-end UI | `make e2e` | Playwright drives the real screen and API in Chromium: both issues, all tabs, evidence links, filters, decisions and the audit chain, explanation and letter draft (no send button), export, dark and light, phone width |
+| Explanations and letters | `make explanations ISSUE=3074` | 20 explanations beside their evidence, every cited ID and number green or red, a planted invented number rejected, no letter that says it was sent |
+| Screenshots | `make screenshots STEP=d2` | the views a pull request changes, in `docs/screenshots/<step>/` |
 
 ## Repository
 

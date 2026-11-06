@@ -1,7 +1,13 @@
-import type { AnalysisBundle, AuditEntry, AuditLog, DecisionKind, IssueInfo, Kind, RefPoint, Region } from "./types";
+import type { AnalysisBundle, AuditEntry, AuditLog, DecisionKind, DraftResult, Explanation, IssueInfo, Kind, Letter, LLMStatus, RefPoint, Region } from "./types";
 
 async function get<T>(path: string): Promise<T> {
   const r = await fetch(`/api${path}`);
+  if (!r.ok) throw new Error(`${path}: ${r.status} ${await r.text()}`);
+  return r.json() as Promise<T>;
+}
+
+async function post<T>(path: string): Promise<T> {
+  const r = await fetch(`/api${path}`, { method: "POST" });
   if (!r.ok) throw new Error(`${path}: ${r.status} ${await r.text()}`);
   return r.json() as Promise<T>;
 }
@@ -14,6 +20,9 @@ export const api = {
   exportUrl: (kind: Kind, issue: number) => `/api/export/${issue}?kind=${kind}`,
   audit: (kind: Kind, issue: number) => get<AuditLog>(`/audit?issue=${issue}&kind=${kind}`),
   findingDecisions: (id: string) => get<AuditEntry[]>(`/findings/${id}/decisions`),
+  llmStatus: () => get<LLMStatus>("/llm/status"),
+  explain: (id: string) => post<DraftResult<Explanation>>(`/findings/${id}/explanation`),
+  letter: (id: string) => post<DraftResult<Letter>>(`/findings/${id}/letter`),
   decide: async (id: string, body: { decision: DecisionKind; reviewer: string; note: string }): Promise<AuditEntry> => {
     const r = await fetch(`/api/findings/${id}/decision`, {
       method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
