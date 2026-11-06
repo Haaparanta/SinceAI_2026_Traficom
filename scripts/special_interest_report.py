@@ -34,7 +34,7 @@ CSS = """
 svg text { fill:var(--muted); font:11px -apple-system, system-ui, sans-serif; } svg .grid { stroke:var(--line); }
 .legend { display:flex; flex-wrap:wrap; gap:6px 16px; font-size:12px; margin:0 0 6px; }
 .legend i { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:6px; vertical-align:-1px; }
-.two { display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:16px; }
+.two { display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:16px; align-items:start; }
 """
 COLOUR = {c: v for c, _, v in CLASSES}
 

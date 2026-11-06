@@ -307,7 +307,7 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "high",
-  "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 124813282: 148 MHz to 149.9 MHz Earth-to-space; geography far (nearest earth station LATMOS (F) 1903 km from Finland).",
+  "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 124813282: 148 MHz to 149.9 MHz Earth-to-space; geography far (nearest earth station LATMOS (F) 1800 km from Finland).",
   "evidence_refs": "notice.ntc_id=124520200; pub_ssn.ntc_id=124520200&seq_no=1; pub_ssn.ntc_id=124520200&seq_no=2; non_geo.ntc_id=124520200; grp.grp_id=124813282; Taajuusjakotaulukko.ID=2107; Taajuusjakotaulukko.ID=2121; Taajuusjakotaulukko.ID=2131; Taajuusjakotaulukko.ID=2113; Taajuusjakotaulukko.ID=2119; provn.grp_id=124813282&adm=FIN&coord_prov=9.21/C; e_as_stn.grp_id=124813282&seq_no=1; geography(group_id=124813282)",
   "decision": null
  },
@@ -331,7 +331,7 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "high",
-  "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 124770975: 148.024 MHz to 148.114 MHz Earth-to-space; geography far (nearest earth station DELFT (HOL) 1479 km from Finland).",
+  "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 124770975: 148.024 MHz to 148.114 MHz Earth-to-space; geography far (nearest earth station DELFT (HOL) 1377 km from Finland).",
   "evidence_refs": "notice.ntc_id=124520212; pub_ssn.ntc_id=124520212&seq_no=1; pub_ssn.ntc_id=124520212&seq_no=2; non_geo.ntc_id=124520212; grp.grp_id=124770975; Taajuusjakotaulukko.ID=2107; Taajuusjakotaulukko.ID=2113; Taajuusjakotaulukko.ID=2119; provn.grp_id=124770975&adm=FIN&coord_prov=9.21/C; e_as_stn.grp_id=124770975&seq_no=1; geography(group_id=124770975)",
   "decision": null
  },
@@ -379,7 +379,7 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "high",
-  "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 324813282: 148 MHz to 149.9 MHz Earth-to-space; geography far (nearest earth station LATMOS (F) 1903 km from Finland).",
+  "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 324813282: 148 MHz to 149.9 MHz Earth-to-space; geography far (nearest earth station LATMOS (F) 1800 km from Finland).",
   "evidence_refs": "notice.ntc_id=324520200; pub_ssn.ntc_id=324520200&seq_no=1; pub_ssn.ntc_id=324520200&seq_no=2; non_geo.ntc_id=324520200; grp.grp_id=324813282; Taajuusjakotaulukko.ID=2107; Taajuusjakotaulukko.ID=2121; Taajuusjakotaulukko.ID=2131; Taajuusjakotaulukko.ID=2113; Taajuusjakotaulukko.ID=2119; provn.grp_id=324813282&adm=FIN&coord_prov=9.21/C; e_as_stn.grp_id=324813282&seq_no=1; geography(group_id=324813282)",
   "decision": null
  },
@@ -403,7 +403,7 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "high",
-  "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 324770975: 148.024 MHz to 148.114 MHz Earth-to-space; geography far (nearest earth station DELFT (HOL) 1479 km from Finland).",
+  "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 324770975: 148.024 MHz to 148.114 MHz Earth-to-space; geography far (nearest earth station DELFT (HOL) 1377 km from Finland).",
   "evidence_refs": "notice.ntc_id=324520212; pub_ssn.ntc_id=324520212&seq_no=1; pub_ssn.ntc_id=324520212&seq_no=2; non_geo.ntc_id=324520212; grp.grp_id=324770975; Taajuusjakotaulukko.ID=2107; Taajuusjakotaulukko.ID=2113; Taajuusjakotaulukko.ID=2119; provn.grp_id=324770975&adm=FIN&coord_prov=9.21/C; e_as_stn.grp_id=324770975&seq_no=1; geography(group_id=324770975)",
   "decision": null
  },
@@ -3859,7 +3859,7 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "none",
-  "reason": "Not raised: Earth-to-space, earth station far (nearest earth station BERKELEY CA (USA) 12842 km from Finland).",
+  "reason": "Not raised: Earth-to-space, earth station far (nearest earth station BERKELEY CA (USA) 12687 km from Finland).",
   "evidence_refs": "notice.ntc_id=126500106; non_geo.ntc_id=126500106; grp.grp_id=126662073; Taajuusjakotaulukko.ID=3855; Taajuusjakotaulukko.ID=3847; Taajuusjakotaulukko.ID=3851; e_as_stn.grp_id=126662073&seq_no=1; geography(group_id=126662073)",
   "decision": null
  },
@@ -3979,7 +3979,7 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "none",
-  "reason": "Not raised: Earth-to-space, earth station far (nearest earth station GOLDSTONE CA (USA) 12823 km from Finland).",
+  "reason": "Not raised: Earth-to-space, earth station far (nearest earth station GOLDSTONE CA (USA) 12663 km from Finland).",
   "evidence_refs": "notice.ntc_id=126505028; e_stn.ntc_id=126505028; grp.grp_id=126652188; Taajuusjakotaulukko.ID=4303; geography(notice_id=126505028)",
   "decision": null
  },

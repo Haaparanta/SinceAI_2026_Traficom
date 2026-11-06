@@ -44,7 +44,7 @@ Notice-level counts: **23 high, 99 medium, 1 review, 12 low, 61 not raised** (13
 | Finnish reference points, `data/reference/fi_reference_points.csv` (seven points, approximate town coordinates) | this repository | `e2083112e3e1111c0b766e7a30c37d94a3ac330dede87519264c5cab17671ba6` |
 | RR Article 21 Table 21-4 limits, `data/reference/pfd_limits.csv`, transcribed from ITU Radio Regulations 2024 Vol. 1 (Rev.WRC-23) with the page per row | 38 rows; second check on 7 Nov 2026 against an independent transcription of the page images: all values agree, two page numbers corrected; signed off by Claude (AI agent) at the project owner's request, no human specialist available ([review](../data/reference/review/README.md)) | |
 | Scoring weights, `scoring/weights.json` | version 2026-11-06 | `183bf176a7b1de045dc6a9910e28f87f0cc35b6aa287b3c739205b5d0c4513b7` |
-| Finland and neighbour borders, `scoring/reference/finland_region.geojson` | Natural Earth 1:50m, public domain | |
+| Finland and neighbour borders, `scoring/reference/finland_region.geojson` | Natural Earth 1:50m, public domain. Åland (Natural Earth `ALD`, sovereign Finland) merged into Finland on 7 Nov 2026: distances to Finland now reach Åland; no concern level changed | |
 
 The special-interest station table (XLS from the Since AI platform) is a mandatory input that is not yet loaded.
 
