@@ -84,7 +84,7 @@ def test_ranked_by_concern_then_score(run_3074):
 def test_bureau_named_and_inside_finland_notices_are_high(run_3074):
     by_notice = {f.notice_id: f for f in run_3074.result.findings}
     named = {r.notice_id for r in run_3074.rows if r.finland_named_provisions}
-    assert len(named) == 16 and all(by_notice[n].concern == "high" for n in named)
+    assert len(named) == 18 and all(by_notice[n].concern == "high" for n in named)
     for nid in ("126500107", "126545119"):            # PLAN-S_MUONIO(FIN) and TAMPERE earth stations
         assert by_notice[nid].concern == "high" and "inside Finland" in by_notice[nid].reason
 

@@ -105,3 +105,17 @@ def test_3074_geography_invariants(rows_3074):
     # foreign earth stations inside Finland are found (Tampere, Muonio)
     inside = {r.geo_note for r in rows if "inside Finland" in r.geo_note}
     assert any("TAMPERE" in n for n in inside) and any("MUONIO" in n for n in inside)
+
+
+@needs_db
+def test_bureau_named_groups_from_earlier_issues_are_screened():
+    """SECOMSAT-5-78E (CR/C 6344, notice 124520194) is in 3074; the Bureau names Finland only in its groups first
+    published in IFIC 3060. They must be screened, so the notice reaches concern high (rule: Bureau-named = high)."""
+    from radar.pipeline import assemble
+    run = assemble.run(3074)
+    f = next(f for f in run.result.findings if f.notice_id == "124520194")
+    assert f.concern == "high"
+    with duckdb.connect(str(space_ific.db_path(3074)), read_only=True) as con:
+        named = rel.finland_named(con)
+    screened = {r.group_id: r for r in run.rows}
+    assert all(g in screened and screened[g].candidate for g in named)

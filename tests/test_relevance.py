@@ -114,7 +114,7 @@ def test_golden_b2(rows_3074, case):
 @needs_db
 def test_3074_invariants(rows_3074):
     rows = list(rows_3074.values())
-    assert len(rows) == 25105
+    assert len(rows) == 25127   # incl. 22 Bureau-named groups first published in 3060
     assert all(r.overlap_hz <= r.freq_max_hz - r.freq_min_hz for r in rows)
     assert not [r for r in rows if r.direction == "earth_to_space" and r.candidate and not r.finland_named_provisions]
-    assert len({r.notice_id for r in rows if r.finland_named_provisions}) == 16
+    assert len({r.notice_id for r in rows if r.finland_named_provisions}) == 18

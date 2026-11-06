@@ -9,10 +9,10 @@ Turns an ITU BR IFIC issue into a ranked, cited, expert-reviewable list of notic
 
 | Issue | Screened | Flagged | High | Medium | Review | Low | File |
 |---|---|---|---|---|---|---|---|
-| Space IFIC 3074 | 196 notices (25 105 frequency groups) | 135 | 21 | 99 | 1 | 14 | [`space_3074.csv`](results/space_3074.csv) |
+| Space IFIC 3074 | 196 notices (25 127 frequency groups) | 135 | 23 | 99 | 1 | 12 | [`space_3074.csv`](results/space_3074.csv) |
 | Terrestrial IFIC 3076 | 4 057 notices | 65 | 6 | 1 | 6 | 52 | [`terrestrial_3076.csv`](results/terrestrial_3076.csv) |
 
-- **Space.** 16 notices where the Radiocommunication Bureau itself lists Finland as affected (RR 9.11, 9.14, 9.21, 11.31, AP30A); worst-case pfd above the RR Article 21 limit with a steerable beam for CHINASAT-H-60.5E (6.3 dB), CHINASAT-G-33.5E and INSAT; foreign networks with earth stations inside Finland (Tampere, Muonio).
+- **Space.** 18 notices where the Radiocommunication Bureau itself lists Finland as affected (RR 9.11, 9.14, 9.21, 11.31, AP30A); worst-case pfd above the RR Article 21 limit with a steerable beam for CHINASAT-H-60.5E (6.3 dB), CHINASAT-G-33.5E and INSAT; foreign networks with earth stations inside Finland (Tampere, Muonio).
 - **Terrestrial.** New Russian VHF base stations above the ECC/ERC T/R 25-08 trigger at the Finnish border: Kostomuksha (13 dB over), Lyaskelya (9 dB), Vyborg (8 dB), with ITU-R P.1546-6 field strength. Russian 800 MHz base stations 12 to 14 km from Finland go to review (no T/R 25-08 criterion above 470 MHz).
 - **Data quality.** One filing (IND network LVI) declares +73 dBW/Hz where its own peak power implies about -73: kept as filed, flagged, never used silently.
 
