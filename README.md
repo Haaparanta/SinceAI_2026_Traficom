@@ -21,6 +21,7 @@ The most valuable ideas will make complex analysis more transparent and efficien
 - Downloadable Space IFIC: https://www.itu.int/sns/wic/demowic.html
 - All existing and forthcoming IFICs must be able to be evaluated.
 - **Space IFIC no. 3074** must be analysed and possible concerns raised from it. It is used to evaluate accuracy, and its results must be submitted separately.
+- Notes: [ITU BR IFIC (Space services)](docs/links/itu-space-brific/README.md), [Space IFIC databases](docs/links/itu-space-ific-databases/README.md)
 
 ### ITU Terrestrial IFIC (mandatory)
 
@@ -28,6 +29,7 @@ The most valuable ideas will make complex analysis more transparent and efficien
 - Downloadable Terrestrial IFIC extract: https://www.itu.int/en/ITU-R/terrestrial/brific/Pages/default.aspx
 - All existing and forthcoming IFICs must be able to be evaluated.
 - **Terrestrial IFIC no. 3076** must be analysed and possible concerns raised from it. It is used to evaluate accuracy, and its results must be submitted separately.
+- Notes: [ITU BR IFIC (Terrestrial services)](docs/links/itu-terrestrial-brific/README.md)
 
 ### Regulation 4, "M4" (mandatory)
 
@@ -36,3 +38,20 @@ Finnish Radio Frequency Regulation, including the table of frequencies in Finlan
 - Regulation: https://www.finlex.fi/fi/viranomaiset/maarayskokoelmat/traficom-viestinta/2026/3
 - Radio frequency table API (Swagger): https://opendata.traficom.fi/swagger/ui/index#/Taajuusjakotaulukko
 - Radio frequency table API endpoint: https://opendata.traficom.fi/api/v13/Taajuusjakotaulukko
+- Notes: [Regulation 4 on Finlex](docs/links/finlex-regulation-m4/README.md), [API Swagger UI](docs/links/traficom-opendata-swagger/README.md), [frequency table endpoint](docs/links/traficom-frequency-table-api/README.md)
+
+### Additional resources named in the challenge brief
+
+- ITU space software tools: https://www.itu.int/en/ITU-R/software/Pages/space-network-software.aspx ([notes](docs/links/itu-space-software/README.md))
+- Regulation 15, "M15", collective frequencies for licence-exempt radio transmitters: https://www.finlex.fi/fi/viranomaiset/maarayskokoelmat/traficom-viestinta/2025/51209 ([notes](docs/links/finlex-regulation-m15/README.md))
+- CEPT implementation status of frequency harmonisation in Europe: https://docdb.cept.org/implementation/overview ([notes](docs/links/cept-docdb-implementation/README.md))
+- ITU Radio Regulations: https://www.itu.int/pub/r-reg-rr ([notes](docs/links/itu-radio-regulations/README.md))
+
+## Documentation
+
+The [`docs/`](docs/README.md) folder holds a README for every document in this repository and for every link above, written from the sources on 6 November 2026.
+
+- [Challenge brief](docs/challenge-brief/README.md): the official brief ([PDF](Since_AI_Traficom_Challenge_Brief_FINAL_04112026.pdf)) with the side quest, evaluation criteria, submission format and contacts.
+- [PM pack](docs/pm-pack/README.md): the planning documents in [`pm_pack/`](pm_pack/) and what the brief has answered since they were drafted.
+- [Design theme](docs/design-theme/README.md): the Girlypop theme in [`design/`](design/).
+- [Links](docs/README.md#mandatory-datasets): one page per dataset, API and reference above.
