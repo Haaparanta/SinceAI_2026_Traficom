@@ -18,7 +18,7 @@ Two layers, both deterministic:
 
 2. **Score** for ordering inside a level, the scoring package's formula and weights
    (scoring/weights.json, scoring/DESIGN.md): score = 100 x relevance x (0.65 severity + 0.35 urgency).
-   Severity's pfd factor is "not evaluated" (neutral 0.5) until C1. Every factor is kept for the trace.
+   Severity's pfd factor comes from the worst-case pfd margin (C1); neutral 0.5 where pfd is not evaluated.
 """
 from __future__ import annotations
 
@@ -116,11 +116,42 @@ def concern_rule(r: GroupRelevance, classes: dict[int, object]) -> tuple[str, st
     return "low", "candidate with no stronger rule"
 
 
+def pfd_adjust(concern: str, rule: str, pfd) -> tuple[str, str]:
+    """C1: the worst-case pfd refines the downlink rules; Bureau naming and earth stations are left as they are.
+
+    exceeds the limit -> high with a steerable beam, review with a fixed beam of unknown pointing; within 15 dB -> medium; 15 dB or more below -> low (worst case already conservative);
+    no Table 21-4 limit -> unchanged with a note; implausible filed input -> review.
+    """
+    if pfd is None or not rule.startswith("downlink over"):
+        return concern, rule
+    if pfd.status == "computed":
+        if pfd.margin_db < 0:
+            if pfd.worst.get("steerable"):
+                return "high", (f"{rule}; worst-case pfd exceeds the RR Article 21 limit by {-pfd.margin_db:.1f} dB with a "
+                                f"steerable beam that can be pointed at Finland (indicative)")
+            return "review", (f"{rule}; worst-case pfd would exceed the RR Article 21 limit by {-pfd.margin_db:.1f} dB only if "
+                              f"the beam peak points at Finland; check the gain contours (indicative)")
+        if pfd.margin_db < PFD_LOW_MARGIN_DB:
+            return concern, f"{rule}; worst-case pfd {pfd.margin_db:.1f} dB below the RR Article 21 limit (indicative)"
+        return "low", f"{rule}; worst-case pfd {pfd.margin_db:.1f} dB below the RR Article 21 limit (indicative)"
+    if pfd.status == "no_limit":
+        return concern, f"{rule}; no RR Article 21 pfd limit applies in this band"
+    if pfd.status == "flagged_input":
+        return "review", f"{rule}; filed power density implausible, pfd needs a reviewer"
+    return concern, f"{rule}; pfd not computed ({pfd.notes[0] if pfd.notes else pfd.status})"
+
+
+PFD_LOW_MARGIN_DB = 15.0   # [HYPOTHESIS] scoring package bin edge; partner question Q2
+
+
 def score_group(r: GroupRelevance, *, bands: dict[int, FinnishSubBand], classes: dict, section: str | None,
-                action: str | None, geo_detail: dict | None) -> GroupScore:
+                action: str | None, geo_detail: dict | None, pfd=None) -> GroupScore:
+    from radar.calc.pfd import margin_factor
+
     w = weights()
     sw, uw = w["space"]["severity_weights"], w["space"]["urgency_weights"]
-    concern, rule = concern_rule(r, classes)
+    concern, rule = pfd_adjust(*concern_rule(r, classes), pfd)
+    pfd_v, pfd_why = margin_factor(pfd.margin_db if pfd is not None and pfd.status == "computed" else None, w)
     geo_v, geo_why = geography_factor(r, geo_detail)
     relevance = (1.0 if r.candidate else 0.0) * geo_v if not r.finland_named_provisions else 1.0
 
@@ -130,7 +161,7 @@ def score_group(r: GroupRelevance, *, bands: dict[int, FinnishSubBand], classes:
         w["space"]["status"]["secondary"] if matched else w["space"]["status"]["unallocated"])
     width = max(r.freq_max_hz - r.freq_min_hz, 1)
     bandwidth = math.sqrt(min(1.0, r.overlap_hz / width)) if r.overlap_hz else 0.1
-    severity = (sw["pfd_margin"] * 0.5 + sw["finnish_sensitivity"] * sens[0] + sw["finnish_status"] * status
+    severity = (sw["pfd_margin"] * pfd_v + sw["finnish_sensitivity"] * sens[0] + sw["finnish_status"] * status
                 + sw["bandwidth"] * bandwidth)
 
     stage = w["space"]["stage"].get(section_key(section), w["space"]["stage"]["unknown"])
@@ -142,7 +173,7 @@ def score_group(r: GroupRelevance, *, bands: dict[int, FinnishSubBand], classes:
     score = round(100 * relevance * (w["score"]["severity_weight"] * severity + w["score"]["urgency_weight"] * urgency), 2)
     return GroupScore(r.group_id, concern, rule, score, {
         "relevance": round(relevance, 3), "geography": [geo_v, geo_why],
-        "severity": round(severity, 3), "pfd_margin": [0.5, "not evaluated until step C1"],
+        "severity": round(severity, 3), "pfd_margin": [pfd_v, pfd_why],
         "finnish_sensitivity": [sens[0], sens[1]], "finnish_status": status, "bandwidth": round(bandwidth, 3),
         "urgency": round(urgency, 3), "stage": [stage, section_key(section)], "deadline": deadline,
         "finland_listed": listed, "novelty": [novelty, action or "unknown"],

@@ -44,7 +44,7 @@ def test_exported_rows_match_the_findings(tmp_path):
     s = X.export_space(3074, tmp_path)
     rows = [ResultRow(**r) for r in json.loads((tmp_path / "space_3074.json").read_text())]
     assert len(rows) == 196 == s["run"].result.screened
-    assert s["concern"] == {"high": 18, "medium": 104, "review": 1, "low": 12, "none": 61}
+    assert s["concern"] == {"high": 21, "medium": 99, "review": 1, "low": 14, "none": 61}
     assert X.concern_order_ok(rows)
     assert rows[0].notice_id == s["run"].result.findings[0].notice_id
     assert all(r.evidence_refs.startswith("notice.ntc_id=") for r in rows)
