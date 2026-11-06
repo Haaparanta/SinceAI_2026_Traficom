@@ -39,6 +39,8 @@ class NoticeExtra:
     received: str | None
     target: str | None                  # Master Register record a MODIFY or SUPPRESS refers to
     land_mobile: bool = False
+    antenna_key: int | None = None
+    zone_id: str | None = None          # for ZONE sites: the territory the notice covers
 
 
 @dataclass
@@ -66,7 +68,8 @@ def load(issue: int, con: duckdb.DuckDBPyConnection | None = None) -> Terrestria
                    arg_max({q('antenna','power_quantity')}, coalesce({q('antenna','power_dbw')}, -999)) AS eiv,
                    arg_max({q('antenna','height_agl_m')}, coalesce({q('antenna','power_dbw')}, -999)) AS hgt,
                    arg_max({q('antenna','azimuth_max_deg')}, coalesce({q('antenna','power_dbw')}, -999)) AS azm,
-                   arg_max({q('antenna','directivity')}, coalesce({q('antenna','power_dbw')}, -999)) AS dir
+                   arg_max({q('antenna','directivity')}, coalesce({q('antenna','power_dbw')}, -999)) AS dir,
+                   arg_max({q('antenna','antenna_key')}, coalesce({q('antenna','power_dbw')}, -999)) AS akey
             FROM {M.t(KIND,'antenna')}
             WHERE coalesce({q('antenna','tx_rx')}, 'TX') = 'TX'
             GROUP BY 1),
@@ -75,9 +78,9 @@ def load(issue: int, con: duckdb.DuckDBPyConnection | None = None) -> Terrestria
         SELECT CAST({q('notice','notice_id','t')} AS VARCHAR), {q('notice','administration','t')}, {q('notice','intent','t')},
                {q('notice','station_class','t')}, {q('notice','notice_type','t')}, {q('notice','freq_mhz','t')},
                {q('notice','bandwidth_khz','t')}, {q('notice','received','t')},
-               {q('site','geo_type','g')}, {q('site','country','g')}, {q('site','site_name','g')},
+               {q('site','geo_type','g')}, {q('site','country','g')}, {q('site','site_name','g')}, {q('site','zone_id','g')},
                {q('site','lat_deg','g')}, {q('site','lon_deg','g')},
-               ant.pwr, ant.eiv, ant.hgt, ant.azm, ant.dir, tg.target
+               ant.pwr, ant.eiv, ant.hgt, ant.azm, ant.dir, tg.target, ant.akey
         FROM {M.t(KIND,'notice')} t
         LEFT JOIN {M.t(KIND,'site')} g ON {q('site','geo_key','g')} = {q('notice','geo_key','t')}
         LEFT JOIN ant ON ant.tk = {q('notice','notice_id','t')}
@@ -88,8 +91,8 @@ def load(issue: int, con: duckdb.DuckDBPyConnection | None = None) -> Terrestria
 
     t_notice, c_id = M.table(KIND, "notice"), M.col(KIND, "notice", "notice_id")
     notices, extra = [], {}
-    for (tk, adm, intent, cls, ntype, f_mhz, bw_khz, rcv, gtype, ctry, site, lat, lon,
-         pwr, eiv, hgt, azm, ant_dir, target) in rows:
+    for (tk, adm, intent, cls, ntype, f_mhz, bw_khz, rcv, gtype, ctry, site, zone, lat, lon,
+         pwr, eiv, hgt, azm, ant_dir, target, akey) in rows:
         erp = None
         if pwr is not None and eiv in ("E", "I"):
             erp = round(float(pwr) - (EIRP_TO_ERP_DB if eiv == "I" else 0.0), 3)
@@ -104,7 +107,8 @@ def load(issue: int, con: duckdb.DuckDBPyConnection | None = None) -> Terrestria
             azimuth_deg=None if azm is None else float(azm), source_ref=f"{t_notice}.{c_id}={tk}",
         ))
         extra[tk] = NoticeExtra(intent, ntype, gtype, ctry, None if pwr is None else float(pwr), eiv, ant_dir,
-                                None if rcv is None else str(rcv)[:10], target, land_mobile=cls in land_mobile)
+                                None if rcv is None else str(rcv)[:10], target, land_mobile=cls in land_mobile,
+                                antenna_key=akey, zone_id=zone)
     return TerrestrialIngest(issue, notices, extra, {
         "notices": len(notices), "located": sum(1 for n in notices if n.lat is not None),
         "with_erp": sum(1 for n in notices if n.erp_dbw is not None),

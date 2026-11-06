@@ -1,6 +1,6 @@
-# Results: Space IFIC 3074
+# Results: Space IFIC 3074 and Terrestrial IFIC 3076
 
-The separate results files the challenge brief asks for (section 07). The terrestrial file for IFIC 3076 follows with build steps C2 and C3.
+The separate results files the challenge brief asks for (section 07). Space first; the terrestrial side quest is at the end.
 
 > [!IMPORTANT]
 > **Status on Fri 6 Nov 2026.** Frequency screening, geography, evidence, ranking and the worst-case power flux-density (pfd) check for GSO downlinks (build step C1) are complete. pfd is **indicative**: free-space propagation and the beam's peak gain towards Finland, so it is an upper bound. Non-GSO pfd is not evaluated yet, which is why 87 of the 99 "medium" notices are non-GSO. Every rule below is a hypothesis until the partner answers questions Q1 to Q3 (`pm_pack/01_Partner_Briefing_Questions.md`).
@@ -76,3 +76,42 @@ make check-evidence ISSUE=3074                 # reopens every citation (ITU row
 ```
 
 Two runs on the same inputs produce byte-identical files (`tests/test_export.py`). The visual proof for every step is in `reports/3074/` (`make ingest relevance geography findings ISSUE=3074`).
+
+---
+
+# Terrestrial IFIC 3076
+
+| File | Rows | What one row is |
+|---|---|---|
+| `terrestrial_3076.csv`, `terrestrial_3076.json` | 4 057 | One notice of the issue, each with its concern and reason |
+
+Counts: **6 high, 1 medium, 6 review, 52 low, 3 992 not raised.** Field strength computed for 65 land-mobile notices.
+
+| Column | Terrestrial meaning |
+|---|---|
+| `special_section` | ITU notice type (T11, T12, T13, T14, G12) |
+| `network_or_station` | Site name (or `zone <country>` for an area notice) |
+| `freq_min_mhz`, `freq_max_mhz` | Assigned frequency plus and minus half the bandwidth |
+| `direction` | The change in this issue: `new` (ADD), `modified` (MODIFY), `withdrawn` (SUPPRESS), `unchanged` (RECORDED) |
+| `geo_relevance` | `near_border` within 300 km of Finland, otherwise `far` |
+| `calc_method`, `calc_value`, `calc_unit` | `p1546_field_strength`: field strength at the nearest Finnish border point, dB(uV/m) |
+| `limit_value`, `margin_db` | T/R 25-08 trigger plus bandwidth correction; `trigger - E` (negative = trigger exceeded) |
+
+**Inputs.** `brific3076.mdb` (ITU Terrestrial BR IFIC, published 21 Jul 2026); `data/reference/tr2508_thresholds.csv` (ECC/ERC Recommendation T/R 25-08, 6 June 2025, Annex 1; second reviewer pending); Finland and neighbour borders from Natural Earth 1:50m.
+
+**Method.**
+1. Each extract is the change set of its issue (no 3076 notice is in 3075; MODIFY and SUPPRESS point into the Master Register), so the change comes from the Bureau's intent. The comparison with 3075 is a trend per administration, band and station class (`reports/3076/01_diff.html`).
+2. Land-mobile notices (station classes FB, FL, ML, MO) of other administrations, with a point location, within 1 000 km of Finland.
+3. Distance to the nearest point of the Finland polygon; the straight path split into land and sea zones (sea = outside every country polygon, treated as cold sea).
+4. Field strength with the **ITU-R P.1546-6 reference implementation** (Py1546 6.1, pinned to commit e2356290; its 52 ITU validation cases reproduce to 0.0 dB in `tests/test_p1546.py`): 10 % of time, 50 % of locations, receiving antenna 10 m, rural receiver, no terrain profile (transmitting antenna height above ground as effective height; 1.5 m assumed for mobiles without a filed height), notified e.r.p. (e.i.r.p. minus 2.15 dB), no antenna pattern (conservative).
+5. Concern [hypothesis until Q11, Q12]: new or modified notice above the trigger, high; within 6 dB below, medium; further below, low. Recorded notice above the trigger, medium; otherwise low. No T/R 25-08 trigger for the band (for example 790-862 MHz), review within 100 km and low beyond, field strength reported. Withdrawn, Finnish, non-land-mobile and area notices for distant territories are not raised, with the reason.
+
+**Highest cases.** New Russian VHF base stations at Kostomuksha (152 MHz, 31.5 km from Finland, 13 dB above the trigger), Lyaskelya (42 km, 9 dB above) and Vyborg (30 km, 8 dB above). Review: Russian 800 MHz base stations at Ruskeala and Sortavala, 12 to 14 km from Finland, where T/R 25-08 has no trigger.
+
+**Reproduce.**
+
+```bash
+uv run python -m radar.export --issue 3076 --kind terrestrial
+uv run python scripts/field_strength_report.py 3076      # reports/3076/02_field_strength.html
+```
+

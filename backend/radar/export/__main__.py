@@ -12,7 +12,10 @@ def main() -> int:
     ap.add_argument("--kind", choices=["space", "terrestrial"], required=True)
     args = ap.parse_args()
     if args.kind == "terrestrial":
-        raise SystemExit("terrestrial export arrives with step C2/C3")
+        from radar.export.results import export_terrestrial
+        t = export_terrestrial(args.issue)
+        print(f"{t['paths']['csv']}: {t['rows']} rows {t['concern']}")
+        return 0
     s = export_space(args.issue)
     print(f"{s['paths']['csv']}: {s['rows']} rows {s['concern']}")
     print(f"{s['paths']['groups_csv']}: {s['group_rows']} candidate group rows {s['group_concern']}")
