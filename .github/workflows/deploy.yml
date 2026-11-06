@@ -1,11 +1,10 @@
-# Deploy the hosted demo to Cloud Run (europe-north1, Hamina) on every push to main.
+# Manual fallback deploy to Cloud Run (europe-north1, Hamina). Pushes to main deploy through Cloud Build
+# (cloudbuild.yaml), which does not depend on GitHub Actions; this workflow runs only when started by hand.
 # Google sign-in is keyless: GitHub's OIDC token is exchanged through Workload Identity Federation
 # for the deploy service account, so no Google key is stored in GitHub. Setup: docs/HOSTING.md.
 name: deploy
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 concurrency:

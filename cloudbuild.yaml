@@ -1,0 +1,54 @@
+# Cloud Build: test, build and deploy the hosted demo on every push to main (trigger "deploy-main",
+# europe-north1). Runs on Google's side, so it does not depend on GitHub Actions. Setup: docs/HOSTING.md.
+substitutions:
+  _REGION: europe-north1
+  _SERVICE: filing-radar
+  _IMAGE: europe-north1-docker.pkg.dev/${PROJECT_ID}/filing-radar/app
+
+steps:
+  - id: test
+    name: ghcr.io/astral-sh/uv:python3.12-bookworm
+    entrypoint: bash
+    args: ["-c", "uv sync --frozen && uv run pytest -q"]
+
+  - id: build
+    name: gcr.io/cloud-builders/docker
+    args: ["build", "-t", "${_IMAGE}:${COMMIT_SHA}", "."]
+
+  - id: push
+    name: gcr.io/cloud-builders/docker
+    args: ["push", "${_IMAGE}:${COMMIT_SHA}"]
+
+  - id: deploy
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - ${_SERVICE}
+      - --image=${_IMAGE}:${COMMIT_SHA}
+      - --region=${_REGION}
+      - --allow-unauthenticated
+      - --service-account=filing-radar-run@${PROJECT_ID}.iam.gserviceaccount.com
+      - --cpu=1
+      - --memory=512Mi
+      - --cpu-boost
+      - --min-instances=1
+      - --max-instances=2
+      - --concurrency=80
+      - --timeout=60
+      - --quiet
+
+  - id: smoke-test
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        url=$$(gcloud run services describe ${_SERVICE} --region=${_REGION} --format='value(status.url)')
+        curl -fsS "$$url/health" && curl -fsS "$$url/api/issues" > /dev/null && echo "live at $$url"
+
+images: ["${_IMAGE}:${COMMIT_SHA}"]
+options:
+  logging: CLOUD_LOGGING_ONLY
+timeout: 1200s

@@ -23,6 +23,7 @@ COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen --no-dev --no-install-project
 
 COPY backend/ backend/
+COPY prompts/ prompts/
 COPY data/cache/ data/cache/
 COPY data/reference/ data/reference/
 COPY results/ results/
