@@ -1,7 +1,7 @@
-# ✨ 03 — Strategic SWOT & Competitor Matrix
+# 03 — Strategic SWOT & Competitor Matrix
 
 > [!WARNING]
-> 🍒 **Draft — based on missing data**
+> **Draft — based on missing data**
 > Written from `README.md` only. We do not know what data, tools or criteria Traficom will share, or what other teams will build. Competitor entries are **predictions** `[HYPOTHESIS]`, not observations. Re-check after the Friday briefing and the Saturday Q&A.
 
 ---
@@ -19,13 +19,13 @@
 
 | Dimension | **Us: Filing Radar** | A: "Chat with the Radio Regulations" (RAG chatbot) | B: Filing PDF Summariser | C: Pretty 3D Satellite Visualiser |
 |---|---|---|---|---|
-| Solves "discover relevant filings" | ✅ Ranks a whole circular | ❌ User must know what to ask | ⚠️ One file at a time | ❌ |
-| "Understand implications" for **Finland** | ✅ Overlap vs Finnish assets | ⚠️ Generic answers | ⚠️ Generic summary | ⚠️ Visual only |
-| "Connect evidence across sources" | ✅ Cited filing + rule + asset | ⚠️ Citations to rules only | ❌ | ❌ |
-| "Identify situations worth investigating" | ✅ Score + reasons | ❌ | ❌ | ❌ |
-| Human in control | ✅ Approve / dismiss / audit log | ⚠️ Implicit | ⚠️ Implicit | n/a |
-| 15-second "wow" | ✅ Footprint lights up over Finland, click → source | ⚠️ Looks like every other chatbot | ❌ Text wall | ✅ Looks great, no substance |
-| Works with zero partner data | ✅ Synthetic Branch B | ✅ | ⚠️ Needs PDFs | ✅ |
+| Solves "discover relevant filings" | Yes: Ranks a whole circular | No: User must know what to ask | Partly: One file at a time | No |
+| "Understand implications" for **Finland** | Yes: Overlap vs Finnish assets | Partly: Generic answers | Partly: Generic summary | Partly: Visual only |
+| "Connect evidence across sources" | Yes: Cited filing + rule + asset | Partly: Citations to rules only | No | No |
+| "Identify situations worth investigating" | Yes: Score + reasons | No | No | No |
+| Human in control | Yes: Approve / dismiss / audit log | Partly: Implicit | Partly: Implicit | n/a |
+| 15-second "wow" | Yes: Footprint lights up over Finland, click → source | Partly: Looks like every other chatbot | No: Text wall | Yes: Looks great, no substance |
+| Works with zero partner data | Yes: Synthetic Branch B | Yes | Partly: Needs PDFs | Yes |
 
 **Where they beat us:** C will look prettier. A will be faster to build. Our answer: borrow C's visual hook (map) and keep A's citations, but attach both to a real decision.
 

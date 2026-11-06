@@ -9,3 +9,30 @@ Finland's Transport and Communications Agency Traficom invites you to explore an
 This is a fascinating intersection of space technology, regulatory intelligence, information extraction, technical reasoning and explainable AI. Build for a world where critical infrastructure increasingly depends on clear, reliable coordination across borders and orbits.
 
 The most valuable ideas will make complex analysis more transparent and efficient while keeping human experts firmly in control of consequential decisions.
+
+## Datasets and APIs Provided
+
+> [!NOTE]
+> Datasets marked **(mandatory)** must be used to complete the challenge successfully. All other data may be used, whether listed here or from other sources.
+
+### ITU Space IFIC (mandatory)
+
+- Source: https://www.itu.int/en/ITU-R/space/brific/Pages/default.aspx
+- Downloadable Space IFIC: https://www.itu.int/sns/wic/demowic.html
+- All existing and forthcoming IFICs must be able to be evaluated.
+- **Space IFIC no. 3074** must be analysed and possible concerns raised from it. It is used to evaluate accuracy, and its results must be submitted separately.
+
+### ITU Terrestrial IFIC (mandatory)
+
+- Source: https://www.itu.int/en/ITU-R/terrestrial/brific/Pages/default.aspx
+- Downloadable Terrestrial IFIC extract: https://www.itu.int/en/ITU-R/terrestrial/brific/Pages/default.aspx
+- All existing and forthcoming IFICs must be able to be evaluated.
+- **Terrestrial IFIC no. 3076** must be analysed and possible concerns raised from it. It is used to evaluate accuracy, and its results must be submitted separately.
+
+### Regulation 4, "M4" (mandatory)
+
+Finnish Radio Frequency Regulation, including the table of frequencies in Finland.
+
+- Regulation: https://www.finlex.fi/fi/viranomaiset/maarayskokoelmat/traficom-viestinta/2026/3
+- Radio frequency table API (Swagger): https://opendata.traficom.fi/swagger/ui/index#/Taajuusjakotaulukko
+- Radio frequency table API endpoint: https://opendata.traficom.fi/api/v13/Taajuusjakotaulukko

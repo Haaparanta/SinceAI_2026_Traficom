@@ -1,4 +1,4 @@
-/* 🎀 Girlypop theme v2 — design tokens for shadcn/ui + Tailwind CSS v4
+/* Girlypop theme v2 — design tokens for shadcn/ui + Tailwind CSS v4
  * Drop into app/globals.css (after `@import "tailwindcss";`).
  * Every text/background pair below was checked to pass WCAG AA (≥ 4.5:1).
  * See design/girlypop-theme.md for usage rules.
@@ -70,6 +70,12 @@
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
+  /* Cybersigilism background (tiles in design/sigils/) */
+  --sigil-fill: linear-gradient(160deg, oklch(0.57 0.2 352), oklch(0.45 0.12 300));
+  --sigil-opacity: 0.16;        /* see guide 5a: text directly on the pattern uses foreground or secondary-foreground */
+  --sigil-size: 720px;          /* mosaic tile (960 x 960 artwork) */
+  --sigil-size-single: 300px;   /* single-motif tiles (360 x 360 artwork) */
+
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
   --font-display: ui-rounded, "SF Pro Rounded", "Nunito", var(--font-sans); /* v2: ui-rounded reaches SF Rounded on Apple web */
   --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", monospace;
@@ -131,6 +137,9 @@
 
   --gloss: linear-gradient(135deg, oklch(0.6 0.15 352), oklch(0.55 0.1 310));
   --shadow-soft: 0 1px 2px oklch(0 0 0 / 0.3), 0 8px 24px oklch(0 0 0 / 0.35);
+
+  --sigil-fill: linear-gradient(160deg, oklch(0.8 0.15 352), oklch(0.78 0.1 300));
+  --sigil-opacity: 0.2;
 }
 
 /* Tailwind v4: expose tokens as utilities (bg-primary, text-risk-high-foreground, …) */
@@ -183,6 +192,32 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --shadow-soft: var(--shadow-soft);
+}
+
+/* Cybersigilism background: hand-drawn sigil tiles repeated infinitely.
+ * Put `bg-sigil` on <body> (or a full-page wrapper). By default it shows the mosaic tile, which mixes
+ * every motif (winged thorn sigil, needles, cathedral jellyfish, filigree rosette, barbed arc and small
+ * glyphs). Add one modifier to show a single motif instead:
+ *   bg-sigil--thorn, bg-sigil--needle, bg-sigil--cathedral, bg-sigil--filigree
+ * Tiles are masks, so colour comes from --sigil-fill and follows light/dark mode.
+ * Regenerate tiles with `python3 design/sigils/generate.py`. Adjust the paths if this file moves.
+ */
+@layer base {
+  .bg-sigil { position: relative; isolation: isolate; min-height: 100vh; }
+  .bg-sigil::before {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: var(--sigil-fill); opacity: var(--sigil-opacity);
+    -webkit-mask: url("./sigils/mosaic.svg") 0 0 / var(--sigil-size) var(--sigil-size) repeat;
+    mask: url("./sigils/mosaic.svg") 0 0 / var(--sigil-size) var(--sigil-size) repeat;
+  }
+  .bg-sigil--thorn, .bg-sigil--needle, .bg-sigil--cathedral, .bg-sigil--filigree { --sigil-size: var(--sigil-size-single); }
+  .bg-sigil--thorn::before { -webkit-mask-image: url("./sigils/thorn.svg"); mask-image: url("./sigils/thorn.svg"); }
+  .bg-sigil--needle::before { -webkit-mask-image: url("./sigils/needle.svg"); mask-image: url("./sigils/needle.svg"); }
+  .bg-sigil--cathedral::before { -webkit-mask-image: url("./sigils/cathedral.svg"); mask-image: url("./sigils/cathedral.svg"); }
+  .bg-sigil--filigree::before { -webkit-mask-image: url("./sigils/filigree.svg"); mask-image: url("./sigils/filigree.svg"); }
+}
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more), print {
+  .bg-sigil::before { display: none; }
 }
 
 /* v2: accessibility fallbacks */
