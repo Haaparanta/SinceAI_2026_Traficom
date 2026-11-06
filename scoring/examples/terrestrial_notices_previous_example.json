@@ -1,0 +1,16 @@
+{
+  "_comment": "The previous terrestrial IFIC (placeholder 3075) for the diff: S-2026-0003 had a lower power, RUS-2026-0004 is unchanged, and RUS-2026-0010 disappears (withdrawn).",
+  "ific_no": 3075,
+  "ific_date": "2026-06-30",
+  "notices": [
+    {"notice_id": "S-2026-0003", "adm": "S", "ctry": "S", "action": "ADD", "freq_assgn_mhz": 410.5, "lat": 65.83, "lon": 24.10, "adm_ref_id": "SWE-WB-0310",
+     "stn_cls": "FB", "nat_srv": ["CP"], "fragment": "NTFD_RR", "prov": "RR11.2", "notice_type": "T12", "bandwidth_khz": 200.0, "emi_cls": "200KG7W",
+     "site_name": "HAPARANDA", "site_alt_m": 10, "erp_dbw": 17.0, "pwr_type": "E", "ant_dir": "ND", "hgt_agl_m": 50},
+    {"notice_id": "RUS-2026-0004", "adm": "RUS", "ctry": "RUS", "action": "ADD", "freq_assgn_mhz": 169.5, "lat": 61.78, "lon": 34.35, "adm_ref_id": "RUS-LM-77102",
+     "stn_cls": "FB", "nat_srv": ["CP"], "fragment": "NTFD_RR", "prov": "RR11.2", "notice_type": "T12", "bandwidth_khz": 12.5, "emi_cls": "11K0F3E",
+     "site_name": "PETROZAVODSK", "site_alt_m": 110, "erp_dbw": 14.0, "pwr_type": "E", "ant_dir": "ND", "hgt_agl_m": 40},
+    {"notice_id": "RUS-2026-0010", "adm": "RUS", "ctry": "RUS", "action": "ADD", "freq_assgn_mhz": 165.0, "lat": 60.90, "lon": 29.10, "adm_ref_id": "RUS-LM-77090",
+     "stn_cls": "FB", "nat_srv": ["CP"], "fragment": "NTFD_RR", "prov": "RR11.2", "notice_type": "T12", "bandwidth_khz": 12.5, "emi_cls": "11K0F3E",
+     "site_name": "SVETOGORSK", "site_alt_m": 40, "erp_dbw": 14.0, "pwr_type": "E", "ant_dir": "ND", "hgt_agl_m": 30}
+  ]
+}

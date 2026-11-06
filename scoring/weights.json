@@ -1,0 +1,519 @@
+{
+  "version": "2026-11-06",
+  "description": "All tunable numbers of the scoring model. Factor values are in [0, 1]. score = 100 * relevance * (severity_weight * severity + urgency_weight * urgency). Relevance factors multiply (a zero screens the pair out); severity and urgency factors are weighted means.",
+  "score": {
+    "severity_weight": 0.65,
+    "urgency_weight": 0.35
+  },
+  "priority_bands": {
+    "A": 70,
+    "B": 45,
+    "C": 20
+  },
+  "priority_labels": {
+    "A": "Investigate now",
+    "B": "Review",
+    "C": "Monitor",
+    "D": "No action"
+  },
+  "space": {
+    "freq": {
+      "adjacent_guard_pct": 10.0,
+      "adjacent_guard_min_mhz": 0.5,
+      "adjacent_relevance": 0.3,
+      "adjacent_relevance_passive": 0.5,
+      "overlap_floor": 0.6
+    },
+    "geo": {
+      "gso_elev_zero_deg": 0.0,
+      "gso_elev_full_deg": 10.0,
+      "service_area": {
+        "finland": 1.0,
+        "region_covering_finland": 0.85,
+        "neighbour": 0.6,
+        "not_stated": 0.5,
+        "elsewhere": 0.35
+      },
+      "ngso_min_elev_deg": 0.0,
+      "ngso_unknown_orbit": 0.5,
+      "earth_station_distance_bins_km": [
+        [
+          50,
+          1.0
+        ],
+        [
+          150,
+          0.7
+        ],
+        [
+          300,
+          0.45
+        ],
+        [
+          600,
+          0.2
+        ],
+        [
+          null,
+          0.05
+        ]
+      ]
+    },
+    "direction": {
+      "E": {
+        "finnish_rx_terrestrial": 1.0,
+        "finnish_space_to_earth": 1.0,
+        "finnish_tx_only": 0.5,
+        "finnish_earth_to_space": 0.2,
+        "finnish_unknown": 0.8
+      },
+      "R": {
+        "base": 0.15,
+        "finnish_space_network_in_band": 0.8,
+        "earth_station_in_finland": 1.0,
+        "earth_station_in_neighbour": 0.7,
+        "finnish_earth_to_space": 0.4
+      }
+    },
+    "severity_weights": {
+      "pfd_margin": 0.4,
+      "finnish_sensitivity": 0.3,
+      "finnish_status": 0.15,
+      "bandwidth": 0.15
+    },
+    "urgency_weights": {
+      "stage": 0.35,
+      "deadline": 0.25,
+      "finland_listed": 0.25,
+      "novelty": 0.15
+    },
+    "pfd": {
+      "margin_bins_db": [
+        [
+          0,
+          1.0
+        ],
+        [
+          6,
+          0.8
+        ],
+        [
+          15,
+          0.5
+        ],
+        [
+          30,
+          0.2
+        ],
+        [
+          null,
+          0.05
+        ]
+      ],
+      "unknown_value": 0.5,
+      "no_limit_reference_dbw_m2_4khz": -150.0,
+      "commitment_multiplier": 0.85,
+      "ngso_elevation_samples_deg": [
+        5,
+        10,
+        25,
+        45,
+        90
+      ]
+    },
+    "status": {
+      "primary": 1.0,
+      "secondary": 0.5,
+      "usage_only": 0.3,
+      "unallocated": 0.1
+    },
+    "bandwidth": {
+      "exponent": 0.5
+    },
+    "stage": {
+      "CR/C": 1.0,
+      "AP30/E": 0.9,
+      "AP30A/E": 0.9,
+      "AP30-30A/E": 0.9,
+      "AP30B/A6A": 0.9,
+      "API/A": 0.6,
+      "AP30/F": 0.5,
+      "AP30A/F": 0.5,
+      "AP30-30A/F": 0.5,
+      "AP30B/A6B": 0.5,
+      "AP30B/A7": 0.4,
+      "PART-I-S": 0.45,
+      "CR/D": 0.35,
+      "CR/E": 0.35,
+      "CR/F": 0.35,
+      "API/B": 0.3,
+      "API/C": 0.3,
+      "PART-II-S": 0.25,
+      "PART-III-S": 0.15,
+      "RES49": 0.1,
+      "RES552": 0.1,
+      "unknown": 0.4
+    },
+    "comment_window_days": {
+      "CR/C": 122,
+      "API/A": 122,
+      "AP30/E": 122,
+      "AP30A/E": 122,
+      "AP30-30A/E": 122,
+      "AP30B/A6A": 122
+    },
+    "deadline_bins_days_remaining": [
+      [
+        0,
+        0.1
+      ],
+      [
+        30,
+        1.0
+      ],
+      [
+        90,
+        0.8
+      ],
+      [
+        null,
+        0.6
+      ]
+    ],
+    "deadline_no_window": 0.3,
+    "finland_listed": {
+      "listed": 1.0,
+      "not_listed_with_overlap": 0.6,
+      "no_list_for_section": 0.5
+    },
+    "novelty": {
+      "A": 1.0,
+      "M": 0.7,
+      "R": 0.4,
+      "S": 0.0,
+      "unknown": 0.6
+    }
+  },
+  "terrestrial": {
+    "freq": {
+      "adjacent_guard_khz": 25.0,
+      "adjacent_relevance": 0.3,
+      "overlap_floor": 0.6
+    },
+    "geo": {
+      "distance_bins_km": [
+        [
+          25,
+          1.0
+        ],
+        [
+          50,
+          0.9
+        ],
+        [
+          100,
+          0.75
+        ],
+        [
+          160,
+          0.55
+        ],
+        [
+          250,
+          0.35
+        ],
+        [
+          400,
+          0.15
+        ],
+        [
+          null,
+          0.03
+        ]
+      ],
+      "sea_path_distance_factor": 0.5,
+      "pointing": {
+        "toward": 1.0,
+        "sideways": 0.7,
+        "away": 0.4,
+        "nondirectional": 1.0,
+        "sideways_deg": 60,
+        "away_deg": 120
+      }
+    },
+    "action": {
+      "ADD": 1.0,
+      "MODIFY": 1.0,
+      "SUPPRESS": 0.0,
+      "WITHDRAW": 0.0
+    },
+    "severity_weights": {
+      "field_strength_margin": 0.4,
+      "interference_potential": 0.2,
+      "finnish_sensitivity": 0.25,
+      "protected_station": 0.15
+    },
+    "urgency_weights": {
+      "novelty": 0.4,
+      "provision": 0.35,
+      "framework": 0.25
+    },
+    "field_strength": {
+      "margin_bins_db": [
+        [
+          -20,
+          0.1
+        ],
+        [
+          -10,
+          0.3
+        ],
+        [
+          0,
+          0.55
+        ],
+        [
+          10,
+          0.85
+        ],
+        [
+          null,
+          1.0
+        ]
+      ],
+      "not_evaluated_value": 0.5,
+      "time_pct": 10,
+      "rx_height_m": 10,
+      "sea_upper_bound_margin_db": 3.0
+    },
+    "potential": {
+      "height_ref_m": 30.0,
+      "bins_dbw": [
+        [
+          0,
+          0.2
+        ],
+        [
+          10,
+          0.4
+        ],
+        [
+          20,
+          0.7
+        ],
+        [
+          null,
+          1.0
+        ]
+      ]
+    },
+    "protected_station_bins_km": [
+      [
+        30,
+        1.0
+      ],
+      [
+        100,
+        0.6
+      ],
+      [
+        200,
+        0.3
+      ],
+      [
+        null,
+        0.0
+      ]
+    ],
+    "novelty": {
+      "new": 1.0,
+      "modified_technical": 0.9,
+      "modified": 0.7,
+      "unchanged": 0.1,
+      "withdrawn": 0.0,
+      "unknown": 0.6
+    },
+    "technical_fields": [
+      "freq_assgn_mhz",
+      "erp_dbw",
+      "hgt_agl_m",
+      "lat",
+      "lon",
+      "azm_max_deg",
+      "bandwidth_khz",
+      "gain_dbi",
+      "ant_dir"
+    ],
+    "provision": {
+      "Req_agrt": 1.0,
+      "RR9.21": 1.0,
+      "NTFD_RR": 0.6,
+      "RR11.2": 0.6,
+      "unknown": 0.5
+    },
+    "framework": {
+      "quantitative_trigger": 1.0,
+      "general_only": 0.5
+    },
+    "comment_window_days": {
+      "RR9.21": 122
+    },
+    "trend_z_threshold": 2.0,
+    "trend_band_edges_mhz": [
+      29.7,
+      47,
+      68,
+      87.5,
+      108,
+      146,
+      174,
+      230,
+      380,
+      400,
+      410,
+      430,
+      440,
+      450,
+      470
+    ]
+  },
+  "finnish_sensitivity": {
+    "description": "How much Finnish use in the overlapped band would suffer. First matching rule wins (case-insensitive substring match on Services_in_Finland and Sub_band_usage). Defaults apply when no rule matches.",
+    "default_primary": 0.6,
+    "default_secondary": 0.4,
+    "default_usage_only": 0.3,
+    "default_none": 0.1,
+    "rules": [
+      {
+        "label": "Passive service (radio astronomy, passive EESS/SRS)",
+        "tier": 1.0,
+        "service_any": [
+          "RADIO ASTRONOMY",
+          "(PASSIVE)"
+        ],
+        "usage_any": [
+          "Radio astronomy"
+        ]
+      },
+      {
+        "label": "Safety-of-life: radionavigation, GNSS, aeronautical (R), distress",
+        "tier": 1.0,
+        "service_any": [
+          "RADIONAVIGATION",
+          "AERONAUTICAL MOBILE (R)",
+          "AERONAUTICAL MOBILE-SATELLITE (R)",
+          "AERONAUTICAL RADIONAVIGATION",
+          "MARITIME RADIONAVIGATION"
+        ],
+        "usage_any": [
+          "DSC",
+          "Distress",
+          "Rescue",
+          "Aeronautical emercency",
+          "Radionavigation satellite",
+          "Distance measuring"
+        ]
+      },
+      {
+        "label": "Public safety, government and defence networks",
+        "tier": 1.0,
+        "usage_any": [
+          "VIRVE",
+          "Emergency services",
+          "Military",
+          "Government"
+        ]
+      },
+      {
+        "label": "Meteorological aids and satellites",
+        "tier": 0.9,
+        "service_any": [
+          "METEOROLOGICAL"
+        ],
+        "usage_any": [
+          "Sondes",
+          "Meteorological"
+        ]
+      },
+      {
+        "label": "Public mobile networks (IMT)",
+        "tier": 0.85,
+        "usage_any": [
+          "Terrestrial systems capable of providing electronic communications services",
+          "Digital mobile network",
+          "Digital broadband 450",
+          "Local terrestrial systems"
+        ]
+      },
+      {
+        "label": "Satellite earth stations and space operations in Finland",
+        "tier": 0.8,
+        "service_any": [
+          "SPACE-TO-EARTH",
+          "EARTH EXPLORATION-SATELLITE",
+          "SPACE RESEARCH",
+          "SPACE OPERATION",
+          "MOBILE-SATELLITE",
+          "FIXED SATELLITE"
+        ],
+        "usage_any": [
+          "Fixed satellite",
+          "Earth exploration satellite",
+          "Space research",
+          "Space operation",
+          "Mobile satellite",
+          "Meteorological-satellites"
+        ]
+      },
+      {
+        "label": "Fixed links, PMR, maritime, broadcasting, radars",
+        "tier": 0.6,
+        "service_any": [
+          "FIXED",
+          "MOBILE",
+          "MARITIME MOBILE",
+          "LAND MOBILE",
+          "BROADCASTING",
+          "RADIOLOCATION",
+          "AERONAUTICAL MOBILE (OR)",
+          "STANDARD FREQUENCY"
+        ],
+        "usage_any": [
+          "Fixed radiolinks",
+          "Radiotelephony",
+          "PMR",
+          "TETRA",
+          "Radars",
+          "Coast stations",
+          "Broadcasting",
+          "Maritime",
+          "Data service"
+        ]
+      },
+      {
+        "label": "Amateur",
+        "tier": 0.3,
+        "service_any": [
+          "AMATEUR"
+        ],
+        "usage_any": [
+          "Amateur"
+        ]
+      },
+      {
+        "label": "Licence-exempt short range devices (M15)",
+        "tier": 0.25,
+        "usage_any": [
+          "(SRD)",
+          "PMR446",
+          "CB and PR-27",
+          "LA (National",
+          "DECT",
+          "Cordless",
+          "RFID",
+          "Ultra low-power"
+        ]
+      }
+    ]
+  }
+}

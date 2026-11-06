@@ -36,3 +36,11 @@ Finnish Radio Frequency Regulation, including the table of frequencies in Finlan
 - Regulation: https://www.finlex.fi/fi/viranomaiset/maarayskokoelmat/traficom-viestinta/2026/3
 - Radio frequency table API (Swagger): https://opendata.traficom.fi/swagger/ui/index#/Taajuusjakotaulukko
 - Radio frequency table API endpoint: https://opendata.traficom.fi/api/v13/Taajuusjakotaulukko
+
+## Scoring
+
+The `scoring/` folder holds a deterministic, stdlib-only scoring model that ranks IFIC notices by relevance to Finland: `score = 100 x relevance x (0.65 x severity + 0.35 x urgency)`, with every factor carrying its evidence. See [scoring/README.md](scoring/README.md) for usage and [scoring/DESIGN.md](scoring/DESIGN.md) for the reasoning, the factor tables and the calibration plan.
+
+```bash
+python -m unittest discover -s scoring/tests -t .
+```
