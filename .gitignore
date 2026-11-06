@@ -1,0 +1,11 @@
+# Downloaded and derived data: never commit (see pm_pack/06_AGENTS_Master_Context.md)
+data/raw/
+data/derived/
+
+# Local secrets and environments
+.env
+.venv/
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
