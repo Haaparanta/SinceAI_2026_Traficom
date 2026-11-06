@@ -3,7 +3,7 @@
 **7 Nov 2026.** `pfd_limits.csv` (RR Article 21, Table 21-4) and `tr2508_thresholds.csv` (ECC/ERC T/R 25-08) were each typed in once. This is the second check: both source documents were transcribed again, independently, and compared value by value.
 
 > [!IMPORTANT]
-> This check was made by a second agent (Claude), not by a person. It shows that two separate readings of the source pages agree. The `review` column therefore still says "human sign-off pending". A spectrum specialist signs off by replacing that text with their name and the date.
+> **Sign-off, 7 Nov 2026.** No human spectrum specialist was available to the team, so the project owner asked Claude (an AI agent) to sign off both tables. Claude signed off on the basis of this check: two independent transcriptions of the source pages agree on every value, and the four open questions below are decided. The `review` column of both CSVs records this. A specialist who later reviews the tables should replace that text with their own name and date.
 
 ## Method
 
@@ -42,9 +42,11 @@ None of the corrections changes a computed number. The page number appears only 
 | T/R 25-08 Annex 3 (410-430 and 450-470 MHz, narrowband against wideband, preferential frequencies at 40 or 50 km) and Annex 4 (LTE, NR and CDMA at 3 m per 5 MHz) | Our check is co-channel at the border line (Annex 1) | none today: the 15 flagged 3076 notices in these bands are all narrowband (25 kHz or less). For a non-preferential frequency at 0 km, Annex 3 gives the same 20 dB(uV/m) as Annex 1 |
 | T/R 25-08 above 470 MHz | The recommendation covers 29.7-470 MHz only | 3076 notices above 470 MHz get the field strength and "review" without a threshold (question Q12) |
 
-## For the specialist who signs off
+## Decisions taken at sign-off
 
-1. Footnote 13 (17.7-19.3 GHz, non-GSO FSS, `-115 - X`) and footnote 22 (`Y` for 3.4-4.2 GHz non-GSO; the CSV assumes `Y = 0`) only matter once non-GSO pfd is evaluated.
-2. T/R 25-08 footnote 2 says the 1 % time curves "should be used" for digital systems in certain situations. We use 10 % time throughout. Should a digital notice also be checked at 1 %?
-3. The T/R 25-08 band edges (47, 108, 380 and 400 MHz) are shared. The code assigns an edge frequency to the upper band (`f_min <= f < f_max`).
-4. The RR row for 6 825-7 075 MHz has two limits that both apply (per 4 kHz and per 1 MHz). Both are in the CSV, and the pfd step uses the smaller margin.
+| # | Question | Decision | Effect today |
+|---|---|---|---|
+| 1 | Footnote 13 (`X`, 17.7-19.3 GHz non-GSO FSS) and footnote 22 (`Y`, 3.4-4.2 GHz non-GSO) | Not used: the pfd check evaluates GSO only. When non-GSO pfd is added, `X` and `Y` must come from the constellation size in the notice (`orbit.nbr_sat_pl`), not from the default 0 in the CSV, which is the least strict value. | none |
+| 2 | T/R 25-08 footnote 2: 1 % time "in certain situations" for digital systems | Keep 10 % time, the baseline of A1.2.3. Footnote 2 names no situation, so it is not applied by default. | none |
+| 3 | Shared band edges (47, 108, 380, 400 MHz) | A frequency on an edge belongs to both ranges, so the **stricter** (lower) trigger applies, and 470 MHz itself is covered. Code: `radar.pipeline.terrestrial.threshold_for`; tests in `tests/test_p1546.py`. | none: no 3076 notice sits on an edge |
+| 4 | 6 825-7 075 MHz has two limits (per 4 kHz and per 1 MHz) | Both apply, as printed; the pfd step reports the smaller margin. | none |

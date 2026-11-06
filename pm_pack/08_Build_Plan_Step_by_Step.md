@@ -17,7 +17,7 @@ How we build Filing Radar from an empty `backend/` to the two graded results fil
 | A4 schema | done; all expected tables found | `reports/schema/*.html` | #17 |
 | A5 DuckDB, A6 Finnish table | done; row counts match, 5 917 rows | `reports/convert/*.html`, `reports/reference/fi_subbands.html` | #18 |
 | B1 to B5 space 3074 | done; 196 notices, 135 flagged, results files written | `reports/3074/01-05_*.html`, `results/space_3074.*` | #19 to #23 |
-| C1 worst-case pfd | done; limits re-transcribed from RR 2024, second check against an independent transcription on 7 Nov 2026 (38 of 38 agree; human sign-off pending) | `reports/3074/06_pfd.html` | #24 |
+| C1 worst-case pfd | done; limits re-transcribed from RR 2024, second check against an independent transcription on 7 Nov 2026 (38 of 38 agree); signed off by Claude at the project owner's request | `reports/3074/06_pfd.html` | #24 |
 | C2 terrestrial diff | done; each extract is a change set | `reports/3076/01_diff.html` | #25 |
 | C3 P.1546 at the border | done; ITU reference code, 52 validation cases at 0.0 dB | `reports/3076/02_field_strength.html`, `results/terrestrial_3076.*` | #26 |
 | D1 one screen | done (built by Claude Code at the user's request; file 06 gives `frontend/` to Cursor) | `make frontend`, Playwright `make e2e` | #27, #28 |

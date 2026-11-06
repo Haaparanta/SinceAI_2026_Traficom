@@ -69,11 +69,11 @@ test("e: offline demo, accuracy and proof pack", async ({ page }, info) => {
   await page.screenshot({ path: `../docs/screenshots/${step}/3-proof-pack-${info.project.name}.png`, fullPage: info.project.name !== "phone" });
 });
 
-test("review: pfd report with the second check", async ({ page }, info) => {
-  test.skip(step !== "review");
+test("review: pfd report with the sign-off", async ({ page }, info) => {
+  test.skip(step !== "review" && step !== "signoff");
   const proof = new URL("../../results/proof/", import.meta.url).href;
   await page.goto(`${proof}3074/06_pfd.html`);
-  await expect(page.getByText(/Second check on 7 Nov 2026/)).toBeVisible();
-  await page.getByText(/Second check on 7 Nov 2026/).scrollIntoViewIfNeeded();
+  await expect(page.getByText(/Signed off on 7 Nov 2026/)).toBeVisible();
+  await page.getByText(/Signed off on 7 Nov 2026/).scrollIntoViewIfNeeded();
   await page.screenshot({ path: `../docs/screenshots/${step}/1-pfd-report-${info.project.name}.png` });
 });

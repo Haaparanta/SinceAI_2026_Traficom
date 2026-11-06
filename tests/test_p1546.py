@@ -118,3 +118,11 @@ def test_3076_citations_resolve(run_3076):
     from radar import evidence_check
     checks = evidence_check.check(run_3076.result)
     assert checks and not [c for c in checks if c.status != "PASS"]
+
+
+@pytest.mark.parametrize("f_hz, trigger", [
+    (29_700_000, 0), (47_000_000, 0), (108_000_000, 6), (380_000_000, 12), (400_000_000, 18), (470_000_000, 20),
+])
+def test_shared_band_edge_takes_the_stricter_trigger(f_hz, trigger):
+    """T/R 25-08 A1.2.3 ranges share their edges; on an edge the lower (stricter) trigger applies."""
+    assert TR.threshold_for(f_hz, 25_000)[0].threshold_dbuv_m == trigger

@@ -63,7 +63,10 @@ def threshold_for(freq_hz: int | None, bandwidth_hz: int | None) -> tuple[Thresh
     if freq_hz is None:
         return None, 0.0
     f = freq_hz / 1e6
-    row = next((t for t in thresholds() if t.f_min_mhz <= f < t.f_max_mhz), None)
+    # T/R 25-08 A1.2.3 ranges share their edges ("between 47 and 108 MHz", "between 108 and 380 MHz"): a frequency on
+    # an edge belongs to both, so the stricter (lower) trigger applies. Signed off 7 Nov 2026, data/reference/review.
+    matches = [t for t in thresholds() if t.f_min_mhz <= f <= t.f_max_mhz]
+    row = min(matches, key=lambda t: t.threshold_dbuv_m) if matches else None
     if row is None:
         return None, 0.0
     bc = 10 * math.log10(bandwidth_hz / (row.ref_bw_khz * 1000)) if bandwidth_hz and bandwidth_hz > row.ref_bw_khz * 1000 else 0.0

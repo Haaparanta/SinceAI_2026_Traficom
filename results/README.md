@@ -3,7 +3,7 @@
 The separate results files the challenge brief asks for (section 07). Space first; the terrestrial side quest is at the end.
 
 > [!IMPORTANT]
-> **Status on Sat 7 Nov 2026: frozen (build steps E1 to E4).** Two full runs give byte-identical files, every stage report passes, and the proof pack is in [`proof/`](proof/index.html). Frequency screening, geography, evidence, ranking and the worst-case power flux-density (pfd) check for GSO downlinks (build step C1) are complete. pfd is **indicative**: free-space propagation and the beam's peak gain towards Finland, so it is an upper bound. Non-GSO pfd is not evaluated yet, which is why 87 of the 99 "medium" notices are non-GSO. Every rule below is a hypothesis until the partner answers questions Q1 to Q3 (`pm_pack/01_Partner_Briefing_Questions.md`).
+> **Status on Sat 7 Nov 2026: frozen (build steps E1 to E4).** Two full runs give byte-identical files, every stage report passes, and the proof pack is in [`proof/`](proof/index.html). Frequency screening, geography, evidence, ranking and the worst-case power flux-density (pfd) check for GSO downlinks (build step C1) are complete. pfd is **indicative**: free-space propagation and the beam's peak gain towards Finland, so it is an upper bound. Non-GSO pfd is not evaluated yet, which is why 87 of the 99 "medium" notices are non-GSO. The partner questions were not asked: every rule marked *hypothesis* below is the team's final choice for this submission, with the reason in [`pm_pack/01_Partner_Briefing_Questions.md`](../pm_pack/01_Partner_Briefing_Questions.md#final-status-7-nov-2026-questions-not-asked).
 
 ## Files
 
@@ -42,7 +42,7 @@ Notice-level counts: **23 high, 99 medium, 1 review, 12 low, 61 not raised** (13
 | ITU Space IFIC 3074 database, `ific3074.mdb` from `https://www.itu.int/sns/ific10/ific3074.zip` | published 23 Jun 2026 | `a9755213b6cdb7a26a1ca1dcf95ba69a362d3bcc2cb088e91b6b8e01e4790e31` |
 | Finnish table of frequency allocations, Traficom API v13 `Taajuusjakotaulukko` (CC BY 4.0), 5 917 rows | snapshot 6 Nov 2026 | `41ffdd0ed84a40c19fd4bb3771699a63c879b1ad4f2201dcb1cd3c37524871fb` |
 | Finnish reference points, `data/reference/fi_reference_points.csv` (seven points, approximate town coordinates) | this repository | `e2083112e3e1111c0b766e7a30c37d94a3ac330dede87519264c5cab17671ba6` |
-| RR Article 21 Table 21-4 limits, `data/reference/pfd_limits.csv`, transcribed from ITU Radio Regulations 2024 Vol. 1 (Rev.WRC-23) with the page per row | 38 rows; second check on 7 Nov 2026 against an independent transcription of the page images: all values agree, two page numbers corrected ([review](../data/reference/review/README.md)); human sign-off pending | |
+| RR Article 21 Table 21-4 limits, `data/reference/pfd_limits.csv`, transcribed from ITU Radio Regulations 2024 Vol. 1 (Rev.WRC-23) with the page per row | 38 rows; second check on 7 Nov 2026 against an independent transcription of the page images: all values agree, two page numbers corrected; signed off by Claude (AI agent) at the project owner's request, no human specialist available ([review](../data/reference/review/README.md)) | |
 | Scoring weights, `scoring/weights.json` | version 2026-11-06 | `183bf176a7b1de045dc6a9910e28f87f0cc35b6aa287b3c739205b5d0c4513b7` |
 | Finland and neighbour borders, `scoring/reference/finland_region.geojson` | Natural Earth 1:50m, public domain | |
 
@@ -110,7 +110,7 @@ Counts: **6 high, 1 medium, 6 review, 52 low, 3 992 not raised.** Field strength
 | `calc_method`, `calc_value`, `calc_unit` | `p1546_field_strength`: field strength at the nearest Finnish border point, dB(uV/m) |
 | `limit_value`, `margin_db` | T/R 25-08 trigger plus bandwidth correction; `trigger - E` (negative = trigger exceeded) |
 
-**Inputs.** `brific3076.mdb` (ITU Terrestrial BR IFIC, published 21 Jul 2026); `data/reference/tr2508_thresholds.csv` (ECC/ERC Recommendation T/R 25-08, 6 June 2025, Annex 1; second check on 7 Nov 2026: all 5 values agree with page 6, [review](../data/reference/review/README.md); human sign-off pending); Finland and neighbour borders from Natural Earth 1:50m.
+**Inputs.** `brific3076.mdb` (ITU Terrestrial BR IFIC, published 21 Jul 2026); `data/reference/tr2508_thresholds.csv` (ECC/ERC Recommendation T/R 25-08, 6 June 2025, Annex 1; second check on 7 Nov 2026: all 5 values agree with page 6, [review](../data/reference/review/README.md); signed off by Claude at the project owner's request); Finland and neighbour borders from Natural Earth 1:50m.
 
 **Method.**
 1. Each extract is the change set of its issue (no 3076 notice is in 3075; MODIFY and SUPPRESS point into the Master Register), so the change comes from the Bureau's intent. The comparison with 3075 is a trend per administration, band and station class (`reports/3076/01_diff.html`).
