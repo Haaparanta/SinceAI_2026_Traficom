@@ -55,3 +55,7 @@ The [`docs/`](docs/README.md) folder holds a README for every document in this r
 - [PM pack](docs/pm-pack/README.md): the planning documents in [`pm_pack/`](pm_pack/) and what the brief has answered since they were drafted.
 - [Design theme](docs/design-theme/README.md): the Girlypop theme in [`design/`](design/).
 - [Links](docs/README.md#mandatory-datasets): one page per dataset, API and reference above.
+
+## Team plan
+
+The engineering plan, partner questions and agent context live in [`pm_pack/`](pm_pack/README.md). Start with `scripts/fetch_data.sh` (the graded issues, M4 and the Finnish frequency table; `scripts/download_data.sh` fetches every 2026 IFIC issue and the optional sources, see [`data/SOURCES.md`](data/SOURCES.md)), then `python3 scripts/inspect_mdb.py data/raw/ific3074/*.mdb`. `AGENTS.md`, `CLAUDE.md` and `.cursorrules` point at the master context for coding agents.

@@ -1,0 +1,7 @@
+name,lat_deg,lon_deg,role,source
+Hanko,59.82,22.97,south,"approximate town coordinates [HYPOTHESIS]"
+Helsinki,60.17,24.94,capital,"approximate town coordinates [HYPOTHESIS]"
+Vaasa,63.10,21.62,west,"approximate town coordinates [HYPOTHESIS]"
+Ilomantsi,62.67,30.93,east,"approximate town coordinates [HYPOTHESIS]"
+Oulu,65.01,25.47,north-central,"approximate town coordinates [HYPOTHESIS]"
+Utsjoki,69.91,27.03,north,"approximate town coordinates [HYPOTHESIS]"
