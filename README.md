@@ -36,3 +36,7 @@ Finnish Radio Frequency Regulation, including the table of frequencies in Finlan
 - Regulation: https://www.finlex.fi/fi/viranomaiset/maarayskokoelmat/traficom-viestinta/2026/3
 - Radio frequency table API (Swagger): https://opendata.traficom.fi/swagger/ui/index#/Taajuusjakotaulukko
 - Radio frequency table API endpoint: https://opendata.traficom.fi/api/v13/Taajuusjakotaulukko
+
+## Team plan
+
+The engineering plan, partner questions and agent context live in [`pm_pack/`](pm_pack/README.md). Start with `scripts/fetch_data.sh`, then `python3 scripts/inspect_mdb.py data/raw/ific3074/*.mdb`. `AGENTS.md`, `CLAUDE.md` and `.cursorrules` point at the master context for coding agents.
