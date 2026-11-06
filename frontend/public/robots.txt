@@ -1,0 +1,7 @@
+# Filing Radar: https://filingradar.click
+# The screen is public; the JSON API behind it is not a page and need not be crawled.
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://filingradar.click/sitemap.xml
