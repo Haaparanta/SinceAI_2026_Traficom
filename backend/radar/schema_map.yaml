@@ -223,7 +223,8 @@ terrestrial:
     key: geo_key
     columns:
       geo_key: geo_key
-      geo_type: geo_type        # POINT or CIRCLE (CIRCLE has radius, km [HYPOTHESIS])
+      geo_type: geo_type        # 3076: POINT 4048, ZONE 9 (ZONE = a whole territory, see zone_id)
+      zone_id: zone_id          # country symbol of a ZONE site, e.g. IND [CHECKED C3]
       country: ctry
       site_name: site_name
       radius_km: radius

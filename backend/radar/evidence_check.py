@@ -34,6 +34,8 @@ class Check:
 
 
 def check(result: AnalysisResult) -> list[Check]:
+    if result.kind == "terrestrial":
+        return check_terrestrial(result)
     issue = result.issue
     con = duckdb.connect(str(space_ific.db_path(issue)), read_only=True)
     bands = {b.id: b for b in traficom_table.load_json()}
@@ -73,6 +75,46 @@ def check(result: AnalysisResult) -> list[Check]:
                 key, val = e.locator[len("geography("):-1].split("=", 1)
                 g = geo.by_group.get(val) if key == "group_id" else geo.by_notice.get(val)
                 found = f"{g.relevance}: {g.note}" if g else None
+            else:
+                out.append(Check(f.id, e.id, e.kind, e.locator, "UNCHECKED", e.excerpt, None))
+                continue
+            out.append(Check(f.id, e.id, e.kind, e.locator, "PASS" if found == e.excerpt else "FAIL", e.excerpt, found))
+    con.close()
+    return out
+
+
+def check_terrestrial(result: AnalysisResult) -> list[Check]:
+    """itu_row in the terrestrial DuckDB; border and p1546 recomputed; T/R 25-08 row rebuilt from the CSV."""
+    from radar.adapters import terrestrial_ific as TI
+    from radar.pipeline import terrestrial as TR
+
+    con = duckdb.connect(str(TI.db_path(result.issue)), read_only=True)
+    ing = TI.load(result.issue, con)
+    by_id = {n.notice_id: n for n in ing.notices}
+    cache: dict[str, TR.TerrestrialCalc] = {}
+
+    def calc(nid: str) -> TR.TerrestrialCalc:
+        if nid not in cache:
+            cache[nid] = TR.evaluate(by_id[nid], ing.extra[nid])
+        return cache[nid]
+
+    out: list[Check] = []
+    for f in result.findings:
+        for e in f.evidence:
+            found = None
+            if e.kind == "itu_row":
+                table, keys = parse_locator(e.locator)
+                found = row_excerpt(con, table, keys, parse_excerpt(e.excerpt))
+            elif e.kind == "regulation" and e.locator.startswith("tr2508_thresholds.csv id="):
+                rid = e.locator.split("=", 1)[1]
+                row = next((t for t in TR.thresholds() if t.id == rid), None)
+                found = row.excerpt() if row else None
+            elif e.kind == "calculation" and e.locator.startswith("border("):
+                c = calc(e.locator[len("border(notice_id="):-1])
+                found = TR.border_excerpt(c) if c.status == "computed" else c.status
+            elif e.kind == "calculation" and e.locator.startswith("p1546("):
+                c = calc(e.locator[len("p1546(notice_id="):-1])
+                found = f"E {c.e_dbuv_m:.2f} dB(uV/m); free space {c.free_space_dbuv_m:.2f}" if c.status == "computed" else c.status
             else:
                 out.append(Check(f.id, e.id, e.kind, e.locator, "UNCHECKED", e.excerpt, None))
                 continue

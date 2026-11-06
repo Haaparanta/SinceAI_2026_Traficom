@@ -132,3 +132,41 @@ def export_space(issue: int, out_dir: Path = RESULTS_DIR) -> dict:
 def concern_order_ok(rows: list[ResultRow]) -> bool:
     order = [RK.CONCERN_ORDER[r.concern] for r in rows]
     return order == sorted(order, reverse=True)
+
+
+# ---- terrestrial (step C3) --------------------------------------------------------------------------------------
+
+def terrestrial_rows(run) -> list[ResultRow]:
+    by_id = {n.notice_id: n for n in run.ingest.notices}
+    out = []
+    for f in run.result.findings:
+        n = by_id[f.notice_id]
+        c = run.calcs[f.notice_id]
+        e = run.ingest.extra[f.notice_id]
+        out.append(ResultRow(
+            issue=f.issue, kind="terrestrial", notice_id=f.notice_id, special_section=e.notice_type,
+            administration=n.administration, network_or_station=n.site_name or (f"zone {e.zone_id}" if e.zone_id else "unknown"),
+            freq_min_mhz=None if n.freq_hz is None else round((n.freq_hz - (n.bandwidth_hz or 0) / 2) / 1e6, 6),
+            freq_max_mhz=None if n.freq_hz is None else round((n.freq_hz + (n.bandwidth_hz or 0) / 2) / 1e6, 6),
+            direction=n.change, finnish_match=None, special_interest_station_ids=None, overlap_mhz=None,
+            geo_relevance=f.geo_relevance, calc_method=f.calc.method,
+            calc_value=f.calc.result_value, calc_unit=f.calc.result_unit or None, limit_value=f.calc.limit_value,
+            margin_db=f.calc.margin_db, concern=f.concern, reason=f.reason,
+            evidence_refs="; ".join(ev.locator for ev in f.evidence), decision=None,
+        ))
+    return out
+
+
+def export_terrestrial(issue: int, out_dir: Path = RESULTS_DIR) -> dict:
+    from collections import Counter
+
+    from radar.pipeline import terrestrial as TR
+
+    run = TR.run(issue)
+    rows = terrestrial_rows(run)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    paths = {"csv": out_dir / f"terrestrial_{issue}.csv", "json": out_dir / f"terrestrial_{issue}.json"}
+    paths["csv"].write_text(to_csv(rows), encoding="utf-8")
+    paths["json"].write_text(to_json(rows), encoding="utf-8")
+    return {"paths": {k: str(v) for k, v in paths.items()}, "rows": len(rows),
+            "concern": dict(Counter(r.concern for r in rows)), "run": run}

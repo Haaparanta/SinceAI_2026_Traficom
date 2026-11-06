@@ -1,5 +1,5 @@
 # Filing Radar. Step IDs refer to pm_pack/08_Build_Plan_Step_by_Step.md.
-.PHONY: doctor check-data checksums schema convert subbands ingest relevance geography findings check-evidence results pfd diff index test api
+.PHONY: doctor check-data checksums schema convert subbands ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial index test api
 
 doctor:        ## A1: tools on PATH, native arm64
 	python3 scripts/doctor.py tools
@@ -55,6 +55,12 @@ PREV ?= 3075
 
 diff:          ## C2: terrestrial change set and trend, report reports/$(ISSUE)/01_diff.html (make diff ISSUE=3076)
 	uv run python scripts/diff_report.py $(ISSUE) $(PREV)
+
+field-strength: ## C3: P.1546 at the border, report reports/$(ISSUE)/02_field_strength.html (make field-strength ISSUE=3076)
+	uv run python scripts/field_strength_report.py $(ISSUE)
+
+results-terrestrial: ## C3: results/terrestrial_$(ISSUE).csv|json
+	PYTHONPATH=backend:. uv run python -m radar.export --issue $(ISSUE) --kind terrestrial
 
 index:         ## reports/index.html: every stage report with its status
 	uv run python scripts/reports_index.py
