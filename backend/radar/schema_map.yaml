@@ -209,9 +209,12 @@ terrestrial:
       freq_max_mhz: freq_max
       bandwidth_khz: bdwdth     # kHz [CHECKED: 0.1 with bdwdth_cde 100H]
       emission_class: emi_cls
-      station_class: stn_cls
-      notice_type: notice_typ   # T12, T13, T14 for land mobile [SOURCE DATA]
-      intent: intent            # values to be counted in step C2
+      notice_type: notice_typ   # 3076: T11 2162, T12 978, T13 871, G12 32, T14 9, 1A1 5
+      station_class: stn_cls    # 3076: FX 2166, FB 999, ML 870, FL 9, LR 7, AL 5, AM 1
+      intent: intent            # 3076: ADD 2905, RECORDED 576, SUPPRESS 413, MODIFY 163 (no WITHDRAW) [CHECKED C2]
+      bandwidth_code: bdwdth_cde
+      assignment_id: assgn_id
+      admin_ref_id: adm_ref_id
       stage: stage
       received: d_rcv
       geo_key: geo_key
@@ -261,6 +264,16 @@ terrestrial:
       polarisation: polar
       height_agl_m: hgt_agl
       max_effective_height_m: eff_hgtmax
+      tx_rx: tx_rx              # TX or RX
+  target:                       # MODIFY and SUPPRESS point at the Master Register record they change [CHECKED C2]
+    table: fxm_target
+    columns:
+      notice_id: terrakey
+      target: target
+      action: action            # MODIFY, SUPPRESS, CONFORM
+  # Each terrestrial extract is a change set, not a snapshot: no 3076 terrakey or assgn_id appears in 3075, and the
+  # fxm_target records point into the Master Register, not into the previous issue [CHECKED C2].
+  land_mobile_station_classes: [FB, FL, ML, MO]   # pm_pack/06: base, land, land mobile, mobile
   antenna_height:               # 1 152 rows: effective height per azimuth, P.1546 input
     table: fxm_ant_hgt
     columns:
