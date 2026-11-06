@@ -1,5 +1,5 @@
 # Filing Radar. Step IDs refer to pm_pack/08_Build_Plan_Step_by_Step.md.
-.PHONY: doctor check-data checksums schema convert subbands ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial index test api
+.PHONY: doctor check-data checksums schema convert subbands ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial index cache frontend frontend-build test api
 
 doctor:        ## A1: tools on PATH, native arm64
 	python3 scripts/doctor.py tools
@@ -64,6 +64,15 @@ results-terrestrial: ## C3: results/terrestrial_$(ISSUE).csv|json
 
 index:         ## reports/index.html: every stage report with its status
 	uv run python scripts/reports_index.py
+
+cache:         ## D1: data/cache/space_3074.json and terrestrial_3076.json for the screen (about 20 s)
+	uv run python scripts/build_cache.py
+
+frontend:      ## D1: the one screen on http://127.0.0.1:5173 (run make api in another terminal)
+	npm --prefix frontend run dev
+
+frontend-build: ## D1: type-check, lint and build the screen
+	npm --prefix frontend run build && npx --prefix frontend eslint frontend/src
 
 test:          ## all unit tests
 	uv run pytest -q
