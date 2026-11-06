@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Determinism: two full runs</title><style>
+:root { --bg:#fbf8fa; --fg:#221a20; --muted:#6f6470; --line:#e6dde3; --ok:#1f7a4d; --okbg:#e3f4ea;
+        --bad:#a32035; --badbg:#fbe4e8; --warn:#8a5a00; --warnbg:#fdf1d8; --card:#ffffff; --accent:#b0407a; }
+@media (prefers-color-scheme: dark) { :root { --bg:#17131a; --fg:#efe7ee; --muted:#a99fab; --line:#3a3140;
+        --ok:#7fd8a6; --okbg:#173326; --bad:#ff9aa9; --badbg:#3a1820; --warn:#f2c46b; --warnbg:#382a10;
+        --card:#201a24; --accent:#f08cc0; } }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.45 -apple-system, system-ui, sans-serif; }
+main { max-width:1200px; margin:0 auto; padding:24px 16px 64px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:32px 0 8px; }
+.sub { color:var(--muted); margin:0 0 16px; }
+.tiles { display:flex; gap:12px; flex-wrap:wrap; margin:16px 0; }
+.tile { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:10px 14px; min-width:140px; }
+.tile b { display:block; font-size:22px; } .tile span { color:var(--muted); font-size:12px; }
+table { border-collapse:collapse; width:100%; background:var(--card); border:1px solid var(--line); }
+th, td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+th { font-size:12px; color:var(--muted); font-weight:600; }
+td.num { text-align:right; font-variant-numeric:tabular-nums; }
+td:first-child { white-space:nowrap; }
+.badge { display:inline-block; padding:1px 7px; border-radius:999px; font-size:11px; font-weight:700; letter-spacing:.02em; }
+.ok { background:var(--okbg); color:var(--ok); } .bad { background:var(--badbg); color:var(--bad); }
+.warn { background:var(--warnbg); color:var(--warn); }
+code { font:12px ui-monospace, Menlo, monospace; }
+.scroll { overflow-x:auto; }
+details { margin:4px 0; } summary { cursor:pointer; }
+</style></head><body><main><h1>Determinism: two full runs</h1><p class="sub">Step E1 of pm_pack/08. Space 3074 and terrestrial 3076 from DuckDB. <span class="badge ok">PASS</span></p><div class="tiles"><div class="tile"><b>7</b><span>output files</span></div><div class="tile"><b>7 of 7</b><span>identical</span></div><div class="tile"><b>38 s</b><span>run 1</span></div><div class="tile"><b>43 s</b><span>run 2</span></div></div><h2>Steps of each run</h2><div class="scroll"><table><tr><th>#</th><th>Command</th></tr><tr><td>1</td><td>uv run python scripts/findings_report.py 3074</td></tr><tr><td>2</td><td>uv run python -m radar.export --issue 3074 --kind space</td></tr><tr><td>3</td><td>uv run python -m radar.export --issue 3076 --kind terrestrial</td></tr><tr><td>4</td><td>uv run python scripts/build_cache.py</td></tr></table></div><h2>Outputs</h2><p class='sub'>SHA-256, first 16 hex digits. Committed: the file in git HEAD has the same hash.</p><div class="scroll"><table><tr><th>File</th><th>Bytes</th><th>Run 1</th><th>Run 2</th><th>Run 1 = run 2</th><th>= committed</th></tr><tr><td>results/space_3074.csv</td><td>122,840</td><td>20fcf01c4c44518d</td><td>20fcf01c4c44518d</td><td><span class="badge ok">PASS</span></td><td><span class="badge ok">PASS</span></td></tr><tr><td>results/space_3074.json</td><td>211,232</td><td>ba62b1634f7ce98d</td><td>ba62b1634f7ce98d</td><td><span class="badge ok">PASS</span></td><td><span class="badge ok">PASS</span></td></tr><tr><td>results/space_3074_groups.csv</td><td>4,493,980</td><td>b34eae6f52994071</td><td>b34eae6f52994071</td><td><span class="badge ok">PASS</span></td><td><span class="badge ok">PASS</span></td></tr><tr><td>results/terrestrial_3076.csv</td><td>773,112</td><td>5c2ebba4d03de3e9</td><td>5c2ebba4d03de3e9</td><td><span class="badge ok">PASS</span></td><td><span class="badge ok">PASS</span></td></tr><tr><td>results/terrestrial_3076.json</td><td>2,638,713</td><td>6a98d00d5b749af6</td><td>6a98d00d5b749af6</td><td><span class="badge ok">PASS</span></td><td><span class="badge ok">PASS</span></td></tr><tr><td>data/cache/space_3074.json</td><td>930,048</td><td>27736f39babce8f4</td><td>27736f39babce8f4</td><td><span class="badge ok">PASS</span></td><td><span class="badge ok">PASS</span></td></tr><tr><td>data/cache/terrestrial_3076.json</td><td>259,115</td><td>243fe7818b401450</td><td>243fe7818b401450</td><td><span class="badge ok">PASS</span></td><td><span class="badge ok">PASS</span></td></tr></table></div></main></body></html>

@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "checks": [
+    [
+      "CSV parses as ResultRow",
+      true,
+      "196 rows"
+    ],
+    [
+      "CSV and JSON hold the same rows",
+      true,
+      "196 JSON rows"
+    ],
+    [
+      "Rows = notices screened in 04_findings",
+      true,
+      "196 vs 196"
+    ],
+    [
+      "Concern counts = 04_findings bars",
+      true,
+      "{'high': 23, 'medium': 99, 'review': 1, 'low': 12, 'none': 61}"
+    ],
+    [
+      "Group rows = candidates after geography (03_geography)",
+      true,
+      "8976 vs 8976"
+    ],
+    [
+      "Every row has evidence references",
+      true,
+      ""
+    ],
+    [
+      "Rows in concern order",
+      true,
+      ""
+    ],
+    [
+      "No calculated value without its unit",
+      true,
+      "pfd arrives in C1"
+    ]
+  ],
+  "sha256_16": {
+    "csv": "20fcf01c4c44518d",
+    "json": "ba62b1634f7ce98d",
+    "groups": "b34eae6f52994071"
+  }
+}

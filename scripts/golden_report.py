@@ -102,18 +102,20 @@ def main() -> int:
         w.writerow(["label_source", "cases", "labelled_by", "tp", "fp", "fn", "tn", "precision", "recall"])
         w.writerows(summary)
 
+    pf = lambda ok: "PASS" if ok else "FAIL"  # noqa: E731
     checks = [
-        ("Every golden case matches (candidate, paths, geography)", exact == len(golden["cases"]), f"{exact} of {len(golden['cases'])}"),
-        ("Every Bureau-named group is a candidate with concern high", named_hit == len(named), f"{named_hit} of {len(named)}"),
-        ("No reviewer label contradicts a flag", d["fp"] == 0, f"{len(latest)} decisions recorded"),
+        ("Every golden case matches (candidate, paths, geography)", pf(exact == len(golden["cases"])), f"{exact} of {len(golden['cases'])}"),
+        ("Every Bureau-named group is a candidate with concern high", pf(named_hit == len(named)), f"{named_hit} of {len(named)}"),
+        ("No reviewer dismissal of a flagged finding", pf(d["fp"] == 0) if latest else "WAITING",
+         f"{len(latest)} decisions recorded" if latest else "no reviewer decisions yet: record them in the screen"),
     ]
-    status = "PASS" if all(ok for _, ok, _ in checks) else "FAIL"
+    status = "FAIL" if any(st == "FAIL" for _, st, _ in checks) else "PASS"
     note = ("" if checkers != ["claude-first-pass"] else
             "<p class='sub'>All golden cases are first-pass labels by the coding agent: they guard against regressions "
             "but are not a specialist judgement. Replace <code>checked_by</code> with a reviewer's name once confirmed.</p>")
     body = (R.tiles([("golden cases", str(len(golden["cases"]))), ("Bureau-named groups", str(len(named))),
                      ("reviewer decisions", str(len(latest))), ("flagged findings", str(len(flagged)))])
-            + "<h2>Checks</h2>" + R.table(["Check", "Status", "Detail"], [[c, R.badge("PASS" if ok else "FAIL"), R.esc(x)] for c, ok, x in checks], raw=True)
+            + "<h2>Checks</h2>" + R.table(["Check", "Status", "Detail"], [[c, R.badge(st), R.esc(x)] for c, st, x in checks], raw=True)
             + "<h2>Precision and recall by label source</h2>" + note
             + R.table(["Label source", "Cases", "Labelled by", "TP", "FP", "FN", "TN", "Precision", "Recall"], summary)
             + "<p class='sub'>Also in <code>results/proof/accuracy.csv</code>. Reviewer decisions: approve or investigate count as "
@@ -122,10 +124,10 @@ def main() -> int:
             + "<h2>Groups where the Bureau names Finland</h2>" + R.table(["Group", "Notice", "Provisions", "Candidate", "Concern", "Status"], named_rows, raw=True))
     out = settings.reports_dir / "freeze" / "e2_golden.html"
     R.write(out, R.page(f"Case recognition accuracy: Space IFIC {ISSUE}", f"Step E2 of pm_pack/08 (criterion D). {R.badge(status)}", body),
-            {"status": status, "checks": [[c, ok, x] for c, ok, x in checks], "summary": summary})
+            {"status": status, "checks": [[c, st, x] for c, st, x in checks], "summary": summary})
     print(f"written {out}: {status}")
-    for c, ok, x in checks:
-        print(f"  {'PASS' if ok else 'FAIL'}  {c}  {x}")
+    for c, st, x in checks:
+        print(f"  {st}  {c}  {x}")
     for s in summary:
         print("  ", s)
     return 0 if status == "PASS" else 1

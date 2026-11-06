@@ -31,7 +31,7 @@ def test_analysis_bundle_has_context_for_every_flagged_finding(kind, issue):
 def test_metrics_match_the_results_file_counts():
     m = client.get("/metrics", params={"issue": 3074, "kind": "space"}).json()
     assert m["screened"] == 196 and m["flagged"] == 135 and m["provenance_coverage_pct"] == 100.0
-    assert m["concern"]["high"] == 21
+    assert m["concern"]["high"] == 23
 
 
 @needs_cache

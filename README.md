@@ -3,7 +3,7 @@
 Turns an ITU BR IFIC issue into a ranked, cited, expert-reviewable list of notices that may affect radio frequency use in Finland. Built for the Traficom challenge at Since AI 2026. The tool suggests; a specialist decides.
 
 > [!NOTE]
-> **Status on Fri 6 Nov 2026.** The space pipeline (Space IFIC 3074) and the terrestrial side quest (Terrestrial IFIC 3076) run end to end, the graded results files are in [`results/`](results/README.md), and the one-screen UI runs on the cached analyses. Every finding carries evidence that a script re-opens and checks. Reviewers approve, investigate or dismiss findings into a hash-chained audit log (D3). Each finding can be explained in plain language and turned into a letter draft to the notifying administration (D2): Claude writes them when credentials are present, a deterministic template otherwise, and a validator rejects any text that cites an evidence ID outside the finding or writes a number that is not in it. Still to come: demo packaging (E). All thresholds marked *hypothesis* wait for the partner's answers ([questions](pm_pack/01_Partner_Briefing_Questions.md)).
+> **Status on Sat 7 Nov 2026.** The space pipeline (Space IFIC 3074) and the terrestrial side quest (Terrestrial IFIC 3076) run end to end, the graded results files are in [`results/`](results/README.md), and the one-screen UI runs on the cached analyses. Every finding carries evidence that a script re-opens and checks. Reviewers approve, investigate or dismiss findings into a hash-chained audit log (D3). Each finding can be explained in plain language and turned into a letter draft to the notifying administration (D2): Claude writes them when credentials are present, a deterministic template otherwise, and a validator rejects any text that cites an evidence ID outside the finding or writes a number that is not in it. The results are frozen (E1 to E4): two full runs reproduce the committed files byte for byte, the demo runs offline, and every stage report is in the proof pack [`results/proof/`](results/proof/index.html). Still to come: the video and the submission (E5). All thresholds marked *hypothesis* wait for the partner's answers ([questions](pm_pack/01_Partner_Briefing_Questions.md)).
 
 ## What it finds
 
@@ -25,6 +25,7 @@ uv sync                              # Python dependencies, including the pinned
 npm --prefix frontend install        # the screen
 make api                             # API on http://127.0.0.1:8000, serving data/cache/*.json
 make frontend                        # the screen on http://127.0.0.1:5173
+make api-demo                        # instead of make api: offline demo, no network or language-model calls
 ```
 
 The screen runs from the committed `data/cache/` files; no database is needed to look at the results. To recompute everything from the ITU files:
@@ -72,13 +73,15 @@ Methods and every parameter are listed in [`results/README.md`](results/README.m
 
 | Check | Command | What it shows |
 |---|---|---|
-| Unit and data tests | `make test` | 257 Python tests: formulas against hand-worked values, golden cases, contracts, invariants on 3074 and 3076 |
+| Unit and data tests | `make test` | 261 Python tests: formulas against hand-worked values, golden cases, contracts, invariants on 3074 and 3076 |
 | P.1546 engine | part of `make test` | the ITU validation suite (52 reference cases) reproduces to 0.0 dB |
 | Evidence | `make check-evidence ISSUE=3074` | every citation re-opened; tamper tests prove a changed excerpt fails |
 | Stage reports | `make index`, then open `reports/index.html` (or the `reports` entry in `.claude/launch.json`) | one HTML page per build step: counts in and out, charts, maps, ten random rows, PASS or FAIL |
 | End-to-end UI | `make e2e` | Playwright drives the real screen and API in Chromium: both issues, all tabs, evidence links, filters, decisions and the audit chain, explanation and letter draft (no send button), export, dark and light, phone width |
 | Explanations and letters | `make explanations ISSUE=3074` | 20 explanations beside their evidence, every cited ID and number green or red, a planted invented number rejected, no letter that says it was sent |
-| Screenshots | `make screenshots STEP=d2` | the views a pull request changes, in `docs/screenshots/<step>/` |
+| Freeze | `make freeze` | E1 two full runs identical to git, E2 accuracy by label source (`results/proof/accuracy.csv`), E3 offline demo walk, E4 proof pack in `results/proof/` |
+| Status | `make status` | one line per build step: PASS, FAIL or WAITING |
+| Screenshots | `make screenshots STEP=e` | the views a pull request changes, in `docs/screenshots/<step>/` |
 
 ## Repository
 

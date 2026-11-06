@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-// Step D2: explanation and letter draft. The API under test runs with LLM_DISABLED=1 (playwright.config.ts), so the
+// Step D2: explanation and letter draft. The API under test runs with DEMO_MODE=1 (playwright.config.ts), so the
 // drafts come from the deterministic template and the same grounding check applies; no network call is made.
 
 test.beforeEach(async ({ page }) => {

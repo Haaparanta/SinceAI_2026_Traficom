@@ -30,6 +30,9 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const [reviewer, setReviewer] = useState<string>(storedReviewer);
   const [auditVersion, setAuditVersion] = useState(0);
+  const [demo, setDemo] = useState(false);
+
+  useEffect(() => { api.llmStatus().then((s) => setDemo(s.demo_mode)).catch(() => setDemo(false)); }, []);
 
   useEffect(() => {
     try { localStorage.setItem(REVIEWER_KEY, reviewer); } catch { /* storage unavailable: name lasts for this visit */ }
@@ -76,6 +79,11 @@ export default function App() {
           <div className="mr-auto">
             <h1 className="font-display text-2xl font-bold tracking-tight text-foreground">Filing Radar</h1>
             <p className="text-sm text-secondary-foreground">ITU BR IFIC notices that may affect radio frequency use in Finland. The tool suggests; a specialist decides.</p>
+            {(demo || r?.from_cache) && (
+              <p role="status" aria-label="Data source" className="mt-1 text-xs text-muted-foreground">
+                {demo ? "Offline demo: cached analysis, no network or language-model calls." : "Cached analysis from the last pipeline run."}
+              </p>
+            )}
           </div>
           <label className="flex flex-col text-xs text-secondary-foreground">
             Reviewer

@@ -21,9 +21,10 @@ How we build Filing Radar from an empty `backend/` to the two graded results fil
 | C2 terrestrial diff | done; each extract is a change set | `reports/3076/01_diff.html` | #25 |
 | C3 P.1546 at the border | done; ITU reference code, 52 validation cases at 0.0 dB | `reports/3076/02_field_strength.html`, `results/terrestrial_3076.*` | #26 |
 | D1 one screen | done (built by Claude Code at the user's request; file 06 gives `frontend/` to Cursor) | `make frontend`, Playwright `make e2e` | #27, #28 |
-| D2 explanation and letter | done; Claude (claude-opus-5-5, refusal fallback on) when credentials exist, else a grounded template; validator rejects unknown IDs and new numbers; letters are drafts, never sent | `make explanations`, `reports/3074/07_explanations.html`, `docs/screenshots/d2/` | this PR |
+| D2 explanation and letter | done; Claude (claude-opus-5-5, refusal fallback on) when credentials exist, else a grounded template; validator rejects unknown IDs and new numbers; letters are drafts, never sent | `make explanations`, `reports/3074/07_explanations.html`, `docs/screenshots/d2/` | #31 |
 | D3 decisions and audit log | done; append-only log with a SHA-256 chain, export carries the decision, concern never changes | `make e2e`, `docs/screenshots/d3/` | #29 |
-| E1 to E5 freeze and ship | E1 (byte-identical reruns) already holds; the rest pending | | |
+| E1 to E4 freeze | done; two full runs identical to git (E1); 10 of 10 golden cases and 220 of 220 Bureau-named groups, which found and fixed SECOMSAT-5-78E (E2); demo mode offline with no external request (E3); proof pack in `results/proof/` (E4) | `make freeze`, `make status`, `results/proof/index.html` | this PR |
+| E5 video and submission | run-sheet checked against the screen (file 05, section 5); recording and submission are for the team | | |
 
 Facts the real files changed (also recorded in file 06 and `backend/radar/schema_map.yaml`):
 

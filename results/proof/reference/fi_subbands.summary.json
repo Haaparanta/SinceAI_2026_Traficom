@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "rows": 5917,
+  "rows_expected": 5917,
+  "duplicate_ids": 0,
+  "zero_or_negative_width": 0,
+  "lowest_hz": 8300,
+  "highest_hz": 400000000000,
+  "gaps": 298,
+  "gap_total_hz": 964015498,
+  "spot_checks": [
+    {
+      "hz": 100000000,
+      "expected": "Broadcasting",
+      "found": [
+        "Broadcasting"
+      ],
+      "ok": true
+    },
+    {
+      "hz": 1575420000,
+      "expected": "Satellite services",
+      "found": [
+        "Satellite services"
+      ],
+      "ok": true
+    },
+    {
+      "hz": 3500000000,
+      "expected": "Mobile",
+      "found": [
+        "Mobile"
+      ],
+      "ok": true
+    },
+    {
+      "hz": 11000000000,
+      "expected": "Satellite services",
+      "found": [
+        "Satellite services"
+      ],
+      "ok": true
+    },
+    {
+      "hz": 1420405752,
+      "expected": "Science and passive",
+      "found": [
+        "Science and passive"
+      ],
+      "ok": true
+    }
+  ],
+  "family_counts": {
+    "Satellite services": 985,
+    "Science and passive": 135,
+    "Broadcasting": 54,
+    "Mobile": 3372,
+    "Fixed": 711,
+    "Radionavigation and radiolocation": 287,
+    "Amateur and other": 373
+  }
+}

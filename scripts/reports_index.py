@@ -33,7 +33,9 @@ STEPS = [
     ("3076/02_field_strength.html", "C3", "Terrestrial 3076: border distance and field strength"),
     ("3074/07_explanations.html", "D2", "Space 3074: grounded explanations and letter drafts"),
     ("3076/07_explanations.html", "D2", "Terrestrial 3076: grounded explanations and letter drafts"),
-    ("playwright/index.html", "D1", "Playwright end-to-end tests of the screen (make e2e)"),
+    ("playwright/index.html", "D1", "Playwright end-to-end tests of the screen (make e2e), incl. the offline demo walk (E3)"),
+    ("freeze/e1_determinism.html", "E1", "Determinism: two full runs, byte comparison with the committed files"),
+    ("freeze/e2_golden.html", "E2", "Case recognition accuracy: golden cases, Bureau-named groups, reviewer decisions"),
 ]
 
 
@@ -41,6 +43,13 @@ def status_of(path: Path) -> str:
     summary = path.with_suffix(".summary.json")
     if not path.exists():
         return "WAITING"
+    if path.parent.name == "playwright":          # Playwright writes its counts next to the HTML report
+        res = path.parent.parent / "playwright-results.json"
+        try:
+            st = json.loads(res.read_text())["stats"]
+        except (OSError, ValueError, KeyError):
+            return "UNKNOWN"
+        return "FAIL" if st.get("unexpected", 0) or not st.get("expected", 0) else "PASS"
     try:
         s = json.loads(summary.read_text())
     except (OSError, ValueError):
@@ -54,8 +63,7 @@ def status_of(path: Path) -> str:
     return "PASS"
 
 
-def main() -> int:
-    base = settings.reports_dir
+def build(base: Path, intro: str) -> Path:
     rows = []
     for rel, step, title in STEPS:
         p = base / rel
@@ -64,10 +72,14 @@ def main() -> int:
         rows.append([step, link, R.badge(st)])
     body = R.table(["Step", "Report", "Status"], rows, raw=True)
     out = base / "index.html"
-    out.write_text(R.page("Filing Radar: stage reports", "Every step of pm_pack/08 with its visual proof. Regenerate a "
-                          "report with its make target; this page with <code>uv run python scripts/reports_index.py</code>.",
-                          body, "a { color:var(--fg); }"), encoding="utf-8")
+    out.write_text(R.page("Filing Radar: stage reports", intro, body, "a { color:var(--fg); }"), encoding="utf-8")
     print(f"written {out}")
+    return out
+
+
+def main() -> int:
+    build(settings.reports_dir, "Every step of pm_pack/08 with its visual proof. Regenerate a report with its make "
+                                "target; this page with <code>uv run python scripts/reports_index.py</code>.")
     return 0
 
 

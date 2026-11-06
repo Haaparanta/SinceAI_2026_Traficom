@@ -1,0 +1,204 @@
+{
+  "status": "PASS",
+  "issue": 3074,
+  "funnel_groups": [
+    [
+      "Screened",
+      25127
+    ],
+    [
+      "Overlap a Finnish sub-band or a table gap",
+      25127
+    ],
+    [
+      "Space-to-Earth (reaches Finnish receivers)",
+      15430
+    ],
+    [
+      "Candidate (space-to-Earth concern path, or Bureau names Finland)",
+      15389
+    ],
+    [
+      "  over a Finnish terrestrial row (pfd path)",
+      9560
+    ],
+    [
+      "  over a primary terrestrial row",
+      9558
+    ],
+    [
+      "  Bureau names Finland as affected (provn)",
+      220
+    ],
+    [
+      "  hit a special-interest station (XLS waiting)",
+      0
+    ]
+  ],
+  "funnel_notices": [
+    [
+      "Screened",
+      194
+    ],
+    [
+      "Overlap a Finnish sub-band or a table gap",
+      194
+    ],
+    [
+      "Space-to-Earth (reaches Finnish receivers)",
+      175
+    ],
+    [
+      "Candidate (space-to-Earth concern path, or Bureau names Finland)",
+      181
+    ],
+    [
+      "  over a Finnish terrestrial row (pfd path)",
+      158
+    ],
+    [
+      "  over a primary terrestrial row",
+      158
+    ],
+    [
+      "  Bureau names Finland as affected (provn)",
+      18
+    ],
+    [
+      "  hit a special-interest station (XLS waiting)",
+      0
+    ]
+  ],
+  "paths_groups": {
+    "space_cofrequency": 13926,
+    "pfd_terrestrial": 9560,
+    "uplink_space": 8683,
+    "uplink_terrestrial": 6612,
+    "uplink_uncovered": 376,
+    "uplink_passive": 651,
+    "uncovered": 174,
+    "passive_service": 20
+  },
+  "paths_notices": {
+    "uncovered": 23,
+    "pfd_terrestrial": 158,
+    "space_cofrequency": 157,
+    "uplink_space": 132,
+    "uplink_terrestrial": 131,
+    "uplink_uncovered": 44,
+    "uplink_passive": 23,
+    "passive_service": 3
+  },
+  "space_to_earth_kept_share": 0.9933,
+  "overlap_wider_than_group": [],
+  "uplink_candidates_without_bureau_naming": [],
+  "finland_named_notices": [
+    "124520173",
+    "124520179",
+    "124520184",
+    "124520194",
+    "124520200",
+    "124520212",
+    "124520214",
+    "125500060",
+    "125500061",
+    "125500066",
+    "125520111",
+    "324520173",
+    "324520179",
+    "324520184",
+    "324520194",
+    "324520200",
+    "324520212",
+    "324520214"
+  ],
+  "hand_check_cases": [
+    {
+      "group_id": "124746937",
+      "notice_id": "123520029",
+      "candidate": true,
+      "paths": [
+        "pfd_terrestrial",
+        "space_cofrequency"
+      ],
+      "drop_reason": null
+    },
+    {
+      "group_id": "124742103",
+      "notice_id": "124520131",
+      "candidate": true,
+      "paths": [
+        "space_cofrequency"
+      ],
+      "drop_reason": null
+    },
+    {
+      "group_id": "124709564",
+      "notice_id": "124520177",
+      "candidate": true,
+      "paths": [
+        "pfd_terrestrial",
+        "space_cofrequency"
+      ],
+      "drop_reason": null
+    },
+    {
+      "group_id": "324742779",
+      "notice_id": "324520131",
+      "candidate": true,
+      "paths": [
+        "space_cofrequency"
+      ],
+      "drop_reason": null
+    },
+    {
+      "group_id": "324708939",
+      "notice_id": "324520177",
+      "candidate": true,
+      "paths": [
+        "space_cofrequency"
+      ],
+      "drop_reason": null
+    },
+    {
+      "group_id": "124712266",
+      "notice_id": "124520179",
+      "candidate": false,
+      "paths": [],
+      "drop_reason": "space-to-Earth over Finnish uplink-only or unallocated rows"
+    },
+    {
+      "group_id": "124706730",
+      "notice_id": "124520176",
+      "candidate": false,
+      "paths": [],
+      "drop_reason": "space-to-Earth over Finnish uplink-only or unallocated rows"
+    },
+    {
+      "group_id": "324712251",
+      "notice_id": "324520179",
+      "candidate": false,
+      "paths": [],
+      "drop_reason": "space-to-Earth over Finnish uplink-only or unallocated rows"
+    },
+    {
+      "group_id": "324709326",
+      "notice_id": "324520177",
+      "candidate": false,
+      "paths": [
+        "uplink_space",
+        "uplink_terrestrial"
+      ],
+      "drop_reason": "Earth-to-space: informational until geography (B3)"
+    },
+    {
+      "group_id": "124710641",
+      "notice_id": "124520178",
+      "candidate": false,
+      "paths": [
+        "uplink_space"
+      ],
+      "drop_reason": "Earth-to-space: informational until geography (B3)"
+    }
+  ]
+}

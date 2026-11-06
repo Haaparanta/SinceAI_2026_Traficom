@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "checks": [
+    [
+      "Every golden case matches (candidate, paths, geography)",
+      "PASS",
+      "10 of 10"
+    ],
+    [
+      "Every Bureau-named group is a candidate with concern high",
+      "PASS",
+      "220 of 220"
+    ],
+    [
+      "No reviewer dismissal of a flagged finding",
+      "WAITING",
+      "no reviewer decisions yet: record them in the screen"
+    ]
+  ],
+  "summary": [
+    [
+      "Golden cases (tests/golden)",
+      "10",
+      "claude-first-pass",
+      "3",
+      "0",
+      "0",
+      "7",
+      "1.00",
+      "1.00"
+    ],
+    [
+      "Bureau names Finland (provn)",
+      "220",
+      "ITU BR (also a rule input)",
+      "220",
+      "0",
+      "0",
+      "-",
+      "-",
+      "1.00"
+    ],
+    [
+      "Reviewer decisions (audit log)",
+      "0",
+      "Traficom reviewers",
+      "0",
+      "0",
+      "0",
+      "-",
+      "n/a",
+      "n/a"
+    ]
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "status": "PASS",
+  "issue": 3074,
+  "screened": 196,
+  "flagged": 135,
+  "provenance_coverage_pct": 100.0,
+  "concern": {
+    "high": 23,
+    "medium": 99,
+    "review": 1,
+    "low": 12,
+    "none": 61
+  },
+  "citations": 1659,
+  "citation_mismatches": 0,
+  "resolver": {
+    "itu_row:PASS": 866,
+    "finnish_table_row:PASS": 573,
+    "calculation:PASS": 207,
+    "regulation:PASS": 13
+  },
+  "top": [
+    {
+      "id": "F-3074-0001",
+      "notice": "124520183",
+      "concern": "high",
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 6.3 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 124794008: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 15.5 deg at Helsinki); 36 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0002",
+      "notice": "124520184",
+      "concern": "high",
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 4.7 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 124793617: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 21.5 deg at Hanko); 60 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0003",
+      "notice": "124520214",
+      "concern": "high",
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 3.4 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 124727502: 18.7 GHz to 19.7 GHz space-to-Earth; geography visible (highest elevation 12.1 deg at Ilomantsi); 98 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0004",
+      "notice": "324520183",
+      "concern": "high",
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 6.3 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 324794008: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 15.5 deg at Helsinki); 36 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0005",
+      "notice": "324520184",
+      "concern": "high",
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 4.7 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 324793617: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 21.5 deg at Hanko); 60 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0006",
+      "notice": "324520214",
+      "concern": "high",
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 3.4 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 324727502: 18.7 GHz to 19.7 GHz space-to-Earth; geography visible (highest elevation 12.1 deg at Ilomantsi); 98 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0007",
+      "notice": "124520173",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 124793424: 235 MHz to 312 MHz Earth-to-space; geography unknown (typical earth station, no location filed); 39 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0008",
+      "notice": "124520194",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 124725054: 240 MHz to 270 MHz space-to-Earth; geography low_elevation (highest elevation 9.6 deg at Ilomantsi); 66 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0009",
+      "notice": "324520173",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 324793424: 235 MHz to 312 MHz Earth-to-space; geography unknown (typical earth station, no location filed); 39 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0010",
+      "notice": "324520194",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 324725054: 240 MHz to 270 MHz space-to-Earth; geography low_elevation (highest elevation 9.6 deg at Ilomantsi); 66 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0011",
+      "notice": "125520111",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.14). Lead group 125849380: 400.15 MHz to 401 MHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 8 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0012",
+      "notice": "124520179",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.11). Lead group 124711730: 17.67 GHz to 17.72 GHz space-to-Earth; geography not_visible (highest elevation -0.1 deg at Mariehamn); 35 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0013",
+      "notice": "124520200",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 124813282: 148 MHz to 149.9 MHz Earth-to-space; geography far (nearest earth station LATMOS (F) 1903 km from Finland)."
+    },
+    {
+      "id": "F-3074-0014",
+      "notice": "124520212",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 124770975: 148.024 MHz to 148.114 MHz Earth-to-space; geography far (nearest earth station DELFT (HOL) 1479 km from Finland)."
+    },
+    {
+      "id": "F-3074-0015",
+      "notice": "324520179",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.11). Lead group 324711730: 17.67 GHz to 17.72 GHz space-to-Earth; geography not_visible (highest elevation -0.1 deg at Mariehamn); 35 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0016",
+      "notice": "324520200",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 324813282: 148 MHz to 149.9 MHz Earth-to-space; geography far (nearest earth station LATMOS (F) 1903 km from Finland)."
+    },
+    {
+      "id": "F-3074-0017",
+      "notice": "324520212",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 324770975: 148.024 MHz to 148.114 MHz Earth-to-space; geography far (nearest earth station DELFT (HOL) 1479 km from Finland)."
+    },
+    {
+      "id": "F-3074-0018",
+      "notice": "125500068",
+      "concern": "high",
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 3.1 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 125622933: 17.7 GHz to 17.95 GHz space-to-Earth; geography visible (highest elevation 13.0 deg at Ilomantsi); 393 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0019",
+      "notice": "126545119",
+      "concern": "high",
+      "reason": "Uplink from an earth station inside Finland. Lead group 126664721: 401 MHz to 401.05 MHz Earth-to-space; geography near_border (earth station TAMPERE (FIN) is inside Finland); 3 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0020",
+      "notice": "126500107",
+      "concern": "high",
+      "reason": "Uplink from an earth station inside Finland. Lead group 126662083: 2.068 GHz to 2.074 GHz Earth-to-space; geography near_border (earth station PLAN-S_MUONIO(FIN) (FIN) is inside Finland); 12 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0021",
+      "notice": "125500060",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (V/11.31.1/C). Lead group 125622475: 7.1 GHz to 7.155 GHz Earth-to-space; geography unknown (typical earth station, no location filed); 1 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0022",
+      "notice": "125500061",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (V/11.31.1/C). Lead group 125622563: 7.1 GHz to 7.155 GHz Earth-to-space; geography unknown (typical earth station, no location filed); 1 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0023",
+      "notice": "125500066",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (V/11.31.1/C). Lead group 125638815: 7.1 GHz to 7.155 GHz Earth-to-space; geography unknown (typical earth station, no location filed); 28 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0024",
+      "notice": "124520204",
+      "concern": "medium",
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd 0.8 dB below the RR Article 21 limit (indicative). Lead group 124725956: 18.8 GHz to 19.8 GHz space-to-Earth; geography visible (highest elevation 13.3 deg at Ilomantsi); 8 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0025",
+      "notice": "324520204",
+      "concern": "medium",
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd 0.8 dB below the RR Article 21 limit (indicative). Lead group 324725956: 18.8 GHz to 19.8 GHz space-to-Earth; geography visible (highest elevation 13.3 deg at Ilomantsi); 8 more candidate group(s) in this notice."
+    }
+  ]
+}

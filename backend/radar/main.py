@@ -63,7 +63,9 @@ def issues() -> list[dict]:
 @app.get("/analysis/{kind}/{issue}")
 def analysis(kind: str, issue: int) -> dict:
     """The whole analysis for the screen: AnalysisResult, the per-finding context and the latest decisions."""
-    return {**bundle(kind, issue), "decisions": decisions.latest(kind, issue)}
+    b = bundle(kind, issue)
+    # The API always serves the committed cache files (scripts/build_cache.py), never a live run.
+    return {**b, "result": {**b["result"], "from_cache": True}, "decisions": decisions.latest(kind, issue)}
 
 
 @app.get("/findings")

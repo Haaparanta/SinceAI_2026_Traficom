@@ -1,5 +1,5 @@
 # Filing Radar. Step IDs refer to pm_pack/08_Build_Plan_Step_by_Step.md.
-.PHONY: doctor check-data checksums schema convert subbands ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial explanations index cache frontend frontend-build e2e screenshots test api
+.PHONY: doctor check-data checksums schema convert subbands ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial explanations determinism golden proof freeze status api-demo index cache frontend frontend-build e2e screenshots test api
 
 doctor:        ## A1: tools on PATH, native arm64
 	python3 scripts/doctor.py tools
@@ -65,6 +65,21 @@ results-terrestrial: ## C3: results/terrestrial_$(ISSUE).csv|json
 explanations:  ## D2: grounded explanations and letters for 20 findings, report reports/$(ISSUE)/07_explanations.html
 	uv run python scripts/explanations_report.py $(ISSUE)
 
+determinism:   ## E1: run the whole 3074 and 3076 pipeline twice; every output identical and equal to git, reports/freeze/e1_determinism.html
+	uv run python scripts/determinism_check.py
+
+golden:        ## E2: precision and recall by label source, reports/freeze/e2_golden.html and results/proof/accuracy.csv
+	uv run python scripts/golden_report.py
+
+proof:         ## E4: copy every stage report into results/proof/ with an index page (committed)
+	uv run python scripts/proof_pack.py
+
+freeze:        ## E1 to E4 in one go: determinism, accuracy, e2e (incl. the offline demo), proof pack
+	$(MAKE) determinism golden e2e index proof
+
+status:        ## one line per build step: PASS, FAIL or WAITING (pm_pack/08 section 4); also rebuilds reports/index.html
+	uv run python scripts/status.py
+
 index:         ## reports/index.html: every stage report with its status
 	uv run python scripts/reports_index.py
 
@@ -80,13 +95,16 @@ frontend-build: ## D1: type-check, lint and build the screen
 e2e:           ## D1: Playwright end-to-end tests of the screen (starts API and dev server if needed); report in reports/playwright/
 	npm --prefix frontend run e2e
 
-STEP ?= d2
+STEP ?= e
 
 screenshots:   ## PR pictures: Playwright captures the changed views into docs/screenshots/$(STEP)/ (one run per project)
 	for p in desktop-light desktop-dark phone; do SCREENSHOTS=$(STEP) npm --prefix frontend run e2e -- screenshots --project $$p || exit 1; done
 
 test:          ## all unit tests
 	uv run pytest -q
+
+api-demo:      ## E3: the API in demo mode: cached analyses only, no network and no language-model calls
+	DEMO_MODE=1 $(MAKE) api
 
 api:           ## local API on http://127.0.0.1:8000/docs
 	uv run uvicorn radar.main:app --app-dir backend --reload

@@ -1,0 +1,159 @@
+{
+  "status": "PASS",
+  "issue": 3076,
+  "computed": 65,
+  "concern": {
+    "high": 6,
+    "medium": 1,
+    "review": 6,
+    "low": 52,
+    "none": 3992
+  },
+  "above_free_space": [],
+  "rising_curves": [],
+  "cases": [
+    {
+      "id": "F-3076-0001",
+      "notice": "93082383",
+      "site": "KRL KOSTOMUKSHA",
+      "mhz": 152.025,
+      "km": 31.5,
+      "e": 25.0,
+      "trigger": 12.0,
+      "margin": -13.0,
+      "concern": "high"
+    },
+    {
+      "id": "F-3076-0002",
+      "notice": "93082838",
+      "site": "KRL KOSTOMUKSHA",
+      "mhz": 152.9,
+      "km": 32.0,
+      "e": 24.73,
+      "trigger": 12.0,
+      "margin": -12.73,
+      "concern": "high"
+    },
+    {
+      "id": "F-3076-0003",
+      "notice": "93075637",
+      "site": "KRL LYASKELYA",
+      "mhz": 152.9,
+      "km": 42.3,
+      "e": 20.99,
+      "trigger": 12.0,
+      "margin": -8.99,
+      "concern": "high"
+    },
+    {
+      "id": "F-3076-0004",
+      "notice": "93082322",
+      "site": "LEN VYBORG GRUZOVOI",
+      "mhz": 153.075,
+      "km": 29.9,
+      "e": 20.14,
+      "trigger": 12.0,
+      "margin": -8.14,
+      "concern": "high"
+    },
+    {
+      "id": "F-3076-0005",
+      "notice": "93082323",
+      "site": "LEN VYBORG GRUZOVOI",
+      "mhz": 153.3,
+      "km": 29.9,
+      "e": 20.14,
+      "trigger": 12.0,
+      "margin": -8.14,
+      "concern": "high"
+    },
+    {
+      "id": "F-3076-0006",
+      "notice": "93082324",
+      "site": "LEN VYBORG GRUZOVOI",
+      "mhz": 153.025,
+      "km": 29.9,
+      "e": 20.14,
+      "trigger": 12.0,
+      "margin": -8.14,
+      "concern": "high"
+    },
+    {
+      "id": "F-3076-0007",
+      "notice": "93082321",
+      "site": "KRL KOSTOMUKSHA",
+      "mhz": 152.9,
+      "km": 32.0,
+      "e": 7.3,
+      "trigger": 12.0,
+      "margin": 4.7,
+      "concern": "medium"
+    },
+    {
+      "id": "F-3076-0008",
+      "notice": "93005610",
+      "site": "KRL RUSKEALA",
+      "mhz": 793.5,
+      "km": 12.3,
+      "e": 24.42,
+      "trigger": null,
+      "margin": null,
+      "concern": "review"
+    },
+    {
+      "id": "F-3076-0009",
+      "notice": "93005611",
+      "site": "KRL RUSKEALA",
+      "mhz": 794.74,
+      "km": 12.3,
+      "e": 24.42,
+      "trigger": null,
+      "margin": null,
+      "concern": "review"
+    },
+    {
+      "id": "F-3076-0010",
+      "notice": "92326149",
+      "site": "KRL SORTAVALA",
+      "mhz": 793.5,
+      "km": 13.9,
+      "e": 34.88,
+      "trigger": null,
+      "margin": null,
+      "concern": "review"
+    },
+    {
+      "id": "F-3076-0011",
+      "notice": "93082392",
+      "site": "KRL RUSKEALA",
+      "mhz": 793.5,
+      "km": 13.9,
+      "e": 32.77,
+      "trigger": null,
+      "margin": null,
+      "concern": "review"
+    },
+    {
+      "id": "F-3076-0012",
+      "notice": "93082397",
+      "site": "MUR TITOVKA",
+      "mhz": 793.5,
+      "km": 95.1,
+      "e": -13.88,
+      "trigger": null,
+      "margin": null,
+      "concern": "review"
+    },
+    {
+      "id": "F-3076-0013",
+      "notice": "93082398",
+      "site": "MUR TITOVKA",
+      "mhz": 794.74,
+      "km": 95.1,
+      "e": -13.89,
+      "trigger": null,
+      "margin": null,
+      "concern": "review"
+    }
+  ]
+}

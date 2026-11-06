@@ -1,0 +1,131 @@
+{
+  "status": "PASS",
+  "issue": 3074,
+  "test_vectors_ok": true,
+  "impossible_gso_elevations": [],
+  "notice_verdicts": {
+    "visible": 119,
+    "low_elevation": 13,
+    "not_visible": 49,
+    "far": 12,
+    "unknown": 3
+  },
+  "funnel_groups": [
+    [
+      "Candidates after frequency (B2)",
+      15389
+    ],
+    [
+      "Dropped by geography (notices: at least one group)",
+      6445
+    ],
+    [
+      "Uplinks promoted: earth station near or inside Finland (notices: at least one group)",
+      32
+    ],
+    [
+      "Candidates after geography (B3)",
+      8976
+    ]
+  ],
+  "funnel_notices": [
+    [
+      "Candidates after frequency (B2)",
+      181
+    ],
+    [
+      "Dropped by geography (notices: at least one group)",
+      50
+    ],
+    [
+      "Uplinks promoted: earth station near or inside Finland (notices: at least one group)",
+      9
+    ],
+    [
+      "Candidates after geography (B3)",
+      135
+    ]
+  ],
+  "near_border_stations": [
+    {
+      "name": "PLAN-S_MUONIO(FIN)",
+      "seq_no": 4,
+      "type": "S",
+      "country": "FIN",
+      "lat": 67.88999938964844,
+      "lon": 23.920000076293945,
+      "distance_km": 0.0,
+      "groups": 2
+    },
+    {
+      "name": "TAMPERE",
+      "seq_no": 2,
+      "type": "S",
+      "country": "FIN",
+      "lat": 61.49689865112305,
+      "lon": 23.76110076904297,
+      "distance_km": 0.0,
+      "groups": 1
+    },
+    {
+      "name": "UMEA",
+      "seq_no": 17,
+      "type": "S",
+      "country": "S",
+      "lat": 63.85390090942383,
+      "lon": 20.208099365234375,
+      "distance_km": 77.1,
+      "groups": 1
+    },
+    {
+      "name": "KIRUNA - SEKI09",
+      "seq_no": 3,
+      "type": "S",
+      "country": "S",
+      "lat": 67.87920379638672,
+      "lon": 21.03809928894043,
+      "distance_km": 81.9,
+      "groups": 1
+    },
+    {
+      "name": "TROMSO",
+      "seq_no": 8,
+      "type": "S",
+      "country": "NOR",
+      "lat": 69.66329956054688,
+      "lon": 18.949399948120117,
+      "distance_km": 93.9,
+      "groups": 12
+    },
+    {
+      "name": "KSAT07",
+      "seq_no": 9,
+      "type": "S",
+      "country": "NOR",
+      "lat": 69.66220092773438,
+      "lon": 18.941099166870117,
+      "distance_km": 94.0,
+      "groups": 1
+    },
+    {
+      "name": "IRBENE",
+      "seq_no": 3,
+      "type": "S",
+      "country": "LVA",
+      "lat": 57.5536003112793,
+      "lon": 21.854400634765625,
+      "distance_km": 261.0,
+      "groups": 4
+    },
+    {
+      "name": "STOCKHOLM",
+      "seq_no": 7,
+      "type": "S",
+      "country": "S",
+      "lat": 59.649200439453125,
+      "lon": 16.584699630737305,
+      "distance_km": 279.4,
+      "groups": 10
+    }
+  ]
+}

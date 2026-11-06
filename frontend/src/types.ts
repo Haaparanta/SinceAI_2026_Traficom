@@ -32,7 +32,7 @@ export interface AnalysisBundle { result: AnalysisResult; context: Record<string
 export interface Explanation { text: string; cited_evidence_ids: string[]; }
 export interface Letter { finding_id: string; to_administration: string; subject: string; body_markdown: string; cited_evidence_ids: string[]; }
 export interface DraftResult<T> { output: T; source: string; check: string; notes: string[]; }
-export interface LLMStatus { available: boolean; model: string; reason: string; }
+export interface LLMStatus { available: boolean; model: string; reason: string; demo_mode: boolean; }
 export interface IssueInfo { kind: Kind; issue: number; screened: number; flagged: number; provenance_coverage_pct: number; }
 export interface RefPoint { name: string; lat: number; lon: number; }
 export interface Region { features: { properties: { itu: string; name: string }; geometry: { coordinates: number[][][][] } }[]; }
