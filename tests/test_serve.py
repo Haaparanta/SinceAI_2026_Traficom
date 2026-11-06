@@ -6,8 +6,8 @@ from radar.serve import app
 client = TestClient(app)
 
 
-def test_healthz():
-    assert client.get("/healthz").json() == {"ok": True}
+def test_health():
+    assert client.get("/health").json() == {"ok": True}
 
 
 def test_api_is_mounted_under_prefix():

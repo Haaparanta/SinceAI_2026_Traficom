@@ -18,8 +18,8 @@ DIST = ROOT / "frontend" / "dist"
 app = FastAPI(title="Filing Radar (hosted)", docs_url=None, redoc_url=None, openapi_url=None)
 
 
-@app.get("/healthz")
-def healthz() -> dict:
+@app.get("/health")  # not /healthz: the Cloud Run front end reserves paths ending in z
+def health() -> dict:
     return {"ok": True}
 
 

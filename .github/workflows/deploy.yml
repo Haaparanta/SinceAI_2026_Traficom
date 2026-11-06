@@ -65,6 +65,6 @@ jobs:
 
       - name: Smoke test
         run: |
-          curl -fsS "${{ steps.deploy.outputs.url }}/healthz"
+          curl -fsS "${{ steps.deploy.outputs.url }}/health"
           curl -fsS "${{ steps.deploy.outputs.url }}/api/issues" > /dev/null
           echo "Live at ${{ steps.deploy.outputs.url }}" >> "$GITHUB_STEP_SUMMARY"
