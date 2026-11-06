@@ -12,13 +12,19 @@ the built screen at `/`. It serves the committed analysis cache (`data/cache/`) 
 | Images | `europe-north1-docker.pkg.dev/filing-radar-513921/filing-radar/app` |
 | Domain | `filingradar.click` (Porkbun, auto-renew off) |
 | Deploy | `.github/workflows/deploy.yml` on every push to `main` |
+| Checks | `.github/workflows/ci.yml` on every pull request |
 | Budget | 3 EUR alert on the billing account |
 
 ## How a deploy works
 
 Merge to `main` -> GitHub Actions runs `pytest`, builds the `Dockerfile`, pushes it to Artifact Registry and deploys
-it to Cloud Run, then calls `/healthz` and `/api/issues`. Google sign-in uses Workload Identity Federation: no key is
+it to Cloud Run, then calls `/health` and `/api/issues`. Google sign-in uses Workload Identity Federation: no key is
 stored in GitHub, and the pool only accepts tokens from this repository's `main` branch.
+
+## Checks on every pull request
+
+`.github/workflows/ci.yml` runs on every pull request and push to `main`: backend `pytest`, frontend lint and build,
+`actionlint` over the workflows, and a build and smoke test of the deploy image. It never touches Google Cloud.
 
 ## Run the image locally
 
