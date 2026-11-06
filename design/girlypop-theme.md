@@ -229,4 +229,4 @@ Warm, encouraging, competent — like a friend who is very good at their job.
 - Light tokens moved from blush grey and lavender to white pink: `--background` #fff9fd, `--secondary` strawberry milk, `--primary` hot pink `oklch(0.575 0.21 354)`, raspberry ink. Every text pair re-checked for AA (primary with white 4.8:1, muted text 6.0:1 on background).
 - New token `--page-wash`: a soft pink glow behind the page, faint in dark mode.
 - The mosaic sigil tile is served as a pre-rendered alpha PNG (`sigils/mosaic.png`); as an SVG mask it blocked a phone's main thread for about 6 s. Re-render it when `generate.py` changes `mosaic.svg`.
-- The app has a Light / Dark switch (`frontend/src/components/ThemeSwitch.tsx`); the choice is saved, and without one the system setting decides.
+- The app has a Light / Dark switch (`frontend/src/components/ThemeSwitch.tsx`); dark is the default and light is opt-in; the choice is saved.

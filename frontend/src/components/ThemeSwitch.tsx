@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { chooseTheme, currentTheme, onSystemThemeChange, type Theme } from "../theme";
+import { useState } from "react";
+import { chooseTheme, currentTheme, type Theme } from "../theme";
 
 // Line icons (lucide "sun" and "moon" shapes), drawn inline: no icon font and no emoji (design/girlypop-theme.md).
 function Sun() {
@@ -20,13 +20,12 @@ function Moon() {
 }
 
 const OPTIONS: { value: Theme; label: string; icon: () => React.JSX.Element }[] = [
-  { value: "light", label: "Light", icon: Sun },
   { value: "dark", label: "Dark", icon: Moon },
+  { value: "light", label: "Light", icon: Sun },
 ];
 
 export function ThemeSwitch() {
   const [theme, setTheme] = useState<Theme>(currentTheme);
-  useEffect(() => onSystemThemeChange(setTheme), []);
 
   return (
     <div role="radiogroup" aria-label="Colour theme" className="inline-flex rounded-full bg-muted p-1 gap-1 self-end">
