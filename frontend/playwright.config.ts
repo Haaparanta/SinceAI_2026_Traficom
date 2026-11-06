@@ -31,7 +31,7 @@ export default defineConfig({
     {
       command: `uv run uvicorn radar.main:app --app-dir backend --host 127.0.0.1 --port ${API_PORT}`,
       cwd: "..",
-      env: { DECISIONS_DIR: "reports/e2e-decisions" },
+      env: { DECISIONS_DIR: "reports/e2e-decisions", LLM_DISABLED: "1" },
       url: `http://127.0.0.1:${API_PORT}/issues`,
       reuseExistingServer: false,
       timeout: 60_000,

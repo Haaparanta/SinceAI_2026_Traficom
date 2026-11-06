@@ -28,6 +28,11 @@ export type DecisionKind = "approve" | "dismiss" | "investigate";
 export interface AuditEntry { seq: number; kind: Kind; issue: number; finding_id: string; notice_id: string; concern_at_decision: Concern; decision: DecisionKind; reviewer: string; note: string | null; at: string; prev_hash: string; hash: string; }
 export interface AuditLog { chain: { ok: boolean; entries: number; first_bad_seq: number | null; head?: string }; entries: AuditEntry[]; }
 export interface AnalysisBundle { result: AnalysisResult; context: Record<string, FindingContext>; decisions: Record<string, AuditEntry>; omitted?: { not_raised: number; note: string }; }
+// Step D2: grounded explanation and letter draft (backend/radar/llm/drafts.py).
+export interface Explanation { text: string; cited_evidence_ids: string[]; }
+export interface Letter { finding_id: string; to_administration: string; subject: string; body_markdown: string; cited_evidence_ids: string[]; }
+export interface DraftResult<T> { output: T; source: string; check: string; notes: string[]; }
+export interface LLMStatus { available: boolean; model: string; reason: string; }
 export interface IssueInfo { kind: Kind; issue: number; screened: number; flagged: number; provenance_coverage_pct: number; }
 export interface RefPoint { name: string; lat: number; lon: number; }
 export interface Region { features: { properties: { itu: string; name: string }; geometry: { coordinates: number[][][][] } }[]; }

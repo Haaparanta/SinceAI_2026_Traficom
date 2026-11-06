@@ -1,5 +1,5 @@
 # Filing Radar. Step IDs refer to pm_pack/08_Build_Plan_Step_by_Step.md.
-.PHONY: doctor check-data checksums schema convert subbands ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial index cache frontend frontend-build e2e screenshots test api
+.PHONY: doctor check-data checksums schema convert subbands ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial explanations index cache frontend frontend-build e2e screenshots test api
 
 doctor:        ## A1: tools on PATH, native arm64
 	python3 scripts/doctor.py tools
@@ -62,6 +62,9 @@ field-strength: ## C3: P.1546 at the border, report reports/$(ISSUE)/02_field_st
 results-terrestrial: ## C3: results/terrestrial_$(ISSUE).csv|json
 	PYTHONPATH=backend:. uv run python -m radar.export --issue $(ISSUE) --kind terrestrial
 
+explanations:  ## D2: grounded explanations and letters for 20 findings, report reports/$(ISSUE)/07_explanations.html
+	uv run python scripts/explanations_report.py $(ISSUE)
+
 index:         ## reports/index.html: every stage report with its status
 	uv run python scripts/reports_index.py
 
@@ -77,7 +80,7 @@ frontend-build: ## D1: type-check, lint and build the screen
 e2e:           ## D1: Playwright end-to-end tests of the screen (starts API and dev server if needed); report in reports/playwright/
 	npm --prefix frontend run e2e
 
-STEP ?= d3
+STEP ?= d2
 
 screenshots:   ## PR pictures: Playwright captures the changed views into docs/screenshots/$(STEP)/ (one run per project)
 	for p in desktop-light desktop-dark phone; do SCREENSHOTS=$(STEP) npm --prefix frontend run e2e -- screenshots --project $$p || exit 1; done

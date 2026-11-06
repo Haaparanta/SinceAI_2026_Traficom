@@ -114,6 +114,29 @@ def finding_decisions(finding_id: str) -> list[dict]:
     return [e for e in decisions.log(kind, issue) if e["finding_id"] == finding_id]
 
 
+@app.get("/llm/status")
+def llm_status() -> dict:
+    """Whether explanations and letters come from Claude or from the deterministic template."""
+    from radar.llm import client as llm_client
+    return llm_client.status()
+
+
+@app.post("/findings/{finding_id}/explanation")
+def explanation(finding_id: str) -> dict:
+    """Plain-language explanation that cites only the finding's evidence (cache, then Claude, then template)."""
+    from radar.llm import drafts
+    kind, issue, f, b = _locate(finding_id)
+    return drafts.explain(f, b["context"].get(finding_id), kind, issue).as_dict()
+
+
+@app.post("/findings/{finding_id}/letter")
+def letter(finding_id: str) -> dict:
+    """Correspondence draft to the notifying administration. Always a draft; nothing is sent."""
+    from radar.llm import drafts
+    kind, issue, f, b = _locate(finding_id)
+    return drafts.letter(f, b["context"].get(finding_id), kind, issue).as_dict()
+
+
 @app.get("/audit")
 def audit(issue: int = Query(...), kind: str = Query("space")) -> dict:
     """Every decision for the analysis, newest first, and the result of re-checking the hash chain."""

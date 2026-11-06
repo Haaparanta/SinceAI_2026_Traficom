@@ -31,6 +31,8 @@ STEPS = [
     ("3074/06_pfd.html", "C1", "Space 3074: worst-case pfd"),
     ("3076/01_diff.html", "C2", "Terrestrial 3075 to 3076: diff"),
     ("3076/02_field_strength.html", "C3", "Terrestrial 3076: border distance and field strength"),
+    ("3074/07_explanations.html", "D2", "Space 3074: grounded explanations and letter drafts"),
+    ("3076/07_explanations.html", "D2", "Terrestrial 3076: grounded explanations and letter drafts"),
     ("playwright/index.html", "D1", "Playwright end-to-end tests of the screen (make e2e)"),
 ]
 

@@ -8,8 +8,8 @@ const KIND_LABEL: Record<string, string> = {
 };
 
 /** The actionable output: concern, reason, every piece of evidence. Plain language only (serious-context rule). */
-export function FindingCard({ finding, ctx, highlight, decision }: {
-  finding: Finding; ctx: FindingContext | undefined; highlight: string | null; decision?: ReactNode;
+export function FindingCard({ finding, ctx, highlight, decision, drafts }: {
+  finding: Finding; ctx: FindingContext | undefined; highlight: string | null; decision?: ReactNode; drafts?: ReactNode;
 }) {
   const refs = useRef<Record<string, HTMLLIElement | null>>({});
   useEffect(() => {
@@ -30,6 +30,7 @@ export function FindingCard({ finding, ctx, highlight, decision }: {
         </p>
       </header>
       <p className="text-[15px] leading-6">{finding.reason}</p>
+      {drafts}
       {decision}
       {n.all_sections?.length > 1 && (
         <p className="text-xs text-muted-foreground">Published with: {(n.all_sections as string[]).join(", ")}</p>
