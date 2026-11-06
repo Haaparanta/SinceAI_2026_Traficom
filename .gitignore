@@ -1,0 +1,10 @@
+# Raw datasets fetched by scripts/download_data.sh. Too large / binary for git; re-create with
+#   scripts/download_data.sh
+# Only the provenance notes and the checksum manifest are tracked.
+data/*
+!data/SOURCES.md
+!data/MANIFEST.sha256
+*.part
+
+# OS / editor noise
+.DS_Store
