@@ -1,5 +1,5 @@
 # Filing Radar. Step IDs refer to pm_pack/08_Build_Plan_Step_by_Step.md.
-.PHONY: doctor check-data checksums schema convert subbands ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial index cache frontend frontend-build e2e test api
+.PHONY: doctor check-data checksums schema convert subbands ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial index cache frontend frontend-build e2e screenshots test api
 
 doctor:        ## A1: tools on PATH, native arm64
 	python3 scripts/doctor.py tools
@@ -76,6 +76,11 @@ frontend-build: ## D1: type-check, lint and build the screen
 
 e2e:           ## D1: Playwright end-to-end tests of the screen (starts API and dev server if needed); report in reports/playwright/
 	npm --prefix frontend run e2e
+
+STEP ?= d3
+
+screenshots:   ## PR pictures: Playwright captures the changed views into docs/screenshots/$(STEP)/ (one run per project)
+	for p in desktop-light desktop-dark phone; do SCREENSHOTS=$(STEP) npm --prefix frontend run e2e -- screenshots --project $$p || exit 1; done
 
 test:          ## all unit tests
 	uv run pytest -q

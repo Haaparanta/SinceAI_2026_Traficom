@@ -33,7 +33,7 @@ Notice-level counts: **21 high, 99 medium, 1 review, 14 low, 61 not raised** (13
 | `concern` | `high`, `medium`, `review`, `low` or `none` |
 | `reason` | Template sentence naming the rule that set the concern; no language model |
 | `evidence_refs` | Semicolon-separated locators, each reopened by `make check-evidence` (`table.col=value`, `Taajuusjakotaulukko.ID=n`, `geography(...)`) |
-| `decision` | Empty; filled by the reviewer (approve, dismiss, investigate) |
+| `decision` | Empty in the committed file. The screen's export (`GET /export/<issue>`) fills it with the latest reviewer decision for the notice, for example `investigate by Aino at 2026-11-06T23:47:00Z: ask CHN for the pfd mask`; every decision stays in the audit log `data/decisions/<kind>_<issue>.jsonl` |
 
 ## Inputs
 

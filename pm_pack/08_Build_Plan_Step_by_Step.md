@@ -20,9 +20,9 @@ How we build Filing Radar from an empty `backend/` to the two graded results fil
 | C1 worst-case pfd | done; limits re-transcribed from RR 2024 (second reviewer pending) | `reports/3074/06_pfd.html` | #24 |
 | C2 terrestrial diff | done; each extract is a change set | `reports/3076/01_diff.html` | #25 |
 | C3 P.1546 at the border | done; ITU reference code, 52 validation cases at 0.0 dB | `reports/3076/02_field_strength.html`, `results/terrestrial_3076.*` | #26 |
-| D1 one screen | done (built by Claude Code at the user's request; file 06 gives `frontend/` to Cursor) | `make frontend`, Playwright `make e2e` | #27, this PR |
+| D1 one screen | done (built by Claude Code at the user's request; file 06 gives `frontend/` to Cursor) | `make frontend`, Playwright `make e2e` | #27, #28 |
 | D2 explanation and letter | next | | |
-| D3 decisions and audit log | next | | |
+| D3 decisions and audit log | done; append-only log with a SHA-256 chain, export carries the decision, concern never changes | `make e2e`, `docs/screenshots/d3/` | this PR |
 | E1 to E5 freeze and ship | E1 (byte-identical reruns) already holds; the rest pending | | |
 
 Facts the real files changed (also recorded in file 06 and `backend/radar/schema_map.yaml`):

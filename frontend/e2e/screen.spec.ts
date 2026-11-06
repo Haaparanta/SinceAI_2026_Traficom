@@ -50,7 +50,7 @@ test("the ranked list starts with the API's first finding and every badge has a 
   const firstRow = list(page).getByRole("button").first();
   await expect(firstRow).toContainText(b.context[first.id].title);
   await expect(firstRow).toContainText(first.id);
-  const badges = list(page).locator("span.rounded-full");
+  const badges = list(page).locator("[data-concern]");
   const n = await badges.count();
   expect(n).toBeGreaterThan(10);
   for (const text of await badges.allInnerTexts()) expect(["High", "Medium", "Review", "Low", "Not raised"]).toContain(text.trim());

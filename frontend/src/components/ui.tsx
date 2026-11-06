@@ -13,7 +13,7 @@ const CONCERN_CLASS: Record<Concern, string> = {
 
 export function ConcernBadge({ concern }: { concern: Concern }) {
   return (
-    <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${CONCERN_CLASS[concern]}`}>
+    <span data-concern={concern} className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${CONCERN_CLASS[concern]}`}>
       {CONCERN_LABEL[concern]}
     </span>
   );
@@ -27,10 +27,10 @@ export function Segmented<T extends string>({ value, options, onChange, label }:
   value: T; options: { value: T; label: string }[]; onChange: (v: T) => void; label: string;
 }) {
   return (
-    <div role="tablist" aria-label={label} className="inline-flex rounded-full bg-muted p-1 gap-1">
+    <div role="tablist" aria-label={label} className="inline-flex max-w-full overflow-x-auto rounded-full bg-muted p-1 gap-1">
       {options.map((o) => (
         <button key={o.value} role="tab" aria-selected={value === o.value} onClick={() => onChange(o.value)}
-          className={`min-h-9 rounded-full px-4 text-sm font-medium transition-colors ${value === o.value
+          className={`min-h-9 shrink-0 whitespace-nowrap rounded-full px-4 text-sm font-medium transition-colors ${value === o.value
             ? "bg-card text-foreground shadow-soft" : "text-muted-foreground hover:text-foreground"}`}>
           {o.label}
         </button>

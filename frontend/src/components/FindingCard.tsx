@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import type { Finding, FindingContext } from "../types";
 import { ConcernBadge } from "./ui";
 
@@ -8,7 +8,9 @@ const KIND_LABEL: Record<string, string> = {
 };
 
 /** The actionable output: concern, reason, every piece of evidence. Plain language only (serious-context rule). */
-export function FindingCard({ finding, ctx, highlight }: { finding: Finding; ctx: FindingContext | undefined; highlight: string | null }) {
+export function FindingCard({ finding, ctx, highlight, decision }: {
+  finding: Finding; ctx: FindingContext | undefined; highlight: string | null; decision?: ReactNode;
+}) {
   const refs = useRef<Record<string, HTMLLIElement | null>>({});
   useEffect(() => {
     if (highlight) refs.current[highlight]?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -28,6 +30,7 @@ export function FindingCard({ finding, ctx, highlight }: { finding: Finding; ctx
         </p>
       </header>
       <p className="text-[15px] leading-6">{finding.reason}</p>
+      {decision}
       {n.all_sections?.length > 1 && (
         <p className="text-xs text-muted-foreground">Published with: {(n.all_sections as string[]).join(", ")}</p>
       )}

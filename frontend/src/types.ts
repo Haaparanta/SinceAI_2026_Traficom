@@ -23,7 +23,11 @@ export interface FindingContext {
   score: number | null;
   factors: Json;
 }
-export interface AnalysisBundle { result: AnalysisResult; context: Record<string, FindingContext>; omitted?: { not_raised: number; note: string }; }
+export type DecisionKind = "approve" | "dismiss" | "investigate";
+// One line of the audit log: a ReviewDecision (models.py) plus where it applies and the hash chain.
+export interface AuditEntry { seq: number; kind: Kind; issue: number; finding_id: string; notice_id: string; concern_at_decision: Concern; decision: DecisionKind; reviewer: string; note: string | null; at: string; prev_hash: string; hash: string; }
+export interface AuditLog { chain: { ok: boolean; entries: number; first_bad_seq: number | null; head?: string }; entries: AuditEntry[]; }
+export interface AnalysisBundle { result: AnalysisResult; context: Record<string, FindingContext>; decisions: Record<string, AuditEntry>; omitted?: { not_raised: number; note: string }; }
 export interface IssueInfo { kind: Kind; issue: number; screened: number; flagged: number; provenance_coverage_pct: number; }
 export interface RefPoint { name: string; lat: number; lon: number; }
 export interface Region { features: { properties: { itu: string; name: string }; geometry: { coordinates: number[][][][] } }[]; }
