@@ -1,2 +1,13 @@
+# Downloaded and derived data: never commit (see pm_pack/06_AGENTS_Master_Context.md).
+# Re-create data/raw/ with scripts/download_data.sh (everything) or scripts/fetch_data.sh (graded issues only).
+data/raw/
+data/derived/
+*.part
+
+# Local secrets and environments
+.env
+.venv/
+node_modules/
 __pycache__/
 *.pyc
+.DS_Store
