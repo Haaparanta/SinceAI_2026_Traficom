@@ -2,6 +2,8 @@
 
 Turns an ITU BR IFIC issue into a ranked, cited, expert-reviewable list of notices that may affect radio frequency use in Finland. Built for the Traficom challenge at Since AI 2026. The tool suggests; a specialist decides.
 
+**Live demo:** https://filingradar.click (fallback https://filing-radar-ga6ca37kma-lz.a.run.app), hosted on Cloud Run in Finland and redeployed on every merge to `main`. See [docs/HOSTING.md](docs/HOSTING.md).
+
 > [!NOTE]
 > **Status on Fri 6 Nov 2026.** The space pipeline (Space IFIC 3074) and the terrestrial side quest (Terrestrial IFIC 3076) run end to end, the graded results files are in [`results/`](results/README.md), and the one-screen UI runs on the cached analyses. Every finding carries evidence that a script re-opens and checks. Reviewers approve, investigate or dismiss findings into a hash-chained audit log (D3). Each finding can be explained in plain language and turned into a letter draft to the notifying administration (D2): Claude writes them when credentials are present, a deterministic template otherwise, and a validator rejects any text that cites an evidence ID outside the finding or writes a number that is not in it. Still to come: demo packaging (E). All thresholds marked *hypothesis* wait for the partner's answers ([questions](pm_pack/01_Partner_Briefing_Questions.md)).
 
