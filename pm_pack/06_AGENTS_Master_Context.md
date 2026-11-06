@@ -1,143 +1,321 @@
-# AGENTS.md — Master Context (Filing Radar)
+# AGENTS.md — Master Context: Filing Radar
 
-> [!WARNING]
-> **Draft — based on missing data**
-> This architecture was designed from `README.md` alone. The data schemas below are **our own `[HYPOTHESIS]` model**, not ITU or Traficom formats. Do not treat any field name as an official spec. When real partner data arrives, change **only** the adapter (`backend/app/adapters/partner.py`) and, if needed, add fields to the models. See "Final Verification" at the end.
+Shared context for every coding agent on the team (Claude Code, Cursor, Codex, Antigravity). Read fully before touching code.
+
+> [!NOTE]
+> **Grounding.** Designed on Fri 6 Nov 2026 from the Traficom challenge brief, `README.md`, and the live ITU, Finlex and Traficom sources. Tags: `[SOURCE DATA]` stated by the partner or a linked page, `[HYPOTHESIS]` our assumption until verified, `[GAP - ASK PARTNER: Qn]` open question in `pm_pack/01_Partner_Briefing_Questions.md`.
+> The ITU database table and field names below are `[HYPOTHESIS]`. The first engineering task is to print the real schema and fill `backend/radar/schema_map.yaml`; nothing else may hard-code a table or column name.
 >
-> To use: `ln -s pm_pack/06_AGENTS_Master_Context.md AGENTS.md` (and the same for `CLAUDE.md` / `.cursorrules`).
+> To use: `ln -s pm_pack/06_AGENTS_Master_Context.md AGENTS.md` and the same for `CLAUDE.md` and `.cursorrules`.
 
 ---
 
 ## Mission
-Help Traficom spectrum experts discover international satellite filings that may affect systems operating in Finland, explain why with cited evidence, and let the expert decide. `[README]`
+
+Turn an ITU BR IFIC issue into a ranked, cited, expert-reviewable list of notices that may affect radio frequency use in Finland, with an indicative technical check and a draft letter to the notifying administration. Space services first (Space IFIC 3074 is the graded set), the same engine on terrestrial land-mobile notices (Terrestrial IFIC 3076 is the graded set). `[SOURCE DATA: brief 02, 03, 07]`
 
 **Rules that never change**
+
 1. The tool suggests; a human decides. No automatic sending, rejecting or dismissing.
-2. No finding without evidence. Every `Finding` has ≥1 `Evidence`.
-3. Unknown stays unknown. Extraction never invents a missing value; it returns `null` and the UI shows "unknown".
-4. Technical calculations beyond simple overlap are labelled `indicative`.
+2. No finding without evidence. Every `Finding` carries at least one `Evidence` item that points to a file, table, row and field, or to a regulation section.
+3. Unknown stays unknown. Parsers never invent a missing value; they return `null` and the UI shows "unknown".
+4. Deterministic first. Screening, geometry, pfd and field strength are plain code with unit tests. The language model only explains, drafts and summarises, and may cite only evidence IDs that exist.
+5. Every calculated number is shown with its inputs, their sources, the formula, the limit used and the margin, and is labelled `indicative` unless a specialist has confirmed the method `[GAP: Q2, Q12]`.
+6. The judging weights decide priorities: A technical analysis and reproducibility 25 %, B extensibility and terrestrial side quest 25 %, C workflow usefulness and output quality 20 %, D case recognition accuracy 15 %, E auditability and evidence 15 % `[SOURCE DATA: brief 06]`.
 
 ---
 
-## Provisional Tech Stack `[HYPOTHESIS]`
-- **Backend:** Python 3.12, FastAPI, Pydantic v2, Shapely (geometry), pytest
-- **AI:** Claude API (`claude-sonnet-5-5`) with structured output for extraction and explanations. If the NDA forbids cloud models `[GAP]`, swap to a local open-weight model behind the same `LLMClient` interface.
-- **Frontend:** React + Vite + TypeScript, shadcn/ui + Tailwind CSS v4, MapLibre GL (map), Recharts (frequency chart)
-- **Design system:** Girlypop theme v2. Import `design/girlypop.css` into `frontend/src/globals.css` and follow `design/girlypop-theme.md`. Use only theme tokens (no hex codes); risk badges use `risk-*` tokens with a text label; put `bg-sigil` on the app's `<body>` for the hand-drawn cybersigilism mosaic background (see `design/sigils/preview.html`), and keep text that sits directly on it in `foreground` or `secondary-foreground`; no emoji anywhere in the UI or docs, and no playful copy on findings, decisions or exports.
-- **Storage:** JSON files in `/data` (no database needed for the hackathon)
+## Source data map `[SOURCE DATA unless tagged]`
 
-## Folder Tree
+| Source | Where | Format | We take |
+|---|---|---|---|
+| Space IFIC 3074 (graded) | `https://www.itu.int/sns/ific10/ific3074.zip` | zip, 60.8 MB, "Version 10" Access `.mdb` databases | notices in Parts I-S, II-S, III-S and Special Sections API/A, CR/C; AP30/30A/30B are separate ITU databases (C3) |
+| Any other Space IFIC | `https://www.itu.int/sns/ific10/ific<NNNN>.zip`; list at `https://www.itu.int/sns/wic/demowic26.html` | same | "all existing and forthcoming IFICs shall be able to be evaluated": the adapter takes an issue number, nothing else |
+| Terrestrial IFIC 3076 (graded) and 3075 | `https://www.itu.int/en/ITU-R/terrestrial/brific/BRIFIC/MDB/brific3076.zip` (2.4 MB), `brific3075.zip` (3.4 MB), `ReadMe/ReadMe_3076.pdf` (145 KB), `Article11-Index/ific3076.pdf` (1.9 MB) | zip with an `.mdb` extract | Article 11 notices; diff between consecutive issues |
+| Finnish frequency allocation table | `https://opendata.traficom.fi/api/v13/Taajuusjakotaulukko` (OData, CC BY 4.0) | JSON, 5 917 rows, 24 fields | sub-band limits in Hz, `Services_in_Finland`, `Sub_band_usage`, `Class_of_station`, `Direction`, powers, `Comment` |
+| Regulation M4 | `https://www.finlex.fi/fi/viranomaiset/maarayskokoelmat/traficom-viestinta/2026/3` | Radiotaajuusmääräys 4 AG/2026M, PDF plus memo | citation target for every Finnish-table match |
+| Special-interest stations (mandatory) | Since AI platform, XLS, fetched by a human | station number, centre frequency, bandwidth, coordinates, antenna height, direction, directivity `[GAP: Q4 for exact columns]` | point targets for geography and limits |
+| Schema documentation | `https://www.itu.int/en/ITU-R/space/Documents/SRSDiagramV9_1.pdf` (50 KB), `legend_E.pdf` from the "Data items description" page, terrestrial `ReadMe_3076.pdf` and Preface | PDF | the real table and field names |
+| Limits and criteria | ITU Radio Regulations (Article 21 pfd tables), ECC T/R 25-08, ITU-R P.1546, CEPT docdb CSV exports | documents | values go into reviewed CSVs in `data/reference/` with a `source` column |
+
+---
+
+## Provisional tech stack `[HYPOTHESIS]`
+
+- **Backend:** Python 3.12, `uv`, FastAPI, Pydantic v2, DuckDB (SQL over the converted tables, Parquet caches), pandas, pyarrow, NumPy, Shapely, pytest.
+- **Database conversion:** `mdbtools` (`brew install mdbtools`; `mdb-tables -1`, `mdb-export`). Fallback: a Windows machine with Access or the ITU tools exporting CSV `[GAP: Q13]`.
+- **AI:** Anthropic Python SDK (`pip install anthropic`), model `claude-opus-5-5` by default with adaptive thinking and the server-side refusal fallback enabled; `LLM_MODEL` in `.env` switches the model; `LLM_DISABLED=1` makes every LLM function return a deterministic placeholder so the pipeline runs offline.
+- **Frontend:** React 19, Vite, TypeScript, Tailwind CSS v4, shadcn/ui, MapLibre GL with a committed Finland GeoJSON, Recharts.
+- **Design system:** Girlypop theme v2. Import `design/girlypop.css` into `frontend/src/globals.css` and follow `design/girlypop-theme.md`: tokens only, risk badges always with a text label, `bg-sigil` on the page root only, no emoji anywhere, plain language on findings, decisions and exports.
+- **Storage:** files only. `data/derived/*.duckdb`, `data/reference/*.csv`, `data/cache/*.json`, `results/*.csv|json`.
+
+---
+
+## Folder tree
+
 ```
 .
 ├── AGENTS.md -> pm_pack/06_AGENTS_Master_Context.md
+├── Makefile                      # data, convert, screen, export, test, run
 ├── backend/
-│   └── app/
-│       ├── main.py              # FastAPI routes
-│       ├── models.py            # Pydantic contracts (FROZEN, see below)
-│       ├── config.py            # DATA_SOURCE, DEMO_MODE, LLM settings
+│   └── radar/
+│       ├── main.py               # FastAPI routes
+│       ├── config.py             # DATA_DIR, DEMO_MODE, LLM_MODEL, LLM_DISABLED
+│       ├── models.py             # Pydantic contracts (FROZEN after Gate 1)
+│       ├── schema_map.yaml       # real ITU table and field names -> our names
 │       ├── adapters/
-│       │   ├── base.py          # DataAdapter interface
-│       │   ├── synthetic.py     # Branch B
-│       │   └── partner.py       # Branch A (stub until data arrives)
+│       │   ├── base.py           # IssueAdapter protocol
+│       │   ├── space_ific.py     # zip -> mdb -> DuckDB -> Notice, FrequencyGroup
+│       │   ├── terrestrial_ific.py
+│       │   ├── traficom_table.py # API -> FinnishSubBand (Parquet cache)
+│       │   └── special_interest.py # XLS -> SpecialInterestStation
 │       ├── pipeline/
-│       │   ├── extract.py       # raw filing -> Filing
-│       │   ├── match.py         # Filing x ProtectedAsset -> overlaps
-│       │   ├── score.py         # overlaps -> RiskScore
-│       │   └── explain.py       # LLM explanation grounded in Evidence
-│       ├── llm.py               # LLMClient interface
-│       └── cache.py             # Demo Mode
+│       │   ├── relevance.py      # frequency overlap, direction rules
+│       │   ├── geography.py      # GSO elevation, service areas, border distance
+│       │   ├── diff.py           # terrestrial new / modified / withdrawn
+│       │   ├── assemble.py       # overlaps + geometry + calc -> Finding
+│       │   └── rank.py           # concern level and ordering
+│       ├── calc/
+│       │   ├── pfd.py            # GSO worst-case pfd and limit lookup
+│       │   ├── p1546.py          # field strength at the border
+│       │   └── trace.py          # CalcTrace builder
+│       ├── llm/
+│       │   ├── client.py         # one Anthropic client, structured outputs
+│       │   ├── explain.py        # grounded explanation
+│       │   └── letter.py         # correspondence draft
+│       ├── export/results.py     # results/space_3074.csv, terrestrial_3076.csv
+│       └── demo_cache.py         # DEMO_MODE
 ├── frontend/src/
-│   ├── types.ts                 # mirrors models.py
-│   ├── App.tsx                  # One-Screen layout
-│   └── components/{InputBar,MapView,BandChart,FindingsList,Metrics}.tsx
+│   ├── types.ts                  # mirrors models.py
+│   ├── App.tsx                   # the one screen
+│   └── components/{IssueBar,SpectrumStrip,MapView,CalcTrace,FindingCard,RankedList,Metrics}.tsx
 ├── data/
-│   ├── seed/                    # synthetic, committed
-│   ├── partner/                 # real data, GIT-IGNORED
-│   └── cache/                   # Demo Mode JSON, committed
-├── scripts/generate_synthetic.py
+│   ├── raw/                      # downloads, GIT-IGNORED
+│   ├── derived/                  # DuckDB and Parquet, GIT-IGNORED
+│   ├── reference/                # finland.geojson, fi_reference_points.csv, pfd_limits.csv, tr2508_thresholds.csv (committed, each row has a source)
+│   └── cache/                    # sample_1.json, sample_2.json, sample_3.json (committed)
+├── results/                      # the graded output files (committed at the end)
+├── prompts/                      # explain.md, letter.md
+├── scripts/
+│   ├── fetch_data.sh
+│   ├── inspect_mdb.py            # prints every table and column of an .mdb
+│   ├── mdb_to_duckdb.py
+│   └── build_cache.py
 └── tests/
 ```
 
 ---
 
-## Data Contracts (Pydantic) `[HYPOTHESIS schema]`
+## Data acquisition
+
+`scripts/fetch_data.sh` (run by a human; everything lands in `data/raw/`, which is git-ignored):
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+mkdir -p data/raw && cd data/raw
+curl -L -o ific3074.zip  https://www.itu.int/sns/ific10/ific3074.zip                       # 60.8 MB, graded
+curl -L -o brific3076.zip https://www.itu.int/en/ITU-R/terrestrial/brific/BRIFIC/MDB/brific3076.zip   # 2.4 MB, graded
+curl -L -o brific3075.zip https://www.itu.int/en/ITU-R/terrestrial/brific/BRIFIC/MDB/brific3075.zip   # 3.4 MB, previous issue
+curl -L -o ReadMe_3076.pdf https://www.itu.int/en/ITU-R/terrestrial/brific/BRIFIC/ReadMe/ReadMe_3076.pdf
+curl -L -o SRSDiagramV9_1.pdf https://www.itu.int/en/ITU-R/space/Documents/SRSDiagramV9_1.pdf
+curl -L -o taajuusjakotaulukko.json https://opendata.traficom.fi/api/v13/Taajuusjakotaulukko
+unzip -o ific3074.zip -d ific3074 && unzip -o brific3076.zip -d brific3076 && unzip -o brific3075.zip -d brific3075
+# The special-interest XLS comes from the Since AI platform: save it as data/raw/special_interest.xlsx
+```
+
+Then `python scripts/inspect_mdb.py data/raw/ific3074/*.mdb` and fill `schema_map.yaml`. Only after that may `space_ific.py` be written.
+
+### ITU tables we expect `[HYPOTHESIS: names from the SRS structure; verify against SRSDiagramV9_1.pdf and legend_E.pdf]`
+
+| Our name | Expected SRS table | Fields we need |
+|---|---|---|
+| notice | `com_el` | `ntc_id`, `adm`, `sat_name`, `ntwk_org`, `ntc_type` (GSO or non-GSO), `long_nom`, `d_rcv`, special section reference and number |
+| group | `grp` | `grp_id`, `ntc_id`, `beam_name`, `emi_rcp` (E = space station emits, R = receives), `freq_min`, `freq_max`, `d_inuse` |
+| frequency | `freq` | `grp_id`, `freq_assgn` |
+| emission | `emiss` | `grp_id`, `design_emi`, `pwr_ds_max` (dBW/Hz), `pwr_tot_pk` |
+| beam | `s_beam` | `ntc_id`, `beam_name`, `emi_rcp`, `gain` (max dBi) |
+| service area | `geo` or `srv_area` | `grp_id`, area or country codes |
+| service class | `srv_cls` | `grp_id`, `stn_cls`, service |
+| orbit (non-GSO) | `orbit` | `ntc_id`, planes, satellites per plane, inclination, apogee, perigee |
+| pfd mask (non-GSO) | mask tables | presence only (C1) |
+| earth station | `e_stn` | `ntc_id`, `stn_name`, country, coordinates |
+
+Terrestrial MDB extract: read `ReadMe_3076.pdf` first. We expect one notice table with administration, notice type (add, modify, suppress), station class, country, site name and coordinates, assigned frequency, bandwidth, power or ERP, antenna height, azimuth and polarisation `[HYPOTHESIS]`.
+
+---
+
+## Pipeline
+
+```
+issue number
+  -> adapter: download or reuse zip -> mdb -> DuckDB (data/derived/<kind>_<issue>.duckdb)
+  -> normalise: Notice + FrequencyGroup rows (space) | TerrestrialNotice rows (terrestrial, with diff against the previous issue)
+  -> relevance.py: overlap with FinnishSubBand rows and SpecialInterestStation rows, direction rules
+  -> geography.py: GSO elevation from Finnish reference points | non-GSO visibility | border distance for terrestrial
+  -> calc: pfd.py (space) | p1546.py (terrestrial) -> CalcTrace
+  -> assemble.py: Finding with Evidence; rank.py: concern level
+  -> llm/explain.py (optional, grounded) ; llm/letter.py (on request)
+  -> export/results.py ; API ; one screen
+```
+
+### Relevance rules `[HYPOTHESIS until Q1 is answered]`
+
+| Group direction | Finnish table match | Concern path |
+|---|---|---|
+| space-to-Earth (`emi_rcp = E`) | sub-band allocated to terrestrial services (FIXED, MOBILE, BROADCASTING, RADIOLOCATION and similar) | pfd at the Finnish surface versus the limits table: this is the main path |
+| space-to-Earth | sub-band allocated to a space service in Finland (text contains "(space-to-Earth)") | co-frequency with Finnish satellite downlinks or earth stations: flag for coordination review, no pfd limit `[GAP: Q8]` |
+| Earth-to-space (`emi_rcp = R`) | any Finnish terrestrial allocation | low unless the associated earth station is in a neighbouring country; otherwise informational |
+| any | special-interest station within the group's frequency range | always at least Medium, with the station as evidence |
+
+Frequency overlap is computed on Hz integers: `max(0, min(g.freq_max, s.upper) - max(g.freq_min, s.lower))`.
+
+### Geometry `[HYPOTHESIS: standard formulas; coordinates approximate]`
+
+Finnish reference points in `data/reference/fi_reference_points.csv`: Hanko 59.82 N 22.97 E, Helsinki 60.17 N 24.94 E, Vaasa 63.10 N 21.62 E, Ilomantsi 62.67 N 30.93 E, Oulu 65.01 N 25.47 E, Utsjoki 69.91 N 27.03 E.
+
+For a GSO satellite at longitude `L` and a site at latitude `phi`, longitude `lam`, with `R = 6378.137 km` and `h = 35786 km`:
+`cos(gamma) = cos(phi) * cos(L - lam)`;
+`elevation = atan2(cos(gamma) - R / (R + h), sin(gamma))`;
+`slant_range = sqrt(R^2 + (R + h)^2 - 2 * R * (R + h) * cos(gamma))`.
+Visible if elevation is above 0 degrees; low-elevation flag below 10 degrees. Finland sees GSO satellites at low elevation, so the strict low-angle pfd limits usually apply.
+
+Terrestrial: distance from the notified station to the nearest point of the Finland polygon (`data/reference/finland.geojson`), path type land, sea or mixed from the line crossing the polygon and the sea mask.
+
+### Calculations
+
+**pfd (space, GSO worst case):** with `P_d` the maximum power density at the antenna input in dBW/Hz (`emiss.pwr_ds_max`), `G` the maximum beam gain in dBi (`s_beam.gain`), `d` the slant range in metres at the Finnish point with the lowest elevation, and `B_ref` the reference bandwidth of the limit in Hz:
+`pfd_dbw_m2 = P_d + G + 10 log10(B_ref) - 10 log10(4 * pi * d^2)`.
+Limit lookup from `data/reference/pfd_limits.csv` (`band_min_mhz, band_max_mhz, service, ref_bw_hz, limit_le5deg, slope_per_deg, limit_ge25deg, source`): `limit = limit_le5deg` for elevation at or below 5 degrees, linear between 5 and 25 degrees, `limit_ge25deg` above `[HYPOTHESIS shape; values typed from RR Article 21 and reviewed by two people]`. `margin_db = limit - pfd`. Worst case ignores atmospheric loss and beam roll-off, which makes it conservative; say so in the trace. Non-GSO: report mask presence only (C1) `[GAP: Q7]`.
+
+**Field strength (terrestrial):** inputs frequency MHz, distance km, time percentage, transmitting effective height, receiving height 10 m, path type, ERP. Prefer an official ITU-R Study Group 3 reference implementation of P.1546 if one can be installed in under an hour; otherwise implement the curve interpolation for the frequency and distance ranges we hit, keep `tests/p1546_vectors.md` with hand-checked values, and label the method in the trace. `E = E_curve(1 kW) + ERP_dBW - 30`. Threshold from `data/reference/tr2508_thresholds.csv` `[HYPOTHESIS values]` `[GAP: Q12]`. `margin_db = threshold - E`.
+
+Every calculation returns a `CalcTrace` and never a bare number.
+
+---
+
+## Data contracts (Pydantic, `backend/radar/models.py`)
 
 ```python
 from datetime import date, datetime
-from enum import Enum
 from typing import Literal
 from pydantic import BaseModel, Field
 
-class FilingStage(str, Enum):
-    advance_publication = "advance_publication"
-    coordination = "coordination"
-    notification = "notification"
-    unknown = "unknown"
-
-class FrequencyRange(BaseModel):
-    min_mhz: float
-    max_mhz: float
-    direction: Literal["uplink", "downlink", "unknown"] = "unknown"
-
-class ServiceArea(BaseModel):
-    center_lat: float | None = None
-    center_lon: float | None = None
-    radius_km: float | None = None
-    polygon: list[tuple[float, float]] | None = None  # (lat, lon)
-
-class Orbit(BaseModel):
-    type: Literal["GSO", "NGSO", "unknown"]
-    longitude_deg: float | None = None   # GSO
-    altitude_km: float | None = None     # NGSO
-    inclination_deg: float | None = None # NGSO
-
-class Filing(BaseModel):
-    id: str
-    network_name: str
-    administration: str | None = None
-    stage: FilingStage = FilingStage.unknown
-    published: date | None = None
-    comment_deadline: date | None = None   # [HYPOTHESIS]
-    orbit: Orbit
-    frequencies: list[FrequencyRange]
-    service_area: ServiceArea | None = None
-    max_power_dbw: float | None = None     # indicative only
-    source_ref: str                        # file + page/line
-
-class ProtectedAsset(BaseModel):
-    id: str
-    name: str
-    lat: float
-    lon: float
-    band: FrequencyRange
-    service: str
-    protection_threshold_db: float | None = None  # [HYPOTHESIS]
-    source_ref: str
+Kind = Literal["space", "terrestrial"]
+Concern = Literal["none", "low", "medium", "high", "review"]
 
 class Evidence(BaseModel):
-    id: str
-    kind: Literal["filing", "asset", "rule", "calculation"]
+    id: str                                   # "E-0001"
+    kind: Literal["itu_row", "finnish_table_row", "special_interest_row", "regulation", "calculation"]
+    source: str                               # file name, URL or document title
+    locator: str                              # "com_el.ntc_id=123456789" | "Taajuusjakotaulukko.ID=4123" | "RR Art. 21 Table 21-4"
+    excerpt: str                              # the value or sentence as found
+
+class FrequencyGroup(BaseModel):
+    group_id: str
+    notice_id: str
+    freq_min_hz: int
+    freq_max_hz: int
+    direction: Literal["space_to_earth", "earth_to_space", "unknown"]
+    beam_name: str | None = None
+    power_density_dbw_hz: float | None = None
+    max_gain_dbi: float | None = None
+    service_area_codes: list[str] = []
+    source_ref: str                           # table.row locator
+
+class Notice(BaseModel):
+    kind: Kind = "space"
+    issue: int                                # 3074
+    notice_id: str
+    administration: str                       # ITU symbol, e.g. "FIN"
+    network_name: str
+    special_section: str | None = None        # "API/A", "CR/C", ...
+    orbit: Literal["GSO", "NGSO", "unknown"]
+    longitude_deg: float | None = None
+    received: date | None = None
+    groups: list[FrequencyGroup]
     source_ref: str
-    excerpt: str
+
+class TerrestrialNotice(BaseModel):
+    kind: Kind = "terrestrial"
+    issue: int                                # 3076
+    notice_id: str
+    administration: str
+    change: Literal["new", "modified", "withdrawn", "unchanged"]
+    station_class: str | None = None
+    site_name: str | None = None
+    lat: float | None = None
+    lon: float | None = None
+    freq_hz: int | None = None
+    bandwidth_hz: int | None = None
+    erp_dbw: float | None = None
+    antenna_height_m: float | None = None
+    azimuth_deg: float | None = None
+    source_ref: str
+
+class FinnishSubBand(BaseModel):              # one Traficom API row
+    id: int
+    lower_hz: int
+    upper_hz: int
+    services_in_finland: str
+    sub_band_usage: str
+    class_of_station: str | None = None
+    direction: str | None = None
+    comment: str | None = None
+
+class SpecialInterestStation(BaseModel):      # one XLS row, columns per brief 05 [GAP: Q4]
+    station_number: str
+    centre_hz: int
+    bandwidth_hz: int
+    lat: float
+    lon: float
+    antenna_height_m: float | None = None
+    antenna_direction_deg: float | None = None
+    antenna_directivity: str | None = None
+    limit_value: float | None = None
+    limit_unit: str | None = None
+
+class CalcInput(BaseModel):
+    name: str
+    value: float | str
+    unit: str
+    evidence_id: str
+
+class CalcTrace(BaseModel):
+    method: Literal["pfd_gso_worst_case", "p1546_field_strength", "none"]
+    inputs: list[CalcInput]
+    formula: str
+    result_value: float | None
+    result_unit: str
+    limit_value: float | None
+    limit_evidence_id: str | None
+    margin_db: float | None
+    label: Literal["indicative", "confirmed"] = "indicative"
+    notes: list[str] = []
 
 class Finding(BaseModel):
-    id: str
-    filing_id: str
-    asset_id: str
-    freq_overlap_mhz: float
-    geo_overlap: bool
-    factors: dict[str, float]           # factor name -> contribution 0..100
-    score: int = Field(ge=0, le=100)
-    explanation: str | None = None      # must only cite evidence IDs below
+    id: str                                   # "F-3074-0001"
+    kind: Kind
+    issue: int
+    notice_id: str
+    group_id: str | None = None
+    matched_subband_ids: list[int] = []
+    matched_station_numbers: list[str] = []
+    overlap_hz: int = 0
+    geo_relevance: Literal["visible", "low_elevation", "not_visible", "near_border", "far", "unknown"]
+    calc: CalcTrace
+    concern: Concern
+    reason: str                               # deterministic, template-based
+    explanation: str | None = None            # LLM, cites evidence IDs only
     evidence: list[Evidence] = Field(min_length=1)
-    indicative: bool = False
 
 class AnalysisResult(BaseModel):
-    filing: Filing
+    issue: int
+    kind: Kind
+    screened: int
+    flagged: int
+    provenance_coverage_pct: float
     findings: list[Finding]
-    overall_score: int = Field(ge=0, le=100)
-    minutes_saved_estimate: float       # [HYPOTHESIS formula]
-    evidence_coverage_pct: float
     from_cache: bool = False
 
 class ReviewDecision(BaseModel):
@@ -146,55 +324,148 @@ class ReviewDecision(BaseModel):
     reviewer: str
     note: str | None = None
     at: datetime
+
+class Letter(BaseModel):
+    finding_id: str
+    to_administration: str
+    subject: str
+    body_markdown: str
+    cited_evidence_ids: list[str]
+
+class ResultRow(BaseModel):                   # one line of the graded results file
+    issue: int
+    kind: Kind
+    notice_id: str
+    special_section: str | None
+    administration: str
+    network_or_station: str
+    freq_min_mhz: float | None
+    freq_max_mhz: float | None
+    direction: str | None
+    finnish_match: str | None                 # services and sub-band IDs
+    special_interest_station_ids: str | None
+    overlap_mhz: float | None
+    geo_relevance: str
+    calc_method: str
+    calc_value: float | None
+    calc_unit: str | None
+    limit_value: float | None
+    margin_db: float | None
+    concern: Concern
+    reason: str
+    evidence_refs: str                        # semicolon-separated locators
+    decision: str | None = None
 ```
 
-`frontend/src/types.ts` mirrors these one-to-one. **`models.py` is frozen after Gate 1**; changes go through the PM and are applied to both files in the same commit.
+`frontend/src/types.ts` mirrors these one to one, for example:
+
+```ts
+export type Kind = "space" | "terrestrial";
+export type Concern = "none" | "low" | "medium" | "high" | "review";
+export interface Evidence { id: string; kind: "itu_row" | "finnish_table_row" | "special_interest_row" | "regulation" | "calculation"; source: string; locator: string; excerpt: string; }
+export interface CalcInput { name: string; value: number | string; unit: string; evidence_id: string; }
+export interface CalcTrace { method: "pfd_gso_worst_case" | "p1546_field_strength" | "none"; inputs: CalcInput[]; formula: string; result_value: number | null; result_unit: string; limit_value: number | null; limit_evidence_id: string | null; margin_db: number | null; label: "indicative" | "confirmed"; notes: string[]; }
+export interface Finding { id: string; kind: Kind; issue: number; notice_id: string; group_id: string | null; matched_subband_ids: number[]; matched_station_numbers: string[]; overlap_hz: number; geo_relevance: "visible" | "low_elevation" | "not_visible" | "near_border" | "far" | "unknown"; calc: CalcTrace; concern: Concern; reason: string; explanation: string | null; evidence: Evidence[]; }
+export interface AnalysisResult { issue: number; kind: Kind; screened: number; flagged: number; provenance_coverage_pct: number; findings: Finding[]; from_cache: boolean; }
+```
+
+**`models.py` and `types.ts` are frozen after Gate 1 (Fri 23:30).** A new field needs the PM and lands in both files in one commit.
 
 ---
 
-## Branch A / Branch B Data Adapter Rule
+## LLM contract (`backend/radar/llm/`)
+
+- One client: `anthropic.Anthropic()` reads `ANTHROPIC_API_KEY` from `.env`. Model from `LLM_MODEL`, default `claude-opus-5-5`. `LLM_DISABLED=1` returns placeholders.
+- Structured outputs through `client.messages.parse(...)` with a Pydantic class; the result is validated before use. Free text drafts go through `client.beta.messages.create(...)` with `fallbacks="default"` and `betas=["server-side-fallback-2026-07-01"]`, so a safety refusal falls back to another model instead of failing the demo. Check `stop_reason` before reading content.
+- Prompts live in `prompts/*.md` and are loaded, never inlined. The system prompt is stable (cacheable); the finding JSON goes in the user message.
+- The model receives only: the finding, its evidence items, and the matched Finnish rows. It must cite evidence IDs in `cited_evidence_ids`; a validator rejects any ID not in the finding and any new number not present in the inputs.
 
 ```python
-class DataAdapter(Protocol):
-    def list_filings(self) -> list[Filing]: ...
-    def get_filing(self, filing_id: str) -> Filing: ...
-    def list_assets(self) -> list[ProtectedAsset]: ...
+# backend/radar/llm/explain.py
+import anthropic
+from pydantic import BaseModel
+from radar.config import settings
+from radar.models import Finding
+
+class Explanation(BaseModel):
+    text: str                      # two sentences, plain language
+    cited_evidence_ids: list[str]
+
+client = anthropic.Anthropic()
+
+def explain(finding: Finding) -> Explanation:
+    if settings.llm_disabled:
+        return Explanation(text=finding.reason, cited_evidence_ids=[e.id for e in finding.evidence[:1]])
+    response = client.messages.parse(
+        model=settings.llm_model,                  # default "claude-opus-5-5"
+        max_tokens=2000,
+        thinking={"type": "adaptive"},
+        output_config={"effort": "medium"},
+        system=settings.prompt("explain"),         # prompts/explain.md, stable for caching
+        messages=[{"role": "user", "content": finding.model_dump_json()}],
+        output_format=Explanation,
+    )
+    if response.stop_reason == "refusal":
+        return Explanation(text=finding.reason, cited_evidence_ids=[e.id for e in finding.evidence[:1]])
+    out = response.parsed_output
+    allowed = {e.id for e in finding.evidence}
+    if not set(out.cited_evidence_ids) <= allowed:
+        raise ValueError("explanation cites unknown evidence")
+    return out
 ```
 
-- `DATA_SOURCE=synthetic` → `adapters/synthetic.py` (reads `data/seed/`)
-- `DATA_SOURCE=partner` → `adapters/partner.py` (reads `data/partner/`)
-- **Swapping synthetic for real data must be one file edit: `partner.py`.** Pipeline, API and UI never import an adapter directly; they get it from `config.get_adapter()`.
-
-## Deterministic Demo Mode Contract
-
-- `DEMO_MODE=1` (or the UI toggle) → `POST /analyze` for `sample_1|sample_2|sample_3` returns `data/cache/<sample_id>.json` and sets `from_cache=true`. No network calls.
-- `scripts/build_cache.py` regenerates the cache from a live run; commit the output.
-- The cached JSON must validate against `AnalysisResult`. A test checks this.
-- The video and the Sunday demo are recorded in Demo Mode.
+The letter draft uses the same shape with `effort: "high"`, `max_tokens=4000`, the `Letter` model, and `prompts/letter.md` (formal English, names the special section reference, the frequency range, the Finnish service, the RR provision, asks for coordination or for the technical parameters, signed by a placeholder) `[GAP: Q10]`.
 
 ---
 
-## Multi-Agent Division Rules
+## Demo mode and results export
+
+- `DEMO_MODE=1` or the UI switch: `POST /issues/{issue}/screen` and `GET /findings` serve `data/cache/sample_<n>.json`, validated against `AnalysisResult`, `from_cache = true`, no network and no LLM calls. `scripts/build_cache.py` regenerates the cache from a live run. The video and the Sunday demo run in demo mode. Details in `pm_pack/04_Risk_Register_and_Mitigation.md`.
+- `python -m radar.export --issue 3074 --kind space` writes `results/space_3074.csv` and `.json` (rows are `ResultRow`); the same for `--issue 3076 --kind terrestrial`. These are the files the brief asks to submit separately `[SOURCE DATA: brief 07]` `[GAP: Q3 for the partner's preferred schema]`. Commit them with a `results/README.md` that states inputs, parameters and assumptions.
+
+## API (`backend/radar/main.py`)
+
+| Method and path | Returns |
+|---|---|
+| `GET /issues` | known issues with status (downloaded, converted, screened) |
+| `POST /issues/{issue}/screen?kind=space` | `AnalysisResult` (runs or returns the cached run) |
+| `GET /findings?issue=3074&kind=space` | ranked `Finding[]` |
+| `GET /findings/{id}` | one `Finding` with its evidence and trace |
+| `POST /findings/{id}/decision` | stores a `ReviewDecision` |
+| `POST /findings/{id}/letter` | `Letter` |
+| `GET /reference/subbands?hz=11000000000` | matching `FinnishSubBand[]` |
+| `GET /export/{issue}?kind=space` | the results CSV |
+| `GET /metrics?issue=3074` | screened, flagged, provenance coverage |
+
+---
+
+## Multi-agent division rules
 
 | Agent | Owns | Must not touch |
 |---|---|---|
-| **Claude Code** | `backend/app/pipeline/`, `llm.py`, prompts, `models.py` (with PM approval) | `frontend/` |
-| **Cursor** | `frontend/` | `backend/app/pipeline/` |
-| **Codex** | `scripts/`, `tests/`, `adapters/` | UI components, prompts |
-| **Antigravity** | Visual polish, map styling, video/deck assets | Contracts, pipeline |
+| **Claude Code** | `backend/radar/pipeline/`, `calc/`, `llm/`, `prompts/`, `models.py` (with PM approval) | `frontend/` |
+| **Cursor** | `frontend/` | `backend/radar/pipeline/`, `calc/` |
+| **Codex** | `scripts/`, `tests/`, `adapters/`, `schema_map.yaml`, `export/` | UI components, prompts, calculations |
+| **Antigravity** | map styling, charts, `design/`, video and deck assets | contracts, pipeline, calculations |
 
 Shared rules:
-1. One agent per folder at a time. Small commits, one feature per branch.
-2. Contracts first: if an agent needs a new field, it stops and asks the PM.
-3. Every agent runs `pytest` (backend) or `npm run build` (frontend) before committing.
-4. No secrets or partner data in commits. `data/partner/` and `.env` stay git-ignored.
+
+1. One agent per folder at a time. Small commits, one feature per branch, branch names `feat/<area>-<thing>`.
+2. Contracts first: an agent that needs a new field stops and asks the PM; no local workarounds.
+3. Before every commit: backend `uv run pytest -q`, frontend `npm run build`. A failing test is never committed.
+4. No secrets, no `data/raw/`, no `data/derived/` in commits. `.env` stays local. `results/` and `data/cache/` are committed on purpose.
+5. Every number on screen comes from a `CalcTrace` or a counted query. No agent writes a literal number into the UI.
+6. The language model never decides concern level, never computes, never cites anything outside the finding.
+7. Keep `pm_pack/` in sync: when a partner answer arrives, the PM updates the `[GAP]` tags before engineers change behaviour.
+8. When a task is done: commit the work, push the branch to `origin` and open a pull request against `main` (`gh pr create`, short title, body that says what changed and why). Never commit straight to `main`; a person reviews and merges.
 
 ---
 
-## Final Verification: Top 5 Gaps That Could Change This Architecture `[GAP - ASK PARTNER]`
+## Final verification: gaps that can change this architecture `[GAP - ASK PARTNER]`
 
-1. **Real data format** (SRS `.mdb`, GXT, PDF circulars, API?) → rewrites `adapters/partner.py` and maybe `extract.py`.
-2. **Protected-asset list** (exists? shareable? format?) → changes `ProtectedAsset` and the matching logic.
-3. **Cloud LLM allowed?** → swaps `LLMClient` to a local model; may change hosting.
-4. **Expert's actual output** (memo, ITU comment, coordination request) → changes `ReviewDecision` and the export feature.
-5. **What evaluators judge on Sunday** → may move effort between batch ranking, explanations and interference maths.
+1. **Q1 relevance rule.** Changes `relevance.py` ordering and may add beam or service-area geometry.
+2. **Q2 pfd limits and method.** Changes `pfd_limits.csv` and whether non-GSO needs more than a mask check.
+3. **Q3 results format.** Changes `ResultRow` and the export; do this before Gate 4.
+4. **Q4 special-interest XLS columns.** Changes `SpecialInterestStation` and whether limits come from the XLS.
+5. **Q12 P.1546 and T/R 25-08 parameters.** Changes `p1546.py` defaults and `tr2508_thresholds.csv`.
+6. **Q13 database access.** If `mdbtools` fails, the adapter reads partner CSV extracts instead; nothing else changes.
