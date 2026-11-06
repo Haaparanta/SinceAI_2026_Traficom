@@ -5,6 +5,8 @@
 > This architecture was designed from `README.md` alone. The data schemas below are **our own `[HYPOTHESIS]` model**, not ITU or Traficom formats. Do not treat any field name as an official spec. When real partner data arrives, change **only** the adapter (`backend/app/adapters/partner.py`) and, if needed, add fields to the models. See "Final Verification" at the end.
 >
 > To use: `ln -s pm_pack/06_AGENTS_Master_Context.md AGENTS.md` (and the same for `CLAUDE.md` / `.cursorrules`).
+>
+> **Update 6 Nov 2026:** the real data formats are now known. See `pm_pack/07_Solution_Catalogue.md`, section 2, for the actual SNS (space) and FXM (terrestrial) tables and columns, and section 4 for the solution list; it supersedes the `[HYPOTHESIS]` schema below where they differ.
 
 ---
 
