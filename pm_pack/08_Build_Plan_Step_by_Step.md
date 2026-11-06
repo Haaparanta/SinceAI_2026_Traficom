@@ -13,7 +13,7 @@ How we build Filing Radar from an empty `backend/` to the two graded results fil
 | Step | State | Proof | PR |
 |---|---|---|---|
 | A1, A2 tools and data | done | `make doctor check-data checksums` | #16 |
-| A3 special-interest XLS | **waiting**: download by hand from the Since AI platform | `make check-data` shows WAITING | |
+| A3 special-interest XLS | done 7 Nov 2026; `Traficom_SinceAI_Frequencies_of_interest_v05112026.xlsx`: 874 rows, 870 stations, 4 excluded with reasons, 131 flagged; read by `adapters/special_interest.py` | `make special-interest`, `reports/reference/special_interest.html` | this PR |
 | A4 schema | done; all expected tables found | `reports/schema/*.html` | #17 |
 | A5 DuckDB, A6 Finnish table | done; row counts match, 5 917 rows | `reports/convert/*.html`, `reports/reference/fi_subbands.html` | #18 |
 | B1 to B5 space 3074 | done; 196 notices, 135 flagged, results files written | `reports/3074/01-05_*.html`, `results/space_3074.*` | #19 to #23 |

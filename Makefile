@@ -1,5 +1,5 @@
 # Filing Radar. Step IDs refer to pm_pack/08_Build_Plan_Step_by_Step.md.
-.PHONY: doctor check-data checksums schema convert subbands ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial explanations determinism golden proof freeze status api-demo index cache frontend frontend-build e2e screenshots test api
+.PHONY: doctor check-data checksums schema convert subbands special-interest ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial explanations determinism golden proof freeze status api-demo index cache frontend frontend-build e2e screenshots test api
 
 doctor:        ## A1: tools on PATH, native arm64
 	python3 scripts/doctor.py tools
@@ -61,6 +61,9 @@ field-strength: ## C3: P.1546 at the border, report reports/$(ISSUE)/02_field_st
 
 results-terrestrial: ## C3: results/terrestrial_$(ISSUE).csv|json
 	PYTHONPATH=backend:. uv run python -m radar.export --issue $(ISSUE) --kind terrestrial
+
+special-interest: ## A3: read data/raw/special_interest.xlsx, report reports/reference/special_interest.html
+	uv run python scripts/special_interest_report.py
 
 explanations:  ## D2: grounded explanations and letters for 20 findings, report reports/$(ISSUE)/07_explanations.html
 	uv run python scripts/explanations_report.py $(ISSUE)

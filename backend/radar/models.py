@@ -75,17 +75,25 @@ class FinnishSubBand(BaseModel):              # one Traficom API row
     comment: str | None = None
 
 
-class SpecialInterestStation(BaseModel):      # one XLS row, columns per brief 05 [GAP: Q4]
+class SpecialInterestStation(BaseModel):      # one row of Traficom_SinceAI_Frequencies_of_interest_v05112026.xlsx
     station_number: str
-    centre_hz: int
+    centre_hz: int                            # RX frequency: the channel the station receives on, which is protected
     bandwidth_hz: int
     lat: float
     lon: float
-    antenna_height_m: float | None = None
+    antenna_height_m: float | None = None     # above ground level
     antenna_direction_deg: float | None = None
-    antenna_directivity: str | None = None
-    limit_value: float | None = None
+    antenna_directivity: str | None = None    # "D" directional, "ND" non-directional
+    limit_value: float | None = None          # the XLS gives no limits; kept for a future table
     limit_unit: str | None = None
+    # Added 7 Nov 2026 with the PM's approval (the XLS has TX and RX frequencies and more antenna data):
+    tx_hz: int | None = None
+    licence_class: str | None = None          # BC, BT, FX, MVV, MUUT or None as filed
+    erp_w: float | None = None                # radiated power in W when the unit is given; unknown otherwise
+    antenna_gain_db: float | None = None      # as filed ("Ant gain (dB)"), reference not stated
+    ground_height_m: float | None = None
+    source_row: int | None = None             # spreadsheet row number, for evidence
+    quality_flags: list[str] = []             # what the reader noticed and did (rule 3: values are never invented)
 
 
 class CalcInput(BaseModel):

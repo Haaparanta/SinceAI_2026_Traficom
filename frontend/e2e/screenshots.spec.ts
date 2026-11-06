@@ -77,3 +77,14 @@ test("review: pfd report with the sign-off", async ({ page }, info) => {
   await page.getByText(/Signed off on 7 Nov 2026/).scrollIntoViewIfNeeded();
   await page.screenshot({ path: `../docs/screenshots/${step}/1-pfd-report-${info.project.name}.png` });
 });
+
+test("a3: special-interest stations report", async ({ page }, info) => {
+  test.skip(step !== "a3");
+  const proof = new URL("../../results/proof/", import.meta.url).href;
+  await page.goto(`${proof}reference/special_interest.html`);
+  await expect(page.getByRole("heading", { name: "Special-interest stations" })).toBeVisible();
+  await page.screenshot({ path: `../docs/screenshots/${step}/1-summary-${info.project.name}.png` });
+  await page.getByRole("heading", { name: "Where they are and what they use" }).scrollIntoViewIfNeeded();
+  await page.getByRole("heading", { name: "Where they are and what they use" }).evaluate((el) => el.scrollIntoView({ block: "start" }));
+  await page.screenshot({ path: `../docs/screenshots/${step}/2-map-and-spectrum-${info.project.name}.png` });
+});
