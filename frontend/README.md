@@ -8,7 +8,7 @@ make api          # FastAPI on http://127.0.0.1:8000 (reads data/cache/*.json)
 make frontend     # this screen on http://127.0.0.1:5173, /api proxied to the API
 make cache        # rebuild data/cache from a live pipeline run (needs data/derived)
 make frontend-build
-make e2e                      # Playwright: own API (8100) and dev server (5180), throwaway decision log
+make e2e                      # Playwright: own API (8100) and dev server (5287; E2E_API_PORT, E2E_WEB_PORT override), throwaway decision log
 make screenshots STEP=e       # PR screenshots into docs/screenshots/e/
 ```
 
