@@ -9,7 +9,7 @@
   "freq_min_mhz": 152.0166,
   "freq_max_mhz": 152.0334,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "LAND MOBILE (IDs 2149)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -20,7 +20,7 @@
   "margin_db": -13.0,
   "concern": "high",
   "reason": "new land-mobile notice; 31.5 km from Finland; field strength at the border 25 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 12 dB(uV/m): exceeds by 13 dB",
-  "evidence_refs": "fxm_terra.terrakey=93082383; fxm_geo.geo_key=4062619; fxm_ant.terrakey=93082383&ant_key=1; border(notice_id=93082383); p1546(notice_id=93082383); tr2508_thresholds.csv id=TR2508_A1_108-380",
+  "evidence_refs": "fxm_terra.terrakey=93082383; Taajuusjakotaulukko.ID=2149; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2149; fxm_geo.geo_key=4062619; fxm_ant.terrakey=93082383&ant_key=1; border(notice_id=93082383); p1546(notice_id=93082383); tr2508_thresholds.csv id=TR2508_A1_108-380",
   "decision": null
  },
  {
@@ -33,7 +33,7 @@
   "freq_min_mhz": 152.8916,
   "freq_max_mhz": 152.9084,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "LAND MOBILE (IDs 2155)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -44,7 +44,7 @@
   "margin_db": -12.73,
   "concern": "high",
   "reason": "new land-mobile notice; 32 km from Finland; field strength at the border 24.73 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 12 dB(uV/m): exceeds by 12.73 dB",
-  "evidence_refs": "fxm_terra.terrakey=93082838; fxm_geo.geo_key=4062820; fxm_ant.terrakey=93082838&ant_key=1; border(notice_id=93082838); p1546(notice_id=93082838); tr2508_thresholds.csv id=TR2508_A1_108-380",
+  "evidence_refs": "fxm_terra.terrakey=93082838; Taajuusjakotaulukko.ID=2155; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2155; fxm_geo.geo_key=4062820; fxm_ant.terrakey=93082838&ant_key=1; border(notice_id=93082838); p1546(notice_id=93082838); tr2508_thresholds.csv id=TR2508_A1_108-380",
   "decision": null
  },
  {
@@ -57,7 +57,7 @@
   "freq_min_mhz": 152.8916,
   "freq_max_mhz": 152.9084,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "LAND MOBILE (IDs 2155)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -68,7 +68,7 @@
   "margin_db": -8.99,
   "concern": "high",
   "reason": "new land-mobile notice; 42.3 km from Finland; field strength at the border 20.99 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 12 dB(uV/m): exceeds by 8.99 dB",
-  "evidence_refs": "fxm_terra.terrakey=93075637; fxm_geo.geo_key=4059970; fxm_ant.terrakey=93075637&ant_key=1; border(notice_id=93075637); p1546(notice_id=93075637); tr2508_thresholds.csv id=TR2508_A1_108-380",
+  "evidence_refs": "fxm_terra.terrakey=93075637; Taajuusjakotaulukko.ID=2155; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2155; fxm_geo.geo_key=4059970; fxm_ant.terrakey=93075637&ant_key=1; border(notice_id=93075637); p1546(notice_id=93075637); tr2508_thresholds.csv id=TR2508_A1_108-380",
   "decision": null
  },
  {
@@ -81,7 +81,7 @@
   "freq_min_mhz": 153.0666,
   "freq_max_mhz": 153.0834,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "LAND MOBILE (IDs 2155)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -92,7 +92,7 @@
   "margin_db": -8.14,
   "concern": "high",
   "reason": "new land-mobile notice; 29.9 km from Finland; field strength at the border 20.14 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 12 dB(uV/m): exceeds by 8.14 dB",
-  "evidence_refs": "fxm_terra.terrakey=93082322; fxm_geo.geo_key=4062597; fxm_ant.terrakey=93082322&ant_key=1; border(notice_id=93082322); p1546(notice_id=93082322); tr2508_thresholds.csv id=TR2508_A1_108-380",
+  "evidence_refs": "fxm_terra.terrakey=93082322; Taajuusjakotaulukko.ID=2155; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2155; fxm_geo.geo_key=4062597; fxm_ant.terrakey=93082322&ant_key=1; border(notice_id=93082322); p1546(notice_id=93082322); tr2508_thresholds.csv id=TR2508_A1_108-380",
   "decision": null
  },
  {
@@ -105,7 +105,7 @@
   "freq_min_mhz": 153.2916,
   "freq_max_mhz": 153.3084,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "LAND MOBILE (IDs 2155)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -116,7 +116,7 @@
   "margin_db": -8.14,
   "concern": "high",
   "reason": "new land-mobile notice; 29.9 km from Finland; field strength at the border 20.14 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 12 dB(uV/m): exceeds by 8.14 dB",
-  "evidence_refs": "fxm_terra.terrakey=93082323; fxm_geo.geo_key=4062597; fxm_ant.terrakey=93082323&ant_key=1; border(notice_id=93082323); p1546(notice_id=93082323); tr2508_thresholds.csv id=TR2508_A1_108-380",
+  "evidence_refs": "fxm_terra.terrakey=93082323; Taajuusjakotaulukko.ID=2155; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2155; fxm_geo.geo_key=4062597; fxm_ant.terrakey=93082323&ant_key=1; border(notice_id=93082323); p1546(notice_id=93082323); tr2508_thresholds.csv id=TR2508_A1_108-380",
   "decision": null
  },
  {
@@ -129,7 +129,7 @@
   "freq_min_mhz": 153.0166,
   "freq_max_mhz": 153.0334,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "LAND MOBILE (IDs 2155)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -140,7 +140,7 @@
   "margin_db": -8.14,
   "concern": "high",
   "reason": "new land-mobile notice; 29.9 km from Finland; field strength at the border 20.14 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 12 dB(uV/m): exceeds by 8.14 dB",
-  "evidence_refs": "fxm_terra.terrakey=93082324; fxm_geo.geo_key=4062597; fxm_ant.terrakey=93082324&ant_key=1; border(notice_id=93082324); p1546(notice_id=93082324); tr2508_thresholds.csv id=TR2508_A1_108-380",
+  "evidence_refs": "fxm_terra.terrakey=93082324; Taajuusjakotaulukko.ID=2155; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2155; fxm_geo.geo_key=4062597; fxm_ant.terrakey=93082324&ant_key=1; border(notice_id=93082324); p1546(notice_id=93082324); tr2508_thresholds.csv id=TR2508_A1_108-380",
   "decision": null
  },
  {
@@ -153,7 +153,7 @@
   "freq_min_mhz": 152.8916,
   "freq_max_mhz": 152.9084,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "LAND MOBILE (IDs 2155)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -164,7 +164,7 @@
   "margin_db": 4.7,
   "concern": "medium",
   "reason": "new land-mobile notice; 32 km from Finland; field strength at the border 7.3 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 12 dB(uV/m): 4.7 dB below",
-  "evidence_refs": "fxm_terra.terrakey=93082321; fxm_geo.geo_key=4062595; fxm_ant.terrakey=93082321&ant_key=1; border(notice_id=93082321); p1546(notice_id=93082321); tr2508_thresholds.csv id=TR2508_A1_108-380",
+  "evidence_refs": "fxm_terra.terrakey=93082321; Taajuusjakotaulukko.ID=2155; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2155; fxm_geo.geo_key=4062595; fxm_ant.terrakey=93082321&ant_key=1; border(notice_id=93082321); p1546(notice_id=93082321); tr2508_thresholds.csv id=TR2508_A1_108-380",
   "decision": null
  },
  {
@@ -177,7 +177,7 @@
   "freq_min_mhz": 791.0,
   "freq_max_mhz": 796.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": "988251",
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -188,7 +188,7 @@
   "margin_db": null,
   "concern": "review",
   "reason": "12.3 km from Finland; field strength at the border 17.82 dB(uV/m) (P.1546); no T/R 25-08 trigger for 793.5 MHz, criterion needed (Q12); special-interest station 988251: 293.6 km, field strength -39.27 dB(uV/m) at 13 m",
-  "evidence_refs": "fxm_terra.terrakey=93005610; fxm_geo.geo_key=4036421; fxm_ant.terrakey=93005610&ant_key=1; fxm_ant_hgt.terrakey=93005610&ant_key=1&azm=300.0; fxm_ant_hgt.terrakey=93005610&ant_key=1&azm=310.0; border(notice_id=93005610); p1546(notice_id=93005610); special_interest.xlsx row=844; p1546_station(notice_id=93005610;station=988251)",
+  "evidence_refs": "fxm_terra.terrakey=93005610; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=4036421; fxm_ant.terrakey=93005610&ant_key=1; fxm_ant_hgt.terrakey=93005610&ant_key=1&azm=300.0; fxm_ant_hgt.terrakey=93005610&ant_key=1&azm=310.0; border(notice_id=93005610); p1546(notice_id=93005610); special_interest.xlsx row=844; p1546_station(notice_id=93005610;station=988251)",
   "decision": null
  },
  {
@@ -201,7 +201,7 @@
   "freq_min_mhz": 791.14,
   "freq_max_mhz": 798.34,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": "988251, 983905",
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -212,7 +212,7 @@
   "margin_db": null,
   "concern": "review",
   "reason": "12.3 km from Finland; field strength at the border 17.81 dB(uV/m) (P.1546); no T/R 25-08 trigger for 794.74 MHz, criterion needed (Q12); 2 co-channel special-interest stations, worst 988251: 293.6 km, field strength -39.28 dB(uV/m) at 13 m",
-  "evidence_refs": "fxm_terra.terrakey=93005611; fxm_geo.geo_key=4036421; fxm_ant.terrakey=93005611&ant_key=1; fxm_ant_hgt.terrakey=93005611&ant_key=1&azm=300.0; fxm_ant_hgt.terrakey=93005611&ant_key=1&azm=310.0; border(notice_id=93005611); p1546(notice_id=93005611); special_interest.xlsx row=844; special_interest.xlsx row=853; p1546_station(notice_id=93005611;station=988251)",
+  "evidence_refs": "fxm_terra.terrakey=93005611; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=4036421; fxm_ant.terrakey=93005611&ant_key=1; fxm_ant_hgt.terrakey=93005611&ant_key=1&azm=300.0; fxm_ant_hgt.terrakey=93005611&ant_key=1&azm=310.0; border(notice_id=93005611); p1546(notice_id=93005611); special_interest.xlsx row=844; special_interest.xlsx row=853; p1546_station(notice_id=93005611;station=988251)",
   "decision": null
  },
  {
@@ -225,7 +225,7 @@
   "freq_min_mhz": 791.0,
   "freq_max_mhz": 796.0,
   "direction": "unchanged",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": "988251",
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -236,7 +236,7 @@
   "margin_db": null,
   "concern": "review",
   "reason": "13.9 km from Finland; field strength at the border 37.75 dB(uV/m) (P.1546); no T/R 25-08 trigger for 793.5 MHz, criterion needed (Q12); special-interest station 988251: 296.1 km, field strength -26.45 dB(uV/m) at 13 m",
-  "evidence_refs": "fxm_terra.terrakey=92326149; fxm_geo.geo_key=3596787; fxm_ant.terrakey=92326149&ant_key=1; fxm_ant_hgt.terrakey=92326149&ant_key=1&azm=300.0; fxm_ant_hgt.terrakey=92326149&ant_key=1&azm=310.0; border(notice_id=92326149); p1546(notice_id=92326149); special_interest.xlsx row=844; p1546_station(notice_id=92326149;station=988251)",
+  "evidence_refs": "fxm_terra.terrakey=92326149; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3596787; fxm_ant.terrakey=92326149&ant_key=1; fxm_ant_hgt.terrakey=92326149&ant_key=1&azm=300.0; fxm_ant_hgt.terrakey=92326149&ant_key=1&azm=310.0; border(notice_id=92326149); p1546(notice_id=92326149); special_interest.xlsx row=844; p1546_station(notice_id=92326149;station=988251)",
   "decision": null
  },
  {
@@ -249,7 +249,7 @@
   "freq_min_mhz": 791.0,
   "freq_max_mhz": 796.0,
   "direction": "modified",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": "988251",
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -260,7 +260,7 @@
   "margin_db": null,
   "concern": "review",
   "reason": "13.9 km from Finland; field strength at the border 34.93 dB(uV/m) (P.1546); no T/R 25-08 trigger for 793.5 MHz, criterion needed (Q12); special-interest station 988251: 296.1 km, field strength -31.11 dB(uV/m) at 13 m",
-  "evidence_refs": "fxm_terra.terrakey=93082392; fxm_geo.geo_key=3978811; fxm_ant.terrakey=93082392&ant_key=1; fxm_ant_hgt.terrakey=93082392&ant_key=1&azm=300.0; fxm_ant_hgt.terrakey=93082392&ant_key=1&azm=310.0; border(notice_id=93082392); p1546(notice_id=93082392); special_interest.xlsx row=844; p1546_station(notice_id=93082392;station=988251)",
+  "evidence_refs": "fxm_terra.terrakey=93082392; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3978811; fxm_ant.terrakey=93082392&ant_key=1; fxm_ant_hgt.terrakey=93082392&ant_key=1&azm=300.0; fxm_ant_hgt.terrakey=93082392&ant_key=1&azm=310.0; border(notice_id=93082392); p1546(notice_id=93082392); special_interest.xlsx row=844; p1546_station(notice_id=93082392;station=988251)",
   "decision": null
  },
  {
@@ -273,7 +273,7 @@
   "freq_min_mhz": 791.0,
   "freq_max_mhz": 796.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": "988251",
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -284,7 +284,7 @@
   "margin_db": null,
   "concern": "review",
   "reason": "95.1 km from Finland; field strength at the border -20.91 dB(uV/m) (P.1546); no T/R 25-08 trigger for 793.5 MHz, criterion needed (Q12); special-interest station 988251: 555.3 km, field strength -64.67 dB(uV/m) at 13 m",
-  "evidence_refs": "fxm_terra.terrakey=93082397; fxm_geo.geo_key=4031847; fxm_ant.terrakey=93082397&ant_key=1; fxm_ant_hgt.terrakey=93082397&ant_key=1&azm=270.0; fxm_ant_hgt.terrakey=93082397&ant_key=1&azm=280.0; border(notice_id=93082397); p1546(notice_id=93082397); special_interest.xlsx row=844; p1546_station(notice_id=93082397;station=988251)",
+  "evidence_refs": "fxm_terra.terrakey=93082397; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=4031847; fxm_ant.terrakey=93082397&ant_key=1; fxm_ant_hgt.terrakey=93082397&ant_key=1&azm=270.0; fxm_ant_hgt.terrakey=93082397&ant_key=1&azm=280.0; border(notice_id=93082397); p1546(notice_id=93082397); special_interest.xlsx row=844; p1546_station(notice_id=93082397;station=988251)",
   "decision": null
  },
  {
@@ -297,7 +297,7 @@
   "freq_min_mhz": 791.14,
   "freq_max_mhz": 798.34,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": "983905, 988251",
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -308,7 +308,7 @@
   "margin_db": null,
   "concern": "review",
   "reason": "95.1 km from Finland; field strength at the border -20.92 dB(uV/m) (P.1546); no T/R 25-08 trigger for 794.74 MHz, criterion needed (Q12); 2 co-channel special-interest stations, worst 983905: 228.7 km, field strength -34.21 dB(uV/m) at 8 m",
-  "evidence_refs": "fxm_terra.terrakey=93082398; fxm_geo.geo_key=4031847; fxm_ant.terrakey=93082398&ant_key=1; fxm_ant_hgt.terrakey=93082398&ant_key=1&azm=270.0; fxm_ant_hgt.terrakey=93082398&ant_key=1&azm=280.0; border(notice_id=93082398); p1546(notice_id=93082398); special_interest.xlsx row=853; special_interest.xlsx row=844; p1546_station(notice_id=93082398;station=983905)",
+  "evidence_refs": "fxm_terra.terrakey=93082398; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=4031847; fxm_ant.terrakey=93082398&ant_key=1; fxm_ant_hgt.terrakey=93082398&ant_key=1&azm=270.0; fxm_ant_hgt.terrakey=93082398&ant_key=1&azm=280.0; border(notice_id=93082398); p1546(notice_id=93082398); special_interest.xlsx row=853; special_interest.xlsx row=844; p1546_station(notice_id=93082398;station=983905)",
   "decision": null
  },
  {
@@ -321,7 +321,7 @@
   "freq_min_mhz": 152.8916,
   "freq_max_mhz": 152.9084,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "LAND MOBILE (IDs 2155)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -332,7 +332,7 @@
   "margin_db": 8.15,
   "concern": "low",
   "reason": "new land-mobile notice; 42.3 km from Finland; field strength at the border 3.85 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 12 dB(uV/m): 8.15 dB below",
-  "evidence_refs": "fxm_terra.terrakey=93075638; fxm_geo.geo_key=4060858; fxm_ant.terrakey=93075638&ant_key=1; border(notice_id=93075638); p1546(notice_id=93075638); tr2508_thresholds.csv id=TR2508_A1_108-380",
+  "evidence_refs": "fxm_terra.terrakey=93075638; Taajuusjakotaulukko.ID=2155; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2155; fxm_geo.geo_key=4060858; fxm_ant.terrakey=93075638&ant_key=1; border(notice_id=93075638); p1546(notice_id=93075638); tr2508_thresholds.csv id=TR2508_A1_108-380",
   "decision": null
  },
  {
@@ -345,7 +345,7 @@
   "freq_min_mhz": 425.816,
   "freq_max_mhz": 425.834,
   "direction": "modified",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 2773)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -356,7 +356,7 @@
   "margin_db": 8.98,
   "concern": "low",
   "reason": "modified land-mobile notice; 127.5 km from Finland; field strength at the border 11.02 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 20 dB(uV/m): 8.98 dB below",
-  "evidence_refs": "fxm_terra.terrakey=93075624; fxm_geo.geo_key=3475674; fxm_ant.terrakey=93075624&ant_key=1; border(notice_id=93075624); p1546(notice_id=93075624); tr2508_thresholds.csv id=TR2508_A1_400-470",
+  "evidence_refs": "fxm_terra.terrakey=93075624; Taajuusjakotaulukko.ID=2773; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2773; fxm_geo.geo_key=3475674; fxm_ant.terrakey=93075624&ant_key=1; border(notice_id=93075624); p1546(notice_id=93075624); tr2508_thresholds.csv id=TR2508_A1_400-470",
   "decision": null
  },
  {
@@ -369,7 +369,7 @@
   "freq_min_mhz": 425.816,
   "freq_max_mhz": 425.834,
   "direction": "unchanged",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 2773)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -380,7 +380,7 @@
   "margin_db": 11.58,
   "concern": "low",
   "reason": "recorded land-mobile notice; 127.5 km from Finland; field strength at the border 8.42 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 20 dB(uV/m): 11.58 dB below",
-  "evidence_refs": "fxm_terra.terrakey=6496116; fxm_geo.geo_key=3475674; fxm_ant.terrakey=6496116&ant_key=1; border(notice_id=6496116); p1546(notice_id=6496116); tr2508_thresholds.csv id=TR2508_A1_400-470",
+  "evidence_refs": "fxm_terra.terrakey=6496116; Taajuusjakotaulukko.ID=2773; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2773; fxm_geo.geo_key=3475674; fxm_ant.terrakey=6496116&ant_key=1; border(notice_id=6496116); p1546(notice_id=6496116); tr2508_thresholds.csv id=TR2508_A1_400-470",
   "decision": null
  },
  {
@@ -393,7 +393,7 @@
   "freq_min_mhz": 155.5916,
   "freq_max_mhz": 155.6084,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE; MARITIME MOBILE (IDs 2193, 2194)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -404,7 +404,7 @@
   "margin_db": 11.75,
   "concern": "low",
   "reason": "new land-mobile notice; 32 km from Finland; field strength at the border 0.25 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 12 dB(uV/m): 11.75 dB below",
-  "evidence_refs": "fxm_terra.terrakey=93082382; fxm_geo.geo_key=4062595; fxm_ant.terrakey=93082382&ant_key=1; border(notice_id=93082382); p1546(notice_id=93082382); tr2508_thresholds.csv id=TR2508_A1_108-380",
+  "evidence_refs": "fxm_terra.terrakey=93082382; Taajuusjakotaulukko.ID=2193; Taajuusjakotaulukko.ID=2194; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2193; fxm_geo.geo_key=4062595; fxm_ant.terrakey=93082382&ant_key=1; border(notice_id=93082382); p1546(notice_id=93082382); tr2508_thresholds.csv id=TR2508_A1_108-380",
   "decision": null
  },
  {
@@ -417,7 +417,7 @@
   "freq_min_mhz": 424.066,
   "freq_max_mhz": 424.084,
   "direction": "modified",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 2773)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -428,7 +428,7 @@
   "margin_db": 13.33,
   "concern": "low",
   "reason": "modified land-mobile notice; 143.9 km from Finland; field strength at the border 6.67 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 20 dB(uV/m): 13.33 dB below",
-  "evidence_refs": "fxm_terra.terrakey=93075627; fxm_geo.geo_key=4060846; fxm_ant.terrakey=93075627&ant_key=1; border(notice_id=93075627); p1546(notice_id=93075627); tr2508_thresholds.csv id=TR2508_A1_400-470",
+  "evidence_refs": "fxm_terra.terrakey=93075627; Taajuusjakotaulukko.ID=2773; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2773; fxm_geo.geo_key=4060846; fxm_ant.terrakey=93075627&ant_key=1; border(notice_id=93075627); p1546(notice_id=93075627); tr2508_thresholds.csv id=TR2508_A1_400-470",
   "decision": null
  },
  {
@@ -441,7 +441,7 @@
   "freq_min_mhz": 424.466,
   "freq_max_mhz": 424.484,
   "direction": "modified",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 2773)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -452,7 +452,7 @@
   "margin_db": 13.33,
   "concern": "low",
   "reason": "modified land-mobile notice; 143.9 km from Finland; field strength at the border 6.67 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 20 dB(uV/m): 13.33 dB below",
-  "evidence_refs": "fxm_terra.terrakey=93075629; fxm_geo.geo_key=4060846; fxm_ant.terrakey=93075629&ant_key=1; border(notice_id=93075629); p1546(notice_id=93075629); tr2508_thresholds.csv id=TR2508_A1_400-470",
+  "evidence_refs": "fxm_terra.terrakey=93075629; Taajuusjakotaulukko.ID=2773; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2773; fxm_geo.geo_key=4060846; fxm_ant.terrakey=93075629&ant_key=1; border(notice_id=93075629); p1546(notice_id=93075629); tr2508_thresholds.csv id=TR2508_A1_400-470",
   "decision": null
  },
  {
@@ -465,7 +465,7 @@
   "freq_min_mhz": 424.066,
   "freq_max_mhz": 424.084,
   "direction": "unchanged",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 2773)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -476,7 +476,7 @@
   "margin_db": 16.6,
   "concern": "low",
   "reason": "recorded land-mobile notice; 143.9 km from Finland; field strength at the border 3.4 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 20 dB(uV/m): 16.6 dB below",
-  "evidence_refs": "fxm_terra.terrakey=6526921; fxm_geo.geo_key=3495098; fxm_ant.terrakey=6526921&ant_key=1; border(notice_id=6526921); p1546(notice_id=6526921); tr2508_thresholds.csv id=TR2508_A1_400-470",
+  "evidence_refs": "fxm_terra.terrakey=6526921; Taajuusjakotaulukko.ID=2773; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2773; fxm_geo.geo_key=3495098; fxm_ant.terrakey=6526921&ant_key=1; border(notice_id=6526921); p1546(notice_id=6526921); tr2508_thresholds.csv id=TR2508_A1_400-470",
   "decision": null
  },
  {
@@ -489,7 +489,7 @@
   "freq_min_mhz": 424.466,
   "freq_max_mhz": 424.484,
   "direction": "unchanged",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 2773)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -500,7 +500,7 @@
   "margin_db": 16.6,
   "concern": "low",
   "reason": "recorded land-mobile notice; 143.9 km from Finland; field strength at the border 3.4 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 20 dB(uV/m): 16.6 dB below",
-  "evidence_refs": "fxm_terra.terrakey=6526923; fxm_geo.geo_key=3495098; fxm_ant.terrakey=6526923&ant_key=1; border(notice_id=6526923); p1546(notice_id=6526923); tr2508_thresholds.csv id=TR2508_A1_400-470",
+  "evidence_refs": "fxm_terra.terrakey=6526923; Taajuusjakotaulukko.ID=2773; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2773; fxm_geo.geo_key=3495098; fxm_ant.terrakey=6526923&ant_key=1; border(notice_id=6526923); p1546(notice_id=6526923); tr2508_thresholds.csv id=TR2508_A1_400-470",
   "decision": null
  },
  {
@@ -513,7 +513,7 @@
   "freq_min_mhz": 415.816,
   "freq_max_mhz": 415.834,
   "direction": "modified",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 2726)",
   "special_interest_station_ids": "640513",
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -524,7 +524,7 @@
   "margin_db": 20.49,
   "concern": "low",
   "reason": "modified land-mobile notice; 127.5 km from Finland; field strength at the border -0.49 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 20 dB(uV/m): 20.49 dB below; special-interest station 640513: 147.5 km, field strength 6.26 dB(uV/m) at 34 m, 13.74 dB below the trigger",
-  "evidence_refs": "fxm_terra.terrakey=93075625; fxm_geo.geo_key=3475676; fxm_ant.terrakey=93075625&ant_key=1; border(notice_id=93075625); p1546(notice_id=93075625); tr2508_thresholds.csv id=TR2508_A1_400-470; special_interest.xlsx row=462; p1546_station(notice_id=93075625;station=640513)",
+  "evidence_refs": "fxm_terra.terrakey=93075625; Taajuusjakotaulukko.ID=2726; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2726; fxm_geo.geo_key=3475676; fxm_ant.terrakey=93075625&ant_key=1; border(notice_id=93075625); p1546(notice_id=93075625); tr2508_thresholds.csv id=TR2508_A1_400-470; special_interest.xlsx row=462; p1546_station(notice_id=93075625;station=640513)",
   "decision": null
  },
  {
@@ -537,7 +537,7 @@
   "freq_min_mhz": 414.066,
   "freq_max_mhz": 414.084,
   "direction": "modified",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 2726)",
   "special_interest_station_ids": "610539",
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -548,7 +548,7 @@
   "margin_db": 23.94,
   "concern": "low",
   "reason": "modified land-mobile notice; 143.9 km from Finland; field strength at the border -3.94 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 20 dB(uV/m): 23.94 dB below; special-interest station 610539: 362.8 km, field strength -23.5 dB(uV/m) at 28 m, 43.5 dB below the trigger",
-  "evidence_refs": "fxm_terra.terrakey=93075628; fxm_geo.geo_key=3942606; fxm_ant.terrakey=93075628&ant_key=1; border(notice_id=93075628); p1546(notice_id=93075628); tr2508_thresholds.csv id=TR2508_A1_400-470; special_interest.xlsx row=265; p1546_station(notice_id=93075628;station=610539)",
+  "evidence_refs": "fxm_terra.terrakey=93075628; Taajuusjakotaulukko.ID=2726; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2726; fxm_geo.geo_key=3942606; fxm_ant.terrakey=93075628&ant_key=1; border(notice_id=93075628); p1546(notice_id=93075628); tr2508_thresholds.csv id=TR2508_A1_400-470; special_interest.xlsx row=265; p1546_station(notice_id=93075628;station=610539)",
   "decision": null
  },
  {
@@ -561,7 +561,7 @@
   "freq_min_mhz": 414.466,
   "freq_max_mhz": 414.484,
   "direction": "modified",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 2726)",
   "special_interest_station_ids": "606465",
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -572,7 +572,7 @@
   "margin_db": 23.94,
   "concern": "low",
   "reason": "modified land-mobile notice; 143.9 km from Finland; field strength at the border -3.94 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 20 dB(uV/m): 23.94 dB below; special-interest station 606465: 171.5 km, field strength -0.31 dB(uV/m) at 26 m, 20.31 dB below the trigger",
-  "evidence_refs": "fxm_terra.terrakey=93075630; fxm_geo.geo_key=3942606; fxm_ant.terrakey=93075630&ant_key=1; border(notice_id=93075630); p1546(notice_id=93075630); tr2508_thresholds.csv id=TR2508_A1_400-470; special_interest.xlsx row=246; p1546_station(notice_id=93075630;station=606465)",
+  "evidence_refs": "fxm_terra.terrakey=93075630; Taajuusjakotaulukko.ID=2726; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2726; fxm_geo.geo_key=3942606; fxm_ant.terrakey=93075630&ant_key=1; border(notice_id=93075630); p1546(notice_id=93075630); tr2508_thresholds.csv id=TR2508_A1_400-470; special_interest.xlsx row=246; p1546_station(notice_id=93075630;station=606465)",
   "decision": null
  },
  {
@@ -585,7 +585,7 @@
   "freq_min_mhz": 415.816,
   "freq_max_mhz": 415.834,
   "direction": "unchanged",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 2726)",
   "special_interest_station_ids": "640513",
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -596,7 +596,7 @@
   "margin_db": 24.59,
   "concern": "low",
   "reason": "recorded land-mobile notice; 127.5 km from Finland; field strength at the border -4.59 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 20 dB(uV/m): 24.59 dB below; special-interest station 640513: 147.5 km, field strength 2.16 dB(uV/m) at 34 m, 17.84 dB below the trigger",
-  "evidence_refs": "fxm_terra.terrakey=6496117; fxm_geo.geo_key=3475676; fxm_ant.terrakey=6496117&ant_key=1; border(notice_id=6496117); p1546(notice_id=6496117); tr2508_thresholds.csv id=TR2508_A1_400-470; special_interest.xlsx row=462; p1546_station(notice_id=6496117;station=640513)",
+  "evidence_refs": "fxm_terra.terrakey=6496117; Taajuusjakotaulukko.ID=2726; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2726; fxm_geo.geo_key=3475676; fxm_ant.terrakey=6496117&ant_key=1; border(notice_id=6496117); p1546(notice_id=6496117); tr2508_thresholds.csv id=TR2508_A1_400-470; special_interest.xlsx row=462; p1546_station(notice_id=6496117;station=640513)",
   "decision": null
  },
  {
@@ -609,7 +609,7 @@
   "freq_min_mhz": 424.566,
   "freq_max_mhz": 424.584,
   "direction": "modified",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 2773)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -620,7 +620,7 @@
   "margin_db": 27.01,
   "concern": "low",
   "reason": "modified land-mobile notice; 143.9 km from Finland; field strength at the border -7.01 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 20 dB(uV/m): 27.01 dB below",
-  "evidence_refs": "fxm_terra.terrakey=93075626; fxm_geo.geo_key=4060845; fxm_ant.terrakey=93075626&ant_key=1; border(notice_id=93075626); p1546(notice_id=93075626); tr2508_thresholds.csv id=TR2508_A1_400-470",
+  "evidence_refs": "fxm_terra.terrakey=93075626; Taajuusjakotaulukko.ID=2773; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2773; fxm_geo.geo_key=4060845; fxm_ant.terrakey=93075626&ant_key=1; border(notice_id=93075626); p1546(notice_id=93075626); tr2508_thresholds.csv id=TR2508_A1_400-470",
   "decision": null
  },
  {
@@ -633,7 +633,7 @@
   "freq_min_mhz": 424.566,
   "freq_max_mhz": 424.584,
   "direction": "unchanged",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 2773)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -644,7 +644,7 @@
   "margin_db": 27.11,
   "concern": "low",
   "reason": "recorded land-mobile notice; 143.9 km from Finland; field strength at the border -7.11 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 20 dB(uV/m): 27.11 dB below",
-  "evidence_refs": "fxm_terra.terrakey=6496118; fxm_geo.geo_key=3475677; fxm_ant.terrakey=6496118&ant_key=1; border(notice_id=6496118); p1546(notice_id=6496118); tr2508_thresholds.csv id=TR2508_A1_400-470",
+  "evidence_refs": "fxm_terra.terrakey=6496118; Taajuusjakotaulukko.ID=2773; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2773; fxm_geo.geo_key=3475677; fxm_ant.terrakey=6496118&ant_key=1; border(notice_id=6496118); p1546(notice_id=6496118); tr2508_thresholds.csv id=TR2508_A1_400-470",
   "decision": null
  },
  {
@@ -657,7 +657,7 @@
   "freq_min_mhz": 414.066,
   "freq_max_mhz": 414.084,
   "direction": "unchanged",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 2726)",
   "special_interest_station_ids": "610539",
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -668,7 +668,7 @@
   "margin_db": 27.95,
   "concern": "low",
   "reason": "recorded land-mobile notice; 143.9 km from Finland; field strength at the border -7.95 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 20 dB(uV/m): 27.95 dB below; special-interest station 610539: 362.7 km, field strength -27.6 dB(uV/m) at 28 m, 47.6 dB below the trigger",
-  "evidence_refs": "fxm_terra.terrakey=6526922; fxm_geo.geo_key=3495100; fxm_ant.terrakey=6526922&ant_key=1; border(notice_id=6526922); p1546(notice_id=6526922); tr2508_thresholds.csv id=TR2508_A1_400-470; special_interest.xlsx row=265; p1546_station(notice_id=6526922;station=610539)",
+  "evidence_refs": "fxm_terra.terrakey=6526922; Taajuusjakotaulukko.ID=2726; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2726; fxm_geo.geo_key=3495100; fxm_ant.terrakey=6526922&ant_key=1; border(notice_id=6526922); p1546(notice_id=6526922); tr2508_thresholds.csv id=TR2508_A1_400-470; special_interest.xlsx row=265; p1546_station(notice_id=6526922;station=610539)",
   "decision": null
  },
  {
@@ -681,7 +681,7 @@
   "freq_min_mhz": 414.466,
   "freq_max_mhz": 414.484,
   "direction": "unchanged",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 2726)",
   "special_interest_station_ids": "606465",
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -692,7 +692,7 @@
   "margin_db": 27.96,
   "concern": "low",
   "reason": "recorded land-mobile notice; 143.9 km from Finland; field strength at the border -7.96 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 20 dB(uV/m): 27.96 dB below; special-interest station 606465: 171.4 km, field strength -4.4 dB(uV/m) at 26 m, 24.4 dB below the trigger",
-  "evidence_refs": "fxm_terra.terrakey=6526924; fxm_geo.geo_key=3495100; fxm_ant.terrakey=6526924&ant_key=1; border(notice_id=6526924); p1546(notice_id=6526924); tr2508_thresholds.csv id=TR2508_A1_400-470; special_interest.xlsx row=246; p1546_station(notice_id=6526924;station=606465)",
+  "evidence_refs": "fxm_terra.terrakey=6526924; Taajuusjakotaulukko.ID=2726; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2726; fxm_geo.geo_key=3495100; fxm_ant.terrakey=6526924&ant_key=1; border(notice_id=6526924); p1546(notice_id=6526924); tr2508_thresholds.csv id=TR2508_A1_400-470; special_interest.xlsx row=246; p1546_station(notice_id=6526924;station=606465)",
   "decision": null
  },
  {
@@ -705,7 +705,7 @@
   "freq_min_mhz": 154.5945,
   "freq_max_mhz": 154.6055,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "LAND MOBILE (IDs 2171)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -716,7 +716,7 @@
   "margin_db": 34.25,
   "concern": "low",
   "reason": "new land-mobile notice; 301.7 km from Finland; field strength at the border -22.25 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 12 dB(uV/m): 34.25 dB below",
-  "evidence_refs": "fxm_terra.terrakey=93075612; fxm_geo.geo_key=4060828; fxm_ant.terrakey=93075612&ant_key=1; border(notice_id=93075612); p1546(notice_id=93075612); tr2508_thresholds.csv id=TR2508_A1_108-380",
+  "evidence_refs": "fxm_terra.terrakey=93075612; Taajuusjakotaulukko.ID=2171; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2171; fxm_geo.geo_key=4060828; fxm_ant.terrakey=93075612&ant_key=1; border(notice_id=93075612); p1546(notice_id=93075612); tr2508_thresholds.csv id=TR2508_A1_108-380",
   "decision": null
  },
  {
@@ -729,7 +729,7 @@
   "freq_min_mhz": 159.5945,
   "freq_max_mhz": 159.6055,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 2350)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -740,7 +740,7 @@
   "margin_db": 34.4,
   "concern": "low",
   "reason": "new land-mobile notice; 301.7 km from Finland; field strength at the border -22.4 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 12 dB(uV/m): 34.4 dB below",
-  "evidence_refs": "fxm_terra.terrakey=93075611; fxm_geo.geo_key=4060826; fxm_ant.terrakey=93075611&ant_key=1; border(notice_id=93075611); p1546(notice_id=93075611); tr2508_thresholds.csv id=TR2508_A1_108-380",
+  "evidence_refs": "fxm_terra.terrakey=93075611; Taajuusjakotaulukko.ID=2350; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2350; fxm_geo.geo_key=4060826; fxm_ant.terrakey=93075611&ant_key=1; border(notice_id=93075611); p1546(notice_id=93075611); tr2508_thresholds.csv id=TR2508_A1_108-380",
   "decision": null
  },
  {
@@ -753,7 +753,7 @@
   "freq_min_mhz": 154.5945,
   "freq_max_mhz": 154.6055,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "LAND MOBILE (IDs 2171)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -764,7 +764,7 @@
   "margin_db": 37.24,
   "concern": "low",
   "reason": "new land-mobile notice; 301.8 km from Finland; field strength at the border -25.24 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 12 dB(uV/m): 37.24 dB below",
-  "evidence_refs": "fxm_terra.terrakey=93075615; fxm_geo.geo_key=4060831; fxm_ant.terrakey=93075615&ant_key=1; border(notice_id=93075615); p1546(notice_id=93075615); tr2508_thresholds.csv id=TR2508_A1_108-380",
+  "evidence_refs": "fxm_terra.terrakey=93075615; Taajuusjakotaulukko.ID=2171; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2171; fxm_geo.geo_key=4060831; fxm_ant.terrakey=93075615&ant_key=1; border(notice_id=93075615); p1546(notice_id=93075615); tr2508_thresholds.csv id=TR2508_A1_108-380",
   "decision": null
  },
  {
@@ -777,7 +777,7 @@
   "freq_min_mhz": 154.5945,
   "freq_max_mhz": 154.6055,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "LAND MOBILE (IDs 2171)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -788,7 +788,7 @@
   "margin_db": 37.51,
   "concern": "low",
   "reason": "new land-mobile notice; 301.6 km from Finland; field strength at the border -25.51 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 12 dB(uV/m): 37.51 dB below",
-  "evidence_refs": "fxm_terra.terrakey=93075616; fxm_geo.geo_key=4060833; fxm_ant.terrakey=93075616&ant_key=1; border(notice_id=93075616); p1546(notice_id=93075616); tr2508_thresholds.csv id=TR2508_A1_108-380",
+  "evidence_refs": "fxm_terra.terrakey=93075616; Taajuusjakotaulukko.ID=2171; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2171; fxm_geo.geo_key=4060833; fxm_ant.terrakey=93075616&ant_key=1; border(notice_id=93075616); p1546(notice_id=93075616); tr2508_thresholds.csv id=TR2508_A1_108-380",
   "decision": null
  },
  {
@@ -801,7 +801,7 @@
   "freq_min_mhz": 154.5945,
   "freq_max_mhz": 154.6055,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "LAND MOBILE (IDs 2171)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -812,7 +812,7 @@
   "margin_db": 38.49,
   "concern": "low",
   "reason": "new land-mobile notice; 301.7 km from Finland; field strength at the border -26.49 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 12 dB(uV/m): 38.49 dB below",
-  "evidence_refs": "fxm_terra.terrakey=93075614; fxm_geo.geo_key=4060829; fxm_ant.terrakey=93075614&ant_key=1; border(notice_id=93075614); p1546(notice_id=93075614); tr2508_thresholds.csv id=TR2508_A1_108-380",
+  "evidence_refs": "fxm_terra.terrakey=93075614; Taajuusjakotaulukko.ID=2171; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2171; fxm_geo.geo_key=4060829; fxm_ant.terrakey=93075614&ant_key=1; border(notice_id=93075614); p1546(notice_id=93075614); tr2508_thresholds.csv id=TR2508_A1_108-380",
   "decision": null
  },
  {
@@ -825,7 +825,7 @@
   "freq_min_mhz": 154.5945,
   "freq_max_mhz": 154.6055,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "LAND MOBILE (IDs 2171)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -836,7 +836,7 @@
   "margin_db": 39.33,
   "concern": "low",
   "reason": "new land-mobile notice; 301.7 km from Finland; field strength at the border -27.33 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 12 dB(uV/m): 39.33 dB below",
-  "evidence_refs": "fxm_terra.terrakey=93075613; fxm_geo.geo_key=4060826; fxm_ant.terrakey=93075613&ant_key=1; border(notice_id=93075613); p1546(notice_id=93075613); tr2508_thresholds.csv id=TR2508_A1_108-380",
+  "evidence_refs": "fxm_terra.terrakey=93075613; Taajuusjakotaulukko.ID=2171; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2171; fxm_geo.geo_key=4060826; fxm_ant.terrakey=93075613&ant_key=1; border(notice_id=93075613); p1546(notice_id=93075613); tr2508_thresholds.csv id=TR2508_A1_108-380",
   "decision": null
  },
  {
@@ -849,7 +849,7 @@
   "freq_min_mhz": 154.5945,
   "freq_max_mhz": 154.6055,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "LAND MOBILE (IDs 2171)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -860,7 +860,7 @@
   "margin_db": 40.44,
   "concern": "low",
   "reason": "new land-mobile notice; 301.7 km from Finland; field strength at the border -28.44 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 12 dB(uV/m): 40.44 dB below",
-  "evidence_refs": "fxm_terra.terrakey=93075617; fxm_geo.geo_key=4060835; fxm_ant.terrakey=93075617&ant_key=1; border(notice_id=93075617); p1546(notice_id=93075617); tr2508_thresholds.csv id=TR2508_A1_108-380",
+  "evidence_refs": "fxm_terra.terrakey=93075617; Taajuusjakotaulukko.ID=2171; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2171; fxm_geo.geo_key=4060835; fxm_ant.terrakey=93075617&ant_key=1; border(notice_id=93075617); p1546(notice_id=93075617); tr2508_thresholds.csv id=TR2508_A1_108-380",
   "decision": null
  },
  {
@@ -873,7 +873,7 @@
   "freq_min_mhz": 152.9416,
   "freq_max_mhz": 152.9584,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "LAND MOBILE (IDs 2155)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -884,7 +884,7 @@
   "margin_db": 58.81,
   "concern": "low",
   "reason": "new land-mobile notice; 594.6 km from Finland; field strength at the border -46.81 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 12 dB(uV/m): 58.81 dB below",
-  "evidence_refs": "fxm_terra.terrakey=93075639; fxm_geo.geo_key=4060859; fxm_ant.terrakey=93075639&ant_key=1; border(notice_id=93075639); p1546(notice_id=93075639); tr2508_thresholds.csv id=TR2508_A1_108-380",
+  "evidence_refs": "fxm_terra.terrakey=93075639; Taajuusjakotaulukko.ID=2155; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2155; fxm_geo.geo_key=4060859; fxm_ant.terrakey=93075639&ant_key=1; border(notice_id=93075639); p1546(notice_id=93075639); tr2508_thresholds.csv id=TR2508_A1_108-380",
   "decision": null
  },
  {
@@ -897,7 +897,7 @@
   "freq_min_mhz": 418.932,
   "freq_max_mhz": 418.943,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 2743)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -908,7 +908,7 @@
   "margin_db": 72.75,
   "concern": "low",
   "reason": "new land-mobile notice; 588.2 km from Finland; field strength at the border -52.75 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 20 dB(uV/m): 72.75 dB below",
-  "evidence_refs": "fxm_terra.terrakey=93075631; fxm_geo.geo_key=4060847; fxm_ant.terrakey=93075631&ant_key=1; border(notice_id=93075631); p1546(notice_id=93075631); tr2508_thresholds.csv id=TR2508_A1_400-470",
+  "evidence_refs": "fxm_terra.terrakey=93075631; Taajuusjakotaulukko.ID=2743; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2743; fxm_geo.geo_key=4060847; fxm_ant.terrakey=93075631&ant_key=1; border(notice_id=93075631); p1546(notice_id=93075631); tr2508_thresholds.csv id=TR2508_A1_400-470",
   "decision": null
  },
  {
@@ -921,7 +921,7 @@
   "freq_min_mhz": 408.932,
   "freq_max_mhz": 408.943,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 2713)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -932,7 +932,7 @@
   "margin_db": 73.7,
   "concern": "low",
   "reason": "new land-mobile notice; 588.2 km from Finland; field strength at the border -53.7 dB(uV/m) (P.1546, 10 % time) against the T/R 25-08 trigger 20 dB(uV/m): 73.7 dB below",
-  "evidence_refs": "fxm_terra.terrakey=93075632; fxm_geo.geo_key=4060849; fxm_ant.terrakey=93075632&ant_key=1; border(notice_id=93075632); p1546(notice_id=93075632); tr2508_thresholds.csv id=TR2508_A1_400-470",
+  "evidence_refs": "fxm_terra.terrakey=93075632; Taajuusjakotaulukko.ID=2713; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=2713; fxm_geo.geo_key=4060849; fxm_ant.terrakey=93075632&ant_key=1; border(notice_id=93075632); p1546(notice_id=93075632); tr2508_thresholds.csv id=TR2508_A1_400-470",
   "decision": null
  },
  {
@@ -945,7 +945,7 @@
   "freq_min_mhz": 791.14,
   "freq_max_mhz": 798.34,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": "988251, 983905",
   "overlap_mhz": null,
   "geo_relevance": "near_border",
@@ -956,7 +956,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "134 km from Finland; field strength at the border -10.93 dB(uV/m) (P.1546); no T/R 25-08 trigger for 794.74 MHz, criterion needed (Q12); 2 co-channel special-interest stations, worst 988251: 578.8 km, field strength -65.16 dB(uV/m) at 13 m",
-  "evidence_refs": "fxm_terra.terrakey=93005612; fxm_geo.geo_key=4036422; fxm_ant.terrakey=93005612&ant_key=1; fxm_ant_hgt.terrakey=93005612&ant_key=1&azm=330.0; fxm_ant_hgt.terrakey=93005612&ant_key=1&azm=340.0; border(notice_id=93005612); p1546(notice_id=93005612); special_interest.xlsx row=844; special_interest.xlsx row=853; p1546_station(notice_id=93005612;station=988251)",
+  "evidence_refs": "fxm_terra.terrakey=93005612; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=4036422; fxm_ant.terrakey=93005612&ant_key=1; fxm_ant_hgt.terrakey=93005612&ant_key=1&azm=330.0; fxm_ant_hgt.terrakey=93005612&ant_key=1&azm=340.0; border(notice_id=93005612); p1546(notice_id=93005612); special_interest.xlsx row=844; special_interest.xlsx row=853; p1546_station(notice_id=93005612;station=988251)",
   "decision": null
  },
  {
@@ -969,7 +969,7 @@
   "freq_min_mhz": 801.0,
   "freq_max_mhz": 806.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": "987279",
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -980,7 +980,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "378 km from Finland; field strength at the border -28.57 dB(uV/m) (P.1546); no T/R 25-08 trigger for 803.5 MHz, criterion needed (Q12); special-interest station 987279: 513.8 km, field strength -41.5 dB(uV/m) at 11 m",
-  "evidence_refs": "fxm_terra.terrakey=93081456; fxm_geo.geo_key=4062418; fxm_ant.terrakey=93081456&ant_key=1; fxm_ant_hgt.terrakey=93081456&ant_key=1&azm=350.0; fxm_ant_hgt.terrakey=93081456&ant_key=1&azm=0.0; border(notice_id=93081456); p1546(notice_id=93081456); special_interest.xlsx row=880; p1546_station(notice_id=93081456;station=987279)",
+  "evidence_refs": "fxm_terra.terrakey=93081456; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=4062418; fxm_ant.terrakey=93081456&ant_key=1; fxm_ant_hgt.terrakey=93081456&ant_key=1&azm=350.0; fxm_ant_hgt.terrakey=93081456&ant_key=1&azm=0.0; border(notice_id=93081456); p1546(notice_id=93081456); special_interest.xlsx row=880; p1546_station(notice_id=93081456;station=987279)",
   "decision": null
  },
  {
@@ -993,7 +993,7 @@
   "freq_min_mhz": 813.5,
   "freq_max_mhz": 818.5,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": "986445, 980207",
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1004,7 +1004,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "441.9 km from Finland; field strength at the border -53.26 dB(uV/m) (P.1546); no T/R 25-08 trigger for 816 MHz, criterion needed (Q12); 2 co-channel special-interest stations, worst 986445: 463.1 km, field strength -57.35 dB(uV/m) at 9 m",
-  "evidence_refs": "fxm_terra.terrakey=93081457; fxm_geo.geo_key=4062421; fxm_ant.terrakey=93081457&ant_key=1; fxm_ant_hgt.terrakey=93081457&ant_key=1&azm=340.0; fxm_ant_hgt.terrakey=93081457&ant_key=1&azm=350.0; border(notice_id=93081457); p1546(notice_id=93081457); special_interest.xlsx row=826; special_interest.xlsx row=835; p1546_station(notice_id=93081457;station=986445)",
+  "evidence_refs": "fxm_terra.terrakey=93081457; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=4062421; fxm_ant.terrakey=93081457&ant_key=1; fxm_ant_hgt.terrakey=93081457&ant_key=1&azm=340.0; fxm_ant_hgt.terrakey=93081457&ant_key=1&azm=350.0; border(notice_id=93081457); p1546(notice_id=93081457); special_interest.xlsx row=826; special_interest.xlsx row=835; p1546_station(notice_id=93081457;station=986445)",
   "decision": null
  },
  {
@@ -1017,7 +1017,7 @@
   "freq_min_mhz": 791.0,
   "freq_max_mhz": 796.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1028,7 +1028,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "597.2 km from Finland; field strength at the border -65.14 dB(uV/m) (P.1546); no T/R 25-08 trigger for 793.5 MHz, criterion needed (Q12)",
-  "evidence_refs": "fxm_terra.terrakey=93005608; fxm_geo.geo_key=4036419; fxm_ant.terrakey=93005608&ant_key=1; fxm_ant_hgt.terrakey=93005608&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=93005608&ant_key=1&azm=10.0; border(notice_id=93005608); p1546(notice_id=93005608)",
+  "evidence_refs": "fxm_terra.terrakey=93005608; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=4036419; fxm_ant.terrakey=93005608&ant_key=1; fxm_ant_hgt.terrakey=93005608&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=93005608&ant_key=1&azm=10.0; border(notice_id=93005608); p1546(notice_id=93005608)",
   "decision": null
  },
  {
@@ -1041,7 +1041,7 @@
   "freq_min_mhz": 791.14,
   "freq_max_mhz": 798.34,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1052,7 +1052,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "597.2 km from Finland; field strength at the border -65.14 dB(uV/m) (P.1546); no T/R 25-08 trigger for 794.74 MHz, criterion needed (Q12)",
-  "evidence_refs": "fxm_terra.terrakey=93005609; fxm_geo.geo_key=4036419; fxm_ant.terrakey=93005609&ant_key=1; fxm_ant_hgt.terrakey=93005609&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=93005609&ant_key=1&azm=10.0; border(notice_id=93005609); p1546(notice_id=93005609)",
+  "evidence_refs": "fxm_terra.terrakey=93005609; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=4036419; fxm_ant.terrakey=93005609&ant_key=1; fxm_ant_hgt.terrakey=93005609&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=93005609&ant_key=1&azm=10.0; border(notice_id=93005609); p1546(notice_id=93005609)",
   "decision": null
  },
  {
@@ -1065,7 +1065,7 @@
   "freq_min_mhz": 791.0,
   "freq_max_mhz": 796.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1076,7 +1076,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "601.3 km from Finland; field strength at the border -67.4 dB(uV/m) (P.1546); no T/R 25-08 trigger for 793.5 MHz, criterion needed (Q12)",
-  "evidence_refs": "fxm_terra.terrakey=93082393; fxm_geo.geo_key=4026045; fxm_ant.terrakey=93082393&ant_key=1; fxm_ant_hgt.terrakey=93082393&ant_key=1&azm=10.0; fxm_ant_hgt.terrakey=93082393&ant_key=1&azm=20.0; border(notice_id=93082393); p1546(notice_id=93082393)",
+  "evidence_refs": "fxm_terra.terrakey=93082393; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=4026045; fxm_ant.terrakey=93082393&ant_key=1; fxm_ant_hgt.terrakey=93082393&ant_key=1&azm=10.0; fxm_ant_hgt.terrakey=93082393&ant_key=1&azm=20.0; border(notice_id=93082393); p1546(notice_id=93082393)",
   "decision": null
  },
  {
@@ -1089,7 +1089,7 @@
   "freq_min_mhz": 791.0,
   "freq_max_mhz": 796.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1100,7 +1100,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "621 km from Finland; field strength at the border -71.93 dB(uV/m) (P.1546); no T/R 25-08 trigger for 793.5 MHz, criterion needed (Q12)",
-  "evidence_refs": "fxm_terra.terrakey=93082394; fxm_geo.geo_key=4031260; fxm_ant.terrakey=93082394&ant_key=1; fxm_ant_hgt.terrakey=93082394&ant_key=1&azm=10.0; fxm_ant_hgt.terrakey=93082394&ant_key=1&azm=20.0; border(notice_id=93082394); p1546(notice_id=93082394)",
+  "evidence_refs": "fxm_terra.terrakey=93082394; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=4031260; fxm_ant.terrakey=93082394&ant_key=1; fxm_ant_hgt.terrakey=93082394&ant_key=1&azm=10.0; fxm_ant_hgt.terrakey=93082394&ant_key=1&azm=20.0; border(notice_id=93082394); p1546(notice_id=93082394)",
   "decision": null
  },
  {
@@ -1113,7 +1113,7 @@
   "freq_min_mhz": 791.0,
   "freq_max_mhz": 796.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1124,7 +1124,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "623.2 km from Finland; field strength at the border -68.89 dB(uV/m) (P.1546); no T/R 25-08 trigger for 793.5 MHz, criterion needed (Q12)",
-  "evidence_refs": "fxm_terra.terrakey=93082395; fxm_geo.geo_key=4031262; fxm_ant.terrakey=93082395&ant_key=1; fxm_ant_hgt.terrakey=93082395&ant_key=1&azm=10.0; fxm_ant_hgt.terrakey=93082395&ant_key=1&azm=20.0; border(notice_id=93082395); p1546(notice_id=93082395)",
+  "evidence_refs": "fxm_terra.terrakey=93082395; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=4031262; fxm_ant.terrakey=93082395&ant_key=1; fxm_ant_hgt.terrakey=93082395&ant_key=1&azm=10.0; fxm_ant_hgt.terrakey=93082395&ant_key=1&azm=20.0; border(notice_id=93082395); p1546(notice_id=93082395)",
   "decision": null
  },
  {
@@ -1137,7 +1137,7 @@
   "freq_min_mhz": 791.14,
   "freq_max_mhz": 798.34,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1148,7 +1148,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "623.2 km from Finland; field strength at the border -68.89 dB(uV/m) (P.1546); no T/R 25-08 trigger for 794.74 MHz, criterion needed (Q12)",
-  "evidence_refs": "fxm_terra.terrakey=93082396; fxm_geo.geo_key=4031262; fxm_ant.terrakey=93082396&ant_key=1; fxm_ant_hgt.terrakey=93082396&ant_key=1&azm=10.0; fxm_ant_hgt.terrakey=93082396&ant_key=1&azm=20.0; border(notice_id=93082396); p1546(notice_id=93082396)",
+  "evidence_refs": "fxm_terra.terrakey=93082396; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=4031262; fxm_ant.terrakey=93082396&ant_key=1; fxm_ant_hgt.terrakey=93082396&ant_key=1&azm=10.0; fxm_ant_hgt.terrakey=93082396&ant_key=1&azm=20.0; border(notice_id=93082396); p1546(notice_id=93082396)",
   "decision": null
  },
  {
@@ -1161,7 +1161,7 @@
   "freq_min_mhz": 801.0,
   "freq_max_mhz": 806.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": "987279",
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1172,7 +1172,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "642.1 km from Finland; field strength at the border -35.39 dB(uV/m) (P.1546); no T/R 25-08 trigger for 803.5 MHz, criterion needed (Q12); special-interest station 987279: 814.4 km, field strength -49.5 dB(uV/m) at 11 m",
-  "evidence_refs": "fxm_terra.terrakey=92845774; fxm_geo.geo_key=3969076; fxm_ant.terrakey=92845774&ant_key=1; fxm_ant_hgt.terrakey=92845774&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=92845774&ant_key=1&azm=10.0; border(notice_id=92845774); p1546(notice_id=92845774); special_interest.xlsx row=880; p1546_station(notice_id=92845774;station=987279)",
+  "evidence_refs": "fxm_terra.terrakey=92845774; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3969076; fxm_ant.terrakey=92845774&ant_key=1; fxm_ant_hgt.terrakey=92845774&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=92845774&ant_key=1&azm=10.0; border(notice_id=92845774); p1546(notice_id=92845774); special_interest.xlsx row=880; p1546_station(notice_id=92845774;station=987279)",
   "decision": null
  },
  {
@@ -1185,7 +1185,7 @@
   "freq_min_mhz": 801.0,
   "freq_max_mhz": 806.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": "987279",
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1196,7 +1196,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "642.9 km from Finland; field strength at the border -39.47 dB(uV/m) (P.1546); no T/R 25-08 trigger for 803.5 MHz, criterion needed (Q12); special-interest station 987279: 813.2 km, field strength -53.86 dB(uV/m) at 11 m",
-  "evidence_refs": "fxm_terra.terrakey=92845773; fxm_geo.geo_key=3969074; fxm_ant.terrakey=92845773&ant_key=1; fxm_ant_hgt.terrakey=92845773&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=92845773&ant_key=1&azm=10.0; border(notice_id=92845773); p1546(notice_id=92845773); special_interest.xlsx row=880; p1546_station(notice_id=92845773;station=987279)",
+  "evidence_refs": "fxm_terra.terrakey=92845773; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3969074; fxm_ant.terrakey=92845773&ant_key=1; fxm_ant_hgt.terrakey=92845773&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=92845773&ant_key=1&azm=10.0; border(notice_id=92845773); p1546(notice_id=92845773); special_interest.xlsx row=880; p1546_station(notice_id=92845773;station=987279)",
   "decision": null
  },
  {
@@ -1209,7 +1209,7 @@
   "freq_min_mhz": 801.0,
   "freq_max_mhz": 806.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": "987279",
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1220,7 +1220,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "647.6 km from Finland; field strength at the border -39.72 dB(uV/m) (P.1546); no T/R 25-08 trigger for 803.5 MHz, criterion needed (Q12); special-interest station 987279: 820.2 km, field strength -53.95 dB(uV/m) at 11 m",
-  "evidence_refs": "fxm_terra.terrakey=92817516; fxm_geo.geo_key=3945340; fxm_ant.terrakey=92817516&ant_key=1; fxm_ant_hgt.terrakey=92817516&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=92817516&ant_key=1&azm=10.0; border(notice_id=92817516); p1546(notice_id=92817516); special_interest.xlsx row=880; p1546_station(notice_id=92817516;station=987279)",
+  "evidence_refs": "fxm_terra.terrakey=92817516; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3945340; fxm_ant.terrakey=92817516&ant_key=1; fxm_ant_hgt.terrakey=92817516&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=92817516&ant_key=1&azm=10.0; border(notice_id=92817516); p1546(notice_id=92817516); special_interest.xlsx row=880; p1546_station(notice_id=92817516;station=987279)",
   "decision": null
  },
  {
@@ -1233,7 +1233,7 @@
   "freq_min_mhz": 801.0,
   "freq_max_mhz": 806.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": "987279",
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1244,7 +1244,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "650.5 km from Finland; field strength at the border -38.67 dB(uV/m) (P.1546); no T/R 25-08 trigger for 803.5 MHz, criterion needed (Q12); special-interest station 987279: 823.2 km, field strength -52.69 dB(uV/m) at 11 m",
-  "evidence_refs": "fxm_terra.terrakey=92845771; fxm_geo.geo_key=3969070; fxm_ant.terrakey=92845771&ant_key=1; fxm_ant_hgt.terrakey=92845771&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=92845771&ant_key=1&azm=10.0; border(notice_id=92845771); p1546(notice_id=92845771); special_interest.xlsx row=880; p1546_station(notice_id=92845771;station=987279)",
+  "evidence_refs": "fxm_terra.terrakey=92845771; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3969070; fxm_ant.terrakey=92845771&ant_key=1; fxm_ant_hgt.terrakey=92845771&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=92845771&ant_key=1&azm=10.0; border(notice_id=92845771); p1546(notice_id=92845771); special_interest.xlsx row=880; p1546_station(notice_id=92845771;station=987279)",
   "decision": null
  },
  {
@@ -1257,7 +1257,7 @@
   "freq_min_mhz": 801.0,
   "freq_max_mhz": 806.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": "987279",
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1268,7 +1268,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "652.9 km from Finland; field strength at the border -35.98 dB(uV/m) (P.1546); no T/R 25-08 trigger for 803.5 MHz, criterion needed (Q12); special-interest station 987279: 825.8 km, field strength -50.06 dB(uV/m) at 11 m",
-  "evidence_refs": "fxm_terra.terrakey=92845770; fxm_geo.geo_key=3969068; fxm_ant.terrakey=92845770&ant_key=1; fxm_ant_hgt.terrakey=92845770&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=92845770&ant_key=1&azm=10.0; border(notice_id=92845770); p1546(notice_id=92845770); special_interest.xlsx row=880; p1546_station(notice_id=92845770;station=987279)",
+  "evidence_refs": "fxm_terra.terrakey=92845770; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3969068; fxm_ant.terrakey=92845770&ant_key=1; fxm_ant_hgt.terrakey=92845770&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=92845770&ant_key=1&azm=10.0; border(notice_id=92845770); p1546(notice_id=92845770); special_interest.xlsx row=880; p1546_station(notice_id=92845770;station=987279)",
   "decision": null
  },
  {
@@ -1281,7 +1281,7 @@
   "freq_min_mhz": 801.0,
   "freq_max_mhz": 806.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": "987279",
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1292,7 +1292,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "653.8 km from Finland; field strength at the border -35.91 dB(uV/m) (P.1546); no T/R 25-08 trigger for 803.5 MHz, criterion needed (Q12); special-interest station 987279: 827.6 km, field strength -50.88 dB(uV/m) at 11 m",
-  "evidence_refs": "fxm_terra.terrakey=92817514; fxm_geo.geo_key=3945336; fxm_ant.terrakey=92817514&ant_key=1; fxm_ant_hgt.terrakey=92817514&ant_key=1&azm=10.0; fxm_ant_hgt.terrakey=92817514&ant_key=1&azm=20.0; border(notice_id=92817514); p1546(notice_id=92817514); special_interest.xlsx row=880; p1546_station(notice_id=92817514;station=987279)",
+  "evidence_refs": "fxm_terra.terrakey=92817514; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3945336; fxm_ant.terrakey=92817514&ant_key=1; fxm_ant_hgt.terrakey=92817514&ant_key=1&azm=10.0; fxm_ant_hgt.terrakey=92817514&ant_key=1&azm=20.0; border(notice_id=92817514); p1546(notice_id=92817514); special_interest.xlsx row=880; p1546_station(notice_id=92817514;station=987279)",
   "decision": null
  },
  {
@@ -1305,7 +1305,7 @@
   "freq_min_mhz": 801.0,
   "freq_max_mhz": 806.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": "987279",
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1316,7 +1316,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "673.7 km from Finland; field strength at the border -38.99 dB(uV/m) (P.1546); no T/R 25-08 trigger for 803.5 MHz, criterion needed (Q12); special-interest station 987279: 846.9 km, field strength -53.08 dB(uV/m) at 11 m",
-  "evidence_refs": "fxm_terra.terrakey=92845772; fxm_geo.geo_key=3969072; fxm_ant.terrakey=92845772&ant_key=1; fxm_ant_hgt.terrakey=92845772&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=92845772&ant_key=1&azm=10.0; border(notice_id=92845772); p1546(notice_id=92845772); special_interest.xlsx row=880; p1546_station(notice_id=92845772;station=987279)",
+  "evidence_refs": "fxm_terra.terrakey=92845772; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3969072; fxm_ant.terrakey=92845772&ant_key=1; fxm_ant_hgt.terrakey=92845772&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=92845772&ant_key=1&azm=10.0; border(notice_id=92845772); p1546(notice_id=92845772); special_interest.xlsx row=880; p1546_station(notice_id=92845772;station=987279)",
   "decision": null
  },
  {
@@ -1329,7 +1329,7 @@
   "freq_min_mhz": 801.0,
   "freq_max_mhz": 806.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": "987279",
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1340,7 +1340,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "675.5 km from Finland; field strength at the border -41.16 dB(uV/m) (P.1546); no T/R 25-08 trigger for 803.5 MHz, criterion needed (Q12); special-interest station 987279: 849.1 km, field strength -55.5 dB(uV/m) at 11 m",
-  "evidence_refs": "fxm_terra.terrakey=92817506; fxm_geo.geo_key=3945334; fxm_ant.terrakey=92817506&ant_key=1; fxm_ant_hgt.terrakey=92817506&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=92817506&ant_key=1&azm=10.0; border(notice_id=92817506); p1546(notice_id=92817506); special_interest.xlsx row=880; p1546_station(notice_id=92817506;station=987279)",
+  "evidence_refs": "fxm_terra.terrakey=92817506; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3945334; fxm_ant.terrakey=92817506&ant_key=1; fxm_ant_hgt.terrakey=92817506&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=92817506&ant_key=1&azm=10.0; border(notice_id=92817506); p1546(notice_id=92817506); special_interest.xlsx row=880; p1546_station(notice_id=92817506;station=987279)",
   "decision": null
  },
  {
@@ -1353,7 +1353,7 @@
   "freq_min_mhz": 801.0,
   "freq_max_mhz": 806.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": "987279",
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1364,7 +1364,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "679.2 km from Finland; field strength at the border -34.28 dB(uV/m) (P.1546); no T/R 25-08 trigger for 803.5 MHz, criterion needed (Q12); special-interest station 987279: 859.8 km, field strength -56.72 dB(uV/m) at 11 m",
-  "evidence_refs": "fxm_terra.terrakey=92817515; fxm_geo.geo_key=3945338; fxm_ant.terrakey=92817515&ant_key=1; fxm_ant_hgt.terrakey=92817515&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=92817515&ant_key=1&azm=10.0; border(notice_id=92817515); p1546(notice_id=92817515); special_interest.xlsx row=880; p1546_station(notice_id=92817515;station=987279)",
+  "evidence_refs": "fxm_terra.terrakey=92817515; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3945338; fxm_ant.terrakey=92817515&ant_key=1; fxm_ant_hgt.terrakey=92817515&ant_key=1&azm=0.0; fxm_ant_hgt.terrakey=92817515&ant_key=1&azm=10.0; border(notice_id=92817515); p1546(notice_id=92817515); special_interest.xlsx row=880; p1546_station(notice_id=92817515;station=987279)",
   "decision": null
  },
  {
@@ -1377,7 +1377,7 @@
   "freq_min_mhz": 791.14,
   "freq_max_mhz": 798.34,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1388,7 +1388,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "912.4 km from Finland; field strength at the border -97.31 dB(uV/m) (P.1546); no T/R 25-08 trigger for 794.74 MHz, criterion needed (Q12)",
-  "evidence_refs": "fxm_terra.terrakey=93082390; fxm_geo.geo_key=3896622; fxm_ant.terrakey=93082390&ant_key=1; fxm_ant_hgt.terrakey=93082390&ant_key=1&azm=340.0; fxm_ant_hgt.terrakey=93082390&ant_key=1&azm=350.0; border(notice_id=93082390); p1546(notice_id=93082390)",
+  "evidence_refs": "fxm_terra.terrakey=93082390; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3896622; fxm_ant.terrakey=93082390&ant_key=1; fxm_ant_hgt.terrakey=93082390&ant_key=1&azm=340.0; fxm_ant_hgt.terrakey=93082390&ant_key=1&azm=350.0; border(notice_id=93082390); p1546(notice_id=93082390)",
   "decision": null
  },
  {
@@ -1401,7 +1401,7 @@
   "freq_min_mhz": 791.14,
   "freq_max_mhz": 798.34,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1412,7 +1412,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "933.3 km from Finland; field strength at the border -100.15 dB(uV/m) (P.1546); no T/R 25-08 trigger for 794.74 MHz, criterion needed (Q12)",
-  "evidence_refs": "fxm_terra.terrakey=93082389; fxm_geo.geo_key=3896620; fxm_ant.terrakey=93082389&ant_key=1; fxm_ant_hgt.terrakey=93082389&ant_key=1&azm=340.0; fxm_ant_hgt.terrakey=93082389&ant_key=1&azm=350.0; border(notice_id=93082389); p1546(notice_id=93082389)",
+  "evidence_refs": "fxm_terra.terrakey=93082389; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3896620; fxm_ant.terrakey=93082389&ant_key=1; fxm_ant_hgt.terrakey=93082389&ant_key=1&azm=340.0; fxm_ant_hgt.terrakey=93082389&ant_key=1&azm=350.0; border(notice_id=93082389); p1546(notice_id=93082389)",
   "decision": null
  },
  {
@@ -1425,7 +1425,7 @@
   "freq_min_mhz": 791.0,
   "freq_max_mhz": 796.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1436,7 +1436,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "937.7 km from Finland; field strength at the border -88.05 dB(uV/m) (P.1546); no T/R 25-08 trigger for 793.5 MHz, criterion needed (Q12)",
-  "evidence_refs": "fxm_terra.terrakey=93082384; fxm_geo.geo_key=3828347; fxm_ant.terrakey=93082384&ant_key=1; fxm_ant_hgt.terrakey=93082384&ant_key=1&azm=340.0; fxm_ant_hgt.terrakey=93082384&ant_key=1&azm=350.0; border(notice_id=93082384); p1546(notice_id=93082384)",
+  "evidence_refs": "fxm_terra.terrakey=93082384; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3828347; fxm_ant.terrakey=93082384&ant_key=1; fxm_ant_hgt.terrakey=93082384&ant_key=1&azm=340.0; fxm_ant_hgt.terrakey=93082384&ant_key=1&azm=350.0; border(notice_id=93082384); p1546(notice_id=93082384)",
   "decision": null
  },
  {
@@ -1449,7 +1449,7 @@
   "freq_min_mhz": 791.0,
   "freq_max_mhz": 796.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1460,7 +1460,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "938.9 km from Finland; field strength at the border -93.2 dB(uV/m) (P.1546); no T/R 25-08 trigger for 793.5 MHz, criterion needed (Q12)",
-  "evidence_refs": "fxm_terra.terrakey=93082386; fxm_geo.geo_key=3879541; fxm_ant.terrakey=93082386&ant_key=1; fxm_ant_hgt.terrakey=93082386&ant_key=1&azm=340.0; fxm_ant_hgt.terrakey=93082386&ant_key=1&azm=350.0; border(notice_id=93082386); p1546(notice_id=93082386)",
+  "evidence_refs": "fxm_terra.terrakey=93082386; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3879541; fxm_ant.terrakey=93082386&ant_key=1; fxm_ant_hgt.terrakey=93082386&ant_key=1&azm=340.0; fxm_ant_hgt.terrakey=93082386&ant_key=1&azm=350.0; border(notice_id=93082386); p1546(notice_id=93082386)",
   "decision": null
  },
  {
@@ -1473,7 +1473,7 @@
   "freq_min_mhz": 791.14,
   "freq_max_mhz": 798.34,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1484,7 +1484,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "949.2 km from Finland; field strength at the border -102.88 dB(uV/m) (P.1546); no T/R 25-08 trigger for 794.74 MHz, criterion needed (Q12)",
-  "evidence_refs": "fxm_terra.terrakey=93082388; fxm_geo.geo_key=3896619; fxm_ant.terrakey=93082388&ant_key=1; fxm_ant_hgt.terrakey=93082388&ant_key=1&azm=340.0; fxm_ant_hgt.terrakey=93082388&ant_key=1&azm=350.0; border(notice_id=93082388); p1546(notice_id=93082388)",
+  "evidence_refs": "fxm_terra.terrakey=93082388; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3896619; fxm_ant.terrakey=93082388&ant_key=1; fxm_ant_hgt.terrakey=93082388&ant_key=1&azm=340.0; fxm_ant_hgt.terrakey=93082388&ant_key=1&azm=350.0; border(notice_id=93082388); p1546(notice_id=93082388)",
   "decision": null
  },
  {
@@ -1497,7 +1497,7 @@
   "freq_min_mhz": 791.14,
   "freq_max_mhz": 798.34,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1508,7 +1508,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "955 km from Finland; field strength at the border -101.15 dB(uV/m) (P.1546); no T/R 25-08 trigger for 794.74 MHz, criterion needed (Q12)",
-  "evidence_refs": "fxm_terra.terrakey=93082391; fxm_geo.geo_key=3896624; fxm_ant.terrakey=93082391&ant_key=1; fxm_ant_hgt.terrakey=93082391&ant_key=1&azm=340.0; fxm_ant_hgt.terrakey=93082391&ant_key=1&azm=350.0; border(notice_id=93082391); p1546(notice_id=93082391)",
+  "evidence_refs": "fxm_terra.terrakey=93082391; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3896624; fxm_ant.terrakey=93082391&ant_key=1; fxm_ant_hgt.terrakey=93082391&ant_key=1&azm=340.0; fxm_ant_hgt.terrakey=93082391&ant_key=1&azm=350.0; border(notice_id=93082391); p1546(notice_id=93082391)",
   "decision": null
  },
  {
@@ -1521,7 +1521,7 @@
   "freq_min_mhz": 791.0,
   "freq_max_mhz": 796.0,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1532,7 +1532,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "955.4 km from Finland; field strength at the border -102.55 dB(uV/m) (P.1546); no T/R 25-08 trigger for 793.5 MHz, criterion needed (Q12)",
-  "evidence_refs": "fxm_terra.terrakey=93082385; fxm_geo.geo_key=3852814; fxm_ant.terrakey=93082385&ant_key=1; fxm_ant_hgt.terrakey=93082385&ant_key=1&azm=340.0; fxm_ant_hgt.terrakey=93082385&ant_key=1&azm=350.0; border(notice_id=93082385); p1546(notice_id=93082385)",
+  "evidence_refs": "fxm_terra.terrakey=93082385; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3852814; fxm_ant.terrakey=93082385&ant_key=1; fxm_ant_hgt.terrakey=93082385&ant_key=1&azm=340.0; fxm_ant_hgt.terrakey=93082385&ant_key=1&azm=350.0; border(notice_id=93082385); p1546(notice_id=93082385)",
   "decision": null
  },
  {
@@ -1545,7 +1545,7 @@
   "freq_min_mhz": 791.14,
   "freq_max_mhz": 798.34,
   "direction": "new",
-  "finnish_match": null,
+  "finnish_match": "MOBILE (IDs 3123)",
   "special_interest_station_ids": null,
   "overlap_mhz": null,
   "geo_relevance": "far",
@@ -1556,7 +1556,7 @@
   "margin_db": null,
   "concern": "low",
   "reason": "960 km from Finland; field strength at the border -101.94 dB(uV/m) (P.1546); no T/R 25-08 trigger for 794.74 MHz, criterion needed (Q12)",
-  "evidence_refs": "fxm_terra.terrakey=93082387; fxm_geo.geo_key=3896618; fxm_ant.terrakey=93082387&ant_key=1; fxm_ant_hgt.terrakey=93082387&ant_key=1&azm=340.0; fxm_ant_hgt.terrakey=93082387&ant_key=1&azm=350.0; border(notice_id=93082387); p1546(notice_id=93082387)",
+  "evidence_refs": "fxm_terra.terrakey=93082387; Taajuusjakotaulukko.ID=3123; M4 4 AG/2026 M, Taajuusjakotaulukko.ID=3123; fxm_geo.geo_key=3896618; fxm_ant.terrakey=93082387&ant_key=1; fxm_ant_hgt.terrakey=93082387&ant_key=1&azm=340.0; fxm_ant_hgt.terrakey=93082387&ant_key=1&azm=350.0; border(notice_id=93082387); p1546(notice_id=93082387)",
   "decision": null
  },
  {

@@ -97,2298 +97,6 @@
   },
   "suites": [
     {
-      "title": "decisions.spec.ts",
-      "file": "decisions.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [
-        {
-          "title": "decision buttons stay disabled until there is a reviewer and a note",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 2516,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:04.369Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "ca2913af3b2fa1993ca8-bc67fcf6b3f6d902ed97",
-          "file": "decisions.spec.ts",
-          "line": 14,
-          "column": 1
-        },
-        {
-          "title": "a decision is saved, shown, logged with a verified chain, and exported; the concern stays",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 1,
-                  "parallelIndex": 1,
-                  "status": "passed",
-                  "duration": 3232,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:04.361Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "ca2913af3b2fa1993ca8-8f96156eb15dc516818c",
-          "file": "decisions.spec.ts",
-          "line": 32,
-          "column": 1
-        },
-        {
-          "title": "the reviewer name is remembered across reloads",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 2,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 2196,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:04.353Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "ca2913af3b2fa1993ca8-4e17e475c43f6636a9fa",
-          "file": "decisions.spec.ts",
-          "line": 73,
-          "column": 1
-        },
-        {
-          "title": "decision buttons stay disabled until there is a reviewer and a note",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 4,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 1779,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:22.063Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "ca2913af3b2fa1993ca8-0d584896c11840b19aaa",
-          "file": "decisions.spec.ts",
-          "line": 14,
-          "column": 1
-        },
-        {
-          "title": "a decision is saved, shown, logged with a verified chain, and exported; the concern stays",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 5,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 2774,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:22.081Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "ca2913af3b2fa1993ca8-d3b837177e21f7105133",
-          "file": "decisions.spec.ts",
-          "line": 32,
-          "column": 1
-        },
-        {
-          "title": "the reviewer name is remembered across reloads",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 6,
-                  "parallelIndex": 3,
-                  "status": "passed",
-                  "duration": 1537,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:22.093Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "ca2913af3b2fa1993ca8-fcc3e2d83afc55b27d04",
-          "file": "decisions.spec.ts",
-          "line": 73,
-          "column": 1
-        },
-        {
-          "title": "decision buttons stay disabled until there is a reviewer and a note",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 9,
-                  "parallelIndex": 3,
-                  "status": "passed",
-                  "duration": 1747,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:37.309Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "ca2913af3b2fa1993ca8-e67ed24d237070fb408b",
-          "file": "decisions.spec.ts",
-          "line": 14,
-          "column": 1
-        },
-        {
-          "title": "a decision is saved, shown, logged with a verified chain, and exported; the concern stays",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 8,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 3058,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:37.304Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "ca2913af3b2fa1993ca8-fdf5ba34403b8c55b266",
-          "file": "decisions.spec.ts",
-          "line": 32,
-          "column": 1
-        },
-        {
-          "title": "the reviewer name is remembered across reloads",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 10,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 1893,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:37.496Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "ca2913af3b2fa1993ca8-9f34d356bf6ac4f550fc",
-          "file": "decisions.spec.ts",
-          "line": 73,
-          "column": 1
-        }
-      ]
-    },
-    {
-      "title": "demo.spec.ts",
-      "file": "demo.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [
-        {
-          "title": "the whole screen works offline in demo mode",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 3,
-                  "parallelIndex": 3,
-                  "status": "passed",
-                  "duration": 6765,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:04.347Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "05384557491ebd602dd7-ae477b33f59b6e900ffb",
-          "file": "demo.spec.ts",
-          "line": 6,
-          "column": 1
-        },
-        {
-          "title": "the whole screen works offline in demo mode",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 7,
-                  "parallelIndex": 1,
-                  "status": "passed",
-                  "duration": 7268,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:22.620Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "05384557491ebd602dd7-9fc02a4e18d946e8bfb3",
-          "file": "demo.spec.ts",
-          "line": 6,
-          "column": 1
-        },
-        {
-          "title": "the whole screen works offline in demo mode",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 11,
-                  "parallelIndex": 1,
-                  "status": "passed",
-                  "duration": 6154,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:39.495Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "05384557491ebd602dd7-5ed0c72569e74ba940c1",
-          "file": "demo.spec.ts",
-          "line": 6,
-          "column": 1
-        }
-      ]
-    },
-    {
-      "title": "drafts.spec.ts",
-      "file": "drafts.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [
-        {
-          "title": "the explanation is grounded and its citations open the evidence",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 2,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 2327,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:07.813Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "e417140b1e763296e66e-536bf3987517bb29546e",
-          "file": "drafts.spec.ts",
-          "line": 14,
-          "column": 1
-        },
-        {
-          "title": "the letter is a draft to the notifying administration that can be edited and downloaded, never sent",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 2261,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:07.970Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "e417140b1e763296e66e-440ce98df2ef5662b622",
-          "file": "drafts.spec.ts",
-          "line": 34,
-          "column": 1
-        },
-        {
-          "title": "drafts reset when another finding is selected",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 1,
-                  "parallelIndex": 1,
-                  "status": "passed",
-                  "duration": 1784,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:08.716Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "e417140b1e763296e66e-b2289ee3ea9272bcdc16",
-          "file": "drafts.spec.ts",
-          "line": 59,
-          "column": 1
-        },
-        {
-          "title": "the explanation is grounded and its citations open the evidence",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 6,
-                  "parallelIndex": 3,
-                  "status": "passed",
-                  "duration": 1768,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:23.985Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "e417140b1e763296e66e-69048727122daa634ef9",
-          "file": "drafts.spec.ts",
-          "line": 14,
-          "column": 1
-        },
-        {
-          "title": "the letter is a draft to the notifying administration that can be edited and downloaded, never sent",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 4,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 1794,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:24.250Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "e417140b1e763296e66e-a5eaa5e2561922ce5734",
-          "file": "drafts.spec.ts",
-          "line": 34,
-          "column": 1
-        },
-        {
-          "title": "drafts reset when another finding is selected",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 5,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1414,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:25.175Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "e417140b1e763296e66e-cf7e22486bfe7c37beb6",
-          "file": "drafts.spec.ts",
-          "line": 59,
-          "column": 1
-        },
-        {
-          "title": "the explanation is grounded and its citations open the evidence",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 9,
-                  "parallelIndex": 3,
-                  "status": "passed",
-                  "duration": 1900,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:39.481Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "e417140b1e763296e66e-8ade39d88b7dd4f9d1a7",
-          "file": "drafts.spec.ts",
-          "line": 14,
-          "column": 1
-        },
-        {
-          "title": "the letter is a draft to the notifying administration that can be edited and downloaded, never sent",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 10,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 2127,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:39.740Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "e417140b1e763296e66e-ae3d25cc3102d9350db4",
-          "file": "drafts.spec.ts",
-          "line": 34,
-          "column": 1
-        },
-        {
-          "title": "drafts reset when another finding is selected",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 8,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1906,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:40.839Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "e417140b1e763296e66e-afdcc3a38a67c7e152cf",
-          "file": "drafts.spec.ts",
-          "line": 59,
-          "column": 1
-        }
-      ]
-    },
-    {
-      "title": "overview-map.spec.ts",
-      "file": "overview-map.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [
-        {
-          "title": "terrestrial 3076: every notified station is on the map and selects its finding",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 2,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 2984,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:10.226Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "76dcd33b7143d7dbe77d-bf036e60275bc6165c8b",
-          "file": "overview-map.spec.ts",
-          "line": 6,
-          "column": 1
-        },
-        {
-          "title": "space 3074: earth stations and special-interest stations are drawn by type",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 2365,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:10.280Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "76dcd33b7143d7dbe77d-87a61633dde932c3958c",
-          "file": "overview-map.spec.ts",
-          "line": 55,
-          "column": 1
-        },
-        {
-          "title": "a reviewer decision shows as the datapoint's state",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 1,
-                  "parallelIndex": 1,
-                  "status": "passed",
-                  "duration": 2622,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:10.539Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "76dcd33b7143d7dbe77d-bc594c3371ed4cfa763f",
-          "file": "overview-map.spec.ts",
-          "line": 67,
-          "column": 1
-        },
-        {
-          "title": "terrestrial 3076: every notified station is on the map and selects its finding",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 6,
-                  "parallelIndex": 3,
-                  "status": "passed",
-                  "duration": 2739,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:25.814Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "76dcd33b7143d7dbe77d-501a5e8590a3bd7967c3",
-          "file": "overview-map.spec.ts",
-          "line": 6,
-          "column": 1
-        },
-        {
-          "title": "space 3074: earth stations and special-interest stations are drawn by type",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 4,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 2387,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:26.148Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "76dcd33b7143d7dbe77d-6e52522510b44dcfe848",
-          "file": "overview-map.spec.ts",
-          "line": 55,
-          "column": 1
-        },
-        {
-          "title": "a reviewer decision shows as the datapoint's state",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 5,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 2370,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:26.658Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "76dcd33b7143d7dbe77d-06dae4cd23b76322e25b",
-          "file": "overview-map.spec.ts",
-          "line": 67,
-          "column": 1
-        },
-        {
-          "title": "terrestrial 3076: every notified station is on the map and selects its finding",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 9,
-                  "parallelIndex": 3,
-                  "status": "passed",
-                  "duration": 2706,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:41.448Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "76dcd33b7143d7dbe77d-5886b3511ae22417cd7b",
-          "file": "overview-map.spec.ts",
-          "line": 6,
-          "column": 1
-        },
-        {
-          "title": "space 3074: earth stations and special-interest stations are drawn by type",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 10,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 2105,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:41.906Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "76dcd33b7143d7dbe77d-0c6fe4b75d6c43a79ca5",
-          "file": "overview-map.spec.ts",
-          "line": 55,
-          "column": 1
-        },
-        {
-          "title": "a reviewer decision shows as the datapoint's state",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 8,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 2123,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:42.810Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "76dcd33b7143d7dbe77d-3494603196b332837f38",
-          "file": "overview-map.spec.ts",
-          "line": 67,
-          "column": 1
-        }
-      ]
-    },
-    {
-      "title": "overview.spec.ts",
-      "file": "overview.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [
-        {
-          "title": "space: the arc holds every flagged GSO filing and a click opens it",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 3,
-                  "parallelIndex": 3,
-                  "status": "passed",
-                  "duration": 2573,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:12.631Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6e2f4ad74dab265ac116-881402556fa61214707d",
-          "file": "overview.spec.ts",
-          "line": 7,
-          "column": 1
-        },
-        {
-          "title": "terrestrial: one bar per flagged finding with a frequency; Enter opens one",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 2473,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:12.721Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6e2f4ad74dab265ac116-63d96208c0f9c8b09585",
-          "file": "overview.spec.ts",
-          "line": 29,
-          "column": 1
-        },
-        {
-          "title": "the legend counts match the concern counts",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 1,
-                  "parallelIndex": 1,
-                  "status": "passed",
-                  "duration": 2191,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:13.247Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6e2f4ad74dab265ac116-af60dcb44318f428c220",
-          "file": "overview.spec.ts",
-          "line": 54,
-          "column": 1
-        },
-        {
-          "title": "space: the arc holds every flagged GSO filing and a click opens it",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 4,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 2319,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:28.601Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6e2f4ad74dab265ac116-ab05eb14acc06b90b146",
-          "file": "overview.spec.ts",
-          "line": 7,
-          "column": 1
-        },
-        {
-          "title": "terrestrial: one bar per flagged finding with a frequency; Enter opens one",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 6,
-                  "parallelIndex": 3,
-                  "status": "passed",
-                  "duration": 2155,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:28.602Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6e2f4ad74dab265ac116-c64d83a991f8fd940b45",
-          "file": "overview.spec.ts",
-          "line": 29,
-          "column": 1
-        },
-        {
-          "title": "the legend counts match the concern counts",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 5,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1869,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:29.117Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6e2f4ad74dab265ac116-cc2254347267db9c5703",
-          "file": "overview.spec.ts",
-          "line": 54,
-          "column": 1
-        },
-        {
-          "title": "space: the arc holds every flagged GSO filing and a click opens it",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 10,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 2127,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:44.076Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6e2f4ad74dab265ac116-d398a333da0ab7e459f5",
-          "file": "overview.spec.ts",
-          "line": 7,
-          "column": 1
-        },
-        {
-          "title": "terrestrial: one bar per flagged finding with a frequency; Enter opens one",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 9,
-                  "parallelIndex": 3,
-                  "status": "passed",
-                  "duration": 1941,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:44.194Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6e2f4ad74dab265ac116-7467d8019efc1ea9cf74",
-          "file": "overview.spec.ts",
-          "line": 29,
-          "column": 1
-        },
-        {
-          "title": "the legend counts match the concern counts",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 8,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1525,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:44.986Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6e2f4ad74dab265ac116-90d12fd3d81e8286cc6d",
-          "file": "overview.spec.ts",
-          "line": 54,
-          "column": 1
-        }
-      ]
-    },
-    {
-      "title": "screen.spec.ts",
-      "file": "screen.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [
-        {
-          "title": "proof metrics match the API for Space 3074",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 2,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 2101,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:13.258Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-c7a5fcec5bd3d68ec7a0",
-          "file": "screen.spec.ts",
-          "line": 48,
-          "column": 1
-        },
-        {
-          "title": "the ranked list starts with the API's first finding and every badge has a text label",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 2949,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:15.258Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-0f7316efb170bdde2760",
-          "file": "screen.spec.ts",
-          "line": 57,
-          "column": 1
-        },
-        {
-          "title": "calculation tab shows result, limit, margin and the indicative label from the trace",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 3,
-                  "parallelIndex": 3,
-                  "status": "passed",
-                  "duration": 1470,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:15.262Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-bbe79e66d40b2bacbf85",
-          "file": "screen.spec.ts",
-          "line": 71,
-          "column": 1
-        },
-        {
-          "title": "an evidence link in the trace highlights that evidence item",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 2,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 2463,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:15.389Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-cdd455b130be59509c7b",
-          "file": "screen.spec.ts",
-          "line": 93,
-          "column": 1
-        },
-        {
-          "title": "spectrum and map tabs draw the lead group, the Finnish rows and the reference points",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 1,
-                  "parallelIndex": 1,
-                  "status": "passed",
-                  "duration": 2896,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:15.503Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-a93145bd77ef17665cfb",
-          "file": "screen.spec.ts",
-          "line": 110,
-          "column": 1
-        },
-        {
-          "title": "concern filter and search narrow the list",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 3,
-                  "parallelIndex": 3,
-                  "status": "passed",
-                  "duration": 2200,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:16.762Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-4ba5ae02da388110af66",
-          "file": "screen.spec.ts",
-          "line": 132,
-          "column": 1
-        },
-        {
-          "title": "Terrestrial 3076 shows the P.1546 trace of its first finding",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 2,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 1718,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:17.926Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-d73ad8d2b0b31078f3a2",
-          "file": "screen.spec.ts",
-          "line": 150,
-          "column": 1
-        },
-        {
-          "title": "export downloads the results CSV for the selected issue",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1387,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:18.337Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-53738ab41e71be5096b2",
-          "file": "screen.spec.ts",
-          "line": 167,
-          "column": 1
-        },
-        {
-          "title": "dark by default, light when chosen and remembered; the page never scrolls sideways",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 1,
-                  "parallelIndex": 1,
-                  "status": "passed",
-                  "duration": 3118,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:18.540Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-f34ee7d3b0d107f0a0dd",
-          "file": "screen.spec.ts",
-          "line": 178,
-          "column": 1
-        },
-        {
-          "title": "proof metrics match the API for Space 3074",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 7,
-                  "parallelIndex": 1,
-                  "status": "passed",
-                  "duration": 1521,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:30.599Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-f511f68f3d3f9e6c438e",
-          "file": "screen.spec.ts",
-          "line": 48,
-          "column": 1
-        },
-        {
-          "title": "the ranked list starts with the API's first finding and every badge has a text label",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 6,
-                  "parallelIndex": 3,
-                  "status": "passed",
-                  "duration": 1994,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:30.816Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-166143e378d171be6e44",
-          "file": "screen.spec.ts",
-          "line": 57,
-          "column": 1
-        },
-        {
-          "title": "calculation tab shows result, limit, margin and the indicative label from the trace",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 4,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 1796,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:30.962Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-b2b4eef0b3c4152d7200",
-          "file": "screen.spec.ts",
-          "line": 71,
-          "column": 1
-        },
-        {
-          "title": "an evidence link in the trace highlights that evidence item",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 5,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 2426,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:31.062Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-02bce946fa8f23b3fafd",
-          "file": "screen.spec.ts",
-          "line": 93,
-          "column": 1
-        },
-        {
-          "title": "spectrum and map tabs draw the lead group, the Finnish rows and the reference points",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 7,
-                  "parallelIndex": 1,
-                  "status": "passed",
-                  "duration": 2406,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:32.162Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-6a5a8850d848df9427bc",
-          "file": "screen.spec.ts",
-          "line": 110,
-          "column": 1
-        },
-        {
-          "title": "concern filter and search narrow the list",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 4,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 2048,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:32.805Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-f3b673dcc7c748a217ff",
-          "file": "screen.spec.ts",
-          "line": 132,
-          "column": 1
-        },
-        {
-          "title": "Terrestrial 3076 shows the P.1546 trace of its first finding",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 6,
-                  "parallelIndex": 3,
-                  "status": "passed",
-                  "duration": 2218,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:32.843Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-3adb6be86c2ed0ece032",
-          "file": "screen.spec.ts",
-          "line": 150,
-          "column": 1
-        },
-        {
-          "title": "export downloads the results CSV for the selected issue",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 5,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 1404,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:33.618Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-053a31563df6ca046314",
-          "file": "screen.spec.ts",
-          "line": 167,
-          "column": 1
-        },
-        {
-          "title": "dark by default, light when chosen and remembered; the page never scrolls sideways",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 7,
-                  "parallelIndex": 1,
-                  "status": "passed",
-                  "duration": 2636,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:34.614Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-c878d82b0e01590f6de6",
-          "file": "screen.spec.ts",
-          "line": 178,
-          "column": 1
-        },
-        {
-          "title": "proof metrics match the API for Space 3074",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 9,
-                  "parallelIndex": 3,
-                  "status": "passed",
-                  "duration": 1116,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:46.179Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-2755d9c78f1aeafce260",
-          "file": "screen.spec.ts",
-          "line": 48,
-          "column": 1
-        },
-        {
-          "title": "the ranked list starts with the API's first finding and every badge has a text label",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 11,
-                  "parallelIndex": 1,
-                  "status": "passed",
-                  "duration": 1471,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:46.192Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-ef37b009ee51eaadc4b6",
-          "file": "screen.spec.ts",
-          "line": 57,
-          "column": 1
-        },
-        {
-          "title": "calculation tab shows result, limit, margin and the indicative label from the trace",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 10,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 1128,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:46.243Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-46259f0745fdc5d80048",
-          "file": "screen.spec.ts",
-          "line": 71,
-          "column": 1
-        },
-        {
-          "title": "an evidence link in the trace highlights that evidence item",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 8,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 2250,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:46.579Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-7f493dc9d46715362aad",
-          "file": "screen.spec.ts",
-          "line": 93,
-          "column": 1
-        },
-        {
-          "title": "spectrum and map tabs draw the lead group, the Finnish rows and the reference points",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 9,
-                  "parallelIndex": 3,
-                  "status": "passed",
-                  "duration": 1383,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:47.328Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-cba3e0dbd2d315099d1b",
-          "file": "screen.spec.ts",
-          "line": 110,
-          "column": 1
-        },
-        {
-          "title": "concern filter and search narrow the list",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 10,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 1250,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:47.401Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-b607328a250a5aa833e1",
-          "file": "screen.spec.ts",
-          "line": 132,
-          "column": 1
-        },
-        {
-          "title": "Terrestrial 3076 shows the P.1546 trace of its first finding",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 11,
-                  "parallelIndex": 1,
-                  "status": "passed",
-                  "duration": 1298,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:47.703Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-35f839e862ab9336f28b",
-          "file": "screen.spec.ts",
-          "line": 150,
-          "column": 1
-        },
-        {
-          "title": "export downloads the results CSV for the selected issue",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 10,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 1018,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:48.688Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-3f0cc5f564a00c9619fb",
-          "file": "screen.spec.ts",
-          "line": 167,
-          "column": 1
-        },
-        {
-          "title": "dark by default, light when chosen and remembered; the page never scrolls sideways",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "phone",
-              "projectName": "phone",
-              "results": [
-                {
-                  "workerIndex": 9,
-                  "parallelIndex": 3,
-                  "status": "passed",
-                  "duration": 2095,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:48.736Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "6bf18f613c0dfb1d8e04-57cfac6be722125c847c",
-          "file": "screen.spec.ts",
-          "line": 178,
-          "column": 1
-        }
-      ]
-    },
-    {
       "title": "screenshots.spec.ts",
       "file": "screenshots.spec.ts",
       "column": 0,
@@ -2404,891 +112,10 @@
               "annotations": [
                 {
                   "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
                   "location": {
                     "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:19.024Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-446afaa3edf6829cd363",
-          "file": "screenshots.spec.ts",
-          "line": 39,
-          "column": 1
-        },
-        {
-          "title": "d2: explanation and letter draft",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:19.026Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-664c6ca83a43415d105c",
-          "file": "screenshots.spec.ts",
-          "line": 76,
-          "column": 1
-        },
-        {
-          "title": "e: offline demo, accuracy and proof pack",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:19.026Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-c2eee74cf0aacbc5836b",
-          "file": "screenshots.spec.ts",
-          "line": 102,
-          "column": 1
-        },
-        {
-          "title": "review: pfd report with the sign-off",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:19.026Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-81d13c667dc67497aee4",
-          "file": "screenshots.spec.ts",
-          "line": 126,
-          "column": 1
-        },
-        {
-          "title": "a3: special-interest stations report",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:19.026Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-1cf2ad074bca71b2f492",
-          "file": "screenshots.spec.ts",
-          "line": 138,
-          "column": 1
-        },
-        {
-          "title": "stations: special-interest stations on the map",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:19.027Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-3dbe97a408c8f7b7819e",
-          "file": "screenshots.spec.ts",
-          "line": 162,
-          "column": 1
-        },
-        {
-          "title": "terrestrial-stations: field strength at a special-interest station",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:19.027Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-62b51905a0f840b31080",
-          "file": "screenshots.spec.ts",
-          "line": 181,
-          "column": 1
-        },
-        {
-          "title": "overview: whole-issue charts",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:19.027Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-1b67f0a178df5685c50b",
-          "file": "screenshots.spec.ts",
-          "line": 204,
-          "column": 1
-        },
-        {
-          "title": "ap30: plan check report",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:19.027Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-1af31fe1d38332b06472",
-          "file": "screenshots.spec.ts",
-          "line": 246,
-          "column": 1
-        },
-        {
-          "title": "heights: effective antenna height in the field-strength report",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:19.027Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-0f0433b8472d241cdad2",
-          "file": "screenshots.spec.ts",
-          "line": 267,
-          "column": 1
-        },
-        {
-          "title": "d3: decision and audit log",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:34.884Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-e12e1d8232033481d3c5",
-          "file": "screenshots.spec.ts",
-          "line": 39,
-          "column": 1
-        },
-        {
-          "title": "d2: explanation and letter draft",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:34.886Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-ee250a56240b9e4266e3",
-          "file": "screenshots.spec.ts",
-          "line": 76,
-          "column": 1
-        },
-        {
-          "title": "e: offline demo, accuracy and proof pack",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:34.886Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-44efa29418a02d572b46",
-          "file": "screenshots.spec.ts",
-          "line": 102,
-          "column": 1
-        },
-        {
-          "title": "review: pfd report with the sign-off",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:34.886Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-9ae3ed3f239f3ff36202",
-          "file": "screenshots.spec.ts",
-          "line": 126,
-          "column": 1
-        },
-        {
-          "title": "a3: special-interest stations report",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:34.887Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-a79b6f6b26cdb0495920",
-          "file": "screenshots.spec.ts",
-          "line": 138,
-          "column": 1
-        },
-        {
-          "title": "stations: special-interest stations on the map",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:34.887Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-bcb2fdf61b9b6df04dfc",
-          "file": "screenshots.spec.ts",
-          "line": 162,
-          "column": 1
-        },
-        {
-          "title": "terrestrial-stations: field strength at a special-interest station",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:34.887Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-1ca67566bed3863140fb",
-          "file": "screenshots.spec.ts",
-          "line": 181,
-          "column": 1
-        },
-        {
-          "title": "overview: whole-issue charts",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:34.887Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-7c5c89a365df7783e394",
-          "file": "screenshots.spec.ts",
-          "line": 204,
-          "column": 1
-        },
-        {
-          "title": "ap30: plan check report",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:34.887Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-e8cd38a4123c134faab5",
-          "file": "screenshots.spec.ts",
-          "line": 246,
-          "column": 1
-        },
-        {
-          "title": "heights: effective antenna height in the field-strength report",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
-                  }
-                }
-              ],
-              "expectedStatus": "skipped",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
-                  "status": "skipped",
-                  "duration": 0,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:34.887Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "skipped"
-            }
-          ],
-          "id": "677a4938ef65bfc6a6e5-a096504f70e37ee93a38",
-          "file": "screenshots.spec.ts",
-          "line": 267,
-          "column": 1
-        },
-        {
-          "title": "d3: decision and audit log",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [
-                {
-                  "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
-                  "location": {
-                    "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
+                    "line": 29,
+                    "column": 8
                   }
                 }
               ],
@@ -3297,16 +124,25 @@
               "projectName": "phone",
               "results": [
                 {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
                   "status": "skipped",
-                  "duration": 0,
+                  "duration": 869,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-07T02:03:48.853Z",
-                  "annotations": [],
+                  "startTime": "2026-11-07T02:04:19.906Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "frontend/e2e/screenshots.spec.ts",
+                        "line": 29,
+                        "column": 8
+                      }
+                    }
+                  ],
                   "attachments": []
                 }
               ],
@@ -3328,11 +164,10 @@
               "annotations": [
                 {
                   "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
                   "location": {
                     "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
+                    "line": 50,
+                    "column": 8
                   }
                 }
               ],
@@ -3341,16 +176,25 @@
               "projectName": "phone",
               "results": [
                 {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
                   "status": "skipped",
-                  "duration": 0,
+                  "duration": 884,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-07T02:03:48.853Z",
-                  "annotations": [],
+                  "startTime": "2026-11-07T02:04:19.865Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "frontend/e2e/screenshots.spec.ts",
+                        "line": 50,
+                        "column": 8
+                      }
+                    }
+                  ],
                   "attachments": []
                 }
               ],
@@ -3372,11 +216,10 @@
               "annotations": [
                 {
                   "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
                   "location": {
                     "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
+                    "line": 66,
+                    "column": 8
                   }
                 }
               ],
@@ -3385,16 +228,25 @@
               "projectName": "phone",
               "results": [
                 {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
                   "status": "skipped",
-                  "duration": 0,
+                  "duration": 875,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-07T02:03:48.853Z",
-                  "annotations": [],
+                  "startTime": "2026-11-07T02:04:19.877Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "frontend/e2e/screenshots.spec.ts",
+                        "line": 66,
+                        "column": 8
+                      }
+                    }
+                  ],
                   "attachments": []
                 }
               ],
@@ -3416,11 +268,10 @@
               "annotations": [
                 {
                   "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
                   "location": {
                     "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
+                    "line": 80,
+                    "column": 8
                   }
                 }
               ],
@@ -3429,16 +280,25 @@
               "projectName": "phone",
               "results": [
                 {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
                   "status": "skipped",
-                  "duration": 0,
+                  "duration": 885,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-07T02:03:48.853Z",
-                  "annotations": [],
+                  "startTime": "2026-11-07T02:04:19.976Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "frontend/e2e/screenshots.spec.ts",
+                        "line": 80,
+                        "column": 8
+                      }
+                    }
+                  ],
                   "attachments": []
                 }
               ],
@@ -3460,11 +320,10 @@
               "annotations": [
                 {
                   "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
                   "location": {
                     "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
+                    "line": 89,
+                    "column": 8
                   }
                 }
               ],
@@ -3473,16 +332,25 @@
               "projectName": "phone",
               "results": [
                 {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
                   "status": "skipped",
-                  "duration": 0,
+                  "duration": 440,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-07T02:03:48.853Z",
-                  "annotations": [],
+                  "startTime": "2026-11-07T02:04:21.741Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "frontend/e2e/screenshots.spec.ts",
+                        "line": 89,
+                        "column": 8
+                      }
+                    }
+                  ],
                   "attachments": []
                 }
               ],
@@ -3504,11 +372,10 @@
               "annotations": [
                 {
                   "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
                   "location": {
                     "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
+                    "line": 100,
+                    "column": 8
                   }
                 }
               ],
@@ -3517,16 +384,25 @@
               "projectName": "phone",
               "results": [
                 {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
                   "status": "skipped",
-                  "duration": 0,
+                  "duration": 413,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-07T02:03:48.853Z",
-                  "annotations": [],
+                  "startTime": "2026-11-07T02:04:21.739Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "frontend/e2e/screenshots.spec.ts",
+                        "line": 100,
+                        "column": 8
+                      }
+                    }
+                  ],
                   "attachments": []
                 }
               ],
@@ -3548,11 +424,10 @@
               "annotations": [
                 {
                   "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
                   "location": {
                     "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
+                    "line": 111,
+                    "column": 8
                   }
                 }
               ],
@@ -3561,16 +436,25 @@
               "projectName": "phone",
               "results": [
                 {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
                   "status": "skipped",
-                  "duration": 0,
+                  "duration": 422,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-07T02:03:48.854Z",
-                  "annotations": [],
+                  "startTime": "2026-11-07T02:04:21.749Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "frontend/e2e/screenshots.spec.ts",
+                        "line": 111,
+                        "column": 8
+                      }
+                    }
+                  ],
                   "attachments": []
                 }
               ],
@@ -3592,11 +476,10 @@
               "annotations": [
                 {
                   "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
                   "location": {
                     "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
+                    "line": 124,
+                    "column": 8
                   }
                 }
               ],
@@ -3605,16 +488,25 @@
               "projectName": "phone",
               "results": [
                 {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
                   "status": "skipped",
-                  "duration": 0,
+                  "duration": 709,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-07T02:03:48.854Z",
-                  "annotations": [],
+                  "startTime": "2026-11-07T02:04:21.757Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "frontend/e2e/screenshots.spec.ts",
+                        "line": 124,
+                        "column": 8
+                      }
+                    }
+                  ],
                   "attachments": []
                 }
               ],
@@ -3636,11 +528,10 @@
               "annotations": [
                 {
                   "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
                   "location": {
                     "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
+                    "line": 143,
+                    "column": 8
                   }
                 }
               ],
@@ -3649,16 +540,25 @@
               "projectName": "phone",
               "results": [
                 {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
                   "status": "skipped",
-                  "duration": 0,
+                  "duration": 680,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-07T02:03:48.854Z",
-                  "annotations": [],
+                  "startTime": "2026-11-07T02:04:22.183Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "frontend/e2e/screenshots.spec.ts",
+                        "line": 143,
+                        "column": 8
+                      }
+                    }
+                  ],
                   "attachments": []
                 }
               ],
@@ -3680,11 +580,10 @@
               "annotations": [
                 {
                   "type": "skip",
-                  "description": "set SCREENSHOTS=<step> to capture screenshots",
                   "location": {
                     "file": "frontend/e2e/screenshots.spec.ts",
-                    "line": 7,
-                    "column": 6
+                    "line": 153,
+                    "column": 8
                   }
                 }
               ],
@@ -3693,16 +592,25 @@
               "projectName": "phone",
               "results": [
                 {
-                  "workerIndex": -1,
-                  "parallelIndex": -1,
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
                   "status": "skipped",
-                  "duration": 0,
+                  "duration": 550,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-07T02:03:48.854Z",
-                  "annotations": [],
+                  "startTime": "2026-11-07T02:04:22.233Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "location": {
+                        "file": "frontend/e2e/screenshots.spec.ts",
+                        "line": 153,
+                        "column": 8
+                      }
+                    }
+                  ],
                   "attachments": []
                 }
               ],
@@ -3713,85 +621,9 @@
           "file": "screenshots.spec.ts",
           "line": 267,
           "column": 1
-        }
-      ]
-    },
-    {
-      "title": "stations.spec.ts",
-      "file": "stations.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [
-        {
-          "title": "map shows the special-interest stations in reach",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-dark",
-              "projectName": "desktop-dark",
-              "results": [
-                {
-                  "workerIndex": 3,
-                  "parallelIndex": 3,
-                  "status": "passed",
-                  "duration": 1747,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:19.046Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "eb2ad51e734e6eca5859-588bede641d010b0ef76",
-          "file": "stations.spec.ts",
-          "line": 5,
-          "column": 1
         },
         {
-          "title": "map shows the special-interest stations in reach",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "desktop-light",
-              "projectName": "desktop-light",
-              "results": [
-                {
-                  "workerIndex": 4,
-                  "parallelIndex": 2,
-                  "status": "passed",
-                  "duration": 1283,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-11-07T02:03:34.897Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "eb2ad51e734e6eca5859-b5b9ec1164bcb354d2d0",
-          "file": "stations.spec.ts",
-          "line": 5,
-          "column": 1
-        },
-        {
-          "title": "map shows the special-interest stations in reach",
+          "title": "broadcasting: FM and TV report",
           "ok": true,
           "tags": [],
           "tests": [
@@ -3803,15 +635,15 @@
               "projectName": "phone",
               "results": [
                 {
-                  "workerIndex": 8,
-                  "parallelIndex": 0,
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
                   "status": "passed",
-                  "duration": 1224,
+                  "duration": 1210,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-11-07T02:03:48.863Z",
+                  "startTime": "2026-11-07T02:04:22.323Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -3819,9 +651,9 @@
               "status": "expected"
             }
           ],
-          "id": "eb2ad51e734e6eca5859-e81a03abcbf29fc6fb20",
-          "file": "stations.spec.ts",
-          "line": 5,
+          "id": "677a4938ef65bfc6a6e5-1ded8dd74dddf6fb8863",
+          "file": "screenshots.spec.ts",
+          "line": 284,
           "column": 1
         }
       ]
@@ -3829,10 +661,10 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-11-07T02:03:01.813Z",
-    "duration": 49196.22,
-    "expected": 69,
-    "skipped": 30,
+    "startTime": "2026-11-07T02:04:17.176Z",
+    "duration": 6458.255,
+    "expected": 1,
+    "skipped": 10,
     "unexpected": 0,
     "flaky": 0
   }

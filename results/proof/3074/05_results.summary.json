@@ -4,22 +4,22 @@
     [
       "CSV parses as ResultRow",
       true,
-      "196 rows"
+      "199 rows"
     ],
     [
       "CSV and JSON hold the same rows",
       true,
-      "196 JSON rows"
+      "199 JSON rows"
     ],
     [
       "Rows = notices screened in 04_findings",
       true,
-      "196 vs 196"
+      "199 vs 199"
     ],
     [
       "Concern counts = 04_findings bars",
       true,
-      "{'high': 23, 'medium': 99, 'review': 1, 'low': 12, 'none': 61}"
+      "{'high': 23, 'medium': 99, 'review': 1, 'low': 12, 'none': 64}"
     ],
     [
       "Group rows = candidates after geography (03_geography)",
@@ -43,8 +43,8 @@
     ]
   ],
   "sha256_16": {
-    "csv": "ef113b2f2f808234",
-    "json": "1f3eb1d3bdbfa738",
+    "csv": "538145058979cdb9",
+    "json": "376ac830c42f173a",
     "groups": "25508ce1fa973ad6"
   }
 }
