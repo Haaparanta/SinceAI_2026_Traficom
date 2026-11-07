@@ -24,7 +24,7 @@ or the API. The root [README](../README.md#development) has the same options for
 |---|---|
 | Issue selector, proof metrics, export, layout | `src/App.tsx` |
 | Ranked findings with concern filter and search | `src/components/RankedList.tsx` |
-| Overview tab: the whole issue; space: the geostationary arc seen from Finland with every flagged GSO filing; terrestrial: every flagged foreign station and the special-interest stations it reaches; both: flagged findings across the spectrum by concern. Click or Enter opens a finding | `src/components/OverviewView.tsx` |
+| Overview tab: the whole issue; space: the geostationary arc seen from Finland with every flagged GSO filing; both: flagged findings across the spectrum by concern (positions are on the All on map tab). Click or Enter opens a finding | `src/components/OverviewView.tsx` |
 | Spectrum tab: the lead group against the Finnish table rows | `src/components/SpectrumView.tsx` |
 | Map tab: reference points and elevations, or the station and its path to the border | `src/components/MapView.tsx` |
 | All on map tab: every located datapoint of the issue (terrestrial stations, earth stations, special-interest stations) over Finland and its neighbours, with type, concern, review state and filters; clicking one selects its finding | `src/components/OverviewMap.tsx` |
