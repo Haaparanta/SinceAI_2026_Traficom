@@ -85,6 +85,24 @@ Methods and every parameter are listed in [`results/README.md`](results/README.m
 | Status | `make status` | one line per build step: PASS, FAIL or WAITING |
 | Screenshots | `make screenshots STEP=e` | the views a pull request changes, in `docs/screenshots/<step>/` |
 
+### Running only some tests
+
+While working, run the tests you need; run the full `make test` (and `make e2e` for UI work) before a commit.
+
+| Command | Runs |
+|---|---|
+| `make test-list` | prints the test file names |
+| `make test-pfd` | one file, `tests/test_pfd.py` (any name from `test-list`, also `scoring/tests/`) |
+| `make test T=tests/test_pfd.py::test_name` | the files or test IDs you give |
+| `make test K="elevation and not ngso"` | tests whose names match a pytest `-k` expression; works with every target above |
+| `make test-failed` | only the tests that failed last time, stopping at the first failure |
+| `make test-changed` | the test files that this branch's changes against `main` can reach through imports, committed or not; `FILES=backend/radar/calc/pfd.py` checks given files instead. A shared file (`models.py`, `config.py`, `pyproject.toml`) or a data file no module names runs everything |
+| `make e2e-stations` | one Playwright spec on all three projects |
+| `make e2e T=demo G=offline P=phone` | spec file `T`, test titles matching `G`, one project `P` (`desktop-dark`, `desktop-light`, `phone`) |
+| `make e2e-failed` | the Playwright tests that failed last time |
+
+`ARGS=` adds any other pytest or Playwright flag, for example `make test-pfd ARGS=-x` or `make e2e ARGS=--list`.
+
 ## Repository
 
 | Path | What |
