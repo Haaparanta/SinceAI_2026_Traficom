@@ -1,0 +1,31 @@
+row,plan,finnish_satellite,finnish_longitude_deg,freq_min_mhz,freq_max_mhz,direction,network,administration,network_longitude_deg,provision,published_ific,pfd_excess_db,degradation_db,evidence_ref
+finnish_entry,AP30A,FIN10300,22.8,17716.76,18089.0,Earth-to-space,,,,,,,,SPS_ALL_IFIC3083:grp.grp_id=1830
+finnish_entry,AP30A,FIN10400,22.8,17985.28,18089.0,Earth-to-space,,,,,,,,SPS_ALL_IFIC3083:grp.grp_id=1831
+finnish_entry,AP30,FIN10300,22.8,12116.76,12489.0,space-to-Earth,,,,,,,,SPS_ALL_IFIC3083:grp.grp_id=3412
+finnish_entry,AP30,FIN10400,22.8,12385.28,12489.0,space-to-Earth,,,,,,,,SPS_ALL_IFIC3083:grp.grp_id=3413
+finnish_entry,AP30B,FIN00000,46.8,12750.0,13250.0,Earth-to-space,,,,,,,,30B_3083:grp.grp_id=20475
+finnish_entry,AP30B,FIN00000,46.8,10700.0,10950.0,space-to-Earth,,,,,,,,30B_3083:grp.grp_id=20476
+finnish_entry,AP30B,FIN00000,46.8,11200.0,11450.0,space-to-Earth,,,,,,,,30B_3083:grp.grp_id=20476
+finnish_entry,AP30B,FIN00000,46.8,6725.0,7025.0,Earth-to-space,,,,,,,,30B_3083:grp.grp_id=20479
+finnish_entry,AP30B,FIN00000,46.8,4500.0,4800.0,space-to-Earth,,,,,,,,30B_3083:grp.grp_id=20480
+bureau_effect,AP30,FIN10300,,,,,YAHSAT-BSS2-15E,UAE,15.0,4.1.3,2956,1.4,1.592,SPS_ALL_IFIC3083:sps_results.ntc_id=121552007&ntc_id_aff=100550080
+bureau_effect,AP30,FIN10400,,,,,YAHSAT-BSS2-15E,UAE,15.0,4.1.3,2956,1.52,1.63,SPS_ALL_IFIC3083:sps_results.ntc_id=121552007&ntc_id_aff=100550081
+bureau_effect,AP30,FIN10300,,,,,F-SAT-BSS1-16E,F,16.0,4.1.3,2982,2.94,1.899,SPS_ALL_IFIC3083:sps_results.ntc_id=122552001&ntc_id_aff=100550080
+bureau_effect,AP30,FIN10400,,,,,F-SAT-BSS1-16E,F,16.0,4.1.3,2982,3.05,1.861,SPS_ALL_IFIC3083:sps_results.ntc_id=122552001&ntc_id_aff=100550081
+bureau_effect,AP30,FIN10300,,,,,AMS-BSS-K-17E,ISR,17.0,4.1.3,3007,4.92,2.628,SPS_ALL_IFIC3083:sps_results.ntc_id=123552002&ntc_id_aff=100550080
+bureau_effect,AP30,FIN10400,,,,,AMS-BSS-K-17E,ISR,17.0,4.1.3,3007,5.03,2.459,SPS_ALL_IFIC3083:sps_results.ntc_id=123552002&ntc_id_aff=100550081
+bureau_effect,AP30,FIN10300,,,,,ITALY_BSS_24.8E,I,24.8,4.1.3,3019,26.99,23.27,SPS_ALL_IFIC3083:sps_results.ntc_id=123552011&ntc_id_aff=100550080
+bureau_effect,AP30,FIN10400,,,,,ITALY_BSS_24.8E,I,24.8,4.1.3,3019,27.09,23.145,SPS_ALL_IFIC3083:sps_results.ntc_id=123552011&ntc_id_aff=100550081
+bureau_effect,AP30,FIN10300,,,,,ITALY_BSS_24.8E,I,24.8,4.1.3,3019,,1.485,SPS_ALL_IFIC3083:sps_results.ntc_id=123554011&ntc_id_aff=100550722&freq_band=17 G
+bureau_effect,AP30,FIN10400,,,,,ITALY_BSS_24.8E,I,24.8,4.1.3,3019,,1.482,SPS_ALL_IFIC3083:sps_results.ntc_id=123554011&ntc_id_aff=100550723&freq_band=17 G
+bureau_effect,AP30B,FIN00000,,,,,OHO-30B-45E,S,45.0,A30B#6.1A,2917,,16.301,30B_3083:ap30b_tr_res.ntc_id=119559015&ntc_id_a=90558079&freq_band=13/10-11
+bureau_effect,AP30B,FIN00000,,,,,OHO-30B-45E,S,45.0,A30B#6.1A,2917,,12.071,30B_3083:ap30b_tr_res.ntc_id=119559015&ntc_id_a=90558079&freq_band=6/4
+bureau_effect,AP30B,FIN00000,,,,,EUROPESTAR-FSS-47.5E,D,47.5,A30B#6.1A,2957,41.501,27.678,30B_3083:ap30b_tr_res.ntc_id=120559022&ntc_id_a=90558079&freq_band=12-13/10-11
+bureau_effect,AP30B,FIN00000,,,,,EUROPESTAR-FSS-47.5E,D,47.5,A30B#6.1A,2957,32.728,25.937,30B_3083:ap30b_tr_res.ntc_id=120559022&ntc_id_a=90558079&freq_band=6/4
+bureau_effect,AP30B,FIN00000,,,,,F-SAT-P-30B-48E-F,F,48.0,A30B#6.1A,2965,38.612,24.165,30B_3083:ap30b_tr_res.ntc_id=121559012&ntc_id_a=90558079&freq_band=12-13/10-11
+bureau_effect,AP30B,FIN00000,,,,,F-SAT-P-30B-48E-F,F,48.0,A30B#6.1A,2965,28.842,21.758,30B_3083:ap30b_tr_res.ntc_id=121559012&ntc_id_a=90558079&freq_band=6/4
+bureau_effect,AP30B,FIN00000,,,,,INSAT-KUP-FSS-Y24(48E),IND,48.0,A30B#6.1A,3041,24.448,8.044,30B_3083:ap30b_tr_res.ntc_id=124559009&ntc_id_a=90558079&freq_band=12-13/10-11
+bureau_effect,AP30B,FIN00000,,,,,TURKSAT-42E-FSS-4,TUR,42.0,A30B#6.1A,3045,5.558,,30B_3083:ap30b_tr_res.ntc_id=124559013&ntc_id_a=90558079&freq_band=12-13/10-11
+bureau_effect,AP30B,FIN00000,,,,,TURKSAT-42E-FSS-4,TUR,42.0,A30B#6.1A,3045,9.976,1.006,30B_3083:ap30b_tr_res.ntc_id=124559013&ntc_id_a=90558079&freq_band=6/4
+bureau_effect,AP30B,FIN00000,,,,,OHO-30B-45E-2,S,45.0,A30B#6.1A,3079,30.347,16.268,30B_3083:ap30b_tr_res.ntc_id=126559004&ntc_id_a=90558079&freq_band=12-13/10-11
+bureau_effect,AP30B,FIN00000,,,,,OHO-30B-45E-2,S,45.0,A30B#6.1A,3079,23.204,12.111,30B_3083:ap30b_tr_res.ntc_id=126559004&ntc_id_a=90558079&freq_band=6/4

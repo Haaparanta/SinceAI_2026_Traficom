@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "issue": 3074,
-  "screened": 196,
+  "screened": 199,
   "flagged": 135,
   "provenance_coverage_pct": 100.0,
   "concern": {
@@ -9,16 +9,16 @@
     "medium": 99,
     "review": 1,
     "low": 12,
-    "none": 61
+    "none": 64
   },
-  "citations": 1891,
+  "citations": 1912,
   "citation_mismatches": 0,
   "resolver": {
-    "itu_row:PASS": 866,
+    "itu_row:PASS": 878,
     "finnish_table_row:PASS": 573,
     "special_interest_row:PASS": 232,
-    "calculation:PASS": 207,
-    "regulation:PASS": 13
+    "calculation:PASS": 213,
+    "regulation:PASS": 16
   },
   "top": [
     {

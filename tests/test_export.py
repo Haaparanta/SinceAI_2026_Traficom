@@ -43,9 +43,11 @@ def test_export_is_byte_identical_across_runs(tmp_path):
 def test_exported_rows_match_the_findings(tmp_path):
     s = X.export_space(3074, tmp_path)
     rows = [ResultRow(**r) for r in json.loads((tmp_path / "space_3074.json").read_text())]
-    assert len(rows) == 196 == s["run"].result.screened
-    assert s["concern"] == {"high": 23, "medium": 99, "review": 1, "low": 12, "none": 61}
+    plan = s["run"].plan_notices or {}         # AP30B sections of 3074, none raised
+    assert len(rows) == 196 + len(plan) == s["run"].result.screened
+    assert s["concern"] == {"high": 23, "medium": 99, "review": 1, "low": 12, "none": 61 + len(plan)}
     assert X.concern_order_ok(rows)
     assert rows[0].notice_id == s["run"].result.findings[0].notice_id
-    assert all(r.evidence_refs.startswith("notice.ntc_id=") for r in rows)
+    assert all(r.evidence_refs.startswith("notice.ntc_id=") for r in rows if r.notice_id not in plan)
+    assert all(r.evidence_refs.split(":", 1)[1].startswith("notice.ntc_id=") for r in rows if r.notice_id in plan)
     assert s["group_rows"] == sum(1 for r in s["run"].rows if r.candidate)

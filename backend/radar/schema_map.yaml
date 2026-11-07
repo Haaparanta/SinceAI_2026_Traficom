@@ -45,6 +45,8 @@ space:
       notice_id: ntc_id
       satellite_name: sat_name
       longitude_deg: long_nom   # minus = West [HYPOTHESIS until a West sample is seen]
+      tolerance_east_deg: tol_east   # East-West station-keeping tolerance, used by the plan orbital-arc check
+      tolerance_west_deg: tol_west
   non_gso:                      # 112 rows
     table: non_geo
     key: ntc_id
@@ -195,6 +197,82 @@ space:
   bureau_internal:              # marked "BR internal use" in the ITU docs; never build on these
     - com_el
     - freq
+
+# Space plan databases, filled on 2026-11-07 from scripts/inspect_mdb.py (both SNS v10, 88 tables, same schema as the IFIC):
+#   data/raw/SPS_ALL_IFIC3083/SPS_ALL_IFIC3083.mdb  Appendix 30/30A Plans and Lists, 1 770 notices, last export 2026-09-16
+#   data/raw/30B_3083/30B_3083.mdb                  Appendix 30B Plan and List, 918 notices, last export 2026-09-24
+# In ific3074.mdb every plan table (plan_pub, sps_results, ap30b_*) is empty and no notice has a plan_id: the plan
+# content of an issue is only in these databases. ITU keeps only the latest snapshot online.
+plans:
+  sources:
+    AP30: SPS_ALL_IFIC<snapshot>/SPS_ALL_IFIC<snapshot>.mdb    # derived: data/derived/ap30_<snapshot>.duckdb
+    AP30B: 30B_<snapshot>/30B_<snapshot>.mdb                    # derived: data/derived/ap30b_<snapshot>.duckdb
+  notice:
+    table: notice
+    key: ntc_id
+    columns:
+      notice_id: ntc_id
+      administration: adm
+      plan_id: plan_id          # AP30: 00DN (downlink Plan) / 00UP (feeder-link Plan) for Finland; AP30B: A30B
+      provision: prov           # e.g. 4.1.3 (AP30 Art. 4), A30B#6.1A, A30B#6.25
+      reason: ntf_rsn           # B (Art. 4 / Plan), N notification, P (AP30B Plan/List), U Res. 49
+      status: st_cur
+      ific_no: wic_no           # issue that published this notice record; NULL for original Plan entries
+      received: d_rcv
+  gso:
+    table: geo
+    key: ntc_id
+    columns:
+      notice_id: ntc_id
+      satellite_name: sat_name  # Finland: FIN10300, FIN10400 (AP30/30A, 22.8 E); FIN00000 (AP30B, 46.8 E)
+      longitude_deg: long_nom
+      tolerance_east_deg: tol_east
+      tolerance_west_deg: tol_west
+  group:
+    table: grp
+    key: grp_id
+    columns:
+      group_id: grp_id
+      notice_id: ntc_id
+      direction: emi_rcp        # every plan notice is a space station: E space-to-Earth, R Earth-to-space
+      beam_name: beam_name
+      freq_min_mhz: freq_min
+      freq_max_mhz: freq_max
+  beam:
+    table: s_beam
+    key: [ntc_id, emi_rcp, beam_name]
+    columns:
+      notice_id: ntc_id
+      direction: emi_rcp
+      beam_name: beam_name
+      max_gain_dbi: gain
+      boresight_lon_deg: bore_long
+      boresight_lat_deg: bore_lat
+  special_section:
+    table: pub_ssn
+    key: [ntc_id, seq_no]
+    columns:
+      notice_id: ntc_id
+      reference: ssn_ref        # e.g. AP30B/A6A, AP30B/A6B, AP30/E, AP30A/E
+      number: ssn_no
+  ap30_results:                 # Bureau examination: effect of network ntc_id on the Plan entry ntc_id_aff (92 037 rows)
+    table: sps_results
+    columns:
+      notice_id: ntc_id
+      affected_notice_id: ntc_id_aff
+      freq_band: freq_band
+      pfd_excess_max_db: pfd_exc_max
+      epm_degradation_max_db: epm_c2i_dgr_max
+  ap30b_results:                # Bureau examination: effect of network ntc_id on the allotment ntc_id_a (6 748 rows)
+    table: ap30b_tr_res
+    columns:
+      notice_id: ntc_id
+      affected_notice_id: ntc_id_a
+      freq_band: freq_band
+      affected_status: plan_status_a
+      aggregate_degradation_max_db: agg_degr_max
+      pfd_excess_down_max_db: pfd_exc_dn_max
+      pfd_excess_up_max_db: pfd_exc_up_max
 
 terrestrial:
   source: brific<issue>/brific<issue>.mdb

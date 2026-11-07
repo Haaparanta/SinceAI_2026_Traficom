@@ -16,6 +16,7 @@ from dataclasses import dataclass
 import duckdb
 
 from radar import schema_map
+from radar.adapters import plans as PLANS
 from radar.adapters import space_ific, traficom_table
 from radar.adapters import special_interest as SI
 from radar.config import settings
@@ -24,6 +25,7 @@ from radar.models import AnalysisResult, CalcTrace, Evidence, Finding
 from radar.calc import pfd as PFD
 from radar.models import CalcInput
 from radar.pipeline import geography as G
+from radar.pipeline import plans as PL
 from radar.pipeline import rank as RK
 from radar.pipeline import relevance as rel
 
@@ -39,6 +41,15 @@ class SpaceRun:
     scores: dict                   # group_id -> GroupScore
     ingest: space_ific.IngestResult
     pfd: dict = None               # group_id -> PfdResult (C1)
+    plan_notices: dict = None      # notice_id -> adapters.plans.PlanNotice: plan sections the issue published
+    plan_snapshots: dict = None    # database key -> snapshot number used (empty when the plan databases are missing)
+
+    def notices(self) -> dict:
+        """notice_id -> Notice for every finding: the IFIC notices plus the plan sections, as Notice objects."""
+        out = {n.notice_id: n for n in self.ingest.notices}
+        for nid, p in (self.plan_notices or {}).items():
+            out.setdefault(nid, PL.as_notice(self.result.issue, p))
+        return out
 
 
 def _fmt_hz(hz: int) -> str:
@@ -114,6 +125,11 @@ def run(issue: int) -> SpaceRun:
     G.apply(rows, geo, types, stations)
 
     by_notice = {n.notice_id: n for n in ing.notices}
+    # AP30/30A/30B: Finland's own plan entries, from the plan databases (the IFIC database has none)
+    snaps = PLANS.snapshots()
+    entries = PLANS.finnish_entries(snaps=snaps) if snaps else []
+    effects = PLANS.bureau_effects(snaps=snaps) if snaps else []
+    PL.apply(rows, by_notice, PL.tolerances(con), entries, effects)
     # C1: worst-case pfd for GSO downlinks over Finnish terrestrial or passive rows, visible from Finland
     eligible = [r for r in rows if r.candidate and r.direction == "space_to_earth" and types.get(r.notice_id) == "G"
                 and r.geo_relevance in ("visible", "low_elevation")
@@ -141,6 +157,7 @@ def run(issue: int) -> SpaceRun:
         if r.candidate:
             candidates_per_notice[r.notice_id] = candidates_per_notice.get(r.notice_id, 0) + 1
 
+    plan_tol = PL.tolerances(con)
     findings: list[Finding] = []
     for n in ing.notices:
         ev: list[Evidence] = []
@@ -212,6 +229,13 @@ def run(issue: int) -> SpaceRun:
         for number in sorted(r.matched_station_numbers, key=lambda k: (reach.get(k, {}).get("elevation_deg", 0),
                                                                        reach.get(k, {}).get("distance_km", 0), k))[:MAX_STATION_EVIDENCE]:
             station_ev(number)
+        for b in r.plan_bureau[:4]:
+            PL.add_effect_evidence(add, b)
+        for h in r.plan_hits[:2]:
+            PL.add_entry_evidence(add, h.entry)
+            te, tw = plan_tol.get(n.notice_id, (None, None))
+            add("calculation", "radar.pipeline.plans", PL.arc_locator(f"ific{issue}", n.notice_id, h.entry),
+                PL.arc_excerpt(h.entry, n.longitude_deg, te, tw))
         gres = G.group_relevance(geo, n.notice_id, gid, r.direction)
         nearest = gres.detail.get("nearest") if gres.method == "earth_station_distance" else None
         if nearest and nearest.get("seq_no") is not None:
@@ -236,6 +260,8 @@ def run(issue: int) -> SpaceRun:
             calc=calc, concern=s.concern, reason=reason, evidence=ev,
         ))
     con.close()
+    plan_notices = PLANS.published_in(issue, snaps) if snaps else []
+    findings += PL.plan_notice_findings(issue, plan_notices, entries, effects)
 
     order = sorted(findings, key=lambda f: (-RK.CONCERN_ORDER[f.concern], -(scores[f.group_id].score if f.group_id else 0), f.notice_id))
     for k, f in enumerate(order, start=1):
@@ -243,7 +269,7 @@ def run(issue: int) -> SpaceRun:
     complete = sum(1 for f in order if f.evidence and all(e.excerpt for e in f.evidence))
     result = AnalysisResult(issue=issue, kind="space", screened=len(order), flagged=sum(1 for f in order if f.concern != "none"),
                             provenance_coverage_pct=round(100 * complete / max(len(order), 1), 1), findings=order)
-    return SpaceRun(result, rows, scores, ing, pfd_results)
+    return SpaceRun(result, rows, scores, ing, pfd_results, {p.notice_id: p for p in plan_notices}, snaps)
 
 
 def main() -> int:
