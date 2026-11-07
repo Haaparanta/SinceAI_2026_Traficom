@@ -229,6 +229,22 @@ def terrestrial_rows(run) -> list[ResultRow]:
     return out
 
 
+def export_broadcasting(issue: int, out_dir: Path = RESULTS_DIR) -> dict:
+    """FM and TV notices (GE84, GE06) of a terrestrial issue, kept apart from the graded land-mobile file."""
+    from collections import Counter
+
+    from radar.pipeline import broadcasting as BR
+
+    run = BR.run(issue)
+    rows = terrestrial_rows(run)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    paths = {"csv": out_dir / f"broadcasting_{issue}.csv", "json": out_dir / f"broadcasting_{issue}.json"}
+    paths["csv"].write_text(to_csv(rows), encoding="utf-8")
+    paths["json"].write_text(to_json(rows), encoding="utf-8")
+    return {"paths": {k: str(v) for k, v in paths.items()}, "rows": len(rows),
+            "concern": dict(Counter(r.concern for r in rows)), "run": run}
+
+
 def export_terrestrial(issue: int, out_dir: Path = RESULTS_DIR) -> dict:
     from collections import Counter
 

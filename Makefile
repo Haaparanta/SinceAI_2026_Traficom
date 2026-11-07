@@ -1,5 +1,5 @@
 # Filing Radar. Step IDs refer to pm_pack/08_Build_Plan_Step_by_Step.md.
-.PHONY: doctor check-data checksums schema convert convert-plans plans subbands special-interest ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial explanations determinism golden proof freeze status api-demo index cache frontend frontend-build e2e e2e-failed screenshots test test-failed test-changed test-list api
+.PHONY: broadcasting doctor check-data checksums schema convert convert-plans plans subbands special-interest ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial explanations determinism golden proof freeze status api-demo index cache frontend frontend-build e2e e2e-failed screenshots test test-failed test-changed test-list api
 
 doctor:        ## A1: tools on PATH, native arm64
 	python3 scripts/doctor.py tools
@@ -68,6 +68,10 @@ diff:          ## C2: terrestrial change set and trend, report reports/$(ISSUE)/
 
 field-strength: ## C3: P.1546 at the border, report reports/$(ISSUE)/02_field_strength.html (make field-strength ISSUE=3076)
 	uv run python scripts/field_strength_report.py $(ISSUE)
+
+broadcasting:  ## FM and TV notices (GE84, GE06) of $(ISSUE): results/broadcasting_$(ISSUE).csv|json, report reports/$(ISSUE)/03_broadcasting.html (make broadcasting ISSUE=3076)
+	PYTHONPATH=backend:. uv run python -m radar.export --issue $(ISSUE) --kind broadcasting
+	uv run python scripts/broadcasting_report.py $(ISSUE)
 
 results-terrestrial: ## C3: results/terrestrial_$(ISSUE).csv|json
 	PYTHONPATH=backend:. uv run python -m radar.export --issue $(ISSUE) --kind terrestrial
