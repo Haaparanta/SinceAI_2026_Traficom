@@ -133,6 +133,13 @@ Total on disk after the full run: about 720 MB downloaded in 79 files, plus abou
   `Municipality, StationName, Frequency (Hz), TransmissionPower (W), AntennaHeight, MaxEffectiveHeight, Polarisation, Latitude,
   Longitude (DDMMSS strings such as "62N5005" / "23E5608"), LicenseNumber, LicenseOwner, Directivity, RadiatedPowerAttenuation_<deg>`.
 
+## 4b. ITU regional broadcasting agreements - `itu_ge/`
+
+| File | Source | Used for |
+|---|---|---|
+| `R-ACT-RRC.14-2006-PDF-E.pdf` | GE06 Final Acts (RRC-06), https://www.itu.int/dms_pub/itu-r/opb/act/R-ACT-RRC.14-2006-PDF-E.pdf | trigger field strengths, Annex 4 Section I Appendix 1 Table A.1.1 (`data/reference/ge_triggers.csv`) |
+| `R-ACT-RRC.5-1984-PDF-E.pdf` | GE84 Final Acts (RRC-84), https://www.itu.int/dms_pub/itu-r/opb/act/R-ACT-RRC.5-1984-PDF-E.pdf | Annex 4 Chapter 1 basis of the FM coordination distances (derived FM trigger) |
+
 ## 5. Optional sources
 
 ### Regulation 15 "M15" - `finlex_m15/`

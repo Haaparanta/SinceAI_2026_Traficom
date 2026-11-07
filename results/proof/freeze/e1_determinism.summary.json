@@ -6,11 +6,11 @@
     "results/space_3074_groups.csv": "25508ce1fa973ad6228351d6b1bb8a4ffd5d742c2899fedea2ce9f16ca7dce9b",
     "results/terrestrial_3076.csv": "d882dc95fc9095b9b547c26045158a3c9a58161a7dd05adfcdd1bb168784dff9",
     "results/terrestrial_3076.json": "162a9df275f84b1f9de14a6ccfa29d272ceb6089769c064f6c11f312db0b6429",
-    "data/cache/space_3074.json": "d014260de06c0de821482295b31181558ec4725e075745930d5516de720f2379",
+    "data/cache/space_3074.json": "0843b60612ac651cf350ff01ba54a1017b1f97ebeb64dcd8195049d808f06443",
     "data/cache/terrestrial_3076.json": "2485dee747704e226c659853bf45584b2523a6e678c6d2409aa68dbc9fd41df5"
   },
   "seconds": [
-    71.5,
-    74.1
+    63.0,
+    49.2
   ]
 }

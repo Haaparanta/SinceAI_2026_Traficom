@@ -9,8 +9,13 @@ from radar.export.results import export_space
 def main() -> int:
     ap = argparse.ArgumentParser(description="Write the graded results files for one IFIC issue.")
     ap.add_argument("--issue", type=int, required=True)
-    ap.add_argument("--kind", choices=["space", "terrestrial"], required=True)
+    ap.add_argument("--kind", choices=["space", "terrestrial", "broadcasting"], required=True)
     args = ap.parse_args()
+    if args.kind == "broadcasting":
+        from radar.export.results import export_broadcasting
+        b = export_broadcasting(args.issue)
+        print(f"{b['paths']['csv']}: {b['rows']} rows {b['concern']}")
+        return 0
     if args.kind == "terrestrial":
         from radar.export.results import export_terrestrial
         t = export_terrestrial(args.issue)

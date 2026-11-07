@@ -149,6 +149,49 @@ def _plan_arc(loc: str, con, plan_con) -> str | None:
     return PL.arc_excerpt(entry, round(float(row[0]), 4), row[1], row[2])
 
 
+def check_broadcasting(result: AnalysisResult) -> list[Check]:
+    """FM and TV findings (radar.pipeline.broadcasting): rows reopened, calculations recomputed, triggers rebuilt."""
+    from radar.adapters import terrestrial_ific as TI
+    from radar.pipeline import broadcasting as BR
+
+    con = duckdb.connect(str(TI.db_path(result.issue)), read_only=True)
+    ing = BR.load(result.issue, con)
+    by_id = {n.notice_id: n for n in ing.notices}
+    cache: dict[str, BR.BroadcastCalc] = {}
+
+    def calc(nid: str) -> BR.BroadcastCalc:
+        if nid not in cache:
+            cache[nid] = BR.evaluate(by_id[nid], ing.extra[nid], ing.digital[nid])
+        return cache[nid]
+
+    out: list[Check] = []
+    for f in result.findings:
+        for e in f.evidence:
+            found = None
+            if e.kind == "itu_row":
+                table, keys = parse_locator(e.locator)
+                found = row_excerpt(con, table, keys, parse_excerpt(e.excerpt))
+            elif e.kind == "special_interest_row":
+                st = SI.by_row().get(int(e.locator.split("=", 1)[1]))
+                found = SI.excerpt(st) if st else None
+            elif e.kind == "regulation" and e.locator.startswith("ge_triggers.csv id="):
+                t = next((t for t in BR.triggers() if t.id == e.locator.split("=", 1)[1]), None)
+                found = t.excerpt() if t else None
+            elif e.kind == "calculation" and e.locator.startswith("broadcast_border("):
+                c = calc(e.locator[len("broadcast_border(notice_id="):-1])
+                found = BR.point_excerpt(c.border) if c.border else c.status
+            elif e.kind == "calculation" and e.locator.startswith("broadcast_station("):
+                nid, num = e.locator[len("broadcast_station(notice_id="):-1].split(";station=")
+                p = next((p for p in calc(nid).stations if p.name == num), None)
+                found = BR.point_excerpt(p) if p else None
+            else:
+                out.append(Check(f.id, e.id, e.kind, e.locator, "UNCHECKED", e.excerpt, None))
+                continue
+            out.append(Check(f.id, e.id, e.kind, e.locator, "PASS" if found == e.excerpt else "FAIL", e.excerpt, found))
+    con.close()
+    return out
+
+
 def check_terrestrial(result: AnalysisResult) -> list[Check]:
     """itu_row in the terrestrial DuckDB; border and p1546 recomputed; T/R 25-08 row rebuilt from the CSV."""
     from radar.adapters import terrestrial_ific as TI

@@ -50,3 +50,20 @@ None of the corrections changes a computed number. The page number appears only 
 | 2 | T/R 25-08 footnote 2: 1 % time "in certain situations" for digital systems | Keep 10 % time, the baseline of A1.2.3. Footnote 2 names no situation, so it is not applied by default. | none |
 | 3 | Shared band edges (47, 108, 380, 400 MHz) | A frequency on an edge belongs to both ranges, so the **stricter** (lower) trigger applies, and 470 MHz itself is covered. Code: `radar.pipeline.terrestrial.threshold_for`; tests in `tests/test_p1546.py`. | none: no 3076 notice sits on an edge |
 | 4 | 6 825-7 075 MHz has two limits (per 4 kHz and per 1 MHz) | Both apply, as printed; the pfd step reports the smaller margin. | none |
+
+## GE84 and GE06 triggers (`ge_triggers.csv`), 7 Nov 2026
+
+A separate agent downloaded the official texts from itu.int and transcribed the trigger values from the page images into [`ge_triggers_transcription.json`](ge_triggers_transcription.json). It worked from these files:
+- GE06 Final Acts: `R-ACT-RRC.14-2006-PDF-E.pdf`, 336 pages;
+- GE84 Final Acts: `R-ACT-RRC.5-1984-PDF-E.pdf`, checked digit for digit against the ITU History scan of the 1984 print.
+
+Two pages were then checked by eye:
+- **GE06 Table A.1.1** (printed page 292): DVB-T 17 / 21 / 23 / 25 and analogue TV 10 / 18 / 20 / 22 dB(uV/m), the values in the CSV. `tests/test_broadcasting.py` compares every GE06 row with the transcription.
+- **GE84 Annex 4 Chapter 1** (printed page 54): coordination by distance tables built from a 54 dB(uV/m) nuisance field and a 39 dB tropospheric protection ratio. GE84 prints no trigger field strength, so the FM row (15 dB(uV/m) = 54 - 39) is **derived** and says so in its `review` column.
+
+Left out:
+- the GE84 distance tables themselves (Tables 4.1-4.4);
+- GE06 T-DAB, which has no row for Bands IV and V;
+- the GE06 tables that protect other services (Tables A.1.2 to A.1.10).
+
+The transcription lists the open points.

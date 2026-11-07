@@ -149,3 +149,22 @@ uv run python -m radar.export --issue 3076 --kind terrestrial
 uv run python scripts/field_strength_report.py 3076      # reports/3076/02_field_strength.html
 ```
 
+
+## Broadcasting extension: FM (GE84) and TV (GE06), Terrestrial IFIC 3076
+
+`broadcasting_3076.csv` and `.json` (same `ResultRow` columns, finding ids `B-3076-nnnn`) hold the 562 FM and TV notices of the issue. They are kept apart from the graded land-mobile file. `make broadcasting ISSUE=3076`; proof in `reports/3076/03_broadcasting.html`.
+
+**Method.** The same engine as the land-mobile side quest: P.1546-6 reference implementation, filed effective height towards the receiver, land and sea path zones. Field strength at the nearest Finnish border point and at every special-interest station on the same channel within 1 000 km, at 10 m receiving height (the GE84 and GE06 planning height) and 1 % of time (interference), against the trigger in `data/reference/ge_triggers.csv`. The concern is the worse of the two points, with the land-mobile rules.
+
+**Triggers.**
+- **GE06**, Annex 4 Section I Appendix 1, Table A.1.1 (page 292), at 1 % time, 50 % locations and 10 m:
+  - DVB-T: 17, 21, 23 and 25 dB(uV/m) in Bands III, IV, V-low and V-high;
+  - analogue TV: 10, 18, 20 and 22 dB(uV/m).
+- **GE84 has no trigger field strength.** It identifies affected administrations by distance tables (Annex 4 Tables 4.1-4.4). Those tables were computed from a 54 dB(uV/m) nuisance field and a 39 dB mean tropospheric protection ratio (page 54). The FM row uses the border field strength they imply, 54 - 39 = 15 dB(uV/m) at 1 % time, and is marked **derived** [hypothesis].
+
+Both agreements were transcribed from the official ITU PDFs and checked on the page images (`data/reference/review/`).
+
+**Result for 3076.**
+- **Nothing to coordinate for Finland.** Only Russia among the neighbours filed broadcasting (37 FM, 14 TV), at Tver, Kaluga, Astrakhan, Grozny, Makhachkala and in the Altai, 640 to 3 350 km away.
+- **Beyond the method's range.** 558 notices are more than 1 000 km from Finland, beyond P.1546, or are withdrawn or without a location.
+- **Computed.** The 4 FM notices within range (2 at Tver, 640 km; 2 at Kaluga, 860 km) give -11.6 to -36.6 dB(uV/m) at the border, 26.6 to 51.6 dB under the trigger: all low.
