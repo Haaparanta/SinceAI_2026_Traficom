@@ -5,7 +5,7 @@ import { expect, test } from "@playwright/test";
 test("map shows the special-interest stations in reach", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("list", { name: "Ranked findings" }).getByRole("button").first().click();
-  await page.getByRole("tab", { name: "Map" }).click();
+  await page.getByRole("tab", { name: "Map", exact: true }).click();
   const panel = page.getByLabel("Special-interest stations in reach");
   await expect(panel).toContainText("Special-interest stations in the band and in reach");
   const count = Number(await panel.locator("dd").first().innerText());

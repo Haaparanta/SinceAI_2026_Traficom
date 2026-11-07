@@ -3,7 +3,10 @@
 * itu_row:           query the DuckDB table with the locator keys, rebuild the excerpt for the same fields.
 * finnish_table_row: rebuild the excerpt from the Traficom snapshot by ID.
 * calculation:       re-run the geography or the pfd for the group and compare the excerpt.
-* regulation:        rebuild the excerpt from data/reference/pfd_limits.csv (the RR Table 21-4 transcription).
+* regulation:        rebuild the excerpt from data/reference/pfd_limits.csv (the RR Table 21-4 transcription) or
+                     data/reference/plan_arcs.csv (the AP30/30A/30B orbital arcs).
+* plan rows:         a locator prefixed with a plan database tag (SPS_ALL_IFIC3083:grp.grp_id=3412) is reopened in
+                     that database; plan_arc(...) recomputes the orbital spacing; geography(plan:...) the GSO look angles.
 
     uv run python -m radar.evidence_check 3074          # exit 1 on any mismatch
 """
@@ -15,6 +18,8 @@ from dataclasses import dataclass
 
 import duckdb
 
+from radar import schema_map
+from radar.adapters import plans as PLANS
 from radar.adapters import space_ific, traficom_table
 from radar.adapters import special_interest as SI
 from radar.evidence import parse_excerpt, parse_locator, row_excerpt
@@ -42,13 +47,39 @@ def check(result: AnalysisResult) -> list[Check]:
     bands = {b.id: b for b in traficom_table.load_json()}
     geo = None
     ingest = None
+    plan_cons: dict[str, duckdb.DuckDBPyConnection] = {}
+
+    def plan_con(t: str):
+        if t not in plan_cons:
+            db = PLANS.db_for_tag(t)
+            plan_cons[t] = PLANS.connect(*db) if db else None
+        return plan_cons[t]
+
     out: list[Check] = []
     for f in result.findings:
         for e in f.evidence:
             found = None
             if e.kind == "itu_row":
                 table, keys = parse_locator(e.locator)
-                found = row_excerpt(con, table, keys, parse_excerpt(e.excerpt))
+                c = con
+                if ":" in table:
+                    t, table = table.split(":", 1)
+                    c = plan_con(t)
+                found = row_excerpt(c, table, keys, parse_excerpt(e.excerpt)) if c is not None else None
+            elif e.kind == "regulation" and e.locator.startswith("plan_arcs.csv id="):
+                a = PLANS.arc_by_id(e.locator.split("=", 1)[1])
+                found = a.excerpt() if a else None
+            elif e.kind == "calculation" and e.locator.startswith("plan_arc("):
+                found = _plan_arc(e.locator, con, plan_con)
+            elif e.kind == "calculation" and e.locator.startswith("geography(plan:"):
+                t, rest = e.locator[len("geography(plan:"):-1].split(":", 1)
+                c = plan_con(t)
+                M = schema_map.load()
+                row = c.execute(f"SELECT {M.q('plans','gso','longitude_deg')} FROM {M.t('plans','gso')} "
+                                f"WHERE CAST({M.q('plans','gso','notice_id')} AS VARCHAR) = ?", [rest.split("=", 1)[1]]).fetchone() if c else None
+                lon = None if row is None or row[0] is None else round(float(row[0]), 4)
+                g = G.gso_result(lon)
+                found = f"{g.relevance}: {g.note}"
             elif e.kind == "special_interest_row":
                 st = SI.by_row().get(int(e.locator.split("=", 1)[1]))
                 found = SI.excerpt(st) if st else None
@@ -85,7 +116,33 @@ def check(result: AnalysisResult) -> list[Check]:
                 continue
             out.append(Check(f.id, e.id, e.kind, e.locator, "PASS" if found == e.excerpt else "FAIL", e.excerpt, found))
     con.close()
+    for c in plan_cons.values():
+        if c is not None:
+            c.close()
     return out
+
+
+def _plan_arc(loc: str, con, plan_con) -> str | None:
+    """plan_arc(<origin>:notice_id=<id>&entry=<tag>:<group_id>&arc=<arc id>): recompute the spacing from both rows."""
+    from radar.pipeline import plans as PL
+
+    origin, rest = loc[len("plan_arc("):-1].split(":", 1)
+    parts = dict(p.split("=", 1) for p in rest.split("&"))
+    etag, egid = parts["entry"].split(":", 1)
+    db = PLANS.db_for_tag(etag)
+    if db is None:
+        return None
+    entry = next((x for x in PLANS.finnish_entries(snaps={db[0]: db[1]})
+                  if x.group_id == egid and x.arc.id == parts["arc"]), None)
+    M = schema_map.load()
+    kind, c = ("space", con) if origin.startswith("ific") else ("plans", plan_con(origin))
+    if entry is None or c is None:
+        return None
+    row = c.execute(f"SELECT {M.q(kind,'gso','longitude_deg')}, {M.q(kind,'gso','tolerance_east_deg')}, {M.q(kind,'gso','tolerance_west_deg')} "
+                    f"FROM {M.t(kind,'gso')} WHERE CAST({M.q(kind,'gso','notice_id')} AS VARCHAR) = ?", [parts["notice_id"]]).fetchone()
+    if row is None or row[0] is None:
+        return None
+    return PL.arc_excerpt(entry, round(float(row[0]), 4), row[1], row[2])
 
 
 def check_terrestrial(result: AnalysisResult) -> list[Check]:

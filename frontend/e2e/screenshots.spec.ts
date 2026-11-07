@@ -100,7 +100,7 @@ test("stations: special-interest stations on the map", async ({ page }, info) =>
   test.skip(step !== "stations");
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "Filing Radar" })).toBeVisible();
-  await page.getByRole("tab", { name: "Map" }).click();
+  await page.getByRole("tab", { name: "Map", exact: true }).click();
   const map = page.locator("svg[aria-label^='Map of Finland']");
   await expect(map.locator("[data-station]").first()).toBeVisible();
   await map.scrollIntoViewIfNeeded();
@@ -113,11 +113,21 @@ test("terrestrial-stations: field strength at a special-interest station", async
   await page.getByRole("tab", { name: "Terrestrial 3076" }).click();
   await page.getByPlaceholder(/Search/).fill("93075625");
   await page.getByRole("list", { name: "Ranked findings" }).getByRole("button").first().click();
-  await page.getByRole("tab", { name: "Map" }).click();
+  await page.getByRole("tab", { name: "Map", exact: true }).click();
   const map = page.locator("svg[aria-label^='Map of Finland']");
   await expect(map.locator("[data-station]")).toHaveCount(1);
   await map.scrollIntoViewIfNeeded();
   await page.screenshot({ path: `../docs/screenshots/${step}/1-map-${info.project.name}.png` });
+});
+
+test("ap30: plan check report", async ({ page }, info) => {
+  test.skip(step !== "ap30");
+  const proof = new URL("../../results/proof/", import.meta.url).href;
+  await page.goto(`${proof}3074/08_plans.html`);
+  await expect(page.getByRole("heading", { name: /AP30, AP30A and AP30B plans/ })).toBeVisible();
+  await page.screenshot({ path: `../docs/screenshots/${step}/1-orbit-strip-${info.project.name}.png` });
+  await page.getByRole("heading", { name: /Plan sections published in IFIC/ }).evaluate((el) => el.scrollIntoView({ block: "start" }));
+  await page.screenshot({ path: `../docs/screenshots/${step}/2-plan-sections-${info.project.name}.png` });
 });
 
 test("heights: effective antenna height in the field-strength report", async ({ page }, info) => {

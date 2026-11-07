@@ -97,6 +97,15 @@ def check_data() -> None:
     except (OSError, ValueError, KeyError) as exc:
         report("FAIL", "taajuusjakotaulukko.json", str(exc))
 
+    # AP30/30A and AP30B plan databases: ITU keeps only the latest snapshot online, so any snapshot number is accepted
+    for label, pattern in (("AP30/30A plan database", "SPS_ALL_IFIC*/SPS_ALL_IFIC*.mdb"), ("AP30B plan database", "30B_*/30B_*.mdb")):
+        found = sorted(RAW.glob(pattern))
+        if found:
+            version = run(["mdb-ver", str(found[-1])]) if shutil.which("mdb-ver") else "mdb-ver missing"
+            report("PASS" if version.startswith("JET") else "FAIL", label, f"{found[-1].relative_to(RAW)}, {version}")
+        else:
+            report("FAIL", label, "missing; run scripts/download_data.sh (section 1b), then make convert-plans")
+
     xls = [p for p in (RAW / "special_interest.xlsx", RAW / "special_interest.xls") if p.exists()]
     if xls:
         report("PASS", "special_interest.xlsx", str(xls[0].name))

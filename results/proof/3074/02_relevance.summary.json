@@ -80,13 +80,13 @@
     "passive_service": 20
   },
   "paths_notices": {
-    "uplink_space": 132,
     "uplink_terrestrial": 131,
     "space_cofrequency": 157,
+    "uplink_space": 132,
     "pfd_terrestrial": 158,
-    "uplink_uncovered": 44,
-    "uplink_passive": 23,
     "uncovered": 23,
+    "uplink_passive": 23,
+    "uplink_uncovered": 44,
     "passive_service": 3
   },
   "space_to_earth_kept_share": 0.9933,
