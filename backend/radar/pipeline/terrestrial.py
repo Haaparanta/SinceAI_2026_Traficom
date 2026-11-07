@@ -10,6 +10,9 @@ For every located land-mobile notice of another administration within MAX_DISTAN
      bearing), else its filed maximum effective height, else the antenna height above ground (no terrain profile)
   4. the ECC/ERC T/R 25-08 Annex 1 trigger for the band plus 10 log10(channel / 25 kHz); margin = trigger - E
 
+Evidence: the notice, site and antenna rows, the border and P.1546 calculations, the T/R 25-08 row and, for a raised
+notice, the Finnish table rows its channel overlaps with Regulation M4 behind the first of them.
+
 Special-interest stations (Traficom XLS): for a computed notice, every station whose protected channel (RX
 frequency +- half the bandwidth) overlaps the notice's channel and lies within MAX_DISTANCE_KM gets its own P.1546
 field strength, over the path from the transmitter to the station and at the station's antenna height above ground,
@@ -31,6 +34,7 @@ from functools import lru_cache
 
 from radar import schema_map
 from radar.adapters import terrestrial_ific as T
+from radar.adapters import traficom_table
 from radar.config import ROOT
 from radar.evidence import locator, row_excerpt
 from radar.models import AnalysisResult, CalcInput, CalcTrace, Evidence, Finding, TerrestrialNotice
@@ -38,6 +42,7 @@ from scoring.geometry import Region
 
 MAX_DISTANCE_KM = 1000.0         # P.1546 validity limit
 MAX_STATION_EVIDENCE = 5          # stations cited per finding; all of them are in the results file
+MAX_FINNISH_ROWS = 6              # Finnish table rows cited per raised finding (same cap as the space findings)
 P1546_MIN_H2_SEA_M = 3.0         # P.1546-6: receiving antenna below 3 m adjacent to sea is outside the method
 STATION_DEFAULT_H2_M = 10.0     # receiving height when the sheet gives none (the T/R 25-08 reference height)
 NO_CRITERION_REVIEW_KM = 100.0   # [HYPOTHESIS] without a criterion, only stations this close go to review (Q12)
@@ -340,6 +345,7 @@ def run(issue: int) -> TerrestrialRun:
     source = f"brific{issue}.mdb (data/derived/terrestrial_{issue}.duckdb)"
     geo_keys = dict(con.execute(f'SELECT CAST("{C("notice", "notice_id")}" AS VARCHAR), "{C("notice", "geo_key")}" '
                                 f'FROM "{Tb("notice")}"').fetchall())
+    bands = traficom_table.subbands()
     calcs, findings = {}, []
     for n in ing.notices:
         e = ing.extra[n.notice_id]
@@ -355,6 +361,13 @@ def run(issue: int) -> TerrestrialRun:
         k = {C("notice", "notice_id"): n.notice_id}
         n_ev = add("itu_row", source, locator(Tb("notice"), **k), row_excerpt(con, Tb("notice"), k, [
             C("notice", x) for x in ("administration", "intent", "notice_type", "station_class", "freq_mhz", "bandwidth_khz")]))
+        # Raised notices cite the Finnish table rows their channel overlaps and Regulation M4 behind the first one
+        # (pm_pack/06: M4 is the citation target for every Finnish-table match).
+        fi_rows = finnish_rows(n, bands) if level != "none" else []
+        for b in fi_rows:
+            ev.append(traficom_table.evidence(b, f"E-{len(ev) + 1:03d}"))
+        if fi_rows:
+            ev.append(traficom_table.m4_evidence(fi_rows[0], f"E-{len(ev) + 1:03d}"))
         trace = CalcTrace(method="none", inputs=[], formula="", result_value=None, result_unit="", limit_value=None,
                           limit_evidence_id=None, margin_db=None, notes=[c.reason] if c.reason else [])
         geo = "unknown"
@@ -447,6 +460,7 @@ def run(issue: int) -> TerrestrialRun:
         elif c.distance_km is not None:
             geo = "near_border" if c.distance_km <= 300 else "far"
         findings.append(Finding(id="", kind="terrestrial", issue=issue, notice_id=n.notice_id, group_id=None,
+                                matched_subband_ids=[b.id for b in fi_rows],
                                 matched_station_numbers=[st["number"] for st in c.stations],
                                 geo_relevance=geo, calc=trace, concern=level, reason=reason, evidence=ev))
     con.close()
@@ -460,6 +474,23 @@ def run(issue: int) -> TerrestrialRun:
                          flagged=sum(1 for f in order if f.concern != "none"),
                          provenance_coverage_pct=round(100 * complete / max(len(order), 1), 1), findings=order)
     return TerrestrialRun(res, calcs, ing)
+
+
+def finnish_rows(n: TerrestrialNotice, bands=None) -> list:
+    """The Finnish table rows (Regulation M4) the notified channel overlaps: widest overlap first, one row per distinct
+    service and limits, at most MAX_FINNISH_ROWS. Empty when the notice has no frequency."""
+    if n.freq_hz is None:
+        return []
+    half = (n.bandwidth_hz or 0) // 2
+    lo, hi = n.freq_hz - half, n.freq_hz + half
+    hits = traficom_table.overlapping(lo, max(hi, lo + 1), bands)
+    out, seen = [], set()
+    for b, _ in sorted(hits, key=lambda h: (-h[1], h[0].lower_hz, h[0].id)):
+        key = (b.services_in_finland, b.lower_hz, b.upper_hz)
+        if key not in seen:
+            seen.add(key)
+            out.append(b)
+    return out[:MAX_FINNISH_ROWS]
 
 
 def border_excerpt(c: TerrestrialCalc) -> str:
