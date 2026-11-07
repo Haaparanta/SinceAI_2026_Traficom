@@ -29,7 +29,8 @@ export type DecisionKind = "approve" | "dismiss" | "investigate";
 // One line of the audit log: a ReviewDecision (models.py) plus where it applies and the hash chain.
 export interface AuditEntry { seq: number; kind: Kind; issue: number; finding_id: string; notice_id: string; concern_at_decision: Concern; decision: DecisionKind; reviewer: string; note: string | null; at: string; prev_hash: string; hash: string; }
 export interface AuditLog { chain: { ok: boolean; entries: number; first_bad_seq: number | null; head?: string }; entries: AuditEntry[]; }
-export interface AnalysisBundle { result: AnalysisResult; context: Record<string, FindingContext>; decisions: Record<string, AuditEntry>; omitted?: { not_raised: number; note: string }; }
+export interface ArcPoint { lon: number; max_elevation_deg: number; point: string; }
+export interface AnalysisBundle { result: AnalysisResult; context: Record<string, FindingContext>; decisions: Record<string, AuditEntry>; omitted?: { not_raised: number; note: string }; overview?: { gso_arc?: ArcPoint[] }; }
 // Step D2: grounded explanation and letter draft (backend/radar/llm/drafts.py).
 export interface SpecialInterestStation { station_number: string; centre_hz: number; bandwidth_hz: number; lat: number; lon: number; antenna_height_m: number | null; antenna_direction_deg: number | null; antenna_directivity: string | null; limit_value: number | null; limit_unit: string | null; tx_hz: number | null; licence_class: string | null; erp_w: number | null; antenna_gain_db: number | null; ground_height_m: number | null; source_row: number | null; quality_flags: string[]; }
 export interface Explanation { text: string; cited_evidence_ids: string[]; }

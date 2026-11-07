@@ -79,7 +79,7 @@ Methods and every parameter are listed in [`results/README.md`](results/README.m
 | P.1546 engine | part of `make test` | the ITU validation suite (52 reference cases) reproduces to 0.0 dB |
 | Evidence | `make check-evidence ISSUE=3074` | every citation re-opened; tamper tests prove a changed excerpt fails |
 | Stage reports | `make index`, then open `reports/index.html` (or the `reports` entry in `.claude/launch.json`) | one HTML page per build step: counts in and out, charts, maps, ten random rows, PASS or FAIL |
-| End-to-end UI | `make e2e` | Playwright drives the real screen and API in Chromium: both issues, all tabs, evidence links, filters, decisions and the audit chain, explanation and letter draft (no send button), export, dark and light, phone width |
+| End-to-end UI | `make e2e` | Playwright drives the real screen and API in Chromium: both issues, all tabs including the whole-issue Overview, special-interest stations on the map, evidence links, filters, decisions and the audit chain, explanation and letter draft (no send button), export, dark and light, phone width |
 | Explanations and letters | `make explanations ISSUE=3074` | 20 explanations beside their evidence, every cited ID and number green or red, a planted invented number rejected, no letter that says it was sent |
 | Freeze | `make freeze` | E1 two full runs identical to git, E2 accuracy by label source (`results/proof/accuracy.csv`), E3 offline demo walk, E4 proof pack in `results/proof/` |
 | Status | `make status` | one line per build step: PASS, FAIL or WAITING |

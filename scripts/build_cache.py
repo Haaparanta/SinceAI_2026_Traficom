@@ -78,7 +78,17 @@ def space(issue: int) -> dict:
             "factors": s.factors if s else {},
             "stations": [] if r is None else station_context(r),
         }
-    return {"result": json.loads(run.result.model_dump_json()), "context": ctx}
+    return {"result": json.loads(run.result.model_dump_json()), "context": ctx, "overview": {"gso_arc": gso_arc()}}
+
+
+def gso_arc(step_deg: int = 1) -> list[dict]:
+    """For every GSO longitude: the highest elevation from any Finnish reference point and where (radar.pipeline.geography).
+    Drawn behind the flagged GSO filings on the Overview tab; computed here so the screen never computes geometry."""
+    out = []
+    for lon in range(-180, 181, step_deg):
+        g = G.gso_result(float(lon))
+        out.append({"lon": lon, "max_elevation_deg": g.detail["max_elevation_deg"], "point": g.detail["max_elevation_point"]})
+    return out
 
 
 def station_context(r) -> list[dict]:
