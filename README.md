@@ -75,7 +75,7 @@ Methods and every parameter are listed in [`results/README.md`](results/README.m
 
 | Check | Command | What it shows |
 |---|---|---|
-| Unit and data tests | `make test` | 343 Python tests: formulas against hand-worked values, golden cases, contracts, invariants on 3074 and 3076 |
+| Unit and data tests | `make test` | 346 Python tests (the data tests skip without `data/derived/` and the XLS): formulas against hand-worked values, golden cases, contracts, invariants on 3074 and 3076 |
 | P.1546 engine | part of `make test` | the ITU validation suite (52 reference cases) reproduces to 0.0 dB |
 | Evidence | `make check-evidence ISSUE=3074` | every citation re-opened; tamper tests prove a changed excerpt fails |
 | Stage reports | `make index`, then open `reports/index.html` (or the `reports` entry in `.claude/launch.json`) | one HTML page per build step: counts in and out, charts, maps, ten random rows, PASS or FAIL |
@@ -85,6 +85,47 @@ Methods and every parameter are listed in [`results/README.md`](results/README.m
 | Status | `make status` | one line per build step: PASS, FAIL or WAITING |
 | Screenshots | `make screenshots STEP=e` | the views a pull request changes, in `docs/screenshots/<step>/` |
 
+## Development
+
+Read [`AGENTS.md`](AGENTS.md) first (also linked as `CLAUDE.md` and `.cursorrules`): the rules, data contracts and who owns which folder. Work on a branch `feat/<area>-<thing>` and open a pull request against `main`; nothing is committed straight to `main`.
+
+**Setup for the tests.** `uv sync` and `npm --prefix frontend install` from the quick start, then once `npx --prefix frontend playwright install chromium` for the end-to-end tests. Playwright starts its own API on port 8100 and dev server on port 5180, so both ports must be free.
+
+**Before every commit**, run all of them:
+
+```bash
+make test             # every Python test
+make frontend-build   # type-check, lint and build the screen
+make e2e              # every Playwright test, when the change touches the screen or the API
+```
+
+### Running only some tests
+
+While you work, run only the tests you need. Pytest and Playwright take the same variables: `T` files, `K` or `G` names, `P` one project, `ARGS` any other flag.
+
+| Command | Runs |
+|---|---|
+| `make test-list` | prints the test file names |
+| `make test-pfd` | one file, `tests/test_pfd.py` (any name from `test-list`, also `scoring/tests/`) |
+| `make test T=tests/test_pfd.py::test_name` | the files or test IDs you give |
+| `make test K="elevation and not ngso"` | tests whose names match a pytest `-k` expression; works with every pytest target here, e.g. `make test-pfd K=limit` |
+| `make test-failed` | only the tests that failed last time, stopping at the first failure |
+| `make test-changed` | only the test files your branch's changes can reach through imports, committed or not, compared with `main` (`BASE=` for another branch) |
+| `make test-changed FILES=backend/radar/calc/pfd.py` | the same for the files you name, without asking git |
+| `make e2e-stations` | one Playwright spec (`frontend/e2e/stations.spec.ts`) on all three projects |
+| `make e2e T=demo G=offline P=phone` | spec file `T`, test titles matching `G`, one project `P` (`desktop-dark`, `desktop-light`, `phone`) |
+| `make e2e-failed` | the Playwright tests that failed last time |
+| `make test-pfd ARGS=-x`, `make e2e ARGS=--list` | any other pytest or Playwright flag; `--list` shows what would run without starting the servers |
+
+How `make test-changed` picks the tests ([`scripts/changed_tests.py`](scripts/changed_tests.py)):
+
+- A changed test file runs itself. A changed module in `backend/radar/`, `scoring/` or `scripts/` runs every test file that imports it, directly or through other modules.
+- A changed data, prompt or config file (for example `data/reference/pfd_limits.csv`) counts as a change to every module that names it.
+- It runs everything when it cannot trace a change safely: a shared contract or config (`models.py`, `config.py`, `pyproject.toml`, `uv.lock`) or a file that no module names.
+- Changes to `frontend/`, `docs/`, `pm_pack/`, and Markdown outside `prompts/`, `data/` and the code folders, run no Python test. Use `make e2e` for the screen.
+
+It follows imports only. A test that reads a file through a path built at runtime can be missed, which is why the full `make test` still runs before a commit.
+
 ## Repository
 
 | Path | What |
@@ -93,8 +134,9 @@ Methods and every parameter are listed in [`results/README.md`](results/README.m
 | [`frontend/`](frontend/README.md) | The one screen (React, Vite, Tailwind v4, Girlypop tokens) and its Playwright tests |
 | [`results/`](results/README.md) | The graded results files and their documentation |
 | [`data/`](data/SOURCES.md) | `reference/` (committed, sourced), `cache/` (committed, for the screen), `raw/` and `derived/` (git-ignored) |
-| [`scripts/`](scripts/) | Data download, conversion, cache, and one report script per build step |
-| [`tests/`](tests/) | Python tests, golden cases, the vendored P.1546 validation suite |
+| [`Makefile`](Makefile) | Every command in this README; `make <target>` with a `##` comment per target |
+| [`scripts/`](scripts/) | Data download, conversion, cache, one report script per build step, and `changed_tests.py` for `make test-changed` |
+| [`tests/`](tests/) | Python tests, golden cases, the vendored P.1546 validation suite; Playwright tests are in `frontend/e2e/` |
 | [`scoring/`](scoring/README.md) | The ranking model whose weights the pipeline uses |
 | [`pm_pack/`](pm_pack/README.md) | Plan, requirements, risks, partner questions, agent context, [step-by-step build plan](pm_pack/08_Build_Plan_Step_by_Step.md) |
 | [`docs/`](docs/README.md) | One page per document and external source |
@@ -109,7 +151,7 @@ Traficom asks for AI-assisted support to find the international filings that may
 | [ITU Space IFIC](https://www.itu.int/en/ITU-R/space/brific/Pages/default.aspx), issue 3074 graded | yes | `ific3074.mdb` | [notes](docs/links/itu-space-brific/README.md), [databases](docs/links/itu-space-ific-databases/README.md) |
 | [ITU Terrestrial IFIC](https://www.itu.int/en/ITU-R/terrestrial/brific/Pages/default.aspx), issue 3076 graded | yes | `brific3076.mdb`, `brific3075.mdb` for the trend | [notes](docs/links/itu-terrestrial-brific/README.md) |
 | [Regulation 4 (M4)](https://www.finlex.fi/fi/viranomaiset/maarayskokoelmat/traficom-viestinta/2026/3) and the [frequency table API](https://opendata.traficom.fi/api/v13/Taajuusjakotaulukko) | yes | 5 917 rows, snapshot 6 Nov 2026 | [M4](docs/links/finlex-regulation-m4/README.md), [API](docs/links/traficom-frequency-table-api/README.md) |
-| Special-interest stations (XLS, Since AI platform) | yes | waiting for the file | |
+| Special-interest stations (XLS, Since AI platform) | yes | `data/raw/special_interest.xlsx`, 870 stations | read by `make special-interest` |
 | [ITU Radio Regulations 2024](https://www.itu.int/pub/r-reg-rr) | no | Article 21 Table 21-4 | [notes](docs/links/itu-radio-regulations/README.md) |
 | ECC/ERC T/R 25-08, ITU-R P.1546-6 | no | terrestrial trigger and propagation | |
 | [M15](https://www.finlex.fi/fi/viranomaiset/maarayskokoelmat/traficom-viestinta/2025/51209), [CEPT docdb](https://docdb.cept.org/implementation/overview), [ITU space software](https://www.itu.int/en/ITU-R/software/Pages/space-network-software.aspx) | no | not used yet | [M15](docs/links/finlex-regulation-m15/README.md), [CEPT](docs/links/cept-docdb-implementation/README.md), [software](docs/links/itu-space-software/README.md) |
