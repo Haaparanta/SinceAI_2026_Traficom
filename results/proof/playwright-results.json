@@ -10,7 +10,9 @@
     "grep": {},
     "grepInvert": null,
     "maxFailures": 0,
-    "metadata": {},
+    "metadata": {
+      "actualWorkers": 4
+    },
     "preserveOutput": "always",
     "reporter": [
       [
@@ -41,7 +43,9 @@
         "outputDir": "reports/playwright-artifacts",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 4
+        },
         "id": "desktop-dark",
         "name": "desktop-dark",
         "testDir": "frontend/e2e",
@@ -55,7 +59,9 @@
         "outputDir": "reports/playwright-artifacts",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 4
+        },
         "id": "desktop-light",
         "name": "desktop-light",
         "testDir": "frontend/e2e",
@@ -69,7 +75,9 @@
         "outputDir": "reports/playwright-artifacts",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {},
+        "metadata": {
+          "actualWorkers": 4
+        },
         "id": "phone",
         "name": "phone",
         "testDir": "frontend/e2e",
@@ -87,18 +95,2720 @@
     "workers": 4,
     "webServer": null
   },
-  "suites": [],
-  "errors": [
+  "suites": [
     {
-      "message": "Error: http://127.0.0.1:5180 is already used, make sure that nothing is running on the port/url or set reuseExistingServer:true in config.webServer.",
-      "stack": "Error: http://127.0.0.1:5180 is already used, make sure that nothing is running on the port/url or set reuseExistingServer:true in config.webServer."
+      "title": "decisions.spec.ts",
+      "file": "decisions.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "decision buttons stay disabled until there is a reviewer and a note",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2174,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:41.518Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ca2913af3b2fa1993ca8-bc67fcf6b3f6d902ed97",
+          "file": "decisions.spec.ts",
+          "line": 14,
+          "column": 1
+        },
+        {
+          "title": "a decision is saved, shown, logged with a verified chain, and exported; the concern stays",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2547,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:41.462Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ca2913af3b2fa1993ca8-8f96156eb15dc516818c",
+          "file": "decisions.spec.ts",
+          "line": 32,
+          "column": 1
+        },
+        {
+          "title": "the reviewer name is remembered across reloads",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1747,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:41.481Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ca2913af3b2fa1993ca8-4e17e475c43f6636a9fa",
+          "file": "decisions.spec.ts",
+          "line": 73,
+          "column": 1
+        },
+        {
+          "title": "decision buttons stay disabled until there is a reviewer and a note",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1439,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:52.706Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ca2913af3b2fa1993ca8-0d584896c11840b19aaa",
+          "file": "decisions.spec.ts",
+          "line": 14,
+          "column": 1
+        },
+        {
+          "title": "a decision is saved, shown, logged with a verified chain, and exported; the concern stays",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 1848,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:52.675Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ca2913af3b2fa1993ca8-d3b837177e21f7105133",
+          "file": "decisions.spec.ts",
+          "line": 32,
+          "column": 1
+        },
+        {
+          "title": "the reviewer name is remembered across reloads",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1413,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:52.807Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ca2913af3b2fa1993ca8-fcc3e2d83afc55b27d04",
+          "file": "decisions.spec.ts",
+          "line": 73,
+          "column": 1
+        },
+        {
+          "title": "decision buttons stay disabled until there is a reviewer and a note",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 2163,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:05.615Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ca2913af3b2fa1993ca8-e67ed24d237070fb408b",
+          "file": "decisions.spec.ts",
+          "line": 14,
+          "column": 1
+        },
+        {
+          "title": "a decision is saved, shown, logged with a verified chain, and exported; the concern stays",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3336,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:05.632Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ca2913af3b2fa1993ca8-fdf5ba34403b8c55b266",
+          "file": "decisions.spec.ts",
+          "line": 32,
+          "column": 1
+        },
+        {
+          "title": "the reviewer name is remembered across reloads",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 2216,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:05.615Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ca2913af3b2fa1993ca8-9f34d356bf6ac4f550fc",
+          "file": "decisions.spec.ts",
+          "line": 73,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "demo.spec.ts",
+      "file": "demo.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "the whole screen works offline in demo mode",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 4361,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:41.470Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "05384557491ebd602dd7-ae477b33f59b6e900ffb",
+          "file": "demo.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "the whole screen works offline in demo mode",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 6121,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:54.360Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "05384557491ebd602dd7-9fc02a4e18d946e8bfb3",
+          "file": "demo.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "the whole screen works offline in demo mode",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 11,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5548,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:05.787Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "05384557491ebd602dd7-5ed0c72569e74ba940c1",
+          "file": "demo.spec.ts",
+          "line": 6,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "drafts.spec.ts",
+      "file": "drafts.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "the explanation is grounded and its citations open the evidence",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 2535,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:44.541Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e417140b1e763296e66e-536bf3987517bb29546e",
+          "file": "drafts.spec.ts",
+          "line": 14,
+          "column": 1
+        },
+        {
+          "title": "the letter is a draft to the notifying administration that can be edited and downloaded, never sent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2094,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:44.958Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e417140b1e763296e66e-440ce98df2ef5662b622",
+          "file": "drafts.spec.ts",
+          "line": 34,
+          "column": 1
+        },
+        {
+          "title": "drafts reset when another finding is selected",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1780,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:45.353Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e417140b1e763296e66e-b2289ee3ea9272bcdc16",
+          "file": "drafts.spec.ts",
+          "line": 59,
+          "column": 1
+        },
+        {
+          "title": "the explanation is grounded and its citations open the evidence",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1472,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:54.540Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e417140b1e763296e66e-69048727122daa634ef9",
+          "file": "drafts.spec.ts",
+          "line": 14,
+          "column": 1
+        },
+        {
+          "title": "the letter is a draft to the notifying administration that can be edited and downloaded, never sent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1549,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:54.543Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e417140b1e763296e66e-a5eaa5e2561922ce5734",
+          "file": "drafts.spec.ts",
+          "line": 34,
+          "column": 1
+        },
+        {
+          "title": "drafts reset when another finding is selected",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 1332,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:54.982Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e417140b1e763296e66e-cf7e22486bfe7c37beb6",
+          "file": "drafts.spec.ts",
+          "line": 59,
+          "column": 1
+        },
+        {
+          "title": "the explanation is grounded and its citations open the evidence",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 2044,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:09.936Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e417140b1e763296e66e-8ade39d88b7dd4f9d1a7",
+          "file": "drafts.spec.ts",
+          "line": 14,
+          "column": 1
+        },
+        {
+          "title": "the letter is a draft to the notifying administration that can be edited and downloaded, never sent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 2054,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:09.971Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e417140b1e763296e66e-ae3d25cc3102d9350db4",
+          "file": "drafts.spec.ts",
+          "line": 34,
+          "column": 1
+        },
+        {
+          "title": "drafts reset when another finding is selected",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1658,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:11.307Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e417140b1e763296e66e-afdcc3a38a67c7e152cf",
+          "file": "drafts.spec.ts",
+          "line": 59,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "screen.spec.ts",
+      "file": "screen.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "proof metrics match the API for Space 3074",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1186,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:47.096Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-c7a5fcec5bd3d68ec7a0",
+          "file": "screen.spec.ts",
+          "line": 48,
+          "column": 1
+        },
+        {
+          "title": "the ranked list starts with the API's first finding and every badge has a text label",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1207,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:47.124Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-0f7316efb170bdde2760",
+          "file": "screen.spec.ts",
+          "line": 57,
+          "column": 1
+        },
+        {
+          "title": "calculation tab shows result, limit, margin and the indicative label from the trace",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1214,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:47.156Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-bbe79e66d40b2bacbf85",
+          "file": "screen.spec.ts",
+          "line": 71,
+          "column": 1
+        },
+        {
+          "title": "an evidence link in the trace highlights that evidence item",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 2664,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:47.194Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-cdd455b130be59509c7b",
+          "file": "screen.spec.ts",
+          "line": 93,
+          "column": 1
+        },
+        {
+          "title": "spectrum and map tabs draw the lead group, the Finnish rows and the reference points",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1861,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:48.309Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-a93145bd77ef17665cfb",
+          "file": "screen.spec.ts",
+          "line": 110,
+          "column": 1
+        },
+        {
+          "title": "concern filter and search narrow the list",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1768,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:48.349Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-4ba5ae02da388110af66",
+          "file": "screen.spec.ts",
+          "line": 131,
+          "column": 1
+        },
+        {
+          "title": "Terrestrial 3076 shows the P.1546 trace of its first finding",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1726,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:48.384Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-d73ad8d2b0b31078f3a2",
+          "file": "screen.spec.ts",
+          "line": 149,
+          "column": 1
+        },
+        {
+          "title": "export downloads the results CSV for the selected issue",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 994,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:49.891Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-53738ab41e71be5096b2",
+          "file": "screen.spec.ts",
+          "line": 166,
+          "column": 1
+        },
+        {
+          "title": "dark by default, light when chosen and remembered; the page never scrolls sideways",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2523,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:50.131Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-f34ee7d3b0d107f0a0dd",
+          "file": "screen.spec.ts",
+          "line": 177,
+          "column": 1
+        },
+        {
+          "title": "proof metrics match the API for Space 3074",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 2148,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:56.043Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-f511f68f3d3f9e6c438e",
+          "file": "screen.spec.ts",
+          "line": 48,
+          "column": 1
+        },
+        {
+          "title": "the ranked list starts with the API's first finding and every badge has a text label",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2393,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:56.163Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-166143e378d171be6e44",
+          "file": "screen.spec.ts",
+          "line": 57,
+          "column": 1
+        },
+        {
+          "title": "calculation tab shows result, limit, margin and the indicative label from the trace",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 1834,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:56.455Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-b2b4eef0b3c4152d7200",
+          "file": "screen.spec.ts",
+          "line": 71,
+          "column": 1
+        },
+        {
+          "title": "an evidence link in the trace highlights that evidence item",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 2452,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:58.217Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-02bce946fa8f23b3fafd",
+          "file": "screen.spec.ts",
+          "line": 93,
+          "column": 1
+        },
+        {
+          "title": "spectrum and map tabs draw the lead group, the Finnish rows and the reference points",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 2566,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:58.506Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-6a5a8850d848df9427bc",
+          "file": "screen.spec.ts",
+          "line": 110,
+          "column": 1
+        },
+        {
+          "title": "concern filter and search narrow the list",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2376,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:58.596Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-f3b673dcc7c748a217ff",
+          "file": "screen.spec.ts",
+          "line": 131,
+          "column": 1
+        },
+        {
+          "title": "Terrestrial 3076 shows the P.1546 trace of its first finding",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 2146,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:00.716Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-3adb6be86c2ed0ece032",
+          "file": "screen.spec.ts",
+          "line": 149,
+          "column": 1
+        },
+        {
+          "title": "export downloads the results CSV for the selected issue",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2135,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:00.804Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-053a31563df6ca046314",
+          "file": "screen.spec.ts",
+          "line": 166,
+          "column": 1
+        },
+        {
+          "title": "dark by default, light when chosen and remembered; the page never scrolls sideways",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3317,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:00.988Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-c878d82b0e01590f6de6",
+          "file": "screen.spec.ts",
+          "line": 177,
+          "column": 1
+        },
+        {
+          "title": "proof metrics match the API for Space 3074",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1457,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:12.053Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-2755d9c78f1aeafce260",
+          "file": "screen.spec.ts",
+          "line": 48,
+          "column": 1
+        },
+        {
+          "title": "the ranked list starts with the API's first finding and every badge has a text label",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 1632,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:12.074Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-ef37b009ee51eaadc4b6",
+          "file": "screen.spec.ts",
+          "line": 57,
+          "column": 1
+        },
+        {
+          "title": "calculation tab shows result, limit, margin and the indicative label from the trace",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1449,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:13.006Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-46259f0745fdc5d80048",
+          "file": "screen.spec.ts",
+          "line": 71,
+          "column": 1
+        },
+        {
+          "title": "an evidence link in the trace highlights that evidence item",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 11,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2064,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:13.304Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-7f493dc9d46715362aad",
+          "file": "screen.spec.ts",
+          "line": 93,
+          "column": 1
+        },
+        {
+          "title": "spectrum and map tabs draw the lead group, the Finnish rows and the reference points",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 2179,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:13.588Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-cba3e0dbd2d315099d1b",
+          "file": "screen.spec.ts",
+          "line": 110,
+          "column": 1
+        },
+        {
+          "title": "concern filter and search narrow the list",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 1794,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:13.905Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-b607328a250a5aa833e1",
+          "file": "screen.spec.ts",
+          "line": 131,
+          "column": 1
+        },
+        {
+          "title": "Terrestrial 3076 shows the P.1546 trace of its first finding",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1585,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:14.489Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-35f839e862ab9336f28b",
+          "file": "screen.spec.ts",
+          "line": 149,
+          "column": 1
+        },
+        {
+          "title": "export downloads the results CSV for the selected issue",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 11,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1154,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:15.495Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-3f0cc5f564a00c9619fb",
+          "file": "screen.spec.ts",
+          "line": 166,
+          "column": 1
+        },
+        {
+          "title": "dark by default, light when chosen and remembered; the page never scrolls sideways",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 2096,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:15.737Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bf18f613c0dfb1d8e04-57cfac6be722125c847c",
+          "file": "screen.spec.ts",
+          "line": 177,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "screenshots.spec.ts",
+      "file": "screenshots.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "d3: decision and audit log",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:50.142Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-446afaa3edf6829cd363",
+          "file": "screenshots.spec.ts",
+          "line": 39,
+          "column": 1
+        },
+        {
+          "title": "d2: explanation and letter draft",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:50.142Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-664c6ca83a43415d105c",
+          "file": "screenshots.spec.ts",
+          "line": 76,
+          "column": 1
+        },
+        {
+          "title": "e: offline demo, accuracy and proof pack",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:50.142Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-c2eee74cf0aacbc5836b",
+          "file": "screenshots.spec.ts",
+          "line": 102,
+          "column": 1
+        },
+        {
+          "title": "review: pfd report with the sign-off",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:50.142Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-81d13c667dc67497aee4",
+          "file": "screenshots.spec.ts",
+          "line": 126,
+          "column": 1
+        },
+        {
+          "title": "a3: special-interest stations report",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:50.143Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-1cf2ad074bca71b2f492",
+          "file": "screenshots.spec.ts",
+          "line": 138,
+          "column": 1
+        },
+        {
+          "title": "stations: special-interest stations on the map",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:50.143Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-3dbe97a408c8f7b7819e",
+          "file": "screenshots.spec.ts",
+          "line": 162,
+          "column": 1
+        },
+        {
+          "title": "terrestrial-stations: field strength at a special-interest station",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:50.143Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-62b51905a0f840b31080",
+          "file": "screenshots.spec.ts",
+          "line": 180,
+          "column": 1
+        },
+        {
+          "title": "d3: decision and audit log",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:01.140Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-e12e1d8232033481d3c5",
+          "file": "screenshots.spec.ts",
+          "line": 39,
+          "column": 1
+        },
+        {
+          "title": "d2: explanation and letter draft",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:01.140Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-ee250a56240b9e4266e3",
+          "file": "screenshots.spec.ts",
+          "line": 76,
+          "column": 1
+        },
+        {
+          "title": "e: offline demo, accuracy and proof pack",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:01.141Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-44efa29418a02d572b46",
+          "file": "screenshots.spec.ts",
+          "line": 102,
+          "column": 1
+        },
+        {
+          "title": "review: pfd report with the sign-off",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:01.141Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-9ae3ed3f239f3ff36202",
+          "file": "screenshots.spec.ts",
+          "line": 126,
+          "column": 1
+        },
+        {
+          "title": "a3: special-interest stations report",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:01.141Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-a79b6f6b26cdb0495920",
+          "file": "screenshots.spec.ts",
+          "line": 138,
+          "column": 1
+        },
+        {
+          "title": "stations: special-interest stations on the map",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:01.141Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-bcb2fdf61b9b6df04dfc",
+          "file": "screenshots.spec.ts",
+          "line": 162,
+          "column": 1
+        },
+        {
+          "title": "terrestrial-stations: field strength at a special-interest station",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:01.141Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-1ca67566bed3863140fb",
+          "file": "screenshots.spec.ts",
+          "line": 180,
+          "column": 1
+        },
+        {
+          "title": "d3: decision and audit log",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:15.790Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-2528ceb9c91341d51f5b",
+          "file": "screenshots.spec.ts",
+          "line": 39,
+          "column": 1
+        },
+        {
+          "title": "d2: explanation and letter draft",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:15.791Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-afa9dab01f7b261effd4",
+          "file": "screenshots.spec.ts",
+          "line": 76,
+          "column": 1
+        },
+        {
+          "title": "e: offline demo, accuracy and proof pack",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:15.791Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-4a1da6d9a891a665329c",
+          "file": "screenshots.spec.ts",
+          "line": 102,
+          "column": 1
+        },
+        {
+          "title": "review: pfd report with the sign-off",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:15.791Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-1b4baee54f7c5dd72eec",
+          "file": "screenshots.spec.ts",
+          "line": 126,
+          "column": 1
+        },
+        {
+          "title": "a3: special-interest stations report",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:15.791Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-d59fd26ad2be05e27241",
+          "file": "screenshots.spec.ts",
+          "line": 138,
+          "column": 1
+        },
+        {
+          "title": "stations: special-interest stations on the map",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:15.791Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-0ce9934f23afbb4c2e5a",
+          "file": "screenshots.spec.ts",
+          "line": 162,
+          "column": 1
+        },
+        {
+          "title": "terrestrial-stations: field strength at a special-interest station",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "set SCREENSHOTS=<step> to capture screenshots",
+                  "location": {
+                    "file": "frontend/e2e/screenshots.spec.ts",
+                    "line": 7,
+                    "column": 6
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:15.791Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "677a4938ef65bfc6a6e5-d4e3fe506e4f36cf3e8d",
+          "file": "screenshots.spec.ts",
+          "line": 180,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "stations.spec.ts",
+      "file": "stations.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "map shows the special-interest stations in reach",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-dark",
+              "projectName": "desktop-dark",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1565,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:36:50.164Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "eb2ad51e734e6eca5859-588bede641d010b0ef76",
+          "file": "stations.spec.ts",
+          "line": 5,
+          "column": 1
+        },
+        {
+          "title": "map shows the special-interest stations in reach",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-light",
+              "projectName": "desktop-light",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 2404,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:01.331Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "eb2ad51e734e6eca5859-b5b9ec1164bcb354d2d0",
+          "file": "stations.spec.ts",
+          "line": 5,
+          "column": 1
+        },
+        {
+          "title": "map shows the special-interest stations in reach",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "phone",
+              "projectName": "phone",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 1588,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T00:37:15.808Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "eb2ad51e734e6eca5859-e81a03abcbf29fc6fb20",
+          "file": "stations.spec.ts",
+          "line": 5,
+          "column": 1
+        }
+      ]
     }
   ],
+  "errors": [],
   "stats": {
-    "startTime": "2026-11-07T00:33:37.644Z",
-    "duration": 2051.387,
-    "expected": 0,
-    "skipped": 0,
+    "startTime": "2026-11-07T00:36:38.854Z",
+    "duration": 39176.657999999996,
+    "expected": 51,
+    "skipped": 21,
     "unexpected": 0,
     "flaky": 0
   }
