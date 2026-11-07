@@ -1,0 +1,63 @@
+{
+  "_note": "Short cut of the screen recording 2026-11-07 07-34-23.mp4 (295 s). Each segment shows the source range [from, to] in seconds; its narration replaces the original voice. Numbers match what the screen shows at that moment (data/cache/*.json).",
+  "source": "source.mp4",
+  "elevenlabs_voice_id": "cgSgspJ2msm6clMCkdW9",
+  "elevenlabs_style": 0.45,
+  "say_voice": "Samantha",
+  "say_rate": 192,
+  "say_pitch_semitones": 2.5,
+  "segments": [
+    {
+      "id": "hook",
+      "clip": [4.5, 15.0],
+      "say": "Every two weeks, the ITU publishes new satellite and radio filings from all over the world. Traficom's experts have to spot the ones that could interfere with radio use in Finland. Meet Filing Radar!"
+    },
+    {
+      "id": "overview",
+      "clip": [149.5, 161.0],
+      "say": "This is Space IFIC 3074. 199 notices screened, 135 flagged, and every flagged filing placed on the geostationary arc and in the spectrum."
+    },
+    {
+      "id": "calc",
+      "clip": [25.5, 36.5],
+      "say": "Take CHINASAT-G. Its worst-case power flux density at the Finnish surface is over the Radio Regulations limit by 4.7 decibels, and every input links to the row it came from.",
+      "caption": "Take CHINASAT-G. Its worst-case power flux density at the Finnish surface is over the Radio Regulations limit by 4.7 dB, and every input links to the row it came from."
+    },
+    {
+      "id": "map",
+      "clip": [50.5, 58.5],
+      "say": "All on map shows every finding and the special-interest stations across Finland."
+    },
+    {
+      "id": "letter",
+      "clip": [76.5, 92.0],
+      "say": "One click explains a finding in plain language and drafts a letter to the notifying administration. It's only a draft for the expert: Filing Radar never sends anything."
+    },
+    {
+      "id": "decide",
+      "clip": [107.0, 124.0],
+      "say": "The expert decides. Add your name and a note, then approve, investigate or dismiss."
+    },
+    {
+      "id": "audit",
+      "clip": [136.5, 141.5],
+      "say": "Every decision lands in a hash-chained audit log."
+    },
+    {
+      "id": "terrestrial",
+      "clip": [166.8, 173.8],
+      "say": "Same engine, terrestrial side. Issue 3076: 4,057 notices, 65 flagged. A new Russian base station at Kostomuksha is 13 decibels over the coordination trigger at the Finnish border.",
+      "caption": "Same engine, terrestrial side. Issue 3076: 4,057 notices, 65 flagged. A new Russian base station at Kostomuksha is 13 dB over the coordination trigger at the Finnish border."
+    },
+    {
+      "id": "export",
+      "clip": [259.5, 271.0],
+      "say": "Light mode or dark, and the results export to CSV and JSON."
+    },
+    {
+      "id": "close",
+      "clip": null,
+      "say": "Filing Radar. The tool suggests, the expert decides!"
+    }
+  ]
+}
