@@ -158,3 +158,13 @@ test("heights: effective antenna height in the field-strength report", async ({ 
   await heading.evaluate((el) => el.scrollIntoView({ block: "start" }));
   await page.screenshot({ path: `../docs/screenshots/${step}/1-h1-table-${info.project.name}.png` });
 });
+
+test("broadcasting: FM and TV report", async ({ page }, info) => {
+  test.skip(step !== "broadcasting");
+  const proof = new URL("../../results/proof/", import.meta.url).href;
+  await page.goto(`${proof}3076/03_broadcasting.html`);
+  await expect(page.getByRole("heading", { name: /FM and TV broadcasting/ })).toBeVisible();
+  await page.screenshot({ path: `../docs/screenshots/${step}/1-summary-${info.project.name}.png` });
+  await page.getByRole("heading", { name: "Computed notices" }).evaluate((el) => el.scrollIntoView({ block: "start" }));
+  await page.screenshot({ path: `../docs/screenshots/${step}/2-computed-${info.project.name}.png` });
+});
