@@ -20,7 +20,9 @@ export function MapView({ ctx, region, points }: { ctx: FindingContext; region: 
   const stations = ctx.stations ?? [];
   const tri = (cx: number, cy: number) => `${cx.toFixed(1)},${(cy - 6).toFixed(1)} ${(cx + 5.5).toFixed(1)},${(cy + 4).toFixed(1)} ${(cx - 5.5).toFixed(1)},${(cy + 4).toFixed(1)}`;
   const reachText = (r: StationContext["reach"]) =>
-    r.elevation_deg != null ? `sees the satellite at ${r.elevation_deg} deg` : r.distance_km != null ? `${r.distance_km} km from ${r.earth_station}` : r.coverage_lat_limit_deg != null ? `inside coverage to ${r.coverage_lat_limit_deg} N` : (r.note ?? "");
+    r.elevation_deg != null ? `sees the satellite at ${r.elevation_deg} deg`
+      : r.e_dbuv_m != null ? `${r.distance_km} km, field strength ${r.e_dbuv_m} dB(uV/m) at ${r.h2_m} m${r.margin_db == null ? "" : r.margin_db < 0 ? `, exceeds the trigger by ${-r.margin_db} dB` : `, ${r.margin_db} dB below the trigger`}`
+      : r.distance_km != null ? `${r.distance_km} km from ${r.earth_station}` : r.coverage_lat_limit_deg != null ? `inside coverage to ${r.coverage_lat_limit_deg} N` : (r.note ?? "");
 
   return (
     <div className="p-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_260px]">
@@ -51,6 +53,10 @@ export function MapView({ ctx, region, points }: { ctx: FindingContext; region: 
             </g>
           );
         })}
+        {station && stations[0]?.reach?.e_dbuv_m != null && (
+          <line x1={x(station.lon)} y1={y(station.lat)} x2={x(stations[0].lon)} y2={y(stations[0].lat)}
+            stroke="var(--chart-3)" strokeWidth={1.5} strokeDasharray="2 3" />
+        )}
         {stations.map((s, i) => (
           <polygon key={`${s.number}-${i}`} points={tri(x(s.lon), y(s.lat))} fill="var(--chart-3)" stroke="var(--card)" strokeWidth={1.2}
             data-station={s.number}>
