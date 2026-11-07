@@ -11,11 +11,12 @@
     "low": 12,
     "none": 61
   },
-  "citations": 1659,
+  "citations": 1891,
   "citation_mismatches": 0,
   "resolver": {
     "itu_row:PASS": 866,
     "finnish_table_row:PASS": 573,
+    "special_interest_row:PASS": 232,
     "calculation:PASS": 207,
     "regulation:PASS": 13
   },
@@ -24,37 +25,37 @@
       "id": "F-3074-0001",
       "notice": "124520183",
       "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 6.3 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 124794008: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 15.5 deg at Helsinki); 36 more candidate group(s) in this notice."
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 6.3 dB with a steerable beam that can be pointed at Finland (indicative); 9 special-interest stations in the band and in reach. Lead group 124794008: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 15.5 deg at Helsinki); 36 more candidate group(s) in this notice."
     },
     {
       "id": "F-3074-0002",
       "notice": "124520184",
       "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 4.7 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 124793617: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 21.5 deg at Hanko); 60 more candidate group(s) in this notice."
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 4.7 dB with a steerable beam that can be pointed at Finland (indicative); 9 special-interest stations in the band and in reach. Lead group 124793617: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 21.5 deg at Hanko); 60 more candidate group(s) in this notice."
     },
     {
       "id": "F-3074-0003",
       "notice": "124520214",
       "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 3.4 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 124727502: 18.7 GHz to 19.7 GHz space-to-Earth; geography visible (highest elevation 12.1 deg at Ilomantsi); 98 more candidate group(s) in this notice."
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 3.4 dB with a steerable beam that can be pointed at Finland (indicative); 12 special-interest stations in the band and in reach. Lead group 124727502: 18.7 GHz to 19.7 GHz space-to-Earth; geography visible (highest elevation 12.1 deg at Ilomantsi); 98 more candidate group(s) in this notice."
     },
     {
       "id": "F-3074-0004",
       "notice": "324520183",
       "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 6.3 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 324794008: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 15.5 deg at Helsinki); 36 more candidate group(s) in this notice."
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 6.3 dB with a steerable beam that can be pointed at Finland (indicative); 9 special-interest stations in the band and in reach. Lead group 324794008: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 15.5 deg at Helsinki); 36 more candidate group(s) in this notice."
     },
     {
       "id": "F-3074-0005",
       "notice": "324520184",
       "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 4.7 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 324793617: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 21.5 deg at Hanko); 60 more candidate group(s) in this notice."
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 4.7 dB with a steerable beam that can be pointed at Finland (indicative); 9 special-interest stations in the band and in reach. Lead group 324793617: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 21.5 deg at Hanko); 60 more candidate group(s) in this notice."
     },
     {
       "id": "F-3074-0006",
       "notice": "324520214",
       "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 3.4 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 324727502: 18.7 GHz to 19.7 GHz space-to-Earth; geography visible (highest elevation 12.1 deg at Ilomantsi); 98 more candidate group(s) in this notice."
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 3.4 dB with a steerable beam that can be pointed at Finland (indicative); 12 special-interest stations in the band and in reach. Lead group 324727502: 18.7 GHz to 19.7 GHz space-to-Earth; geography visible (highest elevation 12.1 deg at Ilomantsi); 98 more candidate group(s) in this notice."
     },
     {
       "id": "F-3074-0007",
@@ -126,7 +127,7 @@
       "id": "F-3074-0018",
       "notice": "125500068",
       "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 3.1 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 125622933: 17.7 GHz to 17.95 GHz space-to-Earth; geography visible (highest elevation 13.0 deg at Ilomantsi); 393 more candidate group(s) in this notice."
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 3.1 dB with a steerable beam that can be pointed at Finland (indicative); 8 special-interest stations in the band and in reach. Lead group 125622933: 17.7 GHz to 17.95 GHz space-to-Earth; geography visible (highest elevation 13.0 deg at Ilomantsi); 393 more candidate group(s) in this notice."
     },
     {
       "id": "F-3074-0019",
@@ -162,13 +163,13 @@
       "id": "F-3074-0024",
       "notice": "124520204",
       "concern": "medium",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd 0.8 dB below the RR Article 21 limit (indicative). Lead group 124725956: 18.8 GHz to 19.8 GHz space-to-Earth; geography visible (highest elevation 13.3 deg at Ilomantsi); 8 more candidate group(s) in this notice."
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd 0.8 dB below the RR Article 21 limit (indicative); 9 special-interest stations in the band and in reach. Lead group 124725956: 18.8 GHz to 19.8 GHz space-to-Earth; geography visible (highest elevation 13.3 deg at Ilomantsi); 8 more candidate group(s) in this notice."
     },
     {
       "id": "F-3074-0025",
       "notice": "324520204",
       "concern": "medium",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd 0.8 dB below the RR Article 21 limit (indicative). Lead group 324725956: 18.8 GHz to 19.8 GHz space-to-Earth; geography visible (highest elevation 13.3 deg at Ilomantsi); 8 more candidate group(s) in this notice."
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd 0.8 dB below the RR Article 21 limit (indicative); 9 special-interest stations in the band and in reach. Lead group 324725956: 18.8 GHz to 19.8 GHz space-to-Earth; geography visible (highest elevation 13.3 deg at Ilomantsi); 8 more candidate group(s) in this notice."
     }
   ]
 }

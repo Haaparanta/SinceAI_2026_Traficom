@@ -53,7 +53,8 @@ test("the ranked list starts with the API's first finding and every badge has a 
   const badges = list(page).locator("[data-concern]");
   const n = await badges.count();
   expect(n).toBeGreaterThan(10);
-  for (const text of await badges.allInnerTexts()) expect(["High", "Medium", "Review", "Low", "Not raised"]).toContain(text.trim());
+  // textContent, not innerText: rows below the fold use content-visibility: auto, so the browser skips their layout
+  for (const text of await badges.allTextContents()) expect(["High", "Medium", "Review", "Low", "Not raised"]).toContain(text.trim());
 });
 
 test("calculation tab shows result, limit, margin and the indicative label from the trace", async ({ page }) => {
@@ -122,9 +123,15 @@ test("export downloads the results CSV for the selected issue", async ({ page })
     "special_interest_station_ids,overlap_mhz,geo_relevance,calc_method,calc_value,calc_unit,limit_value,margin_db,concern,reason,evidence_refs,decision");
 });
 
-test("theme follows the system setting and the page never scrolls sideways", async ({ page }, info) => {
-  const dark = info.project.use.colorScheme === "dark";
-  await expect(page.locator("html")).toHaveClass(dark ? /dark/ : /^(?!.*dark).*$/);
+test("dark by default, light when chosen and remembered; the page never scrolls sideways", async ({ page }) => {
+  // PR #41: dark whatever the system setting; light is opt-in through the Colour theme switch
+  await expect(page.locator("html")).toHaveClass(/dark/);
+  await page.getByRole("radiogroup", { name: "Colour theme" }).getByRole("radio", { name: "Light" }).click();
+  await expect(page.locator("html")).not.toHaveClass(/dark/);
+  await page.reload();
+  await expect(page.locator("html")).not.toHaveClass(/dark/);
+  await page.getByRole("radiogroup", { name: "Colour theme" }).getByRole("radio", { name: "Dark" }).click();
+  await expect(page.locator("html")).toHaveClass(/dark/);
   await expect(page.locator(".bg-sigil")).toHaveCount(1);
   const { scrollW, clientW } = await page.evaluate(() => ({
     scrollW: document.documentElement.scrollWidth, clientW: document.documentElement.clientWidth,

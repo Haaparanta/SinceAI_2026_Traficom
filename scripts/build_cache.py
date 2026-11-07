@@ -75,8 +75,24 @@ def space(issue: int) -> dict:
                     "note": g.note if g else "", "detail": json.loads(json.dumps(detail, default=str))},
             "rule": s.rule if s else None, "score": s.score if s else None,
             "factors": s.factors if s else {},
+            "stations": [] if r is None else station_context(r),
         }
     return {"result": json.loads(run.result.model_dump_json()), "context": ctx}
+
+
+def station_context(r) -> list[dict]:
+    """The lead group's special-interest stations for the map: position, protected channel, reach (geography)."""
+    from radar.adapters import special_interest as SI
+    by_number = {}
+    for st in SI.stations():
+        by_number.setdefault(st.station_number, st)
+    out = []
+    for number in r.matched_station_numbers:
+        st = by_number.get(number)
+        if st is not None:
+            out.append({"number": number, "class": st.licence_class, "lat": st.lat, "lon": st.lon, "centre_hz": st.centre_hz,
+                        "bandwidth_hz": st.bandwidth_hz, "row": st.source_row, "reach": r.station_reach.get(number, {})})
+    return sorted(out, key=lambda s: (s["reach"].get("elevation_deg", 0), s["reach"].get("distance_km", 0), s["number"]))
 
 
 def terrestrial(issue: int) -> dict:

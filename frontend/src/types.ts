@@ -12,6 +12,7 @@ export interface AnalysisResult { issue: number; kind: Kind; screened: number; f
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Json = Record<string, any>;
 export interface Lane { ids: number[]; lower_hz: number; upper_hz: number; services: string; usage: string; category: "terrestrial" | "space" | "passive" | "not_allocated"; space_direction: string | null; primary: boolean; }
+export interface StationContext { number: string; class: string | null; lat: number; lon: number; centre_hz: number; bandwidth_hz: number; row: number; reach: Json; }
 export interface GeoContext { relevance: string; method: string; note: string; detail: Json; }
 export interface FindingContext {
   title: string;
@@ -22,6 +23,7 @@ export interface FindingContext {
   rule: string | null;
   score: number | null;
   factors: Json;
+  stations?: StationContext[];
 }
 export type DecisionKind = "approve" | "dismiss" | "investigate";
 // One line of the audit log: a ReviewDecision (models.py) plus where it applies and the hash chain.

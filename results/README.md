@@ -26,7 +26,7 @@ Notice-level counts: **23 high, 99 medium, 1 review, 12 low, 61 not raised** (13
 | `network_or_station` | Satellite name (`geo`, `non_geo`) or earth station name (`e_stn`) |
 | `freq_min_mhz`, `freq_max_mhz`, `direction` | The lead group: the notice's group with the highest concern, then the highest score |
 | `finnish_match` | Finnish services and Traficom table row IDs overlapping the lead group (up to six distinct rows, terrestrial first) |
-| `special_interest_station_ids` | Empty: the special-interest XLS has not been loaded yet |
+| `special_interest_station_ids` | Station numbers from `Traficom_SinceAI_Frequencies_of_interest_v05112026.xlsx` whose protected channel (RX frequency +- half the bandwidth) overlaps the lead group and that the group can reach (52 notices in 3074; every station, not only the five cited as evidence) |
 | `overlap_mhz` | Width of the lead group covered by Finnish rows (union of rows, not their sum) |
 | `geo_relevance` | `visible`, `low_elevation`, `not_visible`, `near_border`, `far` or `unknown` |
 | `calc_method`, `calc_value`, `calc_unit`, `limit_value`, `margin_db` | Worst-case pfd of the lead group (`pfd_gso_worst_case`), its unit and reference bandwidth, the RR Article 21 limit at the angle of arrival, and `limit - pfd` (negative = exceeds). Filled for 13 notice rows and 568 group rows; empty where pfd does not apply (uplinks, non-GSO, no limit in the band) |
@@ -46,7 +46,7 @@ Notice-level counts: **23 high, 99 medium, 1 review, 12 low, 61 not raised** (13
 | Scoring weights, `scoring/weights.json` | version 2026-11-06 | `183bf176a7b1de045dc6a9910e28f87f0cc35b6aa287b3c739205b5d0c4513b7` |
 | Finland and neighbour borders, `scoring/reference/finland_region.geojson` | Natural Earth 1:50m, public domain. Åland (Natural Earth `ALD`, sovereign Finland) merged into Finland on 7 Nov 2026: distances to Finland now reach Åland; no concern level changed | |
 
-The special-interest station table (XLS from the Since AI platform) is a mandatory input that is not yet loaded.
+The special-interest station table (`Traficom_SinceAI_Frequencies_of_interest_v05112026.xlsx`, 870 stations after reading, see `reports/reference/special_interest.html`) is used in the screening: a group is matched to every station whose protected channel it overlaps and that it can reach from that station's own position.
 
 ## Method and parameters
 
@@ -58,7 +58,8 @@ The special-interest station table (XLS from the Since AI platform) is a mandato
    - GSO: elevation from the seven reference points with R = 6 378.137 km, h = 35 786 km; visible at 10 degrees or more, low elevation from 0 to 10 degrees.
    - Non-GSO: highest latitude that sees the satellite at 0 and 10 degrees (coverage at apogee); orbits around the Moon, the Sun or Jupiter are not visible.
    - Earth stations: distance to the Finland polygon; near border within **500 km** [hypothesis]; typical earth stations have no location and stay unknown.
-6. **Concern rules** (first match wins): Bureau names Finland, high; uplink from an earth station inside Finland, high; special-interest station, near-border uplink, or downlink over a Finnish primary terrestrial or passive allocation (visible or low elevation), medium; secondary allocation or satellite-only overlap, low; table gap or unknown geography, review; otherwise none.
+6. **Concern rules** (first match wins): Bureau names Finland, high; uplink from an earth station inside Finland, high; near-border uplink, uplink from an earth station within 500 km of a special-interest station, or downlink over a Finnish primary terrestrial or passive allocation (visible or low elevation), medium; secondary allocation or satellite-only overlap, low; table gap or unknown geography, review; otherwise none. After the pfd refinement (7), a special-interest station in reach raises low to medium; it never lowers high or review.
+   **Special-interest reach**, from each station's own position: a GSO downlink must be above the station's horizon; a non-GSO orbit must cover the station's latitude; an earth station (uplink, or a receiving earth-station notice) must be within 500 km; a downlink of unknown geography is kept; an uplink from a typical earth station (no location) is not. The worst-case pfd (7) is also evaluated at every matched station that sees the satellite.
 7. **Worst-case pfd (GSO downlinks over Finnish terrestrial or passive rows, visible from Finland).** `pfd = P_d + G + 10 log10(B) - 10 log10(4 pi d^2)` with `P_d` = `emiss.pwr_ds_max`, `G` = `s_beam.gain`, `B` = min(reference bandwidth, necessary bandwidth of the emission), `d` = slant range; evaluated at every visible reference point against every applicable Table 21-4 row at that point's angle of arrival; the smallest margin is reported. A margin below zero raises the notice to high when the beam is steerable (it can be pointed at Finland) and to review when it is fixed (the IFIC database has no boresight or gain contours). A margin of 15 dB or more lowers it to low [hypothesis, Q2].
 8. **Order inside a level.** `score = 100 x relevance x (0.65 severity + 0.35 urgency)` with the factors and weights of `scoring/weights.json`; the pfd factor uses the scoring package's margin bins, neutral 0.5 where pfd is not evaluated.
 

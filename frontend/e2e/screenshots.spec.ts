@@ -6,6 +6,13 @@ import { expect, test, type Page, type TestInfo } from "@playwright/test";
 const step = process.env.SCREENSHOTS;
 test.skip(!step, "set SCREENSHOTS=<step> to capture screenshots");
 
+// Dark is the default (PR #41): the desktop-light project opts into light the way a user would, before the first paint.
+test.beforeEach(async ({ page }, info) => {
+  if (info.project.use.colorScheme === "light") {
+    await page.addInitScript(() => { try { localStorage.setItem("filing-radar.theme", "light"); } catch { /* no storage */ } });
+  }
+});
+
 async function shot(page: Page, info: TestInfo, name: string, phoneRegion?: string) {
   const path = `../docs/screenshots/${step}/${name}-${info.project.name}.png`;
   // On the phone the page is very long: capture the part that changed instead of the whole page.
@@ -87,4 +94,15 @@ test("a3: special-interest stations report", async ({ page }, info) => {
   await page.getByRole("heading", { name: "Where they are and what they use" }).scrollIntoViewIfNeeded();
   await page.getByRole("heading", { name: "Where they are and what they use" }).evaluate((el) => el.scrollIntoView({ block: "start" }));
   await page.screenshot({ path: `../docs/screenshots/${step}/2-map-and-spectrum-${info.project.name}.png` });
+});
+
+test("stations: special-interest stations on the map", async ({ page }, info) => {
+  test.skip(step !== "stations");
+  await page.goto("/");
+  await expect(page.getByRole("heading", { name: "Filing Radar" })).toBeVisible();
+  await page.getByRole("tab", { name: "Map" }).click();
+  const map = page.locator("svg[aria-label^='Map of Finland']");
+  await expect(map.locator("[data-station]").first()).toBeVisible();
+  await map.scrollIntoViewIfNeeded();
+  await page.screenshot({ path: `../docs/screenshots/${step}/1-map-${info.project.name}.png` });
 });

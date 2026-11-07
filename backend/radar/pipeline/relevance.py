@@ -28,7 +28,7 @@ from radar.adapters import traficom_table
 from radar.models import FinnishSubBand, FrequencyGroup, Notice, SpecialInterestStation
 
 CANDIDATE_PATHS = ("special_interest", "pfd_terrestrial", "passive_service", "space_cofrequency", "uncovered",
-                   "uplink_near_finland")
+                   "uplink_near_finland", "uplink_near_station")
 INFORMATIONAL_PATHS = ("uplink_terrestrial", "uplink_space", "uplink_passive", "uplink_uncovered")
 
 
@@ -85,7 +85,8 @@ class GroupRelevance:
     uncovered_hz: int                     # part of the group no Finnish row covers
     paths: dict[str, list[int]]           # path -> sub-band IDs that produced it ([] for uncovered)
     primary_terrestrial: bool             # at least one primary terrestrial row on the pfd path
-    matched_station_numbers: list[str] = field(default_factory=list)
+    matched_station_numbers: list[str] = field(default_factory=list)   # stations whose RX channel overlaps the group
+    station_reach: dict[str, dict] = field(default_factory=dict)        # station number -> geometry (geography.apply)
     finland_named_provisions: list[str] = field(default_factory=list)   # Bureau lists FIN as affected (provn)
     geo_relevance: str = "unknown"        # set by geography.apply (B3)
     geo_note: str = ""
@@ -103,12 +104,6 @@ def _union_length(intervals: list[tuple[int, int]]) -> int:
         else:
             cur_hi = max(cur_hi, hi)
     return total + (cur_hi - cur_lo if cur_hi is not None else 0)
-
-
-def _overlaps(g_lo: int, g_hi: int, b_lo: int, b_hi: int) -> bool:
-    if g_lo == g_hi:                       # a single frequency: inside [lower, upper)
-        return b_lo <= g_lo < b_hi
-    return min(g_hi, b_hi) - max(g_lo, b_lo) > 0
 
 
 def finland_named(con: duckdb.DuckDBPyConnection, administration: str = "FIN") -> dict[str, list[str]]:
@@ -147,6 +142,21 @@ def screen(notices: list[Notice], bands: tuple[FinnishSubBand, ...] | None = Non
     hits: dict[str, list[int]] = defaultdict(list)
     for gid, bid in pairs:
         hits[gid].append(bid)
+    # Special-interest stations: the protected channel is the RX frequency +- half the channel bandwidth.
+    station_hits: dict[str, list[str]] = defaultdict(list)
+    if stations:
+        con = duckdb.connect()
+        con.register("g", pa.table({"gid": [g.group_id for g in groups], "lo": [g.freq_min_hz for g in groups],
+                                    "hi": [g.freq_max_hz for g in groups]}))
+        con.register("s", pa.table({"k": list(range(len(stations))),
+                                    "lo": [s.centre_hz - s.bandwidth_hz // 2 for s in stations],
+                                    "hi": [s.centre_hz + s.bandwidth_hz // 2 for s in stations]}))
+        for gid, k in con.execute("""
+                SELECT g.gid, s.k FROM g JOIN s
+                  ON (g.lo < s.hi AND g.hi > s.lo) OR (g.lo = g.hi AND g.lo >= s.lo AND g.lo < s.hi)
+                ORDER BY g.gid, s.k""").fetchall():
+            station_hits[gid].append(stations[k].station_number)
+        con.close()
 
     out = []
     for g in groups:
@@ -162,8 +172,7 @@ def screen(notices: list[Notice], bands: tuple[FinnishSubBand, ...] | None = Non
                 paths[p].append(i)
         if uncovered > 0:
             paths["uncovered" if g.direction == "space_to_earth" else "uplink_uncovered"] = []
-        st = [s.station_number for s in stations
-              if _overlaps(g.freq_min_hz, g.freq_max_hz, s.centre_hz - s.bandwidth_hz // 2, s.centre_hz + s.bandwidth_hz // 2)]
+        st = list(dict.fromkeys(station_hits.get(g.group_id, [])))
         if st:
             paths["special_interest"] = []
         r = GroupRelevance(

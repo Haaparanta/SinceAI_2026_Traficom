@@ -8,13 +8,16 @@ Two layers, both deterministic:
    |------|---------|
    | Bureau lists Finland as affected (provn) | high |
    | Uplink from an earth station inside Finland | high |
-   | Special-interest station in the band | medium (at least) |
    | Uplink from an earth station within the near-border distance | medium |
+   | Uplink from an earth station within the near-border distance of a special-interest station | medium |
    | Downlink over a Finnish primary terrestrial or passive row, visible or low elevation | medium |
    | Downlink over a secondary terrestrial row | low |
    | Downlink over Finnish satellite downlink rows only (coordination) | low |
    | Part of the group has no Finnish row, or geography unknown | review |
    | Anything else | none |
+
+   After the pfd refinement, a candidate whose band holds a special-interest station it can reach is raised to at
+   least medium (station_floor); high and review are never lowered.
 
 2. **Score** for ordering inside a level, the scoring package's formula and weights
    (scoring/weights.json, scoring/DESIGN.md): score = 100 x relevance x (0.65 severity + 0.35 urgency).
@@ -96,8 +99,8 @@ def concern_rule(r: GroupRelevance, classes: dict[int, object]) -> tuple[str, st
         return "high", f"the Bureau lists Finland as affected ({', '.join(r.finland_named_provisions)})"
     if "uplink_near_finland" in r.paths and "inside Finland" in r.geo_note:
         return "high", "uplink from an earth station inside Finland"
-    if r.matched_station_numbers:
-        return "medium", "special-interest station in the band"
+    if "uplink_near_station" in r.paths and "uplink_near_finland" not in r.paths:
+        return "medium", "uplink from an earth station near a special-interest station"
     if "uplink_near_finland" in r.paths:
         return "medium", "uplink from an earth station near Finland"
     if r.direction == "space_to_earth" and r.geo_relevance in ("visible", "low_elevation"):
@@ -141,6 +144,18 @@ def pfd_adjust(concern: str, rule: str, pfd) -> tuple[str, str]:
     return concern, f"{rule}; pfd not computed ({pfd.notes[0] if pfd.notes else pfd.status})"
 
 
+def station_floor(r: GroupRelevance, concern: str, rule: str) -> tuple[str, str]:
+    """pm_pack/06: a special-interest station in the group's band is always at least medium. Applied after the
+    downlink, uplink and pfd rules, so it never lowers high or review and never hides an exceeded pfd limit."""
+    if not (r.candidate and r.matched_station_numbers):
+        return concern, rule
+    n = len(r.matched_station_numbers)
+    what = f"special-interest station {r.matched_station_numbers[0]}" if n == 1 else f"{n} special-interest stations"
+    if CONCERN_ORDER[concern] < CONCERN_ORDER["review"]:
+        return "medium", f"{rule}; {what} in the band and in reach"
+    return concern, f"{rule}; {what} in the band and in reach"
+
+
 PFD_LOW_MARGIN_DB = 15.0   # [HYPOTHESIS] scoring package bin edge; partner question Q2
 
 
@@ -150,7 +165,7 @@ def score_group(r: GroupRelevance, *, bands: dict[int, FinnishSubBand], classes:
 
     w = weights()
     sw, uw = w["space"]["severity_weights"], w["space"]["urgency_weights"]
-    concern, rule = pfd_adjust(*concern_rule(r, classes), pfd)
+    concern, rule = station_floor(r, *pfd_adjust(*concern_rule(r, classes), pfd))
     pfd_v, pfd_why = margin_factor(pfd.margin_db if pfd is not None and pfd.status == "computed" else None, w)
     geo_v, geo_why = geography_factor(r, geo_detail)
     relevance = (1.0 if r.candidate else 0.0) * geo_v if not r.finland_named_provisions else 1.0
