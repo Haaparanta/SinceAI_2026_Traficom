@@ -9,8 +9,16 @@ make frontend     # this screen on http://127.0.0.1:5173, /api proxied to the AP
 make cache        # rebuild data/cache from a live pipeline run (needs data/derived)
 make frontend-build
 make e2e                      # Playwright: own API (8100) and dev server (5180), throwaway decision log
+make e2e-stations             # one spec (e2e/stations.spec.ts) on all three projects
+make e2e T=demo G=offline P=phone   # spec file, test title match, one project (desktop-dark, desktop-light, phone)
+make e2e-failed               # only the tests that failed last time
+make e2e ARGS=--list          # what would run, without starting the servers
 make screenshots STEP=e       # PR screenshots into docs/screenshots/e/
 ```
+
+First time: `npx --prefix frontend playwright install chromium`. Ports 8100 and 5180 must be free; the tests never reuse a
+running server. Run the narrowed targets while you work and the full `make e2e` before a commit that touches the screen
+or the API. The root [README](../README.md#development) has the same options for the Python tests.
 
 | Part | File |
 |---|---|
