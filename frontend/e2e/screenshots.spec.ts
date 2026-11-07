@@ -183,3 +183,31 @@ test("ngso: non-GSO pfd in the pfd report", async ({ page }, info) => {
   await page.getByText(/from one non-GSO satellite/).scrollIntoViewIfNeeded();
   await shot(page, info, "2-screen-trace");
 });
+
+test("readme: the main views for the root README", async ({ page }, info) => {
+  test.skip(step !== "readme" || info.project.name === "phone");
+  const out = (name: string) => `../docs/screenshots/${step}/${name}-${info.project.name}.png`;
+  const settle = () => page.waitForTimeout(400);                    // tab highlights fade in (transition-colors)
+  await open(page);
+  await expect(page.getByRole("tab", { name: "Calculation" })).toHaveAttribute("aria-selected", "true");
+  await settle();
+  await page.screenshot({ path: out("1-space-finding") });
+  await page.getByRole("tab", { name: "Overview" }).click();
+  await expect(page.locator("svg[aria-label^='Geostationary arc'] [data-finding]").first()).toBeVisible();
+  await settle();
+  await page.getByRole("region", { name: "Issue overview" }).scrollIntoViewIfNeeded();
+  await page.screenshot({ path: out("2-space-overview") });
+  await page.getByRole("tab", { name: "Terrestrial 3076" }).click();
+  await page.getByRole("list", { name: "Ranked findings" }).getByRole("button").first().click();
+  await page.getByRole("tab", { name: "Map", exact: true }).click();
+  const map = page.locator("svg[aria-label^='Map of Finland']");
+  await expect(map).toBeVisible();
+  await settle();
+  await page.screenshot({ path: out("3-terrestrial-map") });
+  await page.getByRole("tab", { name: "Space 3074" }).click();
+  await page.getByRole("button", { name: "Draft letter" }).click();
+  const letter = page.getByRole("region", { name: "Letter draft" });
+  await expect(letter.getByLabel("Letter text")).toHaveValue(/DRAFT for expert review/);
+  await letter.scrollIntoViewIfNeeded();
+  await page.screenshot({ path: out("4-letter-draft") });
+});

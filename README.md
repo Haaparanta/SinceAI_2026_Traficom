@@ -2,6 +2,11 @@
 
 Turns an ITU BR IFIC issue into a ranked, cited, expert-reviewable list of notices that may affect radio frequency use in Finland. Built for the Traficom challenge at Since AI 2026. The tool suggests; a specialist decides.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/readme/1-space-finding-desktop-dark.png">
+  <img src="docs/screenshots/readme/1-space-finding-desktop-light.png" alt="Filing Radar on Space IFIC 3074: the ranked findings on the left, the worst-case pfd calculation of the top finding in the middle with every input linked to its evidence, and the finding with its decision panel on the right" width="100%">
+</picture>
+
 **Live demo:** https://filingradar.click (fallback https://filing-radar-ga6ca37kma-lz.a.run.app), hosted on Cloud Run in Finland and redeployed on every merge to `main`. See [docs/HOSTING.md](docs/HOSTING.md).
 
 > [!NOTE]
@@ -11,12 +16,37 @@ Turns an ITU BR IFIC issue into a ranked, cited, expert-reviewable list of notic
 
 | Issue | Screened | Flagged | High | Medium | Review | Low | File |
 |---|---|---|---|---|---|---|---|
-| Space IFIC 3074 | 196 notices (25 127 frequency groups) | 135 | 23 | 99 | 1 | 12 | [`space_3074.csv`](results/space_3074.csv) |
+| Space IFIC 3074 | 199 notices (25 127 frequency groups) | 135 | 46 | 74 | 3 | 12 | [`space_3074.csv`](results/space_3074.csv) |
 | Terrestrial IFIC 3076 | 4 057 notices | 65 | 6 | 1 | 6 | 52 | [`terrestrial_3076.csv`](results/terrestrial_3076.csv) |
 
-- **Space.** 18 notices where the Radiocommunication Bureau itself lists Finland as affected (RR 9.11, 9.14, 9.21, 11.31, AP30A); worst-case pfd above the RR Article 21 limit with a steerable beam for CHINASAT-H-60.5E (6.3 dB), CHINASAT-G-33.5E and INSAT; foreign networks with earth stations inside Finland (Tampere, Muonio).
+- **Space.** 18 notices where the Radiocommunication Bureau itself lists Finland as affected (RR 9.11, 9.14, 9.21, 11.31, AP30A); worst-case pfd above the RR Article 21 limit with a steerable beam for CHINASAT-H-60.5E (6.3 dB), CHINASAT-G-33.5E and INSAT; non-GSO downlinks whose single-satellite pfd over Finland exceeds the limit (PAZ_2-A 9.0 dB, SAILSPACE-2-A-1 7.5 dB, USASAT-NGSO-8F 22.9 dB); foreign networks with earth stations inside Finland (Tampere, Muonio).
 - **Terrestrial.** New Russian VHF base stations above the ECC/ERC T/R 25-08 trigger at the Finnish border: Kostomuksha (13 dB over), Lyaskelya (9 dB), Vyborg (8 dB), with ITU-R P.1546-6 field strength. Russian 800 MHz base stations 12 to 14 km from Finland go to review (no T/R 25-08 criterion above 470 MHz).
 - **Data quality.** One filing (IND network LVI) declares +73 dBW/Hz where its own peak power implies about -73: kept as filed, flagged, never used silently.
+
+## Screens
+
+One screen, two issues. The issue overview places every flagged GSO filing on the geostationary arc as seen from Finland, and every finding on a log-frequency strip by concern.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/readme/2-space-overview-desktop-dark.png">
+  <img src="docs/screenshots/readme/2-space-overview-desktop-light.png" alt="Overview tab for Space IFIC 3074: the geostationary arc seen from Finland with the flagged GSO filings as dots, and the flagged findings by frequency and concern" width="100%">
+</picture>
+
+Terrestrial IFIC 3076: a new Russian VHF base station at Kostomuksha, 31.5 km from the Finnish border, with the path, the distance and the P.1546 field strength against the T/R 25-08 trigger.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/readme/3-terrestrial-map-desktop-dark.png">
+  <img src="docs/screenshots/readme/3-terrestrial-map-desktop-light.png" alt="Map tab for Terrestrial IFIC 3076: the Kostomuksha base station next to the Finnish border, with the distance, path type and evidence" width="100%">
+</picture>
+
+Each finding can become a letter draft to the notifying administration. The draft cites only that finding's evidence, carries a banner saying it is a draft, and is copied or downloaded by a person; nothing is sent.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/readme/4-letter-draft-desktop-dark.png">
+  <img src="docs/screenshots/readme/4-letter-draft-desktop-light.png" alt="Letter draft for finding F-3074-0001: the draft banner, the subject, the editable text, and the evidence IDs it cites" width="100%">
+</picture>
+
+Dark and light follow your system setting here and in the app. `make screenshots STEP=readme` recaptures these images.
 
 ## Quick start
 
@@ -85,7 +115,7 @@ Methods and every parameter are listed in [`results/README.md`](results/README.m
 
 | Check | Command | What it shows |
 |---|---|---|
-| Unit and data tests | `make test` | 352 Python tests (the data tests skip without `data/derived/` and the XLS): formulas against hand-worked values, golden cases, contracts, invariants on 3074 and 3076 |
+| Unit and data tests | `make test` | 427 Python tests (the data tests skip without `data/derived/` and the XLS): formulas against hand-worked values, golden cases, contracts, invariants on 3074 and 3076 |
 | P.1546 engine | part of `make test` | the ITU validation suite (52 reference cases) reproduces to 0.0 dB |
 | Evidence | `make check-evidence ISSUE=3074` | every citation re-opened; tamper tests prove a changed excerpt fails |
 | Stage reports | `make index`, then open `reports/index.html` (or the `reports` entry in `.claude/launch.json`) | one HTML page per build step: counts in and out, charts, maps, ten random rows, PASS or FAIL |
