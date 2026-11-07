@@ -4,8 +4,9 @@ import { defineConfig, devices } from "@playwright/test";
 // The tests start their own API (port 8100) and dev server (port 5180), so they never reuse a server you are
 // working with, and the API writes reviewer decisions to a throwaway folder (reports/e2e-decisions, emptied first).
 // The HTML report lands in reports/playwright/ and is linked from the stage-report index (make index).
-const API_PORT = 8100;
-const WEB_PORT = 5180;
+// E2E_API_PORT / E2E_WEB_PORT move them when another checkout is already running its own e2e servers.
+const API_PORT = Number(process.env.E2E_API_PORT ?? 8100);
+const WEB_PORT = Number(process.env.E2E_WEB_PORT ?? 5180);
 
 export default defineConfig({
   testDir: "./e2e",

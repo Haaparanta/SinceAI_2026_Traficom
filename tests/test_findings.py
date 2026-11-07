@@ -67,9 +67,12 @@ def run_3074():
 @needs_db
 def test_one_finding_per_notice_with_evidence(run_3074):
     res = run_3074.result
-    assert res.screened == 196 and len(res.findings) == 196
-    assert [f.id for f in res.findings] == [f"F-3074-{k:04d}" for k in range(1, 197)]
-    assert all(f.evidence and f.evidence[0].locator.startswith("notice.ntc_id=") for f in res.findings)
+    plan = run_3074.plan_notices or {}         # AP30B sections of 3074 from the plan database (3 with snapshot 3083)
+    n = 196 + len(plan)
+    assert res.screened == n and len(res.findings) == n
+    assert [f.id for f in res.findings] == [f"F-3074-{k:04d}" for k in range(1, n + 1)]
+    assert all(f.evidence and f.evidence[0].locator.split(":")[-1].startswith("notice.ntc_id=") for f in res.findings)
+    assert all(f.evidence[0].locator.startswith("notice.ntc_id=") for f in res.findings if f.notice_id not in plan)
     assert res.provenance_coverage_pct == 100.0
 
 

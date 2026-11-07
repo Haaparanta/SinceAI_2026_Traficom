@@ -47,7 +47,7 @@ def lanes_for(ids: list[int], bands: dict, lo: int, hi: int) -> list[dict]:
 def space(issue: int) -> dict:
     run = assemble.run(issue)
     bands = {b.id: b for b in traficom_table.subbands()}
-    by_notice = {n.notice_id: n for n in run.ingest.notices}
+    by_notice = run.notices()
     rows = {r.group_id: r for r in run.rows}
     geo = None
     ctx = {}
@@ -64,7 +64,8 @@ def space(issue: int) -> dict:
         ctx[f.id] = {
             "title": f"{n.administration} {n.network_name}",
             "notice": {"administration": n.administration, "network": n.network_name, "special_section": n.special_section,
-                       "all_sections": run.ingest.special_sections.get(n.notice_id, []), "orbit": n.orbit,
+                       "all_sections": run.ingest.special_sections.get(n.notice_id, [n.special_section] if n.special_section else []),
+                       "orbit": n.orbit,
                        "longitude_deg": n.longitude_deg, "groups_in_issue": len(n.groups)},
             "group": None if r is None else {"group_id": r.group_id, "freq_min_hz": r.freq_min_hz, "freq_max_hz": r.freq_max_hz,
                                              "direction": r.direction, "paths": sorted(r.paths), "overlap_hz": r.overlap_hz,

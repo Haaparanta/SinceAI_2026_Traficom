@@ -10,6 +10,7 @@ Rules from pm_pack/06 "Relevance rules" [HYPOTHESIS until partner question Q1 is
 | space-to-Earth  | no Finnish row (table gap) | uncovered                  | yes (unknown, never "no concern") |
 | Earth-to-space  | terrestrial / space / passive | uplink_*                | informational; geography decides later |
 | any             | special-interest station   | special_interest           | yes, at least medium (XLS still WAITING) |
+| GSO, same sense | Finnish AP30/30A/30B plan entry inside the Annex orbital arc | plan_finnish (set by pipeline.plans) | yes, medium |
 
 Overlap is computed on Hz integers with the formula max(0, min(g.hi, s.hi) - max(g.lo, s.lo)) per row, and the
 group total is the union of matched rows (several Finnish rows often describe one band), never their sum.
@@ -28,7 +29,7 @@ from radar.adapters import traficom_table
 from radar.models import FinnishSubBand, FrequencyGroup, Notice, SpecialInterestStation
 
 CANDIDATE_PATHS = ("special_interest", "pfd_terrestrial", "passive_service", "space_cofrequency", "uncovered",
-                   "uplink_near_finland")
+                   "uplink_near_finland", "plan_finnish")
 INFORMATIONAL_PATHS = ("uplink_terrestrial", "uplink_space", "uplink_passive", "uplink_uncovered")
 
 
@@ -87,6 +88,8 @@ class GroupRelevance:
     primary_terrestrial: bool             # at least one primary terrestrial row on the pfd path
     matched_station_numbers: list[str] = field(default_factory=list)
     finland_named_provisions: list[str] = field(default_factory=list)   # Bureau lists FIN as affected (provn)
+    plan_hits: list = field(default_factory=list)      # pipeline.plans.PlanHit: inside the arc of a Finnish plan entry
+    plan_bureau: list = field(default_factory=list)    # adapters.plans.BureauEffect: Bureau finds a Finnish entry affected
     geo_relevance: str = "unknown"        # set by geography.apply (B3)
     geo_note: str = ""
     candidate: bool = False

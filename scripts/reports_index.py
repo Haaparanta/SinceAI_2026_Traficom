@@ -30,6 +30,7 @@ STEPS = [
     ("3074/04_findings.html", "B4", "Space 3074: ranked findings and evidence check"),
     ("3074/05_results.html", "B5", "Space 3074: results files"),
     ("3074/06_pfd.html", "C1", "Space 3074: worst-case pfd"),
+    ("3074/08_plans.html", "C1b", "Space 3074: AP30, AP30A and AP30B plans against Finland's plan entries"),
     ("3076/01_diff.html", "C2", "Terrestrial 3075 to 3076: diff"),
     ("3076/02_field_strength.html", "C3", "Terrestrial 3076: border distance and field strength"),
     ("3074/07_explanations.html", "D2", "Space 3074: grounded explanations and letter drafts"),

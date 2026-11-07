@@ -7,6 +7,8 @@ Two layers, both deterministic:
    | Rule | Concern |
    |------|---------|
    | Bureau lists Finland as affected (provn) | high |
+   | Bureau's plan examination finds a Finnish AP30/30A/30B entry affected | high |
+   | Co-frequency with a Finnish plan entry inside the Annex orbital arc (pipeline.plans) | medium |
    | Uplink from an earth station inside Finland | high |
    | Special-interest station in the band | medium (at least) |
    | Uplink from an earth station within the near-border distance | medium |
@@ -94,8 +96,13 @@ def concern_rule(r: GroupRelevance, classes: dict[int, object]) -> tuple[str, st
         return "none", "not a candidate after frequency and geography screening"
     if r.finland_named_provisions:
         return "high", f"the Bureau lists Finland as affected ({', '.join(r.finland_named_provisions)})"
+    if r.plan_bureau:
+        b = max(r.plan_bureau, key=lambda x: (x.pfd_excess_db or -999, x.degradation_db or -999))
+        return "high", f"the Bureau's {b.db} examination finds the Finnish plan entry {b.finnish_satellite} affected ({b.summary()})"
     if "uplink_near_finland" in r.paths and "inside Finland" in r.geo_note:
         return "high", "uplink from an earth station inside Finland"
+    if r.plan_hits:
+        return "medium", f"{r.plan_hits[0].text()}; the Annex pfd test was not run"
     if r.matched_station_numbers:
         return "medium", "special-interest station in the band"
     if "uplink_near_finland" in r.paths:
@@ -153,7 +160,7 @@ def score_group(r: GroupRelevance, *, bands: dict[int, FinnishSubBand], classes:
     concern, rule = pfd_adjust(*concern_rule(r, classes), pfd)
     pfd_v, pfd_why = margin_factor(pfd.margin_db if pfd is not None and pfd.status == "computed" else None, w)
     geo_v, geo_why = geography_factor(r, geo_detail)
-    relevance = (1.0 if r.candidate else 0.0) * geo_v if not r.finland_named_provisions else 1.0
+    relevance = (1.0 if r.candidate else 0.0) * geo_v if not (r.finland_named_provisions or r.plan_bureau or r.plan_hits) else 1.0
 
     matched = [bands[i] for i in r.matched_subband_ids]
     sens = max((sensitivity(b) for b in matched), default=(w["finnish_sensitivity"]["default_none"], "no Finnish row"))
@@ -166,7 +173,7 @@ def score_group(r: GroupRelevance, *, bands: dict[int, FinnishSubBand], classes:
 
     stage = w["space"]["stage"].get(section_key(section), w["space"]["stage"]["unknown"])
     deadline = w["space"]["deadline_no_window"] if section_key(section) not in ("CR/C", "API/A") else 0.6
-    listed = 1.0 if r.finland_named_provisions else 0.6
+    listed = 1.0 if r.finland_named_provisions or r.plan_bureau else 0.6
     novelty = w["space"]["novelty"].get(action or "unknown", w["space"]["novelty"]["unknown"])
     urgency = uw["stage"] * stage + uw["deadline"] * deadline + uw["finland_listed"] * listed + uw["novelty"] * novelty
 

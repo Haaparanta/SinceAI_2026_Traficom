@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "issue": 3074,
+  "snapshots": {
+    "AP30": 3083,
+    "AP30B": 3083
+  },
+  "finnish_entries": 9,
+  "bureau_rows": 21,
+  "networks_affecting_finland": [
+    "AMS-BSS-K-17E",
+    "EUROPESTAR-FSS-47.5E",
+    "F-SAT-BSS1-16E",
+    "F-SAT-P-30B-48E-F",
+    "INSAT-KUP-FSS-Y24(48E)",
+    "ITALY_BSS_24.8E",
+    "OHO-30B-45E",
+    "OHO-30B-45E-2",
+    "TURKSAT-42E-FSS-4",
+    "YAHSAT-BSS2-15E"
+  ],
+  "plan_sections": [
+    {
+      "notice_id": "118559005",
+      "concern": "none"
+    },
+    {
+      "notice_id": "119559002",
+      "concern": "none"
+    },
+    {
+      "notice_id": "125559020",
+      "concern": "none"
+    }
+  ],
+  "groups_inside_arc": 0,
+  "plan_citations": 21,
+  "plan_citation_mismatches": 0
+}
