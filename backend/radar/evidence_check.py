@@ -193,11 +193,13 @@ def check_broadcasting(result: AnalysisResult) -> list[Check]:
 
 
 def check_terrestrial(result: AnalysisResult) -> list[Check]:
-    """itu_row in the terrestrial DuckDB; border and p1546 recomputed; T/R 25-08 row rebuilt from the CSV."""
+    """itu_row in the terrestrial DuckDB; border and p1546 recomputed; T/R 25-08 row rebuilt from the CSV; Finnish table
+    rows and Regulation M4 rebuilt from the Traficom snapshot."""
     from radar.adapters import terrestrial_ific as TI
     from radar.pipeline import terrestrial as TR
 
     con = duckdb.connect(str(TI.db_path(result.issue)), read_only=True)
+    bands = {b.id: b for b in traficom_table.load_json()}
     ing = TI.load(result.issue, con)
     by_id = {n.notice_id: n for n in ing.notices}
     cache: dict[str, TR.TerrestrialCalc] = {}
@@ -214,6 +216,12 @@ def check_terrestrial(result: AnalysisResult) -> list[Check]:
             if e.kind == "itu_row":
                 table, keys = parse_locator(e.locator)
                 found = row_excerpt(con, table, keys, parse_excerpt(e.excerpt))
+            elif e.kind == "finnish_table_row":
+                bid = int(e.locator.split("=", 1)[1])
+                found = traficom_table.evidence(bands[bid], e.id).excerpt if bid in bands else None
+            elif e.kind == "regulation" and e.locator.startswith(traficom_table.M4_LOCATOR_PREFIX):
+                bid = int(e.locator[len(traficom_table.M4_LOCATOR_PREFIX):])
+                found = traficom_table.m4_evidence(bands[bid], e.id).excerpt if bid in bands else None
             elif e.kind == "regulation" and e.locator.startswith("tr2508_thresholds.csv id="):
                 rid = e.locator.split("=", 1)[1]
                 row = next((t for t in TR.thresholds() if t.id == rid), None)
