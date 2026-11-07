@@ -100,7 +100,7 @@ test("stations: special-interest stations on the map", async ({ page }, info) =>
   test.skip(step !== "stations");
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "Filing Radar" })).toBeVisible();
-  await page.getByRole("tab", { name: "Map" }).click();
+  await page.getByRole("tab", { name: "Map", exact: true }).click();
   const map = page.locator("svg[aria-label^='Map of Finland']");
   await expect(map.locator("[data-station]").first()).toBeVisible();
   await map.scrollIntoViewIfNeeded();
@@ -113,7 +113,7 @@ test("terrestrial-stations: field strength at a special-interest station", async
   await page.getByRole("tab", { name: "Terrestrial 3076" }).click();
   await page.getByPlaceholder(/Search/).fill("93075625");
   await page.getByRole("list", { name: "Ranked findings" }).getByRole("button").first().click();
-  await page.getByRole("tab", { name: "Map" }).click();
+  await page.getByRole("tab", { name: "Map", exact: true }).click();
   const map = page.locator("svg[aria-label^='Map of Finland']");
   await expect(map.locator("[data-station]")).toHaveCount(1);
   await map.scrollIntoViewIfNeeded();

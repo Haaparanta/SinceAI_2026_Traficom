@@ -18,9 +18,9 @@ test("the whole screen works offline in demo mode", async ({ page }) => {
   for (const issue of ["Space 3074", "Terrestrial 3076"]) {
     await page.getByRole("tab", { name: issue }).click();
     await expect(page.getByRole("list", { name: "Ranked findings" }).getByRole("button").first()).toBeVisible();
-    for (const tab of ["Spectrum", "Map", "Calculation", "Audit log"]) {
-      await page.getByRole("tab", { name: tab }).click();
-      await expect(page.getByRole("tab", { name: tab })).toHaveAttribute("aria-selected", "true");
+    for (const tab of ["Spectrum", "Map", "All on map", "Calculation", "Audit log"]) {
+      await page.getByRole("tab", { name: tab, exact: true }).click();
+      await expect(page.getByRole("tab", { name: tab, exact: true })).toHaveAttribute("aria-selected", "true");
     }
     await page.getByRole("button", { name: "Explain in plain language" }).click();
     await expect(page.getByRole("region", { name: "Explanation", exact: true })).toContainText("DEMO_MODE=1");
