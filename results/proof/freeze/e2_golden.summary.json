@@ -2,7 +2,7 @@
   "status": "PASS",
   "checks": [
     [
-      "Every golden case matches (candidate, paths, geography)",
+      "Every golden case matches (candidate, paths, geography, stations)",
       "PASS",
       "10 of 10"
     ],

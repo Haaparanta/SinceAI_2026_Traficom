@@ -1,5 +1,5 @@
 # Filing Radar. Step IDs refer to pm_pack/08_Build_Plan_Step_by_Step.md.
-.PHONY: doctor check-data checksums schema convert convert-plans plans subbands special-interest ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial explanations determinism golden proof freeze status api-demo index cache frontend frontend-build e2e screenshots test api
+.PHONY: doctor check-data checksums schema convert convert-plans plans subbands special-interest ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial explanations determinism golden proof freeze status api-demo index cache frontend frontend-build e2e e2e-failed screenshots test test-failed test-changed test-list api
 
 doctor:        ## A1: tools on PATH, native arm64
 	python3 scripts/doctor.py tools
@@ -103,18 +103,49 @@ frontend:      ## D1: the one screen on http://127.0.0.1:5173 (run make api in a
 	npm --prefix frontend run dev
 
 frontend-build: ## D1: type-check, lint and build the screen
-	npm --prefix frontend run build && npx --prefix frontend eslint frontend/src
+	npm --prefix frontend run build && cd frontend && npx eslint src   # eslint.config.js lives in frontend/
+
+# Narrow the Playwright run: T=spec file name(s) (stations, decisions), G=title text, P=one project
+# (desktop-dark, desktop-light, phone). make e2e T=stations P=desktop-dark
+E2E_ARGS = $(T) $(if $(G),--grep "$(G)") $(if $(P),--project $(P)) $(ARGS)
 
 e2e:           ## D1: Playwright end-to-end tests of the screen (starts API and dev server if needed); report in reports/playwright/
-	npm --prefix frontend run e2e
+	npm --prefix frontend run e2e -- $(E2E_ARGS)
+
+e2e-failed:    ## D1: rerun only the Playwright tests that failed last time
+	npm --prefix frontend run e2e -- --last-failed $(E2E_ARGS)
+
+e2e-%:         ## D1: one spec on every project, e.g. make e2e-stations (P=phone for one project)
+	npm --prefix frontend run e2e -- $* $(if $(G),--grep "$(G)") $(if $(P),--project $(P)) $(ARGS)
 
 STEP ?= e
 
 screenshots:   ## PR pictures: Playwright captures the changed views into docs/screenshots/$(STEP)/ (one run per project)
 	for p in desktop-light desktop-dark phone; do SCREENSHOTS=$(STEP) npm --prefix frontend run e2e -- screenshots --project $$p || exit 1; done
 
-test:          ## all unit tests
-	uv run pytest -q
+# Narrow the pytest run: T=files or node ids, K=keyword expression, ARGS=any other pytest flags.
+# make test T=tests/test_pfd.py | make test T=tests/test_pfd.py::test_name | make test K="elevation and not ngso"
+PYTEST_ARGS = $(if $(K),-k "$(K)") $(ARGS)
+BASE ?= main
+
+test:          ## all unit tests; T=, K= and ARGS= narrow the run (see above)
+	uv run pytest -q $(T) $(PYTEST_ARGS)
+
+test-failed:   ## only the tests that failed last time, stopping at the first failure
+	@uv run pytest -q --last-failed --last-failed-no-failures none -x $(T) $(PYTEST_ARGS); \
+	code=$$?; if [ $$code -eq 5 ]; then echo "no failures recorded from the last run"; exit 0; fi; exit $$code
+
+test-changed:  ## only the test files affected by this branch's changes against BASE (default main); FILES= asks about given files
+	@files="$$(uv run python scripts/changed_tests.py --base $(BASE) $(FILES))" || exit 1; \
+	if [ -z "$$files" ]; then echo "nothing to run"; else echo "pytest $$files"; uv run pytest -q $$files $(PYTEST_ARGS); fi
+
+test-list:     ## every test file name, for make test-<name>
+	@ls tests/test_*.py scoring/tests/test_*.py | sed -E 's|.*/test_(.*)\.py|\1|' | sort | column
+
+test-%:        ## one test file by name, e.g. make test-pfd runs tests/test_pfd.py (K= narrows further)
+	@f=$$(ls tests/test_$*.py scoring/tests/test_$*.py 2>/dev/null | head -1); \
+	if [ -z "$$f" ]; then echo "no test file test_$*.py; make test-list shows the names"; exit 1; fi; \
+	uv run pytest -q $$f $(PYTEST_ARGS)
 
 api-demo:      ## E3: the API in demo mode: cached analyses only, no network and no language-model calls
 	DEMO_MODE=1 $(MAKE) api

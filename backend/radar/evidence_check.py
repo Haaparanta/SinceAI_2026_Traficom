@@ -21,6 +21,7 @@ import duckdb
 from radar import schema_map
 from radar.adapters import plans as PLANS
 from radar.adapters import space_ific, traficom_table
+from radar.adapters import special_interest as SI
 from radar.evidence import parse_excerpt, parse_locator, row_excerpt
 from radar.models import AnalysisResult
 from radar.calc import pfd as PFD
@@ -79,6 +80,9 @@ def check(result: AnalysisResult) -> list[Check]:
                 lon = None if row is None or row[0] is None else round(float(row[0]), 4)
                 g = G.gso_result(lon)
                 found = f"{g.relevance}: {g.note}"
+            elif e.kind == "special_interest_row":
+                st = SI.by_row().get(int(e.locator.split("=", 1)[1]))
+                found = SI.excerpt(st) if st else None
             elif e.kind == "finnish_table_row":
                 bid = int(e.locator.split("=", 1)[1])
                 found = traficom_table.evidence(bands[bid], e.id).excerpt if bid in bands else None
@@ -94,7 +98,8 @@ def check(result: AnalysisResult) -> list[Check]:
                 n = next((n for n in ingest.notices if g and n.notice_id == g.notice_id), None)
                 gi = PFD.load_inputs(con, [gid]).get(gid)
                 if g and n and gi:
-                    r = PFD.worst_case(g.freq_min_hz, g.freq_max_hz, n.longitude_deg, gi.emissions, gi.gain_dbi, gi.steerable)
+                    r = PFD.worst_case(g.freq_min_hz, g.freq_max_hz, n.longitude_deg, gi.emissions, gi.gain_dbi, gi.steerable,
+                                       extra_points=G.station_points(f.matched_station_numbers, n.longitude_deg, list(SI.stations())))
                     w = r.worst
                     found = (f"pfd {r.pfd_db:.2f} dB(W/m2) in {PFD.fmt_bw(w['bandwidth_hz'])} at {w['point']}; "
                              f"limit {r.limit_db:.2f}; margin {r.margin_db:.2f} dB") if r.status == "computed" else r.status
@@ -169,6 +174,13 @@ def check_terrestrial(result: AnalysisResult) -> list[Check]:
             elif e.kind == "calculation" and e.locator.startswith("border("):
                 c = calc(e.locator[len("border(notice_id="):-1])
                 found = TR.border_excerpt(c) if c.status == "computed" else c.status
+            elif e.kind == "special_interest_row":
+                st = SI.by_row().get(int(e.locator.split("=", 1)[1]))
+                found = SI.excerpt(st) if st else None
+            elif e.kind == "calculation" and e.locator.startswith("p1546_station("):
+                nid, num = e.locator[len("p1546_station(notice_id="):-1].split(";station=")
+                w = next((s for s in calc(nid).stations if s["number"] == num), None)
+                found = TR.station_excerpt(w) if w else None
             elif e.kind == "calculation" and e.locator.startswith("p1546("):
                 c = calc(e.locator[len("p1546(notice_id="):-1])
                 found = f"E {c.e_dbuv_m:.2f} dB(uV/m); free space {c.free_space_dbuv_m:.2f}" if c.status == "computed" else c.status

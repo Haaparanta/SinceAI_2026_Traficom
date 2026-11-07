@@ -59,7 +59,7 @@ jobs:
             --allow-unauthenticated
             --service-account=filing-radar-run@filing-radar-513921.iam.gserviceaccount.com
             --cpu=1 --memory=512Mi --cpu-boost
-            --min-instances=1 --max-instances=2
+            --min-instances=1 --max-instances=1
             --concurrency=80 --timeout=60
 
       - name: Smoke test

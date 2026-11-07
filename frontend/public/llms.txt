@@ -1,0 +1,18 @@
+# Filing Radar
+
+> Screens ITU BR IFIC issues (the ITU Radiocommunication Bureau's International Frequency Information Circular) for satellite and terrestrial notices that may affect radio frequency use in Finland. Every finding cites its evidence (ITU database rows, rows of the Finnish frequency allocation table, regulation sections) and shows an indicative technical check. The tool suggests; a specialist decides. Built for the Traficom challenge at Since AI 2026.
+
+## What the site shows
+
+- One screen with ranked findings for Space IFIC 3074 and Terrestrial IFIC 3076: concern level, reason, evidence, a calculation trace (worst-case power flux-density for satellites, ITU-R P.1546 field strength for terrestrial stations), a map and a spectrum view.
+- Calculations are labelled indicative unless a specialist has confirmed the method.
+
+## Data
+
+- [Results for Space IFIC 3074 (CSV)](https://filingradar.click/api/export/3074?kind=space)
+- [Results for Terrestrial IFIC 3076 (CSV)](https://filingradar.click/api/export/3076?kind=terrestrial)
+- [API reference](https://filingradar.click/api/docs)
+
+## Source
+
+- [Source code and method notes](https://github.com/Haaparanta/SinceAI_2026_Traficom)

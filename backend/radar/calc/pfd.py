@@ -111,7 +111,9 @@ class PfdResult:
 
 
 def worst_case(freq_min_hz: int, freq_max_hz: int, sat_lon_deg: float, emissions: list[Emission],
-               gain_dbi: float | None, steerable: bool | None = None) -> PfdResult:
+               gain_dbi: float | None, steerable: bool | None = None,
+               extra_points: list[tuple[str, float, float]] | None = None) -> PfdResult:
+    """extra_points: (name, lat, lon) evaluated next to the reference points, e.g. matched special-interest stations."""
     rows = applicable_limits(freq_min_hz, freq_max_hz, "GSO")
     if not rows:
         return PfdResult("no_limit", notes=["no RR Article 21 Table 21-4 limit applies to this band in Finland"])
@@ -123,12 +125,12 @@ def worst_case(freq_min_hz: int, freq_max_hz: int, sat_lon_deg: float, emissions
         return PfdResult(status, notes=[f"{miss} not filed or not usable; pfd not computed"]
                          + ([f"{len(flagged)} emission(s) with an implausible filed value left out"] if flagged else []))
     points = []
-    for name, lat, lon in G.reference_points():
+    for name, lat, lon in list(G.reference_points()) + list(extra_points or []):
         el, d_km = G.gso_look(lat, lon, sat_lon_deg)
         if el > 0:
             points.append((name, lat, lon, el, d_km))
     if not points:
-        return PfdResult("not_visible", notes=["satellite below the horizon at every reference point"])
+        return PfdResult("not_visible", notes=["satellite below the horizon at every reference point and matched station"])
 
     best: PfdResult | None = None
     cases = 0
@@ -155,7 +157,8 @@ def worst_case(freq_min_hz: int, freq_max_hz: int, sat_lon_deg: float, emissions
     best.notes = [
         "free-space propagation, no atmospheric loss, maximum beam gain towards Finland: an upper bound",
         pointing,
-        f"worst of {cases} cases ({len(usable)} emission(s) x {len(points)} visible point(s) x {len(rows)} limit row(s))",
+        f"worst of {cases} cases ({len(usable)} emission(s) x {len(points)} visible point(s) x {len(rows)} limit row(s))"
+        + (f"; points include {len(extra_points)} special-interest station(s)" if extra_points else ""),
         f"limit row {best.worst['limit_row'].id}: {best.worst['limit_row'].review}",
     ] + ([f"{len(flagged)} emission(s) with an implausible filed value left out"] if flagged else [])
     return best

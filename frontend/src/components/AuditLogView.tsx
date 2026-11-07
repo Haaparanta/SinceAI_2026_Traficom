@@ -8,12 +8,16 @@ export function AuditLogView({ kind, issue, version, onSelect }: {
   kind: Kind; issue: number; version: number; onSelect: (id: string) => void;
 }) {
   const [log, setLog] = useState<AuditLog | null>(null);
+  const [error, setError] = useState<string | null>(null);
   useEffect(() => {
     let stale = false;
-    api.audit(kind, issue).then((l) => { if (!stale) setLog(l); }).catch(() => undefined);
+    setError(null);
+    api.audit(kind, issue).then((l) => { if (!stale) setLog(l); })
+      .catch((e) => { if (!stale) setError(String(e)); });
     return () => { stale = true; };
   }, [kind, issue, version]);
 
+  if (error && !log) return <p role="alert" className="p-6 text-sm text-destructive">The audit log could not be loaded. {error}</p>;
   if (!log) return <Empty>Loading the audit log.</Empty>;
   return (
     <div className="p-4 space-y-3">
@@ -30,7 +34,7 @@ export function AuditLogView({ kind, issue, version, onSelect }: {
               <div className="flex flex-wrap items-baseline gap-x-2">
                 <span className="num text-xs text-muted-foreground">#{e.seq}</span>
                 <span className="font-semibold">{DECISION_LABEL[e.decision]}</span>
-                <button onClick={() => onSelect(e.finding_id)} className="num text-primary underline underline-offset-2">{e.finding_id}</button>
+                <button type="button" onClick={() => onSelect(e.finding_id)} className="num text-primary underline underline-offset-2">{e.finding_id}</button>
               </div>
               <div className="text-xs text-muted-foreground">{e.reviewer} · <span className="num">{fmtTime(e.at)}</span> · concern then {CONCERN_LABEL[e.concern_at_decision]}</div>
               {e.note && <div className="mt-1">{e.note}</div>}
@@ -48,7 +52,7 @@ export function AuditLogView({ kind, issue, version, onSelect }: {
                 <tr className="border-t border-border align-top whitespace-nowrap [&>td]:pt-2 [&>td]:pr-3">
                   <td className="num">{e.seq}</td>
                   <td className="num">{fmtTime(e.at)}</td>
-                  <td><button onClick={() => onSelect(e.finding_id)} className="num text-primary underline underline-offset-2">{e.finding_id}</button></td>
+                  <td><button type="button" onClick={() => onSelect(e.finding_id)} className="num text-primary underline underline-offset-2">{e.finding_id}</button></td>
                   <td className="font-semibold">{DECISION_LABEL[e.decision]}</td>
                   <td>{e.reviewer}</td>
                   <td>{CONCERN_LABEL[e.concern_at_decision]}</td>

@@ -42,7 +42,8 @@ CLASSES = {1: classify("FIXED"), 2: classify("Fixed"), 3: classify("RADIO ASTRON
     (dict(paths={"pfd_terrestrial": [1]}, primary_terrestrial=True, geo_relevance="unknown"), "review"),
 ])
 def test_concern_rules(kw, concern):
-    assert RK.concern_rule(row(**kw), CLASSES)[0] == concern
+    r = row(**kw)
+    assert RK.station_floor(r, *RK.concern_rule(r, CLASSES))[0] == concern     # the floor runs after the rules
 
 
 def test_sensitivity_uses_scoring_package_rules():

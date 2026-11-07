@@ -12,19 +12,21 @@ async function post<T>(path: string): Promise<T> {
   return r.json() as Promise<T>;
 }
 
+const seg = encodeURIComponent;   // path segments come from data files: encode them
+
 export const api = {
   issues: () => get<IssueInfo[]>("/issues"),
-  analysis: (kind: Kind, issue: number) => get<AnalysisBundle>(`/analysis/${kind}/${issue}`),
+  analysis: (kind: Kind, issue: number) => get<AnalysisBundle>(`/analysis/${seg(kind)}/${seg(issue)}`),
   region: () => get<Region>("/reference/region"),
   points: () => get<RefPoint[]>("/reference/points"),
-  exportUrl: (kind: Kind, issue: number) => `/api/export/${issue}?kind=${kind}`,
-  audit: (kind: Kind, issue: number) => get<AuditLog>(`/audit?issue=${issue}&kind=${kind}`),
-  findingDecisions: (id: string) => get<AuditEntry[]>(`/findings/${id}/decisions`),
+  exportUrl: (kind: Kind, issue: number) => `/api/export/${seg(issue)}?kind=${seg(kind)}`,
+  audit: (kind: Kind, issue: number) => get<AuditLog>(`/audit?issue=${seg(issue)}&kind=${seg(kind)}`),
+  findingDecisions: (id: string) => get<AuditEntry[]>(`/findings/${seg(id)}/decisions`),
   llmStatus: () => get<LLMStatus>("/llm/status"),
-  explain: (id: string) => post<DraftResult<Explanation>>(`/findings/${id}/explanation`),
-  letter: (id: string) => post<DraftResult<Letter>>(`/findings/${id}/letter`),
+  explain: (id: string) => post<DraftResult<Explanation>>(`/findings/${seg(id)}/explanation`),
+  letter: (id: string) => post<DraftResult<Letter>>(`/findings/${seg(id)}/letter`),
   decide: async (id: string, body: { decision: DecisionKind; reviewer: string; note: string }): Promise<AuditEntry> => {
-    const r = await fetch(`/api/findings/${id}/decision`, {
+    const r = await fetch(`/api/findings/${seg(id)}/decision`, {
       method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
     });
     if (!r.ok) throw new Error(`${r.status}: ${await r.text()}`);

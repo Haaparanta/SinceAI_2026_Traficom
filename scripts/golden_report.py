@@ -52,9 +52,11 @@ def main() -> int:
         r = rows[c["group_id"]]
         exp, got = c["b3"]["candidate"], r.candidate
         tp["tp" if exp and got else "fp" if got else "fn" if exp else "tn"] += 1
-        paths_ok = sorted(r.paths) == sorted(c["b2"]["paths"])
+        # b2 paths describe the Finnish-table match; special-interest stations are checked on their own
+        paths_ok = sorted(p for p in r.paths if p != "special_interest") == sorted(c["b2"]["paths"])
+        stations_ok = sorted(r.matched_station_numbers) == sorted(c.get("stations", []))
         geo_ok = r.geo_relevance == c["b3"]["geo"]
-        ok = exp == got and paths_ok and geo_ok
+        ok = exp == got and paths_ok and geo_ok and stations_ok
         exact += ok
         case_rows.append([c["group_id"], R.esc(c["notice"]), str(exp), str(got), R.esc(", ".join(sorted(r.paths)) or "none"),
                           R.esc(f"{c['b3']['geo']} / {r.geo_relevance}"), R.esc(c["checked_by"]), R.badge("PASS" if ok else "FAIL")])
@@ -104,7 +106,7 @@ def main() -> int:
 
     pf = lambda ok: "PASS" if ok else "FAIL"  # noqa: E731
     checks = [
-        ("Every golden case matches (candidate, paths, geography)", pf(exact == len(golden["cases"])), f"{exact} of {len(golden['cases'])}"),
+        ("Every golden case matches (candidate, paths, geography, stations)", pf(exact == len(golden["cases"])), f"{exact} of {len(golden['cases'])}"),
         ("Every Bureau-named group is a candidate with concern high", pf(named_hit == len(named)), f"{named_hit} of {len(named)}"),
         ("No reviewer dismissal of a flagged finding", pf(d["fp"] == 0) if latest else "WAITING",
          f"{len(latest)} decisions recorded" if latest else "no reviewer decisions yet: record them in the screen"),

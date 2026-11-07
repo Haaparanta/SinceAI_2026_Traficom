@@ -24,7 +24,7 @@ export function CalcTraceView({ calc, onEvidence }: { calc: CalcTrace; onEvidenc
         <span className="rounded-full bg-accent text-accent-foreground px-2.5 py-0.5 text-xs font-semibold">{calc.label === "indicative" ? "Indicative" : "Confirmed"}</span>
       </div>
       {calc.result_value != null ? (
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid gap-3 grid-cols-[repeat(auto-fit,minmax(9.5rem,1fr))]">
           <Big label="Result" value={calc.result_value} unit={calc.result_unit} />
           <Big label="Limit" value={calc.limit_value} unit={calc.limit_value != null ? calc.result_unit.split(" in ")[0] : "no criterion"} />
           <div className={`rounded-xl p-3 ${calc.margin_db == null ? "bg-muted" : exceeds ? "bg-risk-high text-risk-high-foreground" : "bg-risk-low text-risk-low-foreground"}`}>
@@ -47,12 +47,12 @@ export function CalcTraceView({ calc, onEvidence }: { calc: CalcTrace; onEvidenc
                 <td className="py-1.5 pr-2">{i.name}</td>
                 <td className="num text-right pr-2">{typeof i.value === "number" ? +i.value.toPrecision(8) : i.value}</td>
                 <td className="text-muted-foreground">{i.unit}</td>
-                <td><button onClick={() => onEvidence(i.evidence_id)} className="num text-primary underline underline-offset-2">{i.evidence_id}</button></td>
+                <td><button type="button" onClick={() => onEvidence(i.evidence_id)} className="num text-primary underline underline-offset-2">{i.evidence_id}</button></td>
               </tr>
             ))}
             {calc.limit_evidence_id && (
               <tr className="border-t border-border"><td className="py-1.5">Limit</td><td className="num text-right pr-2">{calc.limit_value}</td><td /><td>
-                <button onClick={() => onEvidence(calc.limit_evidence_id!)} className="num text-primary underline underline-offset-2">{calc.limit_evidence_id}</button></td></tr>
+                <button type="button" onClick={() => onEvidence(calc.limit_evidence_id!)} className="num text-primary underline underline-offset-2">{calc.limit_evidence_id}</button></td></tr>
             )}
           </tbody>
         </table>

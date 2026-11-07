@@ -10,7 +10,7 @@
   "freq_max_mhz": 19200.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; FIXED SATELLITE (SPACE-TO-EARTH) (IDs 4732, 4746, 4752, 4708, 4738)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "601452, 602266, 605729, 613999, 614038, 616738, 623938, 631021, 634993",
   "overlap_mhz": 500.0,
   "geo_relevance": "visible",
   "calc_method": "pfd_gso_worst_case",
@@ -19,8 +19,8 @@
   "limit_value": -113.48,
   "margin_db": -6.28,
   "concern": "high",
-  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 6.3 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 124794008: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 15.5 deg at Helsinki); 36 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=124520183; pub_ssn.ntc_id=124520183&seq_no=1; pub_ssn.ntc_id=124520183&seq_no=2; geo.ntc_id=124520183; grp.grp_id=124794008; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4708; Taajuusjakotaulukko.ID=4738; geography(notice_id=124520183); emiss.grp_id=124794008&seq_no=1; s_beam.ntc_id=124520183&emi_rcp=E&beam_name=KADR; pfd_limits.csv id=17700-19300_gso; pfd(group_id=124794008)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 6.3 dB with a steerable beam that can be pointed at Finland (indicative); 9 special-interest stations in the band and in reach. Lead group 124794008: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 15.5 deg at Helsinki); 36 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=124520183; pub_ssn.ntc_id=124520183&seq_no=1; pub_ssn.ntc_id=124520183&seq_no=2; geo.ntc_id=124520183; grp.grp_id=124794008; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4708; Taajuusjakotaulukko.ID=4738; special_interest.xlsx row=285; special_interest.xlsx row=305; special_interest.xlsx row=224; special_interest.xlsx row=239; special_interest.xlsx row=421; geography(notice_id=124520183); emiss.grp_id=124794008&seq_no=1; s_beam.ntc_id=124520183&emi_rcp=E&beam_name=KADR; pfd_limits.csv id=17700-19300_gso; pfd(group_id=124794008)",
   "decision": null
  },
  {
@@ -34,7 +34,7 @@
   "freq_max_mhz": 19200.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; FIXED SATELLITE (SPACE-TO-EARTH) (IDs 4732, 4746, 4752, 4708, 4738)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "601452, 602266, 605729, 613999, 614038, 616738, 623938, 631021, 634993",
   "overlap_mhz": 500.0,
   "geo_relevance": "visible",
   "calc_method": "pfd_gso_worst_case",
@@ -43,8 +43,8 @@
   "limit_value": -111.79,
   "margin_db": -4.66,
   "concern": "high",
-  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 4.7 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 124793617: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 21.5 deg at Hanko); 60 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=124520184; pub_ssn.ntc_id=124520184&seq_no=1; pub_ssn.ntc_id=124520184&seq_no=2; geo.ntc_id=124520184; grp.grp_id=124793617; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4708; Taajuusjakotaulukko.ID=4738; geography(notice_id=124520184); emiss.grp_id=124793617&seq_no=1; s_beam.ntc_id=124520184&emi_rcp=E&beam_name=KADR; pfd_limits.csv id=17700-19300_gso; pfd(group_id=124793617)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 4.7 dB with a steerable beam that can be pointed at Finland (indicative); 9 special-interest stations in the band and in reach. Lead group 124793617: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 21.5 deg at Hanko); 60 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=124520184; pub_ssn.ntc_id=124520184&seq_no=1; pub_ssn.ntc_id=124520184&seq_no=2; geo.ntc_id=124520184; grp.grp_id=124793617; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4708; Taajuusjakotaulukko.ID=4738; special_interest.xlsx row=285; special_interest.xlsx row=305; special_interest.xlsx row=224; special_interest.xlsx row=228; special_interest.xlsx row=395; geography(notice_id=124520184); emiss.grp_id=124793617&seq_no=1; s_beam.ntc_id=124520184&emi_rcp=E&beam_name=KADR; pfd_limits.csv id=17700-19300_gso; pfd(group_id=124793617)",
   "decision": null
  },
  {
@@ -58,7 +58,7 @@
   "freq_max_mhz": 19700.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED (IDs 4732, 4746, 4752, 4774, 4779, 4784)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "600529, 601452, 602266, 602436, 605729, 613999, 614038, 616738, 623938, 624714, 631021, 634993",
   "overlap_mhz": 1000.0,
   "geo_relevance": "visible",
   "calc_method": "pfd_gso_worst_case",
@@ -67,8 +67,8 @@
   "limit_value": -114.67,
   "margin_db": -3.41,
   "concern": "high",
-  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 3.4 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 124727502: 18.7 GHz to 19.7 GHz space-to-Earth; geography visible (highest elevation 12.1 deg at Ilomantsi); 98 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=124520214; pub_ssn.ntc_id=124520214&seq_no=1; pub_ssn.ntc_id=124520214&seq_no=2; geo.ntc_id=124520214; grp.grp_id=124727502; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4774; Taajuusjakotaulukko.ID=4779; Taajuusjakotaulukko.ID=4784; geography(notice_id=124520214); emiss.grp_id=124727502&seq_no=8; s_beam.ntc_id=124520214&emi_rcp=E&beam_name=KABD; pfd_limits.csv id=19300-19700_gso; pfd(group_id=124727502)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 3.4 dB with a steerable beam that can be pointed at Finland (indicative); 12 special-interest stations in the band and in reach. Lead group 124727502: 18.7 GHz to 19.7 GHz space-to-Earth; geography visible (highest elevation 12.1 deg at Ilomantsi); 98 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=124520214; pub_ssn.ntc_id=124520214&seq_no=1; pub_ssn.ntc_id=124520214&seq_no=2; geo.ntc_id=124520214; grp.grp_id=124727502; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4774; Taajuusjakotaulukko.ID=4779; Taajuusjakotaulukko.ID=4784; special_interest.xlsx row=352; special_interest.xlsx row=229; special_interest.xlsx row=285; special_interest.xlsx row=224; special_interest.xlsx row=346; geography(notice_id=124520214); emiss.grp_id=124727502&seq_no=8; s_beam.ntc_id=124520214&emi_rcp=E&beam_name=KABD; pfd_limits.csv id=19300-19700_gso; pfd(group_id=124727502)",
   "decision": null
  },
  {
@@ -82,7 +82,7 @@
   "freq_max_mhz": 19200.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; FIXED SATELLITE (SPACE-TO-EARTH) (IDs 4732, 4746, 4752, 4708, 4738)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "601452, 602266, 605729, 613999, 614038, 616738, 623938, 631021, 634993",
   "overlap_mhz": 500.0,
   "geo_relevance": "visible",
   "calc_method": "pfd_gso_worst_case",
@@ -91,8 +91,8 @@
   "limit_value": -113.48,
   "margin_db": -6.28,
   "concern": "high",
-  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 6.3 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 324794008: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 15.5 deg at Helsinki); 36 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=324520183; pub_ssn.ntc_id=324520183&seq_no=1; pub_ssn.ntc_id=324520183&seq_no=2; geo.ntc_id=324520183; grp.grp_id=324794008; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4708; Taajuusjakotaulukko.ID=4738; geography(notice_id=324520183); emiss.grp_id=324794008&seq_no=1; s_beam.ntc_id=324520183&emi_rcp=E&beam_name=KADR; pfd_limits.csv id=17700-19300_gso; pfd(group_id=324794008)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 6.3 dB with a steerable beam that can be pointed at Finland (indicative); 9 special-interest stations in the band and in reach. Lead group 324794008: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 15.5 deg at Helsinki); 36 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=324520183; pub_ssn.ntc_id=324520183&seq_no=1; pub_ssn.ntc_id=324520183&seq_no=2; geo.ntc_id=324520183; grp.grp_id=324794008; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4708; Taajuusjakotaulukko.ID=4738; special_interest.xlsx row=285; special_interest.xlsx row=305; special_interest.xlsx row=224; special_interest.xlsx row=239; special_interest.xlsx row=421; geography(notice_id=324520183); emiss.grp_id=324794008&seq_no=1; s_beam.ntc_id=324520183&emi_rcp=E&beam_name=KADR; pfd_limits.csv id=17700-19300_gso; pfd(group_id=324794008)",
   "decision": null
  },
  {
@@ -106,7 +106,7 @@
   "freq_max_mhz": 19200.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; FIXED SATELLITE (SPACE-TO-EARTH) (IDs 4732, 4746, 4752, 4708, 4738)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "601452, 602266, 605729, 613999, 614038, 616738, 623938, 631021, 634993",
   "overlap_mhz": 500.0,
   "geo_relevance": "visible",
   "calc_method": "pfd_gso_worst_case",
@@ -115,8 +115,8 @@
   "limit_value": -111.79,
   "margin_db": -4.66,
   "concern": "high",
-  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 4.7 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 324793617: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 21.5 deg at Hanko); 60 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=324520184; pub_ssn.ntc_id=324520184&seq_no=1; pub_ssn.ntc_id=324520184&seq_no=2; geo.ntc_id=324520184; grp.grp_id=324793617; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4708; Taajuusjakotaulukko.ID=4738; geography(notice_id=324520184); emiss.grp_id=324793617&seq_no=1; s_beam.ntc_id=324520184&emi_rcp=E&beam_name=KADR; pfd_limits.csv id=17700-19300_gso; pfd(group_id=324793617)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 4.7 dB with a steerable beam that can be pointed at Finland (indicative); 9 special-interest stations in the band and in reach. Lead group 324793617: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 21.5 deg at Hanko); 60 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=324520184; pub_ssn.ntc_id=324520184&seq_no=1; pub_ssn.ntc_id=324520184&seq_no=2; geo.ntc_id=324520184; grp.grp_id=324793617; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4708; Taajuusjakotaulukko.ID=4738; special_interest.xlsx row=285; special_interest.xlsx row=305; special_interest.xlsx row=224; special_interest.xlsx row=228; special_interest.xlsx row=395; geography(notice_id=324520184); emiss.grp_id=324793617&seq_no=1; s_beam.ntc_id=324520184&emi_rcp=E&beam_name=KADR; pfd_limits.csv id=17700-19300_gso; pfd(group_id=324793617)",
   "decision": null
  },
  {
@@ -130,7 +130,7 @@
   "freq_max_mhz": 19700.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED (IDs 4732, 4746, 4752, 4774, 4779, 4784)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "600529, 601452, 602266, 602436, 605729, 613999, 614038, 616738, 623938, 624714, 631021, 634993",
   "overlap_mhz": 1000.0,
   "geo_relevance": "visible",
   "calc_method": "pfd_gso_worst_case",
@@ -139,8 +139,8 @@
   "limit_value": -114.67,
   "margin_db": -3.41,
   "concern": "high",
-  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 3.4 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 324727502: 18.7 GHz to 19.7 GHz space-to-Earth; geography visible (highest elevation 12.1 deg at Ilomantsi); 98 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=324520214; pub_ssn.ntc_id=324520214&seq_no=1; pub_ssn.ntc_id=324520214&seq_no=2; geo.ntc_id=324520214; grp.grp_id=324727502; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4774; Taajuusjakotaulukko.ID=4779; Taajuusjakotaulukko.ID=4784; geography(notice_id=324520214); emiss.grp_id=324727502&seq_no=8; s_beam.ntc_id=324520214&emi_rcp=E&beam_name=KABD; pfd_limits.csv id=19300-19700_gso; pfd(group_id=324727502)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 3.4 dB with a steerable beam that can be pointed at Finland (indicative); 12 special-interest stations in the band and in reach. Lead group 324727502: 18.7 GHz to 19.7 GHz space-to-Earth; geography visible (highest elevation 12.1 deg at Ilomantsi); 98 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=324520214; pub_ssn.ntc_id=324520214&seq_no=1; pub_ssn.ntc_id=324520214&seq_no=2; geo.ntc_id=324520214; grp.grp_id=324727502; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4774; Taajuusjakotaulukko.ID=4779; Taajuusjakotaulukko.ID=4784; special_interest.xlsx row=352; special_interest.xlsx row=229; special_interest.xlsx row=285; special_interest.xlsx row=224; special_interest.xlsx row=346; geography(notice_id=324520214); emiss.grp_id=324727502&seq_no=8; s_beam.ntc_id=324520214&emi_rcp=E&beam_name=KABD; pfd_limits.csv id=19300-19700_gso; pfd(group_id=324727502)",
   "decision": null
  },
  {
@@ -418,7 +418,7 @@
   "freq_max_mhz": 17950.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; FIXED SATELLITE (EARTH-TO-SPACE); FIXED SATELLITE (EARTH-TO-SPACE, SPACE-TO-EARTH) (IDs 4689, 4698, 4703, 4687, 4694)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "603413, 607797, 628219, 628728, 632251, 632476, 637357, 643173",
   "overlap_mhz": 250.0,
   "geo_relevance": "visible",
   "calc_method": "pfd_gso_worst_case",
@@ -427,8 +427,8 @@
   "limit_value": -114.31,
   "margin_db": -3.06,
   "concern": "high",
-  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 3.1 dB with a steerable beam that can be pointed at Finland (indicative). Lead group 125622933: 17.7 GHz to 17.95 GHz space-to-Earth; geography visible (highest elevation 13.0 deg at Ilomantsi); 393 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=125500068; geo.ntc_id=125500068; grp.grp_id=125622933; Taajuusjakotaulukko.ID=4689; Taajuusjakotaulukko.ID=4698; Taajuusjakotaulukko.ID=4703; Taajuusjakotaulukko.ID=4687; Taajuusjakotaulukko.ID=4694; geography(notice_id=125500068); emiss.grp_id=125622933&seq_no=8; s_beam.ntc_id=125500068&emi_rcp=E&beam_name=KABD; pfd_limits.csv id=17700-19300_gso; pfd(group_id=125622933)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 3.1 dB with a steerable beam that can be pointed at Finland (indicative); 8 special-interest stations in the band and in reach. Lead group 125622933: 17.7 GHz to 17.95 GHz space-to-Earth; geography visible (highest elevation 13.0 deg at Ilomantsi); 393 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=125500068; geo.ntc_id=125500068; grp.grp_id=125622933; Taajuusjakotaulukko.ID=4689; Taajuusjakotaulukko.ID=4698; Taajuusjakotaulukko.ID=4703; Taajuusjakotaulukko.ID=4687; Taajuusjakotaulukko.ID=4694; special_interest.xlsx row=403; special_interest.xlsx row=235; special_interest.xlsx row=254; special_interest.xlsx row=438; special_interest.xlsx row=375; geography(notice_id=125500068); emiss.grp_id=125622933&seq_no=8; s_beam.ntc_id=125500068&emi_rcp=E&beam_name=KABD; pfd_limits.csv id=17700-19300_gso; pfd(group_id=125622933)",
   "decision": null
  },
  {
@@ -562,7 +562,7 @@
   "freq_max_mhz": 19800.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED (IDs 4732, 4746, 4752, 4774, 4779, 4784)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "600529, 601452, 602266, 602436, 605729, 623938, 624714, 631021, 634993",
   "overlap_mhz": 1000.0,
   "geo_relevance": "visible",
   "calc_method": "pfd_gso_worst_case",
@@ -571,8 +571,8 @@
   "limit_value": -114.21,
   "margin_db": 0.83,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd 0.8 dB below the RR Article 21 limit (indicative). Lead group 124725956: 18.8 GHz to 19.8 GHz space-to-Earth; geography visible (highest elevation 13.3 deg at Ilomantsi); 8 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=124520204; pub_ssn.ntc_id=124520204&seq_no=1; pub_ssn.ntc_id=124520204&seq_no=2; geo.ntc_id=124520204; grp.grp_id=124725956; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4774; Taajuusjakotaulukko.ID=4779; Taajuusjakotaulukko.ID=4784; geography(notice_id=124520204); emiss.grp_id=124725956&seq_no=6; s_beam.ntc_id=124520204&emi_rcp=E&beam_name=TKA; pfd_limits.csv id=19300-19700_gso; pfd(group_id=124725956)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd 0.8 dB below the RR Article 21 limit (indicative); 9 special-interest stations in the band and in reach. Lead group 124725956: 18.8 GHz to 19.8 GHz space-to-Earth; geography visible (highest elevation 13.3 deg at Ilomantsi); 8 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=124520204; pub_ssn.ntc_id=124520204&seq_no=1; pub_ssn.ntc_id=124520204&seq_no=2; geo.ntc_id=124520204; grp.grp_id=124725956; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4774; Taajuusjakotaulukko.ID=4779; Taajuusjakotaulukko.ID=4784; special_interest.xlsx row=352; special_interest.xlsx row=229; special_interest.xlsx row=224; special_interest.xlsx row=346; special_interest.xlsx row=239; geography(notice_id=124520204); emiss.grp_id=124725956&seq_no=6; s_beam.ntc_id=124520204&emi_rcp=E&beam_name=TKA; pfd_limits.csv id=19300-19700_gso; pfd(group_id=124725956)",
   "decision": null
  },
  {
@@ -586,7 +586,7 @@
   "freq_max_mhz": 19800.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED (IDs 4732, 4746, 4752, 4774, 4779, 4784)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "600529, 601452, 602266, 602436, 605729, 623938, 624714, 631021, 634993",
   "overlap_mhz": 1000.0,
   "geo_relevance": "visible",
   "calc_method": "pfd_gso_worst_case",
@@ -595,8 +595,8 @@
   "limit_value": -114.21,
   "margin_db": 0.83,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd 0.8 dB below the RR Article 21 limit (indicative). Lead group 324725956: 18.8 GHz to 19.8 GHz space-to-Earth; geography visible (highest elevation 13.3 deg at Ilomantsi); 8 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=324520204; pub_ssn.ntc_id=324520204&seq_no=1; pub_ssn.ntc_id=324520204&seq_no=2; geo.ntc_id=324520204; grp.grp_id=324725956; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4774; Taajuusjakotaulukko.ID=4779; Taajuusjakotaulukko.ID=4784; geography(notice_id=324520204); emiss.grp_id=324725956&seq_no=6; s_beam.ntc_id=324520204&emi_rcp=E&beam_name=TKA; pfd_limits.csv id=19300-19700_gso; pfd(group_id=324725956)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd 0.8 dB below the RR Article 21 limit (indicative); 9 special-interest stations in the band and in reach. Lead group 324725956: 18.8 GHz to 19.8 GHz space-to-Earth; geography visible (highest elevation 13.3 deg at Ilomantsi); 8 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=324520204; pub_ssn.ntc_id=324520204&seq_no=1; pub_ssn.ntc_id=324520204&seq_no=2; geo.ntc_id=324520204; grp.grp_id=324725956; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4774; Taajuusjakotaulukko.ID=4779; Taajuusjakotaulukko.ID=4784; special_interest.xlsx row=352; special_interest.xlsx row=229; special_interest.xlsx row=224; special_interest.xlsx row=346; special_interest.xlsx row=239; geography(notice_id=324520204); emiss.grp_id=324725956&seq_no=6; s_beam.ntc_id=324520204&emi_rcp=E&beam_name=TKA; pfd_limits.csv id=19300-19700_gso; pfd(group_id=324725956)",
   "decision": null
  },
  {
@@ -898,7 +898,7 @@
   "freq_max_mhz": 19700.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; FIXED SATELLITE (EARTH-TO-SPACE, SPACE-TO-EARTH) (IDs 4774, 4779, 4784, 4789, 4794, 4758)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "600529, 602436, 624714",
   "overlap_mhz": 400.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -907,8 +907,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 124742535: 19.3 GHz to 19.7 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1079 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=124520131; pub_ssn.ntc_id=124520131&seq_no=1; pub_ssn.ntc_id=124520131&seq_no=2; non_geo.ntc_id=124520131; grp.grp_id=124742535; Taajuusjakotaulukko.ID=4774; Taajuusjakotaulukko.ID=4779; Taajuusjakotaulukko.ID=4784; Taajuusjakotaulukko.ID=4789; Taajuusjakotaulukko.ID=4794; Taajuusjakotaulukko.ID=4758; geography(notice_id=124520131)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 3 special-interest stations in the band and in reach. Lead group 124742535: 19.3 GHz to 19.7 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1079 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=124520131; pub_ssn.ntc_id=124520131&seq_no=1; pub_ssn.ntc_id=124520131&seq_no=2; non_geo.ntc_id=124520131; grp.grp_id=124742535; Taajuusjakotaulukko.ID=4774; Taajuusjakotaulukko.ID=4779; Taajuusjakotaulukko.ID=4784; Taajuusjakotaulukko.ID=4789; Taajuusjakotaulukko.ID=4794; Taajuusjakotaulukko.ID=4758; special_interest.xlsx row=215; special_interest.xlsx row=229; special_interest.xlsx row=352; geography(notice_id=124520131)",
   "decision": null
  },
  {
@@ -970,7 +970,7 @@
   "freq_max_mhz": 17800.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; FIXED SATELLITE (EARTH-TO-SPACE) (IDs 4689, 4687)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "607797, 632251, 643173",
   "overlap_mhz": 100.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -979,8 +979,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 125803211: 17.7 GHz to 17.8 GHz space-to-Earth; geography visible (seen up to 68.2 N at 10 deg elevation (Finland from 59.8 N)); 1137 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=125520047; pub_ssn.ntc_id=125520047&seq_no=1; non_geo.ntc_id=125520047; grp.grp_id=125803211; Taajuusjakotaulukko.ID=4689; Taajuusjakotaulukko.ID=4687; geography(notice_id=125520047)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 3 special-interest stations in the band and in reach. Lead group 125803211: 17.7 GHz to 17.8 GHz space-to-Earth; geography visible (seen up to 68.2 N at 10 deg elevation (Finland from 59.8 N)); 1137 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=125520047; pub_ssn.ntc_id=125520047&seq_no=1; non_geo.ntc_id=125520047; grp.grp_id=125803211; Taajuusjakotaulukko.ID=4689; Taajuusjakotaulukko.ID=4687; special_interest.xlsx row=254; special_interest.xlsx row=403; special_interest.xlsx row=474; geography(notice_id=125520047)",
   "decision": null
  },
  {
@@ -994,7 +994,7 @@
   "freq_max_mhz": 17800.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; FIXED SATELLITE (EARTH-TO-SPACE) (IDs 4689, 4687)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "607797, 632251, 643173",
   "overlap_mhz": 100.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1003,8 +1003,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 125805051: 17.7 GHz to 17.8 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1137 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=125520053; pub_ssn.ntc_id=125520053&seq_no=1; non_geo.ntc_id=125520053; grp.grp_id=125805051; Taajuusjakotaulukko.ID=4689; Taajuusjakotaulukko.ID=4687; geography(notice_id=125520053)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 3 special-interest stations in the band and in reach. Lead group 125805051: 17.7 GHz to 17.8 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1137 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=125520053; pub_ssn.ntc_id=125520053&seq_no=1; non_geo.ntc_id=125520053; grp.grp_id=125805051; Taajuusjakotaulukko.ID=4689; Taajuusjakotaulukko.ID=4687; special_interest.xlsx row=254; special_interest.xlsx row=403; special_interest.xlsx row=474; geography(notice_id=125520053)",
   "decision": null
  },
  {
@@ -1066,7 +1066,7 @@
   "freq_max_mhz": 2290.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; SPACE OPERATION (SPACE-TO-EARTH, SPACE-TO-SPACE) (IDs 3883, 3884, 3887)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "408577, 440557, 452076, 454152, 467765, 477781, 477915, 480622, 800000, 800001, 800002, 800003, 800004, 800005, 800006, 800007, 800008, 800009, 800010, 800011, 800012, 800013, 800014, 800015, 800016, 800017, 800018, 800019, 800020, 800021, 800022, 800023, 800024, 800025, 800026, 800027, 800028, 800029, 800060, 800061, 800062, 800063, 800064, 800065, 800066, 800067, 800068, 800069, 800070, 800071, 800072, 800073, 800074, 800075, 800076, 800077, 800078, 800079, 800080, 800081, 800082, 800083, 800084, 800085, 800086, 800087, 800088, 800089, 800120, 800121, 800122, 800123, 800124, 800125, 800126, 800127, 800128, 800129, 800130, 800131, 800132, 800133, 800134, 800135, 800136, 800137, 800138, 800139, 800140, 800141, 800142, 800143, 800144, 800145, 800146, 800147, 800148, 800149, 800180, 800181, 800182, 800183, 800184, 800185, 800186, 800187, 800188, 800189, 800190, 800191, 800192, 800193, 800194, 800195, 800196, 800197, 800198, 800199, 800200, 800201, 800202, 800203, 800204, 800205, 800206, 800207, 800208, 800209, 800240, 800241, 800242, 800243, 800244, 800245, 800246, 800247, 800248, 800249, 800250, 800251, 800252, 800253, 800254, 800255, 800256, 800257, 800258, 800259, 800260, 800261, 800262, 800263, 800264, 800265, 800266, 800267, 800268, 800269, 800300, 800301, 800302, 800306, 800307, 800308, 800311, 800312, 800313, 800317, 800318, 800319",
   "overlap_mhz": 90.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1075,8 +1075,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 125748048: 2.2 GHz to 2.29 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 7 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=125545347; pub_ssn.ntc_id=125545347&seq_no=1; pub_ssn.ntc_id=125545347&seq_no=2; non_geo.ntc_id=125545347; grp.grp_id=125748048; Taajuusjakotaulukko.ID=3883; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; geography(notice_id=125545347)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 170 special-interest stations in the band and in reach. Lead group 125748048: 2.2 GHz to 2.29 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 7 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=125545347; pub_ssn.ntc_id=125545347&seq_no=1; pub_ssn.ntc_id=125545347&seq_no=2; non_geo.ntc_id=125545347; grp.grp_id=125748048; Taajuusjakotaulukko.ID=3883; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; special_interest.xlsx row=191; special_interest.xlsx row=196; special_interest.xlsx row=199; special_interest.xlsx row=201; special_interest.xlsx row=204; geography(notice_id=125545347)",
   "decision": null
  },
  {
@@ -1090,7 +1090,7 @@
   "freq_max_mhz": 2246.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; SPACE OPERATION (SPACE-TO-EARTH, SPACE-TO-SPACE) (IDs 3883, 3884, 3887)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "800022, 800023, 800024, 800025, 800026, 800027, 800028, 800029, 800082, 800083, 800084, 800085, 800086, 800087, 800088, 800089, 800142, 800143, 800144, 800145, 800146, 800147, 800148, 800149, 800202, 800203, 800204, 800205, 800206, 800207, 800208, 800209, 800262, 800263, 800264, 800265, 800266, 800267, 800268, 800269, 800302, 800308, 800313, 800319",
   "overlap_mhz": 6.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1099,8 +1099,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 125752687: 2.24 GHz to 2.246 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=125545354; pub_ssn.ntc_id=125545354&seq_no=1; pub_ssn.ntc_id=125545354&seq_no=2; non_geo.ntc_id=125545354; grp.grp_id=125752687; Taajuusjakotaulukko.ID=3883; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; geography(notice_id=125545354)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 44 special-interest stations in the band and in reach. Lead group 125752687: 2.24 GHz to 2.246 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=125545354; pub_ssn.ntc_id=125545354&seq_no=1; pub_ssn.ntc_id=125545354&seq_no=2; non_geo.ntc_id=125545354; grp.grp_id=125752687; Taajuusjakotaulukko.ID=3883; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; special_interest.xlsx row=526; special_interest.xlsx row=527; special_interest.xlsx row=528; special_interest.xlsx row=529; special_interest.xlsx row=530; geography(notice_id=125545354)",
   "decision": null
  },
  {
@@ -1114,7 +1114,7 @@
   "freq_max_mhz": 2290.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; SPACE OPERATION (SPACE-TO-EARTH, SPACE-TO-SPACE) (IDs 3883, 3884, 3887)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "408577, 440557, 452076, 454152, 467765, 477781, 477915, 480622, 800000, 800001, 800002, 800003, 800004, 800005, 800006, 800007, 800008, 800009, 800010, 800011, 800012, 800013, 800014, 800015, 800016, 800017, 800018, 800019, 800020, 800021, 800022, 800023, 800024, 800025, 800026, 800027, 800028, 800029, 800060, 800061, 800062, 800063, 800064, 800065, 800066, 800067, 800068, 800069, 800070, 800071, 800072, 800073, 800074, 800075, 800076, 800077, 800078, 800079, 800080, 800081, 800082, 800083, 800084, 800085, 800086, 800087, 800088, 800089, 800120, 800121, 800122, 800123, 800124, 800125, 800126, 800127, 800128, 800129, 800130, 800131, 800132, 800133, 800134, 800135, 800136, 800137, 800138, 800139, 800140, 800141, 800142, 800143, 800144, 800145, 800146, 800147, 800148, 800149, 800180, 800181, 800182, 800183, 800184, 800185, 800186, 800187, 800188, 800189, 800190, 800191, 800192, 800193, 800194, 800195, 800196, 800197, 800198, 800199, 800200, 800201, 800202, 800203, 800204, 800205, 800206, 800207, 800208, 800209, 800240, 800241, 800242, 800243, 800244, 800245, 800246, 800247, 800248, 800249, 800250, 800251, 800252, 800253, 800254, 800255, 800256, 800257, 800258, 800259, 800260, 800261, 800262, 800263, 800264, 800265, 800266, 800267, 800268, 800269, 800300, 800301, 800302, 800306, 800307, 800308, 800311, 800312, 800313, 800317, 800318, 800319",
   "overlap_mhz": 90.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1123,8 +1123,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 125752920: 2.2 GHz to 2.29 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 3 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=125545368; pub_ssn.ntc_id=125545368&seq_no=1; pub_ssn.ntc_id=125545368&seq_no=2; non_geo.ntc_id=125545368; grp.grp_id=125752920; Taajuusjakotaulukko.ID=3883; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; geography(notice_id=125545368)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 170 special-interest stations in the band and in reach. Lead group 125752920: 2.2 GHz to 2.29 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 3 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=125545368; pub_ssn.ntc_id=125545368&seq_no=1; pub_ssn.ntc_id=125545368&seq_no=2; non_geo.ntc_id=125545368; grp.grp_id=125752920; Taajuusjakotaulukko.ID=3883; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; special_interest.xlsx row=191; special_interest.xlsx row=196; special_interest.xlsx row=199; special_interest.xlsx row=201; special_interest.xlsx row=204; geography(notice_id=125545368)",
   "decision": null
  },
  {
@@ -1162,7 +1162,7 @@
   "freq_max_mhz": 2223.271065,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED (IDs 3883)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "800000, 800001, 800002, 800003, 800004, 800005, 800060, 800061, 800062, 800063, 800064, 800065, 800120, 800121, 800122, 800123, 800124, 800125, 800180, 800181, 800182, 800183, 800184, 800185, 800240, 800241, 800242, 800243, 800244, 800245, 800300, 800311",
   "overlap_mhz": 0.542117,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1171,8 +1171,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 125741809: 2.22273 GHz to 2.22327 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=125545392; pub_ssn.ntc_id=125545392&seq_no=1; pub_ssn.ntc_id=125545392&seq_no=2; non_geo.ntc_id=125545392; grp.grp_id=125741809; Taajuusjakotaulukko.ID=3883; geography(notice_id=125545392)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 32 special-interest stations in the band and in reach. Lead group 125741809: 2.22273 GHz to 2.22327 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=125545392; pub_ssn.ntc_id=125545392&seq_no=1; pub_ssn.ntc_id=125545392&seq_no=2; non_geo.ntc_id=125545392; grp.grp_id=125741809; Taajuusjakotaulukko.ID=3883; special_interest.xlsx row=504; special_interest.xlsx row=505; special_interest.xlsx row=506; special_interest.xlsx row=507; special_interest.xlsx row=508; geography(notice_id=125545392)",
   "decision": null
  },
  {
@@ -1210,7 +1210,7 @@
   "freq_max_mhz": 9900.0,
   "direction": "space-to-Earth",
   "finnish_match": "RADIOLOCATION; EARTH EXPLORATION-SATELLITE; Earth Exploration-Satellite (IDs 4361, 4365, 4364, 4370)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "402006, 406317, 412266, 426809, 431061, 437813, 449364, 450279, 453048, 457628, 457709, 489065, 489475",
   "overlap_mhz": 600.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1219,8 +1219,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 125748057: 9.3 GHz to 9.9 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 3 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=125545395; pub_ssn.ntc_id=125545395&seq_no=1; pub_ssn.ntc_id=125545395&seq_no=2; non_geo.ntc_id=125545395; grp.grp_id=125748057; Taajuusjakotaulukko.ID=4361; Taajuusjakotaulukko.ID=4365; Taajuusjakotaulukko.ID=4364; Taajuusjakotaulukko.ID=4370; geography(notice_id=125545395)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 13 special-interest stations in the band and in reach. Lead group 125748057: 9.3 GHz to 9.9 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 3 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=125545395; pub_ssn.ntc_id=125545395&seq_no=1; pub_ssn.ntc_id=125545395&seq_no=2; non_geo.ntc_id=125545395; grp.grp_id=125748057; Taajuusjakotaulukko.ID=4361; Taajuusjakotaulukko.ID=4365; Taajuusjakotaulukko.ID=4364; Taajuusjakotaulukko.ID=4370; special_interest.xlsx row=188; special_interest.xlsx row=190; special_interest.xlsx row=192; special_interest.xlsx row=193; special_interest.xlsx row=194; geography(notice_id=125545395)",
   "decision": null
  },
  {
@@ -1234,7 +1234,7 @@
   "freq_max_mhz": 9900.0,
   "direction": "space-to-Earth",
   "finnish_match": "RADIOLOCATION; EARTH EXPLORATION-SATELLITE; Earth Exploration-Satellite (IDs 4361, 4365, 4364, 4370)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "402006, 406317, 412266, 426809, 431061, 437813, 449364, 450279, 453048, 457628, 457709, 489065, 489475",
   "overlap_mhz": 600.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1243,8 +1243,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 125746530: 9.3 GHz to 9.9 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 7 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=125545396; pub_ssn.ntc_id=125545396&seq_no=1; pub_ssn.ntc_id=125545396&seq_no=2; non_geo.ntc_id=125545396; grp.grp_id=125746530; Taajuusjakotaulukko.ID=4361; Taajuusjakotaulukko.ID=4365; Taajuusjakotaulukko.ID=4364; Taajuusjakotaulukko.ID=4370; geography(notice_id=125545396)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 13 special-interest stations in the band and in reach. Lead group 125746530: 9.3 GHz to 9.9 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 7 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=125545396; pub_ssn.ntc_id=125545396&seq_no=1; pub_ssn.ntc_id=125545396&seq_no=2; non_geo.ntc_id=125545396; grp.grp_id=125746530; Taajuusjakotaulukko.ID=4361; Taajuusjakotaulukko.ID=4365; Taajuusjakotaulukko.ID=4364; Taajuusjakotaulukko.ID=4370; special_interest.xlsx row=188; special_interest.xlsx row=190; special_interest.xlsx row=192; special_interest.xlsx row=193; special_interest.xlsx row=194; geography(notice_id=125545396)",
   "decision": null
  },
  {
@@ -1258,7 +1258,7 @@
   "freq_max_mhz": 2246.105,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; SPACE OPERATION (SPACE-TO-EARTH, SPACE-TO-SPACE) (IDs 3883, 3884, 3887)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "800029, 800089, 800149, 800209, 800269, 800319",
   "overlap_mhz": 1.21,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1267,8 +1267,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 125748069: 2.2449 GHz to 2.24611 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)).",
-  "evidence_refs": "notice.ntc_id=125545399; pub_ssn.ntc_id=125545399&seq_no=1; pub_ssn.ntc_id=125545399&seq_no=2; non_geo.ntc_id=125545399; grp.grp_id=125748069; Taajuusjakotaulukko.ID=3883; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; geography(notice_id=125545399)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 6 special-interest stations in the band and in reach. Lead group 125748069: 2.2449 GHz to 2.24611 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)).",
+  "evidence_refs": "notice.ntc_id=125545399; pub_ssn.ntc_id=125545399&seq_no=1; pub_ssn.ntc_id=125545399&seq_no=2; non_geo.ntc_id=125545399; grp.grp_id=125748069; Taajuusjakotaulukko.ID=3883; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; special_interest.xlsx row=533; special_interest.xlsx row=593; special_interest.xlsx row=653; special_interest.xlsx row=713; special_interest.xlsx row=773; geography(notice_id=125545399)",
   "decision": null
  },
  {
@@ -1282,7 +1282,7 @@
   "freq_max_mhz": 2247.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; SPACE OPERATION (SPACE-TO-EARTH, SPACE-TO-SPACE) (IDs 3883, 3884, 3887)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "800026, 800027, 800028, 800029, 800086, 800087, 800088, 800089, 800146, 800147, 800148, 800149, 800206, 800207, 800208, 800209, 800266, 800267, 800268, 800269, 800308, 800319",
   "overlap_mhz": 4.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1291,8 +1291,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 125751062: 2.243 GHz to 2.247 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 2 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=125545400; pub_ssn.ntc_id=125545400&seq_no=1; pub_ssn.ntc_id=125545400&seq_no=2; non_geo.ntc_id=125545400; grp.grp_id=125751062; Taajuusjakotaulukko.ID=3883; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; geography(notice_id=125545400)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 22 special-interest stations in the band and in reach. Lead group 125751062: 2.243 GHz to 2.247 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 2 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=125545400; pub_ssn.ntc_id=125545400&seq_no=1; pub_ssn.ntc_id=125545400&seq_no=2; non_geo.ntc_id=125545400; grp.grp_id=125751062; Taajuusjakotaulukko.ID=3883; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; special_interest.xlsx row=530; special_interest.xlsx row=531; special_interest.xlsx row=532; special_interest.xlsx row=533; special_interest.xlsx row=590; geography(notice_id=125545400)",
   "decision": null
  },
  {
@@ -1330,7 +1330,7 @@
   "freq_max_mhz": 2223.87,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED (IDs 3883)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "800000, 800001, 800002, 800003, 800004, 800005, 800006, 800060, 800061, 800062, 800063, 800064, 800065, 800066, 800120, 800121, 800122, 800123, 800124, 800125, 800126, 800180, 800181, 800182, 800183, 800184, 800185, 800186, 800240, 800241, 800242, 800243, 800244, 800245, 800246, 800300, 800306, 800311",
   "overlap_mhz": 2.74,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1339,8 +1339,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 126655423: 2.22113 GHz to 2.22387 GHz space-to-Earth; geography visible (seen up to 62.9 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=126545034; pub_ssn.ntc_id=126545034&seq_no=1; non_geo.ntc_id=126545034; grp.grp_id=126655423; Taajuusjakotaulukko.ID=3883; geography(notice_id=126545034)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 38 special-interest stations in the band and in reach. Lead group 126655423: 2.22113 GHz to 2.22387 GHz space-to-Earth; geography visible (seen up to 62.9 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=126545034; pub_ssn.ntc_id=126545034&seq_no=1; non_geo.ntc_id=126545034; grp.grp_id=126655423; Taajuusjakotaulukko.ID=3883; special_interest.xlsx row=504; special_interest.xlsx row=505; special_interest.xlsx row=506; special_interest.xlsx row=507; special_interest.xlsx row=508; geography(notice_id=126545034)",
   "decision": null
  },
  {
@@ -1354,7 +1354,7 @@
   "freq_max_mhz": 2290.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; SPACE OPERATION (SPACE-TO-EARTH, SPACE-TO-SPACE) (IDs 3883, 3884, 3887)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "408577, 440557, 452076, 454152, 467765, 477781, 477915, 480622, 800000, 800001, 800002, 800003, 800004, 800005, 800006, 800007, 800008, 800009, 800010, 800011, 800012, 800013, 800014, 800015, 800016, 800017, 800018, 800019, 800020, 800021, 800022, 800023, 800024, 800025, 800026, 800027, 800028, 800029, 800060, 800061, 800062, 800063, 800064, 800065, 800066, 800067, 800068, 800069, 800070, 800071, 800072, 800073, 800074, 800075, 800076, 800077, 800078, 800079, 800080, 800081, 800082, 800083, 800084, 800085, 800086, 800087, 800088, 800089, 800120, 800121, 800122, 800123, 800124, 800125, 800126, 800127, 800128, 800129, 800130, 800131, 800132, 800133, 800134, 800135, 800136, 800137, 800138, 800139, 800140, 800141, 800142, 800143, 800144, 800145, 800146, 800147, 800148, 800149, 800180, 800181, 800182, 800183, 800184, 800185, 800186, 800187, 800188, 800189, 800190, 800191, 800192, 800193, 800194, 800195, 800196, 800197, 800198, 800199, 800200, 800201, 800202, 800203, 800204, 800205, 800206, 800207, 800208, 800209, 800240, 800241, 800242, 800243, 800244, 800245, 800246, 800247, 800248, 800249, 800250, 800251, 800252, 800253, 800254, 800255, 800256, 800257, 800258, 800259, 800260, 800261, 800262, 800263, 800264, 800265, 800266, 800267, 800268, 800269, 800300, 800301, 800302, 800306, 800307, 800308, 800311, 800312, 800313, 800317, 800318, 800319",
   "overlap_mhz": 90.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1363,8 +1363,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 126662625: 2.2 GHz to 2.29 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)).",
-  "evidence_refs": "notice.ntc_id=126545057; pub_ssn.ntc_id=126545057&seq_no=1; non_geo.ntc_id=126545057; grp.grp_id=126662625; Taajuusjakotaulukko.ID=3883; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; geography(notice_id=126545057)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 170 special-interest stations in the band and in reach. Lead group 126662625: 2.2 GHz to 2.29 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)).",
+  "evidence_refs": "notice.ntc_id=126545057; pub_ssn.ntc_id=126545057&seq_no=1; non_geo.ntc_id=126545057; grp.grp_id=126662625; Taajuusjakotaulukko.ID=3883; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; special_interest.xlsx row=191; special_interest.xlsx row=196; special_interest.xlsx row=199; special_interest.xlsx row=201; special_interest.xlsx row=204; geography(notice_id=126545057)",
   "decision": null
  },
  {
@@ -1378,7 +1378,7 @@
   "freq_max_mhz": 2246.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; SPACE OPERATION (SPACE-TO-EARTH, SPACE-TO-SPACE) (IDs 3883, 3884, 3887)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "800027, 800028, 800029, 800087, 800088, 800089, 800147, 800148, 800149, 800207, 800208, 800209, 800267, 800268, 800269, 800308, 800319",
   "overlap_mhz": 2.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1387,8 +1387,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 126662490: 2.244 GHz to 2.246 GHz space-to-Earth; geography visible (seen up to 75.7 N at 10 deg elevation (Finland from 59.8 N)); 49 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=126545087; pub_ssn.ntc_id=126545087&seq_no=1; non_geo.ntc_id=126545087; grp.grp_id=126662490; Taajuusjakotaulukko.ID=3883; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; geography(notice_id=126545087)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 17 special-interest stations in the band and in reach. Lead group 126662490: 2.244 GHz to 2.246 GHz space-to-Earth; geography visible (seen up to 75.7 N at 10 deg elevation (Finland from 59.8 N)); 49 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=126545087; pub_ssn.ntc_id=126545087&seq_no=1; non_geo.ntc_id=126545087; grp.grp_id=126662490; Taajuusjakotaulukko.ID=3883; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; special_interest.xlsx row=531; special_interest.xlsx row=532; special_interest.xlsx row=533; special_interest.xlsx row=591; special_interest.xlsx row=592; geography(notice_id=126545087)",
   "decision": null
  },
  {
@@ -1402,7 +1402,7 @@
   "freq_max_mhz": 2229.72016,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED (IDs 3883)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "800007, 800008, 800009, 800010, 800011, 800012, 800013, 800014, 800067, 800068, 800069, 800070, 800071, 800072, 800073, 800074, 800127, 800128, 800129, 800130, 800131, 800132, 800133, 800134, 800187, 800188, 800189, 800190, 800191, 800192, 800193, 800194, 800247, 800248, 800249, 800250, 800251, 800252, 800253, 800254, 800301, 800312, 800317",
   "overlap_mhz": 0.44032,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1411,8 +1411,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 126662059: 2.22928 GHz to 2.22972 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)).",
-  "evidence_refs": "notice.ntc_id=126545098; pub_ssn.ntc_id=126545098&seq_no=1; non_geo.ntc_id=126545098; grp.grp_id=126662059; Taajuusjakotaulukko.ID=3883; geography(notice_id=126545098)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 43 special-interest stations in the band and in reach. Lead group 126662059: 2.22928 GHz to 2.22972 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)).",
+  "evidence_refs": "notice.ntc_id=126545098; pub_ssn.ntc_id=126545098&seq_no=1; non_geo.ntc_id=126545098; grp.grp_id=126662059; Taajuusjakotaulukko.ID=3883; special_interest.xlsx row=511; special_interest.xlsx row=512; special_interest.xlsx row=513; special_interest.xlsx row=514; special_interest.xlsx row=515; geography(notice_id=126545098)",
   "decision": null
  },
  {
@@ -1426,7 +1426,7 @@
   "freq_max_mhz": 9800.0,
   "direction": "space-to-Earth",
   "finnish_match": "RADIOLOCATION; EARTH EXPLORATION-SATELLITE (IDs 4361, 4365, 4364)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "402006, 406317, 426809, 431061, 437813, 449364, 450279, 453048, 457628, 457709, 489065, 489475",
   "overlap_mhz": 500.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1435,8 +1435,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 126662631: 9.3 GHz to 9.8 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 11 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=126545117; pub_ssn.ntc_id=126545117&seq_no=1; non_geo.ntc_id=126545117; grp.grp_id=126662631; Taajuusjakotaulukko.ID=4361; Taajuusjakotaulukko.ID=4365; Taajuusjakotaulukko.ID=4364; geography(notice_id=126545117)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 12 special-interest stations in the band and in reach. Lead group 126662631: 9.3 GHz to 9.8 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 11 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=126545117; pub_ssn.ntc_id=126545117&seq_no=1; non_geo.ntc_id=126545117; grp.grp_id=126662631; Taajuusjakotaulukko.ID=4361; Taajuusjakotaulukko.ID=4365; Taajuusjakotaulukko.ID=4364; special_interest.xlsx row=188; special_interest.xlsx row=190; special_interest.xlsx row=193; special_interest.xlsx row=194; special_interest.xlsx row=195; geography(notice_id=126545117)",
   "decision": null
  },
  {
@@ -1450,7 +1450,7 @@
   "freq_max_mhz": 2243.809,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED (IDs 3883)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "800026, 800027, 800028, 800029, 800086, 800087, 800088, 800089, 800146, 800147, 800148, 800149, 800206, 800207, 800208, 800209, 800266, 800267, 800268, 800269, 800308, 800319",
   "overlap_mhz": 0.617,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1459,8 +1459,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 126656468: 2.24319 GHz to 2.24381 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)).",
-  "evidence_refs": "notice.ntc_id=126545131; pub_ssn.ntc_id=126545131&seq_no=1; non_geo.ntc_id=126545131; grp.grp_id=126656468; Taajuusjakotaulukko.ID=3883; geography(notice_id=126545131)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 22 special-interest stations in the band and in reach. Lead group 126656468: 2.24319 GHz to 2.24381 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)).",
+  "evidence_refs": "notice.ntc_id=126545131; pub_ssn.ntc_id=126545131&seq_no=1; non_geo.ntc_id=126545131; grp.grp_id=126656468; Taajuusjakotaulukko.ID=3883; special_interest.xlsx row=530; special_interest.xlsx row=531; special_interest.xlsx row=532; special_interest.xlsx row=533; special_interest.xlsx row=590; geography(notice_id=126545131)",
   "decision": null
  },
  {
@@ -1474,7 +1474,7 @@
   "freq_max_mhz": 2221.63,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED (IDs 3883)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "800000, 800001, 800002, 800003, 800060, 800061, 800062, 800063, 800120, 800121, 800122, 800123, 800180, 800181, 800182, 800183, 800240, 800241, 800242, 800243, 800300, 800311",
   "overlap_mhz": 1.46,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1483,8 +1483,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 126662551: 2.22017 GHz to 2.22163 GHz space-to-Earth; geography visible (seen up to 71.5 N at 10 deg elevation (Finland from 59.8 N)); 2 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=126545148; pub_ssn.ntc_id=126545148&seq_no=1; non_geo.ntc_id=126545148; grp.grp_id=126662551; Taajuusjakotaulukko.ID=3883; geography(notice_id=126545148)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 22 special-interest stations in the band and in reach. Lead group 126662551: 2.22017 GHz to 2.22163 GHz space-to-Earth; geography visible (seen up to 71.5 N at 10 deg elevation (Finland from 59.8 N)); 2 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=126545148; pub_ssn.ntc_id=126545148&seq_no=1; non_geo.ntc_id=126545148; grp.grp_id=126662551; Taajuusjakotaulukko.ID=3883; special_interest.xlsx row=504; special_interest.xlsx row=505; special_interest.xlsx row=506; special_interest.xlsx row=507; special_interest.xlsx row=564; geography(notice_id=126545148)",
   "decision": null
  },
  {
@@ -1498,7 +1498,7 @@
   "freq_max_mhz": 19300.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; FIXED SATELLITE (SPACE-TO-EARTH) (IDs 4732, 4746, 4752, 4738)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "600529, 601452, 602266, 605729, 623938, 631021, 634993",
   "overlap_mhz": 500.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1507,8 +1507,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 123692638: 18.8 GHz to 19.3 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 2 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=117520318; pub_ssn.ntc_id=117520318&seq_no=1; pub_ssn.ntc_id=117520318&seq_no=2; non_geo.ntc_id=117520318; grp.grp_id=123692638; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4738; geography(notice_id=117520318)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 7 special-interest stations in the band and in reach. Lead group 123692638: 18.8 GHz to 19.3 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 2 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=117520318; pub_ssn.ntc_id=117520318&seq_no=1; pub_ssn.ntc_id=117520318&seq_no=2; non_geo.ntc_id=117520318; grp.grp_id=123692638; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4738; special_interest.xlsx row=215; special_interest.xlsx row=224; special_interest.xlsx row=228; special_interest.xlsx row=239; special_interest.xlsx row=346; geography(notice_id=117520318)",
   "decision": null
  },
  {
@@ -1522,7 +1522,7 @@
   "freq_max_mhz": 17950.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; FIXED SATELLITE (EARTH-TO-SPACE); FIXED SATELLITE (EARTH-TO-SPACE, SPACE-TO-EARTH) (IDs 4689, 4698, 4703, 4687, 4694)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "603413, 607797, 628219, 628728, 632251, 632476, 637357, 643173",
   "overlap_mhz": 250.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1531,8 +1531,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 124746437: 17.7 GHz to 17.95 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 755 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=123520029; pub_ssn.ntc_id=123520029&seq_no=1; pub_ssn.ntc_id=123520029&seq_no=2; non_geo.ntc_id=123520029; grp.grp_id=124746437; Taajuusjakotaulukko.ID=4689; Taajuusjakotaulukko.ID=4698; Taajuusjakotaulukko.ID=4703; Taajuusjakotaulukko.ID=4687; Taajuusjakotaulukko.ID=4694; geography(notice_id=123520029)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 8 special-interest stations in the band and in reach. Lead group 124746437: 17.7 GHz to 17.95 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 755 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=123520029; pub_ssn.ntc_id=123520029&seq_no=1; pub_ssn.ntc_id=123520029&seq_no=2; non_geo.ntc_id=123520029; grp.grp_id=124746437; Taajuusjakotaulukko.ID=4689; Taajuusjakotaulukko.ID=4698; Taajuusjakotaulukko.ID=4703; Taajuusjakotaulukko.ID=4687; Taajuusjakotaulukko.ID=4694; special_interest.xlsx row=235; special_interest.xlsx row=254; special_interest.xlsx row=375; special_interest.xlsx row=381; special_interest.xlsx row=403; geography(notice_id=123520029)",
   "decision": null
  },
  {
@@ -1546,7 +1546,7 @@
   "freq_max_mhz": 19300.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; FIXED SATELLITE (SPACE-TO-EARTH) (IDs 4732, 4746, 4752, 4738)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "600529, 601452, 602266, 605729, 623938, 631021, 634993",
   "overlap_mhz": 500.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1555,8 +1555,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 323692638: 18.8 GHz to 19.3 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 2 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=317520318; pub_ssn.ntc_id=317520318&seq_no=1; pub_ssn.ntc_id=317520318&seq_no=2; non_geo.ntc_id=317520318; grp.grp_id=323692638; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4738; geography(notice_id=317520318)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 7 special-interest stations in the band and in reach. Lead group 323692638: 18.8 GHz to 19.3 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 2 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=317520318; pub_ssn.ntc_id=317520318&seq_no=1; pub_ssn.ntc_id=317520318&seq_no=2; non_geo.ntc_id=317520318; grp.grp_id=323692638; Taajuusjakotaulukko.ID=4732; Taajuusjakotaulukko.ID=4746; Taajuusjakotaulukko.ID=4752; Taajuusjakotaulukko.ID=4738; special_interest.xlsx row=215; special_interest.xlsx row=224; special_interest.xlsx row=228; special_interest.xlsx row=239; special_interest.xlsx row=346; geography(notice_id=317520318)",
   "decision": null
  },
  {
@@ -1570,7 +1570,7 @@
   "freq_max_mhz": 17950.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; FIXED SATELLITE (EARTH-TO-SPACE); FIXED SATELLITE (EARTH-TO-SPACE, SPACE-TO-EARTH) (IDs 4689, 4698, 4703, 4687, 4694)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "603413, 607797, 628219, 628728, 632251, 632476, 637357, 643173",
   "overlap_mhz": 250.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1579,8 +1579,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 324746437: 17.7 GHz to 17.95 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 755 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=323520029; pub_ssn.ntc_id=323520029&seq_no=1; pub_ssn.ntc_id=323520029&seq_no=2; non_geo.ntc_id=323520029; grp.grp_id=324746437; Taajuusjakotaulukko.ID=4689; Taajuusjakotaulukko.ID=4698; Taajuusjakotaulukko.ID=4703; Taajuusjakotaulukko.ID=4687; Taajuusjakotaulukko.ID=4694; geography(notice_id=323520029)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 8 special-interest stations in the band and in reach. Lead group 324746437: 17.7 GHz to 17.95 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 755 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=323520029; pub_ssn.ntc_id=323520029&seq_no=1; pub_ssn.ntc_id=323520029&seq_no=2; non_geo.ntc_id=323520029; grp.grp_id=324746437; Taajuusjakotaulukko.ID=4689; Taajuusjakotaulukko.ID=4698; Taajuusjakotaulukko.ID=4703; Taajuusjakotaulukko.ID=4687; Taajuusjakotaulukko.ID=4694; special_interest.xlsx row=235; special_interest.xlsx row=254; special_interest.xlsx row=375; special_interest.xlsx row=381; special_interest.xlsx row=403; geography(notice_id=323520029)",
   "decision": null
  },
  {
@@ -1594,7 +1594,7 @@
   "freq_max_mhz": 19700.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; FIXED SATELLITE (EARTH-TO-SPACE, SPACE-TO-EARTH) (IDs 4774, 4779, 4784, 4789, 4794, 4758)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "600529, 602436, 624714",
   "overlap_mhz": 400.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1603,8 +1603,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 324742535: 19.3 GHz to 19.7 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1079 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=324520131; pub_ssn.ntc_id=324520131&seq_no=1; pub_ssn.ntc_id=324520131&seq_no=2; non_geo.ntc_id=324520131; grp.grp_id=324742535; Taajuusjakotaulukko.ID=4774; Taajuusjakotaulukko.ID=4779; Taajuusjakotaulukko.ID=4784; Taajuusjakotaulukko.ID=4789; Taajuusjakotaulukko.ID=4794; Taajuusjakotaulukko.ID=4758; geography(notice_id=324520131)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 3 special-interest stations in the band and in reach. Lead group 324742535: 19.3 GHz to 19.7 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1079 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=324520131; pub_ssn.ntc_id=324520131&seq_no=1; pub_ssn.ntc_id=324520131&seq_no=2; non_geo.ntc_id=324520131; grp.grp_id=324742535; Taajuusjakotaulukko.ID=4774; Taajuusjakotaulukko.ID=4779; Taajuusjakotaulukko.ID=4784; Taajuusjakotaulukko.ID=4789; Taajuusjakotaulukko.ID=4794; Taajuusjakotaulukko.ID=4758; special_interest.xlsx row=215; special_interest.xlsx row=229; special_interest.xlsx row=352; geography(notice_id=324520131)",
   "decision": null
  },
  {
@@ -1690,7 +1690,7 @@
   "freq_max_mhz": 2290.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; SPACE OPERATION (SPACE-TO-EARTH, SPACE-TO-SPACE) (IDs 3883, 3884, 3887)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "408577, 440557, 452076, 454152, 467765, 477781, 477915, 480622, 800000, 800001, 800002, 800003, 800004, 800005, 800006, 800007, 800008, 800009, 800010, 800011, 800012, 800013, 800014, 800015, 800016, 800017, 800018, 800019, 800020, 800021, 800022, 800023, 800024, 800025, 800026, 800027, 800028, 800029, 800060, 800061, 800062, 800063, 800064, 800065, 800066, 800067, 800068, 800069, 800070, 800071, 800072, 800073, 800074, 800075, 800076, 800077, 800078, 800079, 800080, 800081, 800082, 800083, 800084, 800085, 800086, 800087, 800088, 800089, 800120, 800121, 800122, 800123, 800124, 800125, 800126, 800127, 800128, 800129, 800130, 800131, 800132, 800133, 800134, 800135, 800136, 800137, 800138, 800139, 800140, 800141, 800142, 800143, 800144, 800145, 800146, 800147, 800148, 800149, 800180, 800181, 800182, 800183, 800184, 800185, 800186, 800187, 800188, 800189, 800190, 800191, 800192, 800193, 800194, 800195, 800196, 800197, 800198, 800199, 800200, 800201, 800202, 800203, 800204, 800205, 800206, 800207, 800208, 800209, 800240, 800241, 800242, 800243, 800244, 800245, 800246, 800247, 800248, 800249, 800250, 800251, 800252, 800253, 800254, 800255, 800256, 800257, 800258, 800259, 800260, 800261, 800262, 800263, 800264, 800265, 800266, 800267, 800268, 800269, 800300, 800301, 800302, 800306, 800307, 800308, 800311, 800312, 800313, 800317, 800318, 800319",
   "overlap_mhz": 90.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1699,8 +1699,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 124747307: 2.2 GHz to 2.29 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 121 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=124545403; pub_ssn.ntc_id=124545403&seq_no=1; pub_ssn.ntc_id=124545403&seq_no=2; non_geo.ntc_id=124545403; grp.grp_id=124747307; Taajuusjakotaulukko.ID=3883; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; geography(notice_id=124545403)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 170 special-interest stations in the band and in reach. Lead group 124747307: 2.2 GHz to 2.29 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 121 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=124545403; pub_ssn.ntc_id=124545403&seq_no=1; pub_ssn.ntc_id=124545403&seq_no=2; non_geo.ntc_id=124545403; grp.grp_id=124747307; Taajuusjakotaulukko.ID=3883; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; special_interest.xlsx row=191; special_interest.xlsx row=196; special_interest.xlsx row=199; special_interest.xlsx row=201; special_interest.xlsx row=204; geography(notice_id=124545403)",
   "decision": null
  },
  {
@@ -1762,7 +1762,7 @@
   "freq_max_mhz": 27000.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; MOBILE AND FIXED; EARTH EXPLORATION-SATELLITE (SPACE-TO-EARTH) (IDs 5015, 5028, 5056)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "982288, 984084, 983454, 982907",
   "overlap_mhz": 1500.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1771,8 +1771,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 126656493: 25.5 GHz to 27 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 6 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=126545069; pub_ssn.ntc_id=126545069&seq_no=1; non_geo.ntc_id=126545069; grp.grp_id=126656493; Taajuusjakotaulukko.ID=5015; Taajuusjakotaulukko.ID=5028; Taajuusjakotaulukko.ID=5056; geography(notice_id=126545069)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 4 special-interest stations in the band and in reach. Lead group 126656493: 25.5 GHz to 27 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 6 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=126545069; pub_ssn.ntc_id=126545069&seq_no=1; non_geo.ntc_id=126545069; grp.grp_id=126656493; Taajuusjakotaulukko.ID=5015; Taajuusjakotaulukko.ID=5028; Taajuusjakotaulukko.ID=5056; special_interest.xlsx row=832; special_interest.xlsx row=868; special_interest.xlsx row=859; special_interest.xlsx row=841; geography(notice_id=126545069)",
   "decision": null
  },
  {
@@ -1786,7 +1786,7 @@
   "freq_max_mhz": 3950.0,
   "direction": "space-to-Earth",
   "finnish_match": "Amateur; MOBILE AND FIXED; MOBILE; FIXED SATELLITE (SPACE-TO-EARTH) (IDs 4053, 4060, 4096, 4092)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "989011, 985407, 983816, 983254, 986805, 987028, 981340",
   "overlap_mhz": 550.0,
   "geo_relevance": "visible",
   "calc_method": "pfd_gso_worst_case",
@@ -1795,8 +1795,8 @@
   "limit_value": -149.24,
   "margin_db": 2.59,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd 2.6 dB below the RR Article 21 limit (indicative). Lead group 125622408: 3.4 GHz to 3.95 GHz space-to-Earth; geography visible (highest elevation 19.7 deg at Helsinki); 41 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=125512022; geo.ntc_id=125512022; grp.grp_id=125622408; Taajuusjakotaulukko.ID=4053; Taajuusjakotaulukko.ID=4060; Taajuusjakotaulukko.ID=4096; Taajuusjakotaulukko.ID=4092; geography(notice_id=125512022); emiss.grp_id=125622408&seq_no=14; s_beam.ntc_id=125512022&emi_rcp=E&beam_name=CGB; pfd_limits.csv id=3400-4200_gso; pfd(group_id=125622408)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd 2.6 dB below the RR Article 21 limit (indicative); 7 special-interest stations in the band and in reach. Lead group 125622408: 3.4 GHz to 3.95 GHz space-to-Earth; geography visible (highest elevation 19.7 deg at Helsinki); 41 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=125512022; geo.ntc_id=125512022; grp.grp_id=125622408; Taajuusjakotaulukko.ID=4053; Taajuusjakotaulukko.ID=4060; Taajuusjakotaulukko.ID=4096; Taajuusjakotaulukko.ID=4092; special_interest.xlsx row=858; special_interest.xlsx row=876; special_interest.xlsx row=849; special_interest.xlsx row=867; special_interest.xlsx row=840; geography(notice_id=125512022); emiss.grp_id=125622408&seq_no=14; s_beam.ntc_id=125512022&emi_rcp=E&beam_name=CGB; pfd_limits.csv id=3400-4200_gso; pfd(group_id=125622408)",
   "decision": null
  },
  {
@@ -1810,7 +1810,7 @@
   "freq_max_mhz": 3950.0,
   "direction": "space-to-Earth",
   "finnish_match": "Amateur; MOBILE AND FIXED; MOBILE; FIXED SATELLITE (SPACE-TO-EARTH) (IDs 4053, 4060, 4096, 4092)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "989011, 985407, 983816, 983254, 986805, 987028, 981340",
   "overlap_mhz": 550.0,
   "geo_relevance": "visible",
   "calc_method": "pfd_gso_worst_case",
@@ -1819,8 +1819,8 @@
   "limit_value": -148.82,
   "margin_db": 2.99,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd 3.0 dB below the RR Article 21 limit (indicative). Lead group 125622496: 3.4 GHz to 3.95 GHz space-to-Earth; geography visible (highest elevation 21.4 deg at Hanko); 41 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=125512023; geo.ntc_id=125512023; grp.grp_id=125622496; Taajuusjakotaulukko.ID=4053; Taajuusjakotaulukko.ID=4060; Taajuusjakotaulukko.ID=4096; Taajuusjakotaulukko.ID=4092; geography(notice_id=125512023); emiss.grp_id=125622496&seq_no=14; s_beam.ntc_id=125512023&emi_rcp=E&beam_name=CGB; pfd_limits.csv id=3400-4200_gso; pfd(group_id=125622496)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd 3.0 dB below the RR Article 21 limit (indicative); 7 special-interest stations in the band and in reach. Lead group 125622496: 3.4 GHz to 3.95 GHz space-to-Earth; geography visible (highest elevation 21.4 deg at Hanko); 41 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=125512023; geo.ntc_id=125512023; grp.grp_id=125622496; Taajuusjakotaulukko.ID=4053; Taajuusjakotaulukko.ID=4060; Taajuusjakotaulukko.ID=4096; Taajuusjakotaulukko.ID=4092; special_interest.xlsx row=876; special_interest.xlsx row=858; special_interest.xlsx row=867; special_interest.xlsx row=849; special_interest.xlsx row=840; geography(notice_id=125512023); emiss.grp_id=125622496&seq_no=14; s_beam.ntc_id=125512023&emi_rcp=E&beam_name=CGB; pfd_limits.csv id=3400-4200_gso; pfd(group_id=125622496)",
   "decision": null
  },
  {
@@ -1858,7 +1858,7 @@
   "freq_max_mhz": 2277.5945,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; SPACE OPERATION (SPACE-TO-EARTH, SPACE-TO-SPACE) (IDs 3884, 3887)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "452076, 467765",
   "overlap_mhz": 0.589,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1867,8 +1867,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 125748066: 2.27701 GHz to 2.27759 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=125545398; pub_ssn.ntc_id=125545398&seq_no=1; pub_ssn.ntc_id=125545398&seq_no=2; non_geo.ntc_id=125545398; grp.grp_id=125748066; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; geography(notice_id=125545398)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 2 special-interest stations in the band and in reach. Lead group 125748066: 2.27701 GHz to 2.27759 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=125545398; pub_ssn.ntc_id=125545398&seq_no=1; pub_ssn.ntc_id=125545398&seq_no=2; non_geo.ntc_id=125545398; grp.grp_id=125748066; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; special_interest.xlsx row=199; special_interest.xlsx row=204; geography(notice_id=125545398)",
   "decision": null
  },
  {
@@ -1930,7 +1930,7 @@
   "freq_max_mhz": 8400.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; EARTH EXPLORATION-SATELLITE (SPACE-TO-EARTH) (IDs 4349, 4356, 4354)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "405674",
   "overlap_mhz": 375.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -1939,8 +1939,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 126662058: 8.025 GHz to 8.4 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)).",
-  "evidence_refs": "notice.ntc_id=126545112; pub_ssn.ntc_id=126545112&seq_no=1; non_geo.ntc_id=126545112; grp.grp_id=126662058; Taajuusjakotaulukko.ID=4349; Taajuusjakotaulukko.ID=4356; Taajuusjakotaulukko.ID=4354; geography(notice_id=126545112)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; special-interest station 405674 in the band and in reach. Lead group 126662058: 8.025 GHz to 8.4 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)).",
+  "evidence_refs": "notice.ntc_id=126545112; pub_ssn.ntc_id=126545112&seq_no=1; non_geo.ntc_id=126545112; grp.grp_id=126662058; Taajuusjakotaulukko.ID=4349; Taajuusjakotaulukko.ID=4356; Taajuusjakotaulukko.ID=4354; special_interest.xlsx row=189; geography(notice_id=126545112)",
   "decision": null
  },
  {
@@ -2026,7 +2026,7 @@
   "freq_max_mhz": 2277.809,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; SPACE OPERATION (SPACE-TO-EARTH, SPACE-TO-SPACE) (IDs 3884, 3887)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "440557, 452076, 467765, 477781",
   "overlap_mhz": 0.617,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -2035,8 +2035,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 126664731: 2.27719 GHz to 2.27781 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)).",
-  "evidence_refs": "notice.ntc_id=126545132; pub_ssn.ntc_id=126545132&seq_no=1; non_geo.ntc_id=126545132; grp.grp_id=126664731; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; geography(notice_id=126545132)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 4 special-interest stations in the band and in reach. Lead group 126664731: 2.27719 GHz to 2.27781 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)).",
+  "evidence_refs": "notice.ntc_id=126545132; pub_ssn.ntc_id=126545132&seq_no=1; non_geo.ntc_id=126545132; grp.grp_id=126664731; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; special_interest.xlsx row=196; special_interest.xlsx row=199; special_interest.xlsx row=204; special_interest.xlsx row=205; geography(notice_id=126545132)",
   "decision": null
  },
  {
@@ -2122,7 +2122,7 @@
   "freq_max_mhz": 2241.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED (IDs 3883)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "800000, 800001, 800002, 800003, 800004, 800005, 800006, 800007, 800008, 800009, 800010, 800011, 800012, 800013, 800014, 800015, 800016, 800017, 800018, 800019, 800020, 800021, 800022, 800023, 800024, 800025, 800026, 800027, 800028, 800029, 800060, 800061, 800062, 800063, 800064, 800065, 800066, 800067, 800068, 800069, 800070, 800071, 800072, 800073, 800074, 800075, 800076, 800077, 800078, 800079, 800080, 800081, 800082, 800083, 800084, 800085, 800086, 800087, 800088, 800089, 800120, 800121, 800122, 800123, 800124, 800125, 800126, 800127, 800128, 800129, 800130, 800131, 800132, 800133, 800134, 800135, 800136, 800137, 800138, 800139, 800140, 800141, 800142, 800143, 800144, 800145, 800146, 800147, 800148, 800149, 800180, 800181, 800182, 800183, 800184, 800185, 800186, 800187, 800188, 800189, 800190, 800191, 800192, 800193, 800194, 800195, 800196, 800197, 800198, 800199, 800200, 800201, 800202, 800203, 800204, 800205, 800206, 800207, 800208, 800209, 800240, 800241, 800242, 800243, 800244, 800245, 800246, 800247, 800248, 800249, 800250, 800251, 800252, 800253, 800254, 800255, 800256, 800257, 800258, 800259, 800260, 800261, 800262, 800263, 800264, 800265, 800266, 800267, 800268, 800269, 800300, 800301, 800302, 800306, 800307, 800308, 800311, 800312, 800313, 800317, 800318, 800319",
   "overlap_mhz": 40.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -2131,8 +2131,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 126662053: 2.201 GHz to 2.241 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=126500093; non_geo.ntc_id=126500093; grp.grp_id=126662053; Taajuusjakotaulukko.ID=3883; geography(notice_id=126500093)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 162 special-interest stations in the band and in reach. Lead group 126662053: 2.201 GHz to 2.241 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=126500093; non_geo.ntc_id=126500093; grp.grp_id=126662053; Taajuusjakotaulukko.ID=3883; special_interest.xlsx row=504; special_interest.xlsx row=505; special_interest.xlsx row=506; special_interest.xlsx row=507; special_interest.xlsx row=508; geography(notice_id=126500093)",
   "decision": null
  },
  {
@@ -2170,7 +2170,7 @@
   "freq_max_mhz": 8400.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; EARTH EXPLORATION-SATELLITE (SPACE-TO-EARTH) (IDs 4349, 4356, 4354)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "405674",
   "overlap_mhz": 375.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -2179,8 +2179,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 119826167: 8.025 GHz to 8.4 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)).",
-  "evidence_refs": "notice.ntc_id=119545232; pub_ssn.ntc_id=119545232&seq_no=1; non_geo.ntc_id=119545232; grp.grp_id=119826167; Taajuusjakotaulukko.ID=4349; Taajuusjakotaulukko.ID=4356; Taajuusjakotaulukko.ID=4354; geography(notice_id=119545232)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; special-interest station 405674 in the band and in reach. Lead group 119826167: 8.025 GHz to 8.4 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)).",
+  "evidence_refs": "notice.ntc_id=119545232; pub_ssn.ntc_id=119545232&seq_no=1; non_geo.ntc_id=119545232; grp.grp_id=119826167; Taajuusjakotaulukko.ID=4349; Taajuusjakotaulukko.ID=4356; Taajuusjakotaulukko.ID=4354; special_interest.xlsx row=189; geography(notice_id=119545232)",
   "decision": null
  },
  {
@@ -2194,7 +2194,7 @@
   "freq_max_mhz": 2276.5,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; SPACE OPERATION (SPACE-TO-EARTH, SPACE-TO-SPACE) (IDs 3884, 3887)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "452076, 454152, 467765",
   "overlap_mhz": 2.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -2203,8 +2203,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 124704720: 2.2745 GHz to 2.2765 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 6 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=124545327; pub_ssn.ntc_id=124545327&seq_no=1; non_geo.ntc_id=124545327; grp.grp_id=124704720; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; geography(notice_id=124545327)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 3 special-interest stations in the band and in reach. Lead group 124704720: 2.2745 GHz to 2.2765 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 6 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=124545327; pub_ssn.ntc_id=124545327&seq_no=1; non_geo.ntc_id=124545327; grp.grp_id=124704720; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; special_interest.xlsx row=199; special_interest.xlsx row=201; special_interest.xlsx row=204; geography(notice_id=124545327)",
   "decision": null
  },
  {
@@ -2242,7 +2242,7 @@
   "freq_max_mhz": 2277.6,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; SPACE OPERATION (SPACE-TO-EARTH, SPACE-TO-SPACE) (IDs 3884, 3887)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "452076, 467765",
   "overlap_mhz": 0.6,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -2251,8 +2251,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 126662607: 2.277 GHz to 2.2776 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)).",
-  "evidence_refs": "notice.ntc_id=126545060; pub_ssn.ntc_id=126545060&seq_no=1; non_geo.ntc_id=126545060; grp.grp_id=126662607; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; geography(notice_id=126545060)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 2 special-interest stations in the band and in reach. Lead group 126662607: 2.277 GHz to 2.2776 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)).",
+  "evidence_refs": "notice.ntc_id=126545060; pub_ssn.ntc_id=126545060&seq_no=1; non_geo.ntc_id=126545060; grp.grp_id=126662607; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; special_interest.xlsx row=199; special_interest.xlsx row=204; geography(notice_id=126545060)",
   "decision": null
  },
  {
@@ -2434,7 +2434,7 @@
   "freq_max_mhz": 2247.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; SPACE OPERATION (SPACE-TO-EARTH, SPACE-TO-SPACE) (IDs 3884, 3887)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "800029, 800089, 800149, 800209, 800269, 800319",
   "overlap_mhz": 2.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -2443,8 +2443,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 126662051: 2.245 GHz to 2.247 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=126500087; non_geo.ntc_id=126500087; grp.grp_id=126662051; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; geography(notice_id=126500087)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 6 special-interest stations in the band and in reach. Lead group 126662051: 2.245 GHz to 2.247 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=126500087; non_geo.ntc_id=126500087; grp.grp_id=126662051; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; special_interest.xlsx row=533; special_interest.xlsx row=593; special_interest.xlsx row=653; special_interest.xlsx row=713; special_interest.xlsx row=773; geography(notice_id=126500087)",
   "decision": null
  },
  {
@@ -2458,7 +2458,7 @@
   "freq_max_mhz": 2243.3,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED (IDs 3883)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "800025, 800026, 800027, 800028, 800029, 800085, 800086, 800087, 800088, 800089, 800145, 800146, 800147, 800148, 800149, 800205, 800206, 800207, 800208, 800209, 800265, 800266, 800267, 800268, 800269, 800308, 800319",
   "overlap_mhz": 1.1,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -2467,8 +2467,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 123612596: 2.2422 GHz to 2.2433 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 5 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=123500005; non_geo.ntc_id=123500005; grp.grp_id=123612596; Taajuusjakotaulukko.ID=3883; geography(notice_id=123500005)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 27 special-interest stations in the band and in reach. Lead group 123612596: 2.2422 GHz to 2.2433 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 5 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=123500005; non_geo.ntc_id=123500005; grp.grp_id=123612596; Taajuusjakotaulukko.ID=3883; special_interest.xlsx row=529; special_interest.xlsx row=530; special_interest.xlsx row=531; special_interest.xlsx row=532; special_interest.xlsx row=533; geography(notice_id=123500005)",
   "decision": null
  },
  {
@@ -2482,7 +2482,7 @@
   "freq_max_mhz": 2243.3,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED (IDs 3883)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "800025, 800026, 800027, 800028, 800029, 800085, 800086, 800087, 800088, 800089, 800145, 800146, 800147, 800148, 800149, 800205, 800206, 800207, 800208, 800209, 800265, 800266, 800267, 800268, 800269, 800308, 800319",
   "overlap_mhz": 1.1,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -2491,8 +2491,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 326650645: 2.2422 GHz to 2.2433 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 5 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=326500047; non_geo.ntc_id=326500047; grp.grp_id=326650645; Taajuusjakotaulukko.ID=3883; geography(notice_id=326500047)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 27 special-interest stations in the band and in reach. Lead group 326650645: 2.2422 GHz to 2.2433 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 5 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=326500047; non_geo.ntc_id=326500047; grp.grp_id=326650645; Taajuusjakotaulukko.ID=3883; special_interest.xlsx row=529; special_interest.xlsx row=530; special_interest.xlsx row=531; special_interest.xlsx row=532; special_interest.xlsx row=533; geography(notice_id=326500047)",
   "decision": null
  },
  {
@@ -2506,7 +2506,7 @@
   "freq_max_mhz": 18580.0,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; FIXED SATELLITE (EARTH-TO-SPACE) (IDs 4689, 4698, 4703, 4716, 4721, 4687)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "603413, 611959, 616722, 628219, 628728, 632476, 636208, 637357, 647668",
   "overlap_mhz": 780.0,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -2515,8 +2515,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 325865721: 17.8 GHz to 18.58 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 47 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=325500168; non_geo.ntc_id=325500168; grp.grp_id=325865721; Taajuusjakotaulukko.ID=4689; Taajuusjakotaulukko.ID=4698; Taajuusjakotaulukko.ID=4703; Taajuusjakotaulukko.ID=4716; Taajuusjakotaulukko.ID=4721; Taajuusjakotaulukko.ID=4687; geography(notice_id=325500168)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 9 special-interest stations in the band and in reach. Lead group 325865721: 17.8 GHz to 18.58 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 47 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=325500168; non_geo.ntc_id=325500168; grp.grp_id=325865721; Taajuusjakotaulukko.ID=4689; Taajuusjakotaulukko.ID=4698; Taajuusjakotaulukko.ID=4703; Taajuusjakotaulukko.ID=4716; Taajuusjakotaulukko.ID=4721; Taajuusjakotaulukko.ID=4687; special_interest.xlsx row=235; special_interest.xlsx row=274; special_interest.xlsx row=304; special_interest.xlsx row=375; special_interest.xlsx row=381; geography(notice_id=325500168)",
   "decision": null
  },
  {
@@ -2530,7 +2530,7 @@
   "freq_max_mhz": 2283.7,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED; SPACE OPERATION (SPACE-TO-EARTH, SPACE-TO-SPACE) (IDs 3884, 3887)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "440557, 452076, 454152, 467765, 477781",
   "overlap_mhz": 10.9,
   "geo_relevance": "visible",
   "calc_method": "none",
@@ -2539,8 +2539,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 126634698: 2.2728 GHz to 2.2837 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=126500052; non_geo.ntc_id=126500052; grp.grp_id=126634698; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; geography(notice_id=126500052)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 5 special-interest stations in the band and in reach. Lead group 126634698: 2.2728 GHz to 2.2837 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=126500052; non_geo.ntc_id=126500052; grp.grp_id=126634698; Taajuusjakotaulukko.ID=3884; Taajuusjakotaulukko.ID=3887; special_interest.xlsx row=196; special_interest.xlsx row=199; special_interest.xlsx row=201; special_interest.xlsx row=204; special_interest.xlsx row=205; geography(notice_id=126500052)",
   "decision": null
  },
  {
@@ -2554,7 +2554,7 @@
   "freq_max_mhz": 4200.0,
   "direction": "space-to-Earth",
   "finnish_match": "Amateur; MOBILE AND FIXED; MOBILE; FIXED SATELLITE (SPACE-TO-EARTH) (IDs 4053, 4060, 4096, 4092)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "989011, 985407, 983816, 983254, 986805, 987028, 981340",
   "overlap_mhz": 800.0,
   "geo_relevance": "visible",
   "calc_method": "pfd_gso_worst_case",
@@ -2563,8 +2563,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation; pfd not computed (beam gain not filed or not usable; pfd not computed). Lead group 126664866: 3.4 GHz to 4.2 GHz space-to-Earth; geography visible (highest elevation 21.4 deg at Hanko); 5 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=126590032; pub_ssn.ntc_id=126590032&seq_no=1; geo.ntc_id=126590032; grp.grp_id=126664866; Taajuusjakotaulukko.ID=4053; Taajuusjakotaulukko.ID=4060; Taajuusjakotaulukko.ID=4096; Taajuusjakotaulukko.ID=4092; geography(notice_id=126590032)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; pfd not computed (beam gain not filed or not usable; pfd not computed); 7 special-interest stations in the band and in reach. Lead group 126664866: 3.4 GHz to 4.2 GHz space-to-Earth; geography visible (highest elevation 21.4 deg at Hanko); 5 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=126590032; pub_ssn.ntc_id=126590032&seq_no=1; geo.ntc_id=126590032; grp.grp_id=126664866; Taajuusjakotaulukko.ID=4053; Taajuusjakotaulukko.ID=4060; Taajuusjakotaulukko.ID=4096; Taajuusjakotaulukko.ID=4092; special_interest.xlsx row=876; special_interest.xlsx row=858; special_interest.xlsx row=867; special_interest.xlsx row=849; special_interest.xlsx row=840; geography(notice_id=126590032)",
   "decision": null
  },
  {
@@ -2818,7 +2818,7 @@
   "freq_max_mhz": 2222.5,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED (IDs 3883)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "800240, 800300, 800311",
   "overlap_mhz": 5.0,
   "geo_relevance": "low_elevation",
   "calc_method": "none",
@@ -2827,8 +2827,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 125741249: 2.2175 GHz to 2.2225 GHz space-to-Earth; geography low_elevation (seen up to 53.1 N at 10 deg elevation (Finland from 59.8 N)).",
-  "evidence_refs": "notice.ntc_id=125545384; pub_ssn.ntc_id=125545384&seq_no=1; non_geo.ntc_id=125545384; grp.grp_id=125741249; Taajuusjakotaulukko.ID=3883; geography(notice_id=125545384)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 3 special-interest stations in the band and in reach. Lead group 125741249: 2.2175 GHz to 2.2225 GHz space-to-Earth; geography low_elevation (seen up to 53.1 N at 10 deg elevation (Finland from 59.8 N)).",
+  "evidence_refs": "notice.ntc_id=125545384; pub_ssn.ntc_id=125545384&seq_no=1; non_geo.ntc_id=125545384; grp.grp_id=125741249; Taajuusjakotaulukko.ID=3883; special_interest.xlsx row=744; special_interest.xlsx row=804; special_interest.xlsx row=815; geography(notice_id=125545384)",
   "decision": null
  },
  {
@@ -2842,7 +2842,7 @@
   "freq_max_mhz": 2228.78,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED (IDs 3883)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "800000, 800001, 800002, 800004, 800005, 800006, 800007, 800008, 800010, 800011, 800012, 800060, 800061, 800062, 800063, 800064, 800065, 800066, 800067, 800068, 800069, 800070, 800071, 800072, 800120, 800121, 800122, 800123, 800126, 800129, 800130, 800180, 800181, 800182, 800183, 800184, 800186, 800187, 800188, 800189, 800190, 800191, 800192, 800240, 800241, 800242, 800243, 800245, 800246, 800247, 800248, 800249, 800250, 800251, 800252, 800300, 800301, 800306, 800311, 800312, 800317",
   "overlap_mhz": 13.734,
   "geo_relevance": "low_elevation",
   "calc_method": "none",
@@ -2851,8 +2851,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 126662063: 2.21505 GHz to 2.22878 GHz space-to-Earth; geography low_elevation (seen up to 58.4 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=126500096; non_geo.ntc_id=126500096; grp.grp_id=126662063; Taajuusjakotaulukko.ID=3883; geography(notice_id=126500096)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 61 special-interest stations in the band and in reach. Lead group 126662063: 2.21505 GHz to 2.22878 GHz space-to-Earth; geography low_elevation (seen up to 58.4 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=126500096; non_geo.ntc_id=126500096; grp.grp_id=126662063; Taajuusjakotaulukko.ID=3883; special_interest.xlsx row=504; special_interest.xlsx row=505; special_interest.xlsx row=506; special_interest.xlsx row=508; special_interest.xlsx row=509; geography(notice_id=126500096)",
   "decision": null
  },
  {
@@ -2866,7 +2866,7 @@
   "freq_max_mhz": 2228.78,
   "direction": "space-to-Earth",
   "finnish_match": "FIXED (IDs 3883)",
-  "special_interest_station_ids": null,
+  "special_interest_station_ids": "800000, 800001, 800002, 800004, 800005, 800006, 800007, 800008, 800010, 800011, 800012, 800060, 800061, 800062, 800063, 800064, 800065, 800066, 800067, 800068, 800069, 800070, 800071, 800072, 800120, 800121, 800122, 800123, 800126, 800129, 800130, 800180, 800181, 800182, 800183, 800184, 800186, 800187, 800188, 800189, 800190, 800191, 800192, 800240, 800241, 800242, 800243, 800245, 800246, 800247, 800248, 800249, 800250, 800251, 800252, 800300, 800301, 800306, 800311, 800312, 800317",
   "overlap_mhz": 13.734,
   "geo_relevance": "low_elevation",
   "calc_method": "none",
@@ -2875,8 +2875,8 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "medium",
-  "reason": "Downlink over a Finnish primary terrestrial allocation. Lead group 126662067: 2.21505 GHz to 2.22878 GHz space-to-Earth; geography low_elevation (seen up to 58.4 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice.",
-  "evidence_refs": "notice.ntc_id=126500098; non_geo.ntc_id=126500098; grp.grp_id=126662067; Taajuusjakotaulukko.ID=3883; geography(notice_id=126500098)",
+  "reason": "Downlink over a Finnish primary terrestrial allocation; 61 special-interest stations in the band and in reach. Lead group 126662067: 2.21505 GHz to 2.22878 GHz space-to-Earth; geography low_elevation (seen up to 58.4 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice.",
+  "evidence_refs": "notice.ntc_id=126500098; non_geo.ntc_id=126500098; grp.grp_id=126662067; Taajuusjakotaulukko.ID=3883; special_interest.xlsx row=504; special_interest.xlsx row=505; special_interest.xlsx row=506; special_interest.xlsx row=508; special_interest.xlsx row=509; geography(notice_id=126500098)",
   "decision": null
  },
  {
@@ -3643,7 +3643,7 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "none",
-  "reason": "Not raised: Earth-to-space, earth station unknown (typical earth station, no location filed).",
+  "reason": "Not raised: special-interest station(s) out of reach (603310: earth station location not filed (typical earth station, no location filed)).",
   "evidence_refs": "notice.ntc_id=124520190; pub_ssn.ntc_id=124520190&seq_no=1; pub_ssn.ntc_id=124520190&seq_no=2; geo.ntc_id=124520190; grp.grp_id=124724910; Taajuusjakotaulukko.ID=4291; Taajuusjakotaulukko.ID=4296; Taajuusjakotaulukko.ID=4287; Taajuusjakotaulukko.ID=4301; geography(group_id=124724910)",
   "decision": null
  },
@@ -4075,7 +4075,7 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "none",
-  "reason": "Not raised: Earth-to-space, earth station far (nearest earth station KSN-10(IS-19)C (KOR) 9118 km from Finland).",
+  "reason": "Not raised: special-interest station(s) out of reach (609238: earth station KSN-10(IS-19)C 7232 km away; ...).",
   "evidence_refs": "notice.ntc_id=126505029; e_stn.ntc_id=126505029; grp.grp_id=126652194; Taajuusjakotaulukko.ID=4242; Taajuusjakotaulukko.ID=4267; Taajuusjakotaulukko.ID=4272; Taajuusjakotaulukko.ID=4236; Taajuusjakotaulukko.ID=4240; geography(notice_id=126505029)",
   "decision": null
  },
@@ -4699,7 +4699,7 @@
   "limit_value": null,
   "margin_db": null,
   "concern": "none",
-  "reason": "Not raised: Earth-to-space, earth station unknown (typical earth station, no location filed).",
+  "reason": "Not raised: special-interest station(s) out of reach (603310: earth station location not filed (typical earth station, no location filed)).",
   "evidence_refs": "notice.ntc_id=324520190; pub_ssn.ntc_id=324520190&seq_no=1; pub_ssn.ntc_id=324520190&seq_no=2; geo.ntc_id=324520190; grp.grp_id=324724910; Taajuusjakotaulukko.ID=4291; Taajuusjakotaulukko.ID=4296; Taajuusjakotaulukko.ID=4287; Taajuusjakotaulukko.ID=4301; geography(group_id=324724910)",
   "decision": null
  },

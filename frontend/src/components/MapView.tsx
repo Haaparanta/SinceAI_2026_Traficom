@@ -1,4 +1,4 @@
-import type { FindingContext, RefPoint, Region } from "../types";
+import type { FindingContext, RefPoint, Region, StationContext } from "../types";
 
 const VIEW = { lon0: 14, lon1: 38, lat0: 57.5, lat1: 71 };
 
@@ -17,6 +17,12 @@ export function MapView({ ctx, region, points }: { ctx: FindingContext; region: 
     : d.nearest?.lat != null && d.nearest?.name ? { lat: d.nearest.lat, lon: d.nearest.lon } : null;
   const border = d.nearest?.lat != null && ctx.notice.lat != null ? d.nearest : null;
   const latLimit = d.lat_limit_10deg as number | undefined;
+  const stations = ctx.stations ?? [];
+  const tri = (cx: number, cy: number) => `${cx.toFixed(1)},${(cy - 6).toFixed(1)} ${(cx + 5.5).toFixed(1)},${(cy + 4).toFixed(1)} ${(cx - 5.5).toFixed(1)},${(cy + 4).toFixed(1)}`;
+  const reachText = (r: StationContext["reach"]) =>
+    r.elevation_deg != null ? `sees the satellite at ${r.elevation_deg} deg`
+      : r.e_dbuv_m != null ? `${r.distance_km} km, field strength ${r.e_dbuv_m} dB(uV/m) at ${r.h2_m} m${r.margin_db == null ? "" : r.margin_db < 0 ? `, exceeds the trigger by ${-r.margin_db} dB` : `, ${r.margin_db} dB below the trigger`}`
+      : r.distance_km != null ? `${r.distance_km} km from ${r.earth_station}` : r.coverage_lat_limit_deg != null ? `inside coverage to ${r.coverage_lat_limit_deg} N` : (r.note ?? "");
 
   return (
     <div className="p-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_260px]">
@@ -47,6 +53,16 @@ export function MapView({ ctx, region, points }: { ctx: FindingContext; region: 
             </g>
           );
         })}
+        {station && stations[0]?.reach?.e_dbuv_m != null && (
+          <line x1={x(station.lon)} y1={y(station.lat)} x2={x(stations[0].lon)} y2={y(stations[0].lat)}
+            stroke="var(--chart-3)" strokeWidth={1.5} strokeDasharray="2 3" />
+        )}
+        {stations.map((s, i) => (
+          <polygon key={`${s.number}-${i}`} points={tri(x(s.lon), y(s.lat))} fill="var(--chart-3)" stroke="var(--card)" strokeWidth={1.2}
+            data-station={s.number}>
+            <title>{`Special-interest station ${s.number} (${s.class ?? "no class"}), receives ${s.centre_hz / 1e6} MHz, ${reachText(s.reach)}; sheet row ${s.row}`}</title>
+          </polygon>
+        ))}
         {station && (
           <g>
             {border && <line x1={x(station.lon)} y1={y(station.lat)} x2={x(border.lon)} y2={y(border.lat)} stroke="var(--primary)" strokeWidth={2} strokeDasharray="4 3" />}
@@ -62,7 +78,19 @@ export function MapView({ ctx, region, points }: { ctx: FindingContext; region: 
         {d.distance_km != null && <div><dt className="text-muted-foreground text-xs">Distance to Finland</dt><dd className="num">{`${d.distance_km} km`}</dd></div>}
         {d.segments?.length > 0 && <div><dt className="text-muted-foreground text-xs">Path</dt><dd className="num">{(d.segments as { km: number; zone: string }[]).map((s) => `${s.km} km ${s.zone === "Land" ? "land" : "sea"}`).join(", ")}</dd></div>}
         {d.nearest?.name && <div><dt className="text-muted-foreground text-xs">Nearest earth station</dt><dd>{`${d.nearest.name} (${d.nearest.country}), ${d.nearest.distance_km} km`}</dd></div>}
-        <p className="text-xs text-muted-foreground pt-2">Markers: squares are stations, circles are Finnish reference points (pink = sees the satellite).</p>
+        {stations.length > 0 && (
+          <div aria-label="Special-interest stations in reach">
+            <dt className="text-muted-foreground text-xs">Special-interest stations in the band and in reach</dt>
+            <dd className="num font-semibold">{stations.length}</dd>
+            <ul className="mt-1 space-y-0.5 text-xs">
+              {stations.slice(0, 5).map((s, i) => (
+                <li key={`${s.number}-${i}`}><span className="num font-medium">{s.number}</span>{` ${s.class ?? "no class"}, ${s.centre_hz / 1e6} MHz, ${reachText(s.reach)}`}</li>
+              ))}
+              {stations.length > 5 && <li className="text-muted-foreground">{`and ${stations.length - 5} more in the results file`}</li>}
+            </ul>
+          </div>
+        )}
+        <p className="text-xs text-muted-foreground pt-2">Markers: squares are the filing's stations, circles are Finnish reference points (pink = sees the satellite), triangles are special-interest stations in reach.</p>
       </dl>
     </div>
   );

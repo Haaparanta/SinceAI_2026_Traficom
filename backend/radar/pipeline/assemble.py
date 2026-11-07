@@ -18,6 +18,7 @@ import duckdb
 from radar import schema_map
 from radar.adapters import plans as PLANS
 from radar.adapters import space_ific, traficom_table
+from radar.adapters import special_interest as SI
 from radar.config import settings
 from radar.evidence import locator, row_excerpt
 from radar.models import AnalysisResult, CalcTrace, Evidence, Finding
@@ -29,6 +30,7 @@ from radar.pipeline import rank as RK
 from radar.pipeline import relevance as rel
 
 MAX_FINNISH_ROWS = 6
+MAX_STATION_EVIDENCE = 5          # special-interest stations cited per finding; all of them are in the results file
 DIRECTION_TEXT = {"space_to_earth": "space-to-Earth", "earth_to_space": "Earth-to-space", "unknown": "direction unknown"}
 
 
@@ -57,7 +59,7 @@ def _fmt_hz(hz: int) -> str:
     return f"{hz} Hz"
 
 
-def _pfd_trace(res, gi, add, source, M, gid, score, geo_ev) -> CalcTrace:
+def _pfd_trace(res, gi, add, source, M, gid, score, geo_ev, station_ev=None) -> CalcTrace:
     """CalcTrace for the lead group, with an evidence item for every input (pm_pack/06 rule 5)."""
     base_notes = [f"ranking score {score.score} from scoring/weights.json", f"geography evidence {geo_ev}"]
     if res is None:
@@ -80,14 +82,17 @@ def _pfd_trace(res, gi, add, source, M, gid, score, geo_ev) -> CalcTrace:
                   f"{M.col('space', 'beam', 'max_gain_dbi')}={w['gain_dbi']:.6g}")
     lim_ev = add("regulation", f"{row.source}, page {row.page} (data/reference/pfd_limits.csv)",
                  f"pfd_limits.csv id={row.id}", row.excerpt())
+    point_ev = geo_ev
+    if w["point"].startswith("station ") and station_ev is not None:
+        point_ev = station_ev(w["point"][len("station "):]) or geo_ev
     calc_ev = add("calculation", "radar.calc.pfd", f"pfd(group_id={gid})",
                   f"pfd {res.pfd_db:.2f} dB(W/m2) in {PFD.fmt_bw(w['bandwidth_hz'])} at {w['point']}; limit {res.limit_db:.2f}; margin {res.margin_db:.2f} dB")
     inputs = [
         CalcInput(name="P_d max power density at antenna input", value=w["p_d_dbw_hz"], unit="dBW/Hz", evidence_id=em_ev),
         CalcInput(name="G max beam gain", value=w["gain_dbi"], unit="dBi", evidence_id=beam_ev),
         CalcInput(name="B bandwidth used, min(reference, emission)", value=w["bandwidth_hz"], unit="Hz", evidence_id=lim_ev),
-        CalcInput(name=f"d slant range from {w['point']}", value=w["slant_range_km"], unit="km", evidence_id=geo_ev),
-        CalcInput(name=f"delta angle of arrival at {w['point']}", value=w["elevation_deg"], unit="deg", evidence_id=geo_ev),
+        CalcInput(name=f"d slant range from {w['point']}", value=w["slant_range_km"], unit="km", evidence_id=point_ev),
+        CalcInput(name=f"delta angle of arrival at {w['point']}", value=w["elevation_deg"], unit="deg", evidence_id=point_ev),
         CalcInput(name="10 log10(4 pi d^2) spreading loss", value=w["spreading_loss_db"], unit="dB", evidence_id=calc_ev),
     ]
     return CalcTrace(method="pfd_gso_worst_case", inputs=inputs, formula=PFD.FORMULA, result_value=res.pfd_db,
@@ -103,17 +108,21 @@ def run(issue: int) -> SpaceRun:
     bands = traficom_table.subbands()
     bands_by_id = {b.id: b for b in bands}
     classes = {b.id: rel.classify(b.services_in_finland) for b in bands}
+    stations = list(SI.stations())               # () when data/raw/special_interest.xlsx is missing
+    stations_by_number: dict[str, list] = {}
+    for st in stations:
+        stations_by_number.setdefault(st.station_number, []).append(st)
     source = f"ific{issue}.mdb (data/derived/space_{issue}.duckdb)"
 
     con = duckdb.connect(str(space_ific.db_path(issue)), read_only=True)
     named = rel.finland_named(con)
-    rows = rel.screen(ing.notices, bands, named=named)
+    rows = rel.screen(ing.notices, bands, stations=stations, named=named)
     types = dict(con.execute(f"SELECT CAST({M.q('space','notice','notice_id')} AS VARCHAR), {M.q('space','notice','orbit_code')} "
                              f"FROM {M.t('space','notice')}").fetchall())
     actions = dict(con.execute(f"SELECT CAST({M.q('space','notice','notice_id')} AS VARCHAR), {M.q('space','notice','action')} "
                                f"FROM {M.t('space','notice')}").fetchall())
     geo = G.for_issue(ing.notices, con)
-    G.apply(rows, geo, types)
+    G.apply(rows, geo, types, stations)
 
     by_notice = {n.notice_id: n for n in ing.notices}
     # AP30/30A/30B: Finland's own plan entries, from the plan databases (the IFIC database has none)
@@ -131,7 +140,8 @@ def run(issue: int) -> SpaceRun:
         gi = pfd_inputs.get(r.group_id)
         lon = by_notice[r.notice_id].longitude_deg
         if gi is not None and lon is not None:
-            pfd_results[r.group_id] = PFD.worst_case(r.freq_min_hz, r.freq_max_hz, lon, gi.emissions, gi.gain_dbi, gi.steerable)
+            pfd_results[r.group_id] = PFD.worst_case(r.freq_min_hz, r.freq_max_hz, lon, gi.emissions, gi.gain_dbi, gi.steerable,
+                                                     extra_points=G.station_points(r.matched_station_numbers, lon, stations))
     scores, lead = {}, {}
     for r in rows:
         n = by_notice[r.notice_id]
@@ -205,6 +215,20 @@ def run(issue: int) -> SpaceRun:
             ex = row_excerpt(con, T("affected"), k, [C("affected", "provision"), C("affected", "administration"), "agree_st"])
             if ex:
                 add("itu_row", source, locator(T("affected"), **k), ex)
+        station_ids: dict[str, str] = {}
+
+        def station_ev(number: str) -> str | None:
+            if number not in station_ids and number in stations_by_number:
+                e = SI.evidence(stations_by_number[number][0], f"E-{len(ev) + 1:03d}")
+                ev.append(e)
+                station_ids[number] = e.id
+            return station_ids.get(number)
+
+        # the stations most exposed first: lowest elevation (longest path, strictest limit) or nearest earth station
+        reach = r.station_reach
+        for number in sorted(r.matched_station_numbers, key=lambda k: (reach.get(k, {}).get("elevation_deg", 0),
+                                                                       reach.get(k, {}).get("distance_km", 0), k))[:MAX_STATION_EVIDENCE]:
+            station_ev(number)
         for b in r.plan_bureau[:4]:
             PL.add_effect_evidence(add, b)
         for h in r.plan_hits[:2]:
@@ -221,7 +245,7 @@ def run(issue: int) -> SpaceRun:
         geo_key = f"group_id={gid}" if gid in geo.by_group else f"notice_id={n.notice_id}"
         geo_ev = add("calculation", "radar.pipeline.geography", f"geography({geo_key})", f"{gres.relevance}: {gres.note}")
 
-        calc = _pfd_trace(pfd_results.get(gid), pfd_inputs.get(gid), add, source, M, gid, s, geo_ev)
+        calc = _pfd_trace(pfd_results.get(gid), pfd_inputs.get(gid), add, source, M, gid, s, geo_ev, station_ev)
 
         more = candidates_per_notice.get(n.notice_id, 0) - (1 if r.candidate else 0)
         reason = (f"{s.rule[0].upper()}{s.rule[1:]}. Lead group {gid}: {_fmt_hz(r.freq_min_hz)} to {_fmt_hz(r.freq_max_hz)} "

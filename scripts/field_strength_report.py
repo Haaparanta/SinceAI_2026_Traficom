@@ -147,6 +147,16 @@ def main() -> int:
                                       ["Time / locations", "10 % / 50 % (T/R 25-08 Annex 1)"], ["Receiving height", "10 m, rural clutter 10 m"],
                                       ["Terrain", "not used (pathinfo 0): transmitting height above ground as effective height"],
                                       ["Sea", "zones outside every loaded country, 'Cold' sea (Baltic)"]])
+        + "<h2>Special-interest stations on the same channel</h2><p class='sub'>For each computed notice, every co-channel "
+          "station of the Traficom table within 1 000 km gets its own P.1546 field strength over the path to the station, at "
+          "the station's antenna height. The worst station is shown; it decides the concern only when it is worse than the "
+          "border check.</p>"
+        + R.table(["Finding", "Notice", "MHz", "Border E", "Stations", "Worst station", "Distance km", "h2 m", "Station E", "Margin dB", "Decides"],
+                  [[f.id, f"{n.administration} {n.site_name}", f"{n.freq_hz / 1e6:g}", f"{c.e_dbuv_m:g}", str(len(c.stations)),
+                    c.stations[0]["number"], f"{c.stations[0]['distance_km']:g}", f"{c.stations[0]['h2_m']:g}",
+                    f"{c.stations[0]['e_dbuv_m']:g}", "-" if c.stations[0]["margin_db"] is None else f"{c.stations[0]['margin_db']:g}",
+                    "yes" if TR.station_decides(n, c) else "no"]
+                   for n, c, f in computed if c.stations])
         + "<h2>T/R 25-08 triggers</h2>" + R.table(["Row", "MHz", "dB(uV/m)", "Per", "Review"], trig_rows)
         + "</div></div>"
         + "<h2>Cases for review</h2><p class='sub'>Every high, medium and review finding with its full trace.</p>" + "".join(cards)

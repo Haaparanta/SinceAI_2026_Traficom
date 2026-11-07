@@ -40,7 +40,7 @@ export function RankedList({ bundle, selected, onSelect }: {
           className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" />
         <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filter by concern">
           {LEVELS.filter((l) => counts[l]).map((l) => (
-            <button key={l} onClick={() => toggle(l)} aria-pressed={levels.has(l)}
+            <button key={l} type="button" onClick={() => toggle(l)} aria-pressed={levels.has(l)}
               title={levels.has(l) ? "Shown: click to hide" : "Hidden: click to show"}
               className={`rounded-full border px-2.5 py-1 text-xs transition-colors ${levels.has(l) ? "border-ring bg-card" : "border-dashed border-border bg-transparent [&>[data-concern]]:grayscale"}`}>
               <ConcernBadge concern={l} /> <span className="num ml-1">{counts[l]}</span>
@@ -55,7 +55,7 @@ export function RankedList({ bundle, selected, onSelect }: {
           const d = bundle.decisions?.[f.id];
           return (
             <li key={f.id} className="row-lazy">
-              <button onClick={() => onSelect(f.id)} aria-current={selected === f.id}
+              <button type="button" onClick={() => onSelect(f.id)} aria-current={selected === f.id}
                 className={`w-full text-left px-3 py-2.5 border-b border-border transition-colors ${selected === f.id ? "bg-secondary" : "hover:bg-muted"}`}>
                 <div className="flex items-center gap-2">
                   <ConcernBadge concern={f.concern} />
