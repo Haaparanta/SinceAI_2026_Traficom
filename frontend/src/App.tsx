@@ -6,6 +6,7 @@ import { DecisionPanel } from "./components/DecisionPanel";
 import { DraftsPanel } from "./components/DraftsPanel";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { FindingCard } from "./components/FindingCard";
+import { OverviewView } from "./components/OverviewView";
 import { MapView } from "./components/MapView";
 import { RankedList } from "./components/RankedList";
 import { SpectrumView } from "./components/SpectrumView";
@@ -13,7 +14,7 @@ import { ThemeSwitch } from "./components/ThemeSwitch";
 import { Card, Empty, Segmented, Stat } from "./components/ui";
 import type { AnalysisBundle, AuditEntry, IssueInfo, Kind, RefPoint, Region } from "./types";
 
-type Tab = "spectrum" | "map" | "calculation" | "audit";
+type Tab = "overview" | "spectrum" | "map" | "calculation" | "audit";
 const REVIEWER_KEY = "filing-radar.reviewer";
 
 function storedReviewer(): string {
@@ -140,10 +141,11 @@ export default function App() {
             <Card className="min-h-0 overflow-y-auto">
               <div className="p-3 border-b border-border flex items-center gap-3">
                 <Segmented label="Central view" value={tab} onChange={setTab}
-                  options={[{ value: "spectrum", label: "Spectrum" }, { value: "map", label: "Map" }, { value: "calculation", label: "Calculation" }, { value: "audit", label: "Audit log" }]} />
+                  options={[{ value: "overview", label: "Overview" }, { value: "spectrum", label: "Spectrum" }, { value: "map", label: "Map" }, { value: "calculation", label: "Calculation" }, { value: "audit", label: "Audit log" }]} />
               </div>
               <ErrorBoundary key={`${tab}-${selected}`} label="view">
-              {tab === "audit" ? <AuditLogView kind={bundle.result.kind} issue={bundle.result.issue} version={auditVersion} onSelect={setSelected} />
+              {tab === "overview" ? <OverviewView bundle={bundle} region={region} selected={selected} onSelect={setSelected} />
+                : tab === "audit" ? <AuditLogView kind={bundle.result.kind} issue={bundle.result.issue} version={auditVersion} onSelect={setSelected} />
                 : !finding || !ctx ? <Empty>Select a finding.</Empty>
                 : tab === "spectrum" ? <SpectrumView ctx={ctx} />
                 : tab === "map" ? <MapView ctx={ctx} region={region} points={points} />
