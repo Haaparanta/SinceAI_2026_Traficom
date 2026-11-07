@@ -1,0 +1,6 @@
+# Filing Radar (https://filingradar.click), a Since AI 2026 hackathon project for Traficom.
+# Report a security problem by opening an issue in the project repository.
+Contact: https://github.com/Haaparanta/SinceAI_2026_Traficom/issues
+Expires: 2027-11-07T00:00:00.000Z
+Preferred-Languages: en, fi
+Canonical: https://filingradar.click/.well-known/security.txt

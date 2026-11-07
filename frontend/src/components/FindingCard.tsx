@@ -13,7 +13,9 @@ export function FindingCard({ finding, ctx, highlight, decision, drafts }: {
 }) {
   const refs = useRef<Record<string, HTMLLIElement | null>>({});
   useEffect(() => {
-    if (highlight) refs.current[highlight]?.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (!highlight) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    refs.current[highlight]?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
   }, [highlight]);
   const n = ctx?.notice ?? {};
   return (

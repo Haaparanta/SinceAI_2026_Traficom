@@ -8,7 +8,7 @@ the built screen at `/`. It serves the committed analysis cache (`data/cache/`) 
 |---|---|
 | Google Cloud project | `filing-radar-513921` |
 | Region | `europe-north1` |
-| Cloud Run service | `filing-radar` (1 vCPU, 512 MiB, min 1 / max 2 instances) |
+| Cloud Run service | `filing-radar` (1 vCPU, 512 MiB, exactly 1 instance) |
 | Images | `europe-north1-docker.pkg.dev/filing-radar-513921/filing-radar/app` |
 | Domain | `filingradar.click` (Porkbun, auto-renew off) |
 | Deploy | Cloud Build trigger `deploy-main` (`cloudbuild.yaml`) on every push to `main`; `.github/workflows/deploy.yml` by hand as a fallback |
@@ -25,6 +25,12 @@ Cloud console -> Cloud Build -> History (region `europe-north1`), or `gcloud bui
 `.github/workflows/deploy.yml` does the same from GitHub Actions, but only when started by hand, so a commit is never
 deployed twice. Its Google sign-in uses Workload Identity Federation: no key is stored in GitHub, and the pool only
 accepts tokens from this repository's `main` branch.
+
+## Reviewer decisions on the hosted demo
+
+Approve, investigate and dismiss append to the audit log on the container's disk. The service runs exactly one
+instance so there is one log, but Cloud Run disks are temporary: **every deploy starts with an empty log.** Record
+decisions for the demo after the last merge, or export the log first (`GET /api/audit?issue=3074&kind=space`).
 
 ## Checks on every pull request
 
