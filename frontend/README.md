@@ -16,7 +16,7 @@ make e2e ARGS=--list          # what would run, without starting the servers
 make screenshots STEP=e       # PR screenshots into docs/screenshots/e/
 ```
 
-First time: `npx --prefix frontend playwright install chromium`. Ports 8100 and 5180 must be free; the tests never reuse a
+First time: `npx --prefix frontend playwright install chromium`. Ports 8100 and 5287 must be free (or set E2E_API_PORT and E2E_WEB_PORT); the tests never reuse a
 running server. Run the narrowed targets while you work and the full `make e2e` before a commit that touches the screen
 or the API. The root [README](../README.md#development) has the same options for the Python tests.
 

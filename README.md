@@ -89,7 +89,7 @@ Methods and every parameter are listed in [`results/README.md`](results/README.m
 
 Read [`AGENTS.md`](AGENTS.md) first (also linked as `CLAUDE.md` and `.cursorrules`): the rules, data contracts and who owns which folder. Work on a branch `feat/<area>-<thing>` and open a pull request against `main`; nothing is committed straight to `main`.
 
-**Setup for the tests.** `uv sync` and `npm --prefix frontend install` from the quick start, then once `npx --prefix frontend playwright install chromium` for the end-to-end tests. Playwright starts its own API on port 8100 and dev server on port 5180, so both ports must be free.
+**Setup for the tests.** `uv sync` and `npm --prefix frontend install` from the quick start, then once `npx --prefix frontend playwright install chromium` for the end-to-end tests. Playwright starts its own API on port 8100 and dev server on port 5287, so both ports must be free; E2E_API_PORT and E2E_WEB_PORT pick others.
 
 **Before every commit**, run all of them:
 
