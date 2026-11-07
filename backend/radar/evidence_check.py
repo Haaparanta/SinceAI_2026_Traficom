@@ -97,9 +97,13 @@ def check(result: AnalysisResult) -> list[Check]:
                 g = next((g for n in ingest.notices for g in n.groups if g.group_id == gid), None)
                 n = next((n for n in ingest.notices if g and n.notice_id == g.notice_id), None)
                 gi = PFD.load_inputs(con, [gid]).get(gid)
-                if g and n and gi:
+                if g and n and gi and n.orbit == "NGSO":
+                    orbs = PFD.load_orbits(con, [n.notice_id]).get(n.notice_id, [])
+                    r = PFD.worst_case_ngso(g.freq_min_hz, g.freq_max_hz, orbs, gi.emissions, gi.gain_dbi, gi.steerable)
+                elif g and n and gi:
                     r = PFD.worst_case(g.freq_min_hz, g.freq_max_hz, n.longitude_deg, gi.emissions, gi.gain_dbi, gi.steerable,
                                        extra_points=G.station_points(f.matched_station_numbers, n.longitude_deg, list(SI.stations())))
+                if g and n and gi:
                     w = r.worst
                     found = (f"pfd {r.pfd_db:.2f} dB(W/m2) in {PFD.fmt_bw(w['bandwidth_hz'])} at {w['point']}; "
                              f"limit {r.limit_db:.2f}; margin {r.margin_db:.2f} dB") if r.status == "computed" else r.status

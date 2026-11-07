@@ -29,7 +29,8 @@ from radar.adapters import traficom_table
 from radar.models import FinnishSubBand, FrequencyGroup, Notice, SpecialInterestStation
 
 CANDIDATE_PATHS = ("special_interest", "pfd_terrestrial", "passive_service", "space_cofrequency", "uncovered",
-                   "uplink_near_finland", "uplink_near_station", "plan_finnish")
+                   "uplink_near_finland", "uplink_near_station", "plan_finnish",
+                   "service_area_finland")
 INFORMATIONAL_PATHS = ("uplink_terrestrial", "uplink_space", "uplink_passive", "uplink_uncovered")
 
 
@@ -175,6 +176,9 @@ def screen(notices: list[Notice], bands: tuple[FinnishSubBand, ...] | None = Non
                 paths[p].append(i)
         if uncovered > 0:
             paths["uncovered" if g.direction == "space_to_earth" else "uplink_uncovered"] = []
+        # the filing names Finland in a downlink's service area (srv_area); uplinks from Finland are the earth-station rule's
+        if g.direction == "space_to_earth" and "FIN" in (g.service_area_codes or []):
+            paths["service_area_finland"] = []
         st = list(dict.fromkeys(station_hits.get(g.group_id, [])))
         if st:
             paths["special_interest"] = []

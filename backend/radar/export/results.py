@@ -98,9 +98,9 @@ def notice_rows(run: assemble.SpaceRun, bands: dict) -> list[ResultRow]:
 
 def _pfd_columns(res) -> dict:
     if res is None or res.status != "computed":
-        return {"calc_method": "pfd_gso_worst_case" if res is not None else "none", "calc_value": None, "calc_unit": None,
+        return {"calc_method": res.method if res is not None else "none", "calc_value": None, "calc_unit": None,
                 "limit_value": None, "margin_db": None}
-    return {"calc_method": "pfd_gso_worst_case", "calc_value": res.pfd_db,
+    return {"calc_method": res.method, "calc_value": res.pfd_db,
             "calc_unit": f"dB(W/m2) in {PFD.fmt_bw(res.worst['bandwidth_hz'])}", "limit_value": res.limit_db, "margin_db": res.margin_db}
 
 

@@ -104,7 +104,7 @@ class CalcInput(BaseModel):
 
 
 class CalcTrace(BaseModel):
-    method: Literal["pfd_gso_worst_case", "p1546_field_strength", "none"]
+    method: Literal["pfd_gso_worst_case", "pfd_ngso_worst_case", "p1546_field_strength", "none"]
     inputs: list[CalcInput]
     formula: str
     result_value: float | None

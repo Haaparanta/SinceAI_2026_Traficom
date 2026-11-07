@@ -9,6 +9,7 @@ Two layers, both deterministic:
    | Bureau lists Finland as affected (provn) | high |
    | Bureau's plan examination finds a Finnish AP30/30A/30B entry affected | high |
    | Co-frequency with a Finnish plan entry inside the Annex orbital arc (pipeline.plans) | medium |
+   | The filing names Finland in the group's service area (srv_area.ctry = FIN) | medium |
    | Uplink from an earth station inside Finland | high |
    | Uplink from an earth station within the near-border distance | medium |
    | Uplink from an earth station within the near-border distance of a special-interest station | medium |
@@ -106,6 +107,8 @@ def concern_rule(r: GroupRelevance, classes: dict[int, object]) -> tuple[str, st
         return "high", "uplink from an earth station inside Finland"
     if r.plan_hits:
         return "medium", f"{r.plan_hits[0].text()}; the Annex pfd test was not run"
+    if "service_area_finland" in r.paths:
+        return "medium", "the filing names Finland in the service area of this group"
     if "uplink_near_station" in r.paths and "uplink_near_finland" not in r.paths:
         return "medium", "uplink from an earth station near a special-interest station"
     if "uplink_near_finland" in r.paths:
@@ -134,6 +137,8 @@ def pfd_adjust(concern: str, rule: str, pfd) -> tuple[str, str]:
     """
     if pfd is None or not rule.startswith("downlink over"):
         return concern, rule
+    if pfd.status == "computed" and pfd.orbit != "GSO":
+        return _ngso_adjust(concern, rule, pfd)
     if pfd.status == "computed":
         if pfd.margin_db < 0:
             if pfd.worst.get("steerable"):
@@ -161,6 +166,36 @@ def station_floor(r: GroupRelevance, concern: str, rule: str) -> tuple[str, str]
     if CONCERN_ORDER[concern] < CONCERN_ORDER["review"]:
         return "medium", f"{rule}; {what} in the band and in reach"
     return concern, f"{rule}; {what} in the band and in reach"
+
+
+NGSO_OVERHEAD_DEG = 60.0   # [HYPOTHESIS, Q2] high over Finland: off-nadir angle under about 30 deg for a low orbit
+
+
+def _ngso_adjust(concern: str, rule: str, pfd) -> tuple[str, str]:
+    """Non-GSO [HYPOTHESIS, Q2]. The worst case puts the beam peak on Finland at every elevation, but a constellation
+    cuts its power at low angles with a pfd mask that the IFIC does not carry. So a notice is high only when the pfd
+    exceeds the limit with the satellite high over Finland (NGSO_OVERHEAD_DEG or more, where a beam near nadir does
+    reach Finland); an exceedance only lower down is review (the operator's mask decides). A pass computed with the
+    lower bound of X (footnote 13) is not conclusive and lowers nothing."""
+    w = pfd.worst
+    el = w.get("top_elevation_deg")
+    tops = w.get("tops") or ([(el, w.get("top_margin_db"))] if el is not None else [])
+    over = [(e, m) for e, m in tops if e is not None and m is not None and e >= NGSO_OVERHEAD_DEG and m < 0]
+    if pfd.margin_db < 0:
+        if over:
+            e, m = min(over, key=lambda t: t[1])
+            return "high", (f"{rule}; worst-case pfd of one satellite exceeds the RR Article 21 limit by {-m:.1f} dB with "
+                            f"the satellite high over Finland ({e:g} deg elevation) (indicative)")
+        return "review", (f"{rule}; worst-case pfd of one satellite would exceed the RR Article 21 limit by {-pfd.margin_db:.1f} dB "
+                          f"at {w['elevation_deg']:g} deg elevation with the beam peak on Finland (seen up to {el:g} deg); "
+                          f"the operator's pfd mask decides (indicative)")
+    if w.get("x_lower_bound") or w.get("y_assumed"):
+        which = "the lower bound of X (footnote 13, Nv not filed)" if w.get("x_lower_bound") else "Y = 0 (footnote 22, not filed)"
+        return concern, (f"{rule}; worst-case pfd {pfd.margin_db:.1f} dB below the RR Article 21 limit computed with "
+                         f"{which}: not conclusive (indicative)")
+    if pfd.margin_db < PFD_LOW_MARGIN_DB:
+        return concern, f"{rule}; worst-case pfd of one satellite {pfd.margin_db:.1f} dB below the RR Article 21 limit (indicative)"
+    return "low", f"{rule}; worst-case pfd of one satellite {pfd.margin_db:.1f} dB below the RR Article 21 limit (indicative)"
 
 
 PFD_LOW_MARGIN_DB = 15.0   # [HYPOTHESIS] scoring package bin edge; partner question Q2

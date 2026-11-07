@@ -3,7 +3,7 @@ export type Kind = "space" | "terrestrial";
 export type Concern = "none" | "low" | "medium" | "high" | "review";
 export interface Evidence { id: string; kind: "itu_row" | "finnish_table_row" | "special_interest_row" | "regulation" | "calculation"; source: string; locator: string; excerpt: string; }
 export interface CalcInput { name: string; value: number | string; unit: string; evidence_id: string; }
-export interface CalcTrace { method: "pfd_gso_worst_case" | "p1546_field_strength" | "none"; inputs: CalcInput[]; formula: string; result_value: number | null; result_unit: string; limit_value: number | null; limit_evidence_id: string | null; margin_db: number | null; label: "indicative" | "confirmed"; notes: string[]; }
+export interface CalcTrace { method: "pfd_gso_worst_case" | "pfd_ngso_worst_case" | "p1546_field_strength" | "none"; inputs: CalcInput[]; formula: string; result_value: number | null; result_unit: string; limit_value: number | null; limit_evidence_id: string | null; margin_db: number | null; label: "indicative" | "confirmed"; notes: string[]; }
 export interface Finding { id: string; kind: Kind; issue: number; notice_id: string; group_id: string | null; matched_subband_ids: number[]; matched_station_numbers: string[]; overlap_hz: number; geo_relevance: "visible" | "low_elevation" | "not_visible" | "near_border" | "far" | "unknown"; calc: CalcTrace; concern: Concern; reason: string; explanation: string | null; evidence: Evidence[]; }
 export interface AnalysisResult { issue: number; kind: Kind; screened: number; flagged: number; provenance_coverage_pct: number; findings: Finding[]; from_cache: boolean; }
 

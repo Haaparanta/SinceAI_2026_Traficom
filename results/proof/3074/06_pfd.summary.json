@@ -6,6 +6,43 @@
     "computed": 568,
     "no_input": 4
   },
+  "pfd_status_ngso": {
+    "computed": 4664,
+    "no_limit": 1027,
+    "not_visible": 5
+  },
+  "ngso_exceeding_notices": [
+    "123520029",
+    "124520131",
+    "124520174",
+    "124520191",
+    "124520220",
+    "124545392",
+    "124545403",
+    "125500066",
+    "125500277",
+    "125520047",
+    "125520053",
+    "125545347",
+    "125545368",
+    "125545390",
+    "125545392",
+    "126500026",
+    "126500052",
+    "126500053",
+    "126545060",
+    "126545098",
+    "126545117",
+    "126545119",
+    "126545131",
+    "126545132",
+    "323520029",
+    "324520131",
+    "324520174",
+    "324520191",
+    "324520220",
+    "325500168"
+  ],
   "vectors_ok": true,
   "pfd_range_ok": true,
   "exceeding_groups": 343,
@@ -19,10 +56,10 @@
     "324520214"
   ],
   "medium_why": {
-    "pfd computed, within 15 dB of the limit": 4,
-    "non-GSO: pfd not evaluated in C1": 87,
-    "other: no_input": 1,
-    "no Article 21 limit in this band": 7
+    "pfd computed, within 15 dB of the limit": 37,
+    "no Article 21 limit in this band": 30,
+    "no pfd evaluated (not eligible or geography)": 6,
+    "other: no_input": 1
   },
   "worst": [
     {

@@ -129,3 +129,18 @@ test("ap30: plan check report", async ({ page }, info) => {
   await page.getByRole("heading", { name: /Plan sections published in IFIC/ }).evaluate((el) => el.scrollIntoView({ block: "start" }));
   await page.screenshot({ path: `../docs/screenshots/${step}/2-plan-sections-${info.project.name}.png` });
 });
+
+test("ngso: non-GSO pfd in the pfd report", async ({ page }, info) => {
+  test.skip(step !== "ngso");
+  const proof = new URL("../../results/proof/", import.meta.url).href;
+  await page.goto(`${proof}3074/06_pfd.html`);
+  const heading = page.getByRole("heading", { name: /Non-GSO: one satellite/ });
+  await expect(heading).toBeVisible();
+  await heading.evaluate((el) => el.scrollIntoView({ block: "start" }));
+  await page.screenshot({ path: `../docs/screenshots/${step}/1-ngso-${info.project.name}.png` });
+  await open(page);
+  await page.getByRole("tab", { name: "Calculation" }).click();
+  await expect(page.getByText(/from one non-GSO satellite/)).toBeVisible();
+  await page.getByText(/from one non-GSO satellite/).scrollIntoViewIfNeeded();
+  await shot(page, info, "2-screen-trace");
+});

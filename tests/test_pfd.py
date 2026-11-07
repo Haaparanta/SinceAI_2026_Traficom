@@ -104,7 +104,9 @@ def run_3074():
 def test_3074_pfd_results(run_3074):
     P_ = run_3074.pfd
     computed = [r for r in P_.values() if r.status == "computed"]
-    assert len(computed) > 500 and all(-250 <= r.pfd_db <= -80 for r in computed)
+    assert len(computed) > 500 and all(-250 <= r.pfd_db <= -80 for r in computed if r.orbit == "GSO")
+    # non-GSO: one satellite at its perigee; the strongest filings (e.g. YG-1, 54 dBi at 27 GHz from 550 km) reach -68
+    assert all(-250 <= r.pfd_db <= -60 for r in computed if r.orbit != "GSO")
     assert P_["124794008"].margin_db == pytest.approx(-6.28, abs=0.05)
     assert P_["124794008"].worst["steerable"] is True
 
