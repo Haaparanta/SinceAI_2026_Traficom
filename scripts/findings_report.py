@@ -48,7 +48,7 @@ def main() -> int:
     checks = evidence_check.check(res)
     fails = [c for c in checks if c.status == "FAIL"]
     counts = Counter(f.concern for f in res.findings)
-    by_notice = {n.notice_id: n for n in run.ingest.notices}
+    by_notice = run.notices()
     def rule_label(rule: str) -> str:   # group the Bureau rule across provisions; keep other rules whole
         return rule.split(" (")[0] if rule.startswith("the Bureau") else rule
 

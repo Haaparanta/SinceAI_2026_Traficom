@@ -11,6 +11,7 @@ Total on disk after the full run: about 720 MB downloaded in 79 files, plus abou
 |---|---|---|---|
 | `ific<NNNN>.zip`, `ific<NNNN>/ific<NNNN>.mdb` | ITU BR IFIC (Space services) databases, issues 3062-3083 (all 2026 issues) | yes, issue **3074** is the graded issue | ITU-R SNS Online |
 | `brific<NNNN>.zip`, `brific<NNNN>/brific<NNNN>.mdb`, `ific<NNNN>_article11.pdf`, `ReadMe_<NNNN>.pdf` | ITU BR IFIC (Terrestrial services) MDB extracts, Article 11 indexes and issue notes, issues 3074-3083 | yes, issue **3076** is the graded issue | ITU-R terrestrial BR IFIC page |
+| `SPS_ALL_IFIC<NNNN>.zip`, `SPS_ALL_IFIC<NNNN>/SPS_ALL_IFIC<NNNN>.mdb`, `30B_<NNNN>.zip`, `30B_<NNNN>/30B_<NNNN>.mdb` | ITU Space Plans System (Appendix 30/30A Plans and Lists) and Appendix 30B Plan databases, snapshot **3083** (the only one online), fetched 2026-11-07 | yes: the brief names AP30, AP30A and AP30B, and the IFIC database has no plan data | ITU-R Space Plans pages, [section 1b](#1b-itu-space-plan-databases-ap3030a-and-ap30b---sps_all_ificnnnnzip-30b_nnnnzip) |
 | `PREFACE_EN.pdf`, `BR_IFIC_and_other_BR_tools.pdf`, `SRSDiagramV9_1.pdf` | How to read the BR IFIC (Terrestrial), BR tools overview, SRS/SNS table diagram | no | ITU-R |
 | `finlex_m4/` | Traficom Regulation 4 "M4", Radio Frequency Regulation 4 AG/2026 M (fi/en/sv + explanatory notes) | yes | Finlex |
 | `taajuusjakotaulukko.json` (+ `_fin`, `_swe`), `traficom_swagger_v13.json`, `traficom_metadata_v13.xml` | Finnish table of frequency allocations (API), en/fi/sv, plus the API schema | yes (frequency table) | Traficom open data API v13 |
@@ -54,6 +55,26 @@ Total on disk after the full run: about 720 MB downloaded in 79 files, plus abou
   <https://www.itu.int/en/ITU-R/space/brific/Pages/brificSchedule.aspx>.
 * Reading `.mdb` files without Windows/Access: `brew install mdbtools` then `python3 scripts/inspect_mdb.py data/raw/ific3074/*.mdb`
   (or `mdb-tables` / `mdb-export` directly); alternatives are Python `pandas_access` or Java `jackcess`.
+
+## 1b. ITU space plan databases (AP30/30A and AP30B) - `SPS_ALL_IFIC<NNNN>.zip`, `30B_<NNNN>.zip`
+
+* Why: in `ific3074.mdb` every plan table (`plan_pub`, `sps_results`, `ap30b_ref_*`, `ap30b_tr_res`) is empty and no notice
+  has a `plan_id`. The Appendix 30/30A (broadcasting-satellite and feeder-link) and Appendix 30B (FSS) Plans, their Lists,
+  the pending Article 4 / Article 6 networks and the Bureau's examination results are published in two separate SNS v10
+  databases on the ITU Plans pages, replaced with every IFIC.
+* Pages: <https://www.itu.int/en/ITU-R/space/plans/Pages/AP30-30A.aspx> and <https://www.itu.int/en/ITU-R/space/plans/Pages/AP30B.aspx>.
+* Files (snapshot 3083, page dates 27/10/2026):
+  * `https://www.itu.int/en/ITU-R/space/plans/Documents/SPS_ALL_IFIC3083.zip`, 72 764 638 bytes -> `SPS_ALL_IFIC3083.mdb`
+    (387 MB, 88 tables, 1 770 notices, last export 2026-09-16).
+  * `https://www.itu.int/en/ITU-R/space/plans/Documents/30B_3083.zip`, 22 002 409 bytes -> `30B_3083.mdb` (140 MB, 88 tables,
+    918 notices, last export 2026-09-24).
+* **Only the latest snapshot is online**: `SPS_ALL_IFIC3074.zip` and `30B_3074.zip` answer 404. The script reads the current
+  file name from the two pages (`PLAN_IFIC=<n>` overrides it). The exact snapshot of an older issue comes with that issue's
+  BR IFIC DVD or ISO (TIES account), so a request to Traficom is the route to the 3074 copy.
+* What Finland has in them: FIN10300 and FIN10400 at 22.8 E (AP30 downlink 12.1-12.5 GHz, AP30A feeder link 17.7-18.1 GHz) and
+  the AP30B allotment FIN00000 at 46.8 E (4.5-4.8, 6.725-7.025, 10.70-10.95, 11.20-11.45 and 12.75-13.25 GHz).
+* Converted with `make convert-plans` to `data/derived/ap30_<n>.duckdb` and `ap30b_<n>.duckdb`; read by `backend/radar/adapters/plans.py`.
+  Table and column names are in the `plans` section of `backend/radar/schema_map.yaml`.
 
 ## 2. ITU BR IFIC (Terrestrial services) - `brific<NNNN>.zip`, `ific<NNNN>_article11.pdf`, `ReadMe_<NNNN>.pdf`
 
@@ -143,6 +164,7 @@ scripts/download_data.sh                          # everything above (existing f
 SPACE_IFICS="3084 3085" scripts/download_data.sh  # add new Space IFIC issues as ITU publishes them (every two weeks, Tuesdays)
 TERR_IFICS="3084" scripts/download_data.sh        # same for the terrestrial IFIC
 UNZIP="ific3083" scripts/download_data.sh         # extract another issue to data/raw/ific3083/ific3083.mdb
+PLAN_IFIC=3084 scripts/download_data.sh           # a specific AP30/30A and AP30B snapshot (default: the one the ITU Plans pages link)
 ```
 
 Notes on fetching: the ITU site sits behind a web application firewall that answers some clients with an HTML "Request Rejected"

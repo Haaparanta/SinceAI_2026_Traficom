@@ -1,5 +1,5 @@
 # Filing Radar. Step IDs refer to pm_pack/08_Build_Plan_Step_by_Step.md.
-.PHONY: doctor check-data checksums schema convert subbands special-interest ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial explanations determinism golden proof freeze status api-demo index cache frontend frontend-build e2e e2e-failed screenshots test test-failed test-changed test-list api
+.PHONY: doctor check-data checksums schema convert convert-plans plans subbands special-interest ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial explanations determinism golden proof freeze status api-demo index cache frontend frontend-build e2e e2e-failed screenshots test test-failed test-changed test-list api
 
 doctor:        ## A1: tools on PATH, native arm64
 	python3 scripts/doctor.py tools
@@ -22,6 +22,16 @@ convert:       ## A5: .mdb -> DuckDB with row-count check and report (about 25 s
 	uv run python scripts/mdb_to_duckdb.py data/raw/ific3074/ific3074.mdb data/derived/space_3074.duckdb
 	uv run python scripts/mdb_to_duckdb.py data/raw/brific3075/brific3075.mdb data/derived/terrestrial_3075.duckdb
 	uv run python scripts/mdb_to_duckdb.py data/raw/brific3076/brific3076.mdb data/derived/terrestrial_3076.duckdb
+
+PLAN ?= $(shell ls -d data/raw/30B_*/ 2>/dev/null | grep -oE '[0-9]{4}/$$' | tr -d / | sort -n | tail -1)
+
+convert-plans: ## AP30/30A and AP30B plan databases -> DuckDB (latest snapshot in data/raw, about 90 s); make convert-plans PLAN=3083
+	uv run python scripts/mdb_to_duckdb.py data/raw/SPS_ALL_IFIC$(PLAN)/SPS_ALL_IFIC$(PLAN).mdb data/derived/ap30_$(PLAN).duckdb
+	uv run python scripts/mdb_to_duckdb.py data/raw/30B_$(PLAN)/30B_$(PLAN).mdb data/derived/ap30b_$(PLAN).duckdb
+
+plans:         ## C1b: Finnish AP30/30A/30B plan entries against $(ISSUE), report reports/$(ISSUE)/08_plans.html
+	PYTHONPATH=backend uv run python -m radar.adapters.plans $(ISSUE)
+	uv run python scripts/plans_report.py $(ISSUE)
 
 subbands:      ## A6: Finnish table -> Parquet, spectrum strip report
 	PYTHONPATH=backend uv run python -m radar.adapters.traficom_table
@@ -93,7 +103,7 @@ frontend:      ## D1: the one screen on http://127.0.0.1:5173 (run make api in a
 	npm --prefix frontend run dev
 
 frontend-build: ## D1: type-check, lint and build the screen
-	npm --prefix frontend run build && npx --prefix frontend eslint frontend/src
+	npm --prefix frontend run build && cd frontend && npx eslint src   # eslint.config.js lives in frontend/
 
 # Narrow the Playwright run: T=spec file name(s) (stations, decisions), G=title text, P=one project
 # (desktop-dark, desktop-light, phone). make e2e T=stations P=desktop-dark

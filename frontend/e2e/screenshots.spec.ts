@@ -138,3 +138,13 @@ test("overview: whole-issue charts", async ({ page }, info) => {
   if (info.project.name === "phone") await page.getByRole("region", { name: "Issue overview" }).screenshot({ path: `../docs/screenshots/${step}/2-terrestrial-${info.project.name}.png` });
   else await page.screenshot({ path: `../docs/screenshots/${step}/2-terrestrial-${info.project.name}.png` });
 });
+
+test("ap30: plan check report", async ({ page }, info) => {
+  test.skip(step !== "ap30");
+  const proof = new URL("../../results/proof/", import.meta.url).href;
+  await page.goto(`${proof}3074/08_plans.html`);
+  await expect(page.getByRole("heading", { name: /AP30, AP30A and AP30B plans/ })).toBeVisible();
+  await page.screenshot({ path: `../docs/screenshots/${step}/1-orbit-strip-${info.project.name}.png` });
+  await page.getByRole("heading", { name: /Plan sections published in IFIC/ }).evaluate((el) => el.scrollIntoView({ block: "start" }));
+  await page.screenshot({ path: `../docs/screenshots/${step}/2-plan-sections-${info.project.name}.png` });
+});

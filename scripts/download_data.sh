@@ -10,6 +10,7 @@
 #   TERR_IFICS="3076" scripts/download_data.sh    # only these Terrestrial IFIC issues (default: 3074-3083)
 #   UNZIP="ific3074 brific3076" ...               # archives to extract to data/raw/<name>/ (default: the graded issues and the
 #                                                 # previous terrestrial issue); UNZIP=all extracts every IFIC zip (several GB)
+#   PLAN_IFIC=3083 scripts/download_data.sh       # AP30/30A and AP30B snapshot to fetch (default: the one the ITU Plans pages link)
 #   SKIP_OPTIONAL=1 scripts/download_data.sh      # skip M15, the Radio Regulations, the CEPT exports and the station registers
 #   DATA_DIR=/elsewhere scripts/download_data.sh  # custom destination (default: <repo>/data/raw)
 #   PARALLEL=8 scripts/download_data.sh           # concurrent downloads (default: 4)
@@ -18,6 +19,8 @@
 #   ific<NNNN>.zip, ific<NNNN>/ific<NNNN>.mdb          ITU BR IFIC (Space services) database of one issue
 #   brific<NNNN>.zip, brific<NNNN>/brific<NNNN>.mdb    ITU BR IFIC (Terrestrial services) MDB extract of one issue
 #   ific<NNNN>_article11.pdf, ReadMe_<NNNN>.pdf        terrestrial Article 11 index and issue notes
+#   SPS_ALL_IFIC<NNNN>.zip, SPS_ALL_IFIC<NNNN>/*.mdb   ITU Space Plans System: Appendix 30/30A Plans and Lists (latest snapshot)
+#   30B_<NNNN>.zip, 30B_<NNNN>/30B_<NNNN>.mdb          ITU Appendix 30B FSS Plan database (latest snapshot)
 #   PREFACE_EN.pdf, BR_IFIC_and_other_BR_tools.pdf, SRSDiagramV9_1.pdf      ITU reference documents
 #   taajuusjakotaulukko[_fin|_swe].json, traficom_swagger_v13.json, traficom_metadata_v13.xml,
 #   radioasematiedot.json, tvasematiedot.json          Traficom open data API
@@ -81,6 +84,23 @@ for n in $SPACE_IFICS; do
   add "ific${n}.zip" "https://www.itu.int/sns/ific10/ific${n}.zip"
 done
 add "SRSDiagramV9_1.pdf" "https://www.itu.int/en/ITU-R/space/Documents/SRSDiagramV9_1.pdf"   # SRS/SNS table diagram
+
+# ---------------------------------------------------------------- 1b. Space plan databases (AP30/30A and AP30B)
+# The IFIC database leaves every plan table empty: the Appendix 30/30A Plans and Lists (BSS and its feeder links) and the
+# Appendix 30B FSS Plan are published as two separate SNS v10 databases on the ITU Plans pages. ITU keeps only the latest
+# snapshot online (SPS_ALL_IFIC<NNNN>.zip, 30B_<NNNN>.zip), so the snapshot is found from the page unless PLAN_IFIC is set.
+PLANS=https://www.itu.int/en/ITU-R/space/plans
+plan_name() {   # plan_name <page> <regex>: newest file name the page links to, empty if the page is unreachable
+  curl -fsSL --connect-timeout 30 "$PLANS/Pages/$1.aspx" 2>/dev/null | grep -oE "$2" | sort -u | tail -1 || true
+}
+if [ -n "${PLAN_IFIC:-}" ]; then
+  SPS_ZIP="SPS_ALL_IFIC${PLAN_IFIC}.zip"; AP30B_ZIP="30B_${PLAN_IFIC}.zip"
+else
+  SPS_ZIP="$(plan_name AP30-30A 'SPS_ALL_IFIC[0-9]{4}\.zip')"; AP30B_ZIP="$(plan_name AP30B '30B_[0-9]{4}\.zip')"
+fi
+[ -n "$SPS_ZIP" ]   && add "$SPS_ZIP"   "$PLANS/Documents/$SPS_ZIP"     || echo "WARNING: AP30/30A database name not found on $PLANS/Pages/AP30-30A.aspx" >&2
+[ -n "$AP30B_ZIP" ] && add "$AP30B_ZIP" "$PLANS/Documents/$AP30B_ZIP"   || echo "WARNING: AP30B database name not found on $PLANS/Pages/AP30B.aspx" >&2
+UNZIP="$UNZIP ${SPS_ZIP%.zip} ${AP30B_ZIP%.zip}"
 
 # ---------------------------------------------------------------- 2. ITU BR IFIC (Terrestrial services)
 TERR=https://www.itu.int/en/ITU-R/terrestrial/brific/BRIFIC
