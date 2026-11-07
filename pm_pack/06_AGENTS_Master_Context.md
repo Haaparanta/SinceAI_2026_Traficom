@@ -101,7 +101,8 @@ Turn an ITU BR IFIC issue into a ranked, cited, expert-reviewable list of notice
 │   ├── fetch_data.sh
 │   ├── inspect_mdb.py            # prints every table and column of an .mdb
 │   ├── mdb_to_duckdb.py
-│   └── build_cache.py
+│   ├── build_cache.py
+│   └── changed_tests.py          # test files reached by the branch's changes (make test-changed)
 └── tests/
 ```
 
@@ -457,7 +458,7 @@ Shared rules:
 
 1. One agent per folder at a time. Small commits, one feature per branch, branch names `feat/<area>-<thing>`.
 2. Contracts first: an agent that needs a new field stops and asks the PM; no local workarounds.
-3. Before every commit: backend `uv run pytest -q`, frontend `npm run build`. A failing test is never committed.
+3. Before every commit: backend `make test` (`uv run pytest -q`), frontend `make frontend-build`, and `make e2e` when the screen or the API changed. A failing test is never committed. While working, run only what you need: `make test-changed`, `make test-<name>`, `make test K=...`, `make test-failed`, `make e2e-<spec>` (all options in the root `README.md`, section Development).
 4. No secrets, no `data/raw/`, no `data/derived/` in commits. `.env` stays local. `results/` and `data/cache/` are committed on purpose.
 5. Every number on screen comes from a `CalcTrace` or a counted query. No agent writes a literal number into the UI.
 6. The language model never decides concern level, never computes, never cites anything outside the finding.
