@@ -44,6 +44,16 @@ make check-evidence ISSUE=3074       # re-open every citation; exit 1 on any mis
 
 Explanations and letter drafts use Claude (`claude-opus-5-5`, with the server-side refusal fallback) when `ANTHROPIC_API_KEY` is set in `.env`; `LLM_MODEL` changes the model and `LLM_DISABLED=1` switches it off. Without a key the same buttons give a deterministic template built from the evidence, and the screen says which one you are reading. Accepted model texts are cached in `data/cache/llm/`, so a rerun or the demo makes no call.
 
+**Any other issue.** One command takes a Space or Terrestrial IFIC from its number to the screen: download from the ITU (or a zip you already have), verify the zip and the database inside it, convert with the row-count check, screen, reopen every citation, and write the screen cache. Slow steps already done are skipped on a rerun.
+
+```bash
+make import KIND=space ISSUE=3077                          # https://www.itu.int/sns/ific10/ific3077.zip
+make import KIND=terrestrial ISSUE=3078                    # brific3078.zip from the ITU BR IFIC MDB page
+make import KIND=space ISSUE=3077 ZIP=~/Downloads/ific3077.zip   # a file you have; FORCE=1 redoes every step
+```
+
+It writes `results/<kind>_<issue>.csv|json`, `data/cache/<kind>_<issue>.json` (the issue then appears in `GET /issues` and the screen) and a receipt with the source URL and SHA-256 checksums in `data/derived/import_<kind>_<issue>.json`. Space and Terrestrial issues share numbers, so `KIND` matters. It needs the Finnish table from `scripts/fetch_data.sh` once, and it refuses to rescreen the graded issues without the special-interest XLS, because their committed results carry the station matches.
+
 The special-interest station table (`Traficom_SinceAI_Frequencies_of_interest_v05112026.xlsx` from the Since AI platform) goes to `data/raw/special_interest.xlsx` by hand; `make special-interest` reads it (870 stations) and checks it in `reports/reference/special_interest.html`.
 
 ## How it works

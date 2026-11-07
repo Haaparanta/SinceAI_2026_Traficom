@@ -3,8 +3,9 @@ import { CONCERN_LABEL, DECISION_LABEL, fmtHz } from "../api";
 import type { AnalysisBundle, Concern, DecisionKind, Region } from "../types";
 import { ConcernBadge } from "./ui";
 
-// Every located datapoint of one analysis on one map: terrestrial notified stations, the earth stations of space
-// filings, and the special-interest stations the findings reach. Each marker carries its type (shape and label)
+// Every located datapoint of one analysis on one map: terrestrial notified stations (raised or not), every earth
+// station of the space filings, and every special-interest station (bundle.map, backend/radar/map_layers.py). Cache
+// files built before those layers existed still work: the map then shows what the findings carry. Each marker carries its type (shape and label)
 // and its state (concern level, reviewer decision, change for terrestrial notices); colour is never the only signal.
 
 type PointType = "terrestrial" | "earth_station" | "special_interest";
@@ -62,58 +63,88 @@ const rank = (c: Concern) => LEVELS.indexOf(c);
 const fmtLatLon = (lat: number, lon: number, digits: number) =>
   `${Math.abs(lat).toFixed(digits)} ${lat < 0 ? "S" : "N"}, ${Math.abs(lon).toFixed(digits)} ${lon < 0 ? "W" : "E"}`;
 
+// One map point can stand for several findings (an earth station or special-interest station named by more than one
+// filing): it takes the highest concern among them, and the most urgent review state (open before decided).
+function merge(points: Map<string, MapPoint>, p: MapPoint) {
+  const q = points.get(p.key);
+  if (!q) { points.set(p.key, p); return; }
+  for (const id of p.findingIds) if (!q.findingIds.includes(id)) q.findingIds.push(id);
+  if (rank(p.concern) < rank(q.concern)) q.concern = p.concern;
+}
+
 function collectPoints(bundle: AnalysisBundle): { points: MapPoint[]; unlocated: number } {
-  const points: MapPoint[] = [];
-  const special = new Map<string, MapPoint>();
-  let unlocated = 0;
+  const layers = bundle.map ?? {};
+  const known = (id: string | null | undefined): id is string => id != null && bundle.context[id] != null;
+  const csv = `results/${bundle.result.kind}_${bundle.result.issue}.csv`;
+  const points = new Map<string, MapPoint>();
+  const located = new Set<string>();
+
+  // Terrestrial notified stations: every located notice of the issue when the cache has the layer, raised or not.
+  const terrestrial = layers.terrestrial ?? bundle.result.findings.flatMap((f) => {
+    const n = bundle.context[f.id]?.notice ?? {};
+    return n.lat != null && n.lon != null ? [{ notice_id: f.notice_id, finding_id: f.id, concern: f.concern, administration: n.administration,
+      site_name: n.site_name ?? null, station_class: n.station_class ?? null, notice_type: n.notice_type ?? null, change: n.change,
+      freq_hz: n.freq_hz ?? null, erp_dbw: n.erp_dbw ?? null, lat: n.lat, lon: n.lon }] : [];
+  });
+  for (const t of terrestrial) {
+    const fid = known(t.finding_id) ? t.finding_id : null;
+    const ctx = fid ? bundle.context[fid] : undefined;
+    const cls = t.station_class;
+    if (fid) located.add(fid);
+    merge(points, {
+      key: `T-${t.notice_id}`, type: "terrestrial", name: t.site_name ?? ctx?.title ?? `Notice ${t.notice_id}`, administration: t.administration ?? null,
+      typeLabel: `${cls ? `${STATION_CLASS[cls] ?? "Station"} (${cls})` : "Station, class unknown"}${t.notice_type ? `, form ${t.notice_type}` : ""}`,
+      lat: t.lat, lon: t.lon, concern: t.concern, review: "open", change: t.change ?? null, findingIds: fid ? [fid] : [],
+      facts: [
+        fid ? `${fid}, notice ${t.notice_id}` : `notice ${t.notice_id}, not raised: listed in ${csv}`,
+        t.freq_hz != null ? `${fmtHz(t.freq_hz)}${t.erp_dbw != null ? `, ERP ${t.erp_dbw} dBW` : ""}` : "frequency unknown",
+        ctx?.geo?.note ?? "",
+      ].filter(Boolean),
+    });
+  }
+
+  // Earth stations of space filings: every located station of the notice when the cache has it, else the nearest one.
   for (const f of bundle.result.findings) {
     const ctx = bundle.context[f.id];
-    if (!ctx) { unlocated += 1; continue; }
-    const n = ctx.notice ?? {};
+    if (!ctx || ctx.notice?.lat != null) continue;
     const d = ctx.geo?.detail ?? {};
-    const review: ReviewState = bundle.decisions?.[f.id]?.decision ?? "open";
-    if (n.lat != null && n.lon != null) {
-      const cls = n.station_class as string | null;
-      points.push({
-        key: f.id, type: "terrestrial", name: n.site_name ?? ctx.title, administration: n.administration ?? null,
-        typeLabel: `${cls ? `${STATION_CLASS[cls] ?? "Station"} (${cls})` : "Station, class unknown"}${n.notice_type ? `, form ${n.notice_type}` : ""}`,
-        lat: n.lat, lon: n.lon, concern: f.concern, review, change: n.change ?? null, findingIds: [f.id],
-        facts: [
-          `${f.id}, notice ${f.notice_id}`,
-          n.freq_hz != null ? `${fmtHz(n.freq_hz)}${n.erp_dbw != null ? `, ERP ${n.erp_dbw} dBW` : ""}` : "frequency unknown",
-          ctx.geo?.note ?? "",
-        ].filter(Boolean),
-      });
-    } else if (d.nearest?.lat != null && d.nearest?.lon != null && d.nearest?.name) {
-      const es = d.nearest;
-      points.push({
-        key: f.id, type: "earth_station", name: es.name, administration: es.country ?? n.administration ?? null,
-        typeLabel: `Earth station${es.type ? `, ${EARTH_STATION_TYPE[es.type] ?? es.type}` : ""} of ${n.network ?? ctx.title}`,
-        lat: es.lat, lon: es.lon, concern: f.concern, review, change: null, findingIds: [f.id],
-        facts: [`${f.id}, notice ${f.notice_id}`, es.distance_km != null ? `${es.distance_km} km from Finland` : "", ctx.geo?.note ?? ""].filter(Boolean),
-      });
-    } else unlocated += 1;
-    for (const s of ctx.stations ?? []) {
-      const p = special.get(s.number);
-      if (p) {
-        if (!p.findingIds.includes(f.id)) p.findingIds.push(f.id);
-        if (rank(f.concern) < rank(p.concern)) p.concern = f.concern;
-        continue;
-      }
-      special.set(s.number, {
-        key: `S-${s.number}`, type: "special_interest", name: `Station ${s.number}`, administration: "FIN",
-        typeLabel: `Special-interest station${s.class ? ` (${s.class})` : ""}`,
-        lat: s.lat, lon: s.lon, concern: f.concern, review: "open", change: null, findingIds: [f.id],
-        facts: [`receives ${fmtHz(s.centre_hz)}, bandwidth ${fmtHz(s.bandwidth_hz)}`, `sheet row ${s.row}`],
+    const stations = ctx.earth_stations
+      ?? (d.nearest?.lat != null && d.nearest?.lon != null && d.nearest?.name ? [{ ...d.nearest, group_ids: [] }] : []);
+    for (const es of stations) {
+      located.add(f.id);
+      merge(points, {
+        key: `E-${es.name}-${es.lat}-${es.lon}`, type: "earth_station", name: es.name ?? "Earth station, no name filed",
+        administration: es.country ?? ctx.notice?.administration ?? null,
+        typeLabel: `Earth station${es.type ? `, ${EARTH_STATION_TYPE[es.type] ?? es.type}` : ""}`,
+        lat: es.lat, lon: es.lon, concern: f.concern, review: "open", change: null, findingIds: [f.id],
+        facts: [es.distance_km != null ? `${es.distance_km} km from Finland` : ""].filter(Boolean),
       });
     }
   }
-  // A station's review state is the most urgent state among the findings that reach it: open before decided.
-  for (const p of special.values()) {
+
+  // Special-interest stations: the whole sheet when the cache has it, else the stations the lead groups reach.
+  const special = layers.special_interest ?? bundle.result.findings.flatMap((f) =>
+    (bundle.context[f.id]?.stations ?? []).map((s) => ({ ...s, finding_ids: [f.id], concern: f.concern })));
+  for (const s of special) {
+    const ids = s.finding_ids.filter(known);
+    merge(points, {
+      key: `S-${s.number}`, type: "special_interest", name: `Station ${s.number}`, administration: "FIN",
+      typeLabel: `Special-interest station${s.class ? ` (${s.class})` : ""}`,
+      lat: s.lat, lon: s.lon, concern: s.concern ?? "none", review: "open", change: null, findingIds: ids,
+      facts: [`receives ${fmtHz(s.centre_hz)}, bandwidth ${fmtHz(s.bandwidth_hz)}`, s.row != null ? `sheet row ${s.row}` : "",
+        s.finding_ids.length ? "" : "no filing in this issue reaches it"].filter(Boolean),
+    });
+  }
+
+  const out = [...points.values()];
+  for (const p of out) {
     const states: ReviewState[] = p.findingIds.map((id) => bundle.decisions?.[id]?.decision ?? "open");
     p.review = REVIEW_STATES.find((s) => states.includes(s)) ?? "open";
+    if (p.type !== "special_interest" && p.findingIds.length > 1) p.facts.unshift(`named by ${p.findingIds.length} findings`);
+    else if (p.type === "earth_station" && p.findingIds.length === 1) p.facts.unshift(`${p.findingIds[0]}, ${bundle.context[p.findingIds[0]]?.title ?? ""}`);
   }
-  return { points: [...points, ...special.values()], unlocated };
+  const unlocated = bundle.result.findings.filter((f) => !located.has(f.id)).length;
+  return { points: out, unlocated };
 }
 
 function Marker({ p, cx, cy, active }: { p: MapPoint; cx: number; cy: number; active: boolean }) {
@@ -196,7 +227,7 @@ export function OverviewMap({ bundle, region, selected, onSelect }: {
   // Draw low concern first so high concern sits on top; the active point last of all.
   const drawn = [...onMap].sort((a, b) => Number(isActive(a)) - Number(isActive(b)) || rank(b.concern) - rank(a.concern));
   const current = points.find((p) => p.key === focus) ?? points.find((p) => p.type !== "special_interest" && selected != null && p.findingIds.includes(selected)) ?? null;
-  const pick = (p: MapPoint) => { setFocus(p.key); if (p.type !== "special_interest") onSelect(p.findingIds[0]); };
+  const pick = (p: MapPoint) => { setFocus(p.key); if (p.type !== "special_interest" && p.findingIds[0]) onSelect(p.findingIds[0]); };
   const listed = [...visible].sort((a, b) => rank(a.concern) - rank(b.concern) || a.name.localeCompare(b.name));
 
   return (
@@ -244,9 +275,9 @@ export function OverviewMap({ bundle, region, selected, onSelect }: {
               {current.change && <div className="text-xs">{`${current.change[0].toUpperCase()}${current.change.slice(1)} in this issue`}</div>}
               <div className="num text-xs text-muted-foreground">{fmtLatLon(current.lat, current.lon, 3)}</div>
               <ul className="text-xs text-muted-foreground space-y-0.5">{current.facts.map((t) => <li key={t}>{t}</li>)}</ul>
-              {current.type === "special_interest" && (
+              {(current.type === "special_interest" ? current.findingIds.length > 0 : current.findingIds.length > 1) && (
                 <div className="pt-1">
-                  <div className="text-xs text-muted-foreground">{`Reached by ${current.findingIds.length} finding${current.findingIds.length === 1 ? "" : "s"}`}</div>
+                  <div className="text-xs text-muted-foreground">{`${current.type === "special_interest" ? "Reached" : "Named"} by ${current.findingIds.length} finding${current.findingIds.length === 1 ? "" : "s"}`}</div>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {current.findingIds.slice(0, 8).map((id) => (
                       <button key={id} type="button" onClick={() => onSelect(id)}
@@ -260,7 +291,8 @@ export function OverviewMap({ bundle, region, selected, onSelect }: {
           ) : <p className="rounded-xl border border-dashed border-border p-3 text-xs text-muted-foreground">Select a datapoint on the map or in the list below.</p>}
           <p className="text-xs text-muted-foreground">
             Shape is the type: circle terrestrial station, diamond earth station, triangle special-interest station. Colour is the concern level,
-            a ring around a marker means a reviewer decision is recorded. A special-interest station takes the highest concern of the findings that reach it.
+            a ring around a marker means a reviewer decision is recorded. A station named by several findings takes the highest concern among them;
+            a special-interest station no filing reaches, and a terrestrial notice that was not raised, show as Not raised.
           </p>
         </div>
       </div>

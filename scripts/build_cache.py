@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """Build the screen's data: data/cache/<kind>_<issue>.json = AnalysisResult + per-finding context.
 
-    uv run python scripts/build_cache.py            # space 3074 and terrestrial 3076
+    uv run python scripts/build_cache.py                          # space 3074 and terrestrial 3076
+    uv run python scripts/build_cache.py --kind space --issue 3075  # one other issue (scripts/import_issue.py calls write())
 
 The context holds what the one screen draws and the contracts do not carry: notice details, the Finnish rows under
-the lead group (spectrum tab), the geometry (map tab) and the score factors. The API serves these files, so the
+the lead group (spectrum tab), the geometry (map tab), the score factors, every located earth station of the notice,
+and under the bundle key "map" every special-interest station and (terrestrial) every located notice, raised or not,
+for the overview map (radar.map_layers). The API serves these files, so the
 screen and demo mode need neither the .mdb nor DuckDB (pm_pack/06 "Demo mode"). Output is deterministic.
 """
 from __future__ import annotations
@@ -16,6 +19,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "backend"), str(ROOT)]
 
+from radar import map_layers  # noqa: E402
+from radar.adapters import special_interest as SI  # noqa: E402
 from radar.adapters import traficom_table  # noqa: E402
 from radar.config import settings  # noqa: E402
 from radar.pipeline import assemble  # noqa: E402
@@ -77,8 +82,14 @@ def space(issue: int) -> dict:
             "rule": s.rule if s else None, "score": s.score if s else None,
             "factors": s.factors if s else {},
             "stations": [] if r is None else station_context(r),
+            # every located earth station of the notice, for the overview map (geo.detail keeps only the nearest)
+            "earth_stations": map_layers.earth_stations(n.notice_id, [g.group_id for g in n.groups], geo),
         }
-    return {"result": json.loads(run.result.model_dump_json()), "context": ctx, "overview": {"gso_arc": gso_arc()}}
+    finding_by_notice = {f.notice_id: f.id for f in run.result.findings}
+    concern = {f.id: f.concern for f in run.result.findings}
+    return {"result": json.loads(run.result.model_dump_json()), "context": ctx, "overview": {"gso_arc": gso_arc()},
+            "map": {"special_interest": map_layers.special_interest(
+                SI.stations(), map_layers.reached_by_groups(run.rows, finding_by_notice), concern)}}
 
 
 def gso_arc(step_deg: int = 1) -> list[dict]:
@@ -143,18 +154,44 @@ def terrestrial(issue: int) -> dict:
         }
     result = json.loads(run.result.model_dump_json())
     result["findings"] = [f for f in result["findings"] if f["concern"] != "none"]
+    reached: dict[str, set[str]] = {}
+    for f in run.result.findings:
+        c = run.calcs.get(f.notice_id)
+        for s in (c.stations if c else ()):
+            reached.setdefault(s["number"], set()).add(f.id)
+    concern = {f.id: f.concern for f in run.result.findings}
     return {"result": result, "context": ctx,
+            # all located notices (raised or not) and every special-interest station, for the overview map
+            "map": {"terrestrial": map_layers.terrestrial(run.ingest.notices, run.result.findings, run.ingest.extra),
+                    "special_interest": map_layers.special_interest(SI.stations(), reached, concern)},
             "omitted": {"not_raised": run.result.screened - len(result["findings"]),
                         "note": f"they are listed in results/terrestrial_{issue}.csv"}}
 
 
-def main() -> int:
-    out = settings.data_dir / "cache"
+GRADED = (("space", 3074), ("terrestrial", 3076))
+
+
+def write(kind: str, issue: int, out: Path | None = None) -> tuple[Path, dict]:
+    """Build and write data/cache/<kind>_<issue>.json; returns the path and the data written."""
+    out = out or settings.data_dir / "cache"
     out.mkdir(parents=True, exist_ok=True)
-    for kind, issue, fn in (("space", 3074, space), ("terrestrial", 3076, terrestrial)):
-        data = fn(issue)
-        p = out / f"{kind}_{issue}.json"
-        p.write_text(json.dumps(data, separators=(",", ":"), sort_keys=True), encoding="utf-8")
+    data = {"space": space, "terrestrial": terrestrial}[kind](issue)
+    p = out / f"{kind}_{issue}.json"
+    p.write_text(json.dumps(data, separators=(",", ":"), sort_keys=True), encoding="utf-8")
+    return p, data
+
+
+def main(argv: list[str] | None = None) -> int:
+    import argparse
+
+    ap = argparse.ArgumentParser(description="Build data/cache/<kind>_<issue>.json for the screen.")
+    ap.add_argument("--kind", choices=["space", "terrestrial"])
+    ap.add_argument("--issue", type=int)
+    args = ap.parse_args(argv)
+    if (args.kind is None) != (args.issue is None):
+        ap.error("--kind and --issue go together")
+    for kind, issue in [(args.kind, args.issue)] if args.kind else GRADED:
+        p, data = write(kind, issue)
         r = data["result"]
         print(f"{p}: {r['screened']} screened, {r['flagged']} flagged, {len(data['context'])} contexts, {p.stat().st_size / 1e6:.2f} MB")
     return 0
