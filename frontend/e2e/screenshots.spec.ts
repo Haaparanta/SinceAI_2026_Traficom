@@ -6,6 +6,13 @@ import { expect, test, type Page, type TestInfo } from "@playwright/test";
 const step = process.env.SCREENSHOTS;
 test.skip(!step, "set SCREENSHOTS=<step> to capture screenshots");
 
+// Dark is the default (PR #41): the desktop-light project opts into light the way a user would, before the first paint.
+test.beforeEach(async ({ page }, info) => {
+  if (info.project.use.colorScheme === "light") {
+    await page.addInitScript(() => { try { localStorage.setItem("filing-radar.theme", "light"); } catch { /* no storage */ } });
+  }
+});
+
 async function shot(page: Page, info: TestInfo, name: string, phoneRegion?: string) {
   const path = `../docs/screenshots/${step}/${name}-${info.project.name}.png`;
   // On the phone the page is very long: capture the part that changed instead of the whole page.
