@@ -53,7 +53,8 @@ test("the ranked list starts with the API's first finding and every badge has a 
   const badges = list(page).locator("[data-concern]");
   const n = await badges.count();
   expect(n).toBeGreaterThan(10);
-  for (const text of await badges.allInnerTexts()) expect(["High", "Medium", "Review", "Low", "Not raised"]).toContain(text.trim());
+  // textContent, not innerText: rows below the fold use content-visibility: auto, so the browser skips their layout
+  for (const text of await badges.allTextContents()) expect(["High", "Medium", "Review", "Low", "Not raised"]).toContain(text.trim());
 });
 
 test("calculation tab shows result, limit, margin and the indicative label from the trace", async ({ page }) => {
