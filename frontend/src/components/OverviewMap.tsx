@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { CONCERN_LABEL, DECISION_LABEL, fmtHz } from "../api";
-import type { AnalysisBundle, Concern, DecisionKind, Region } from "../types";
+import type { AnalysisBundle, Concern, DecisionKind, FindingContext, Region } from "../types";
 import { ConcernBadge } from "./ui";
 
 // Every located datapoint of one analysis on one map: terrestrial notified stations (raised or not), every earth
@@ -60,6 +60,16 @@ function regionExtent(region: Region | null) {
 }
 
 const rank = (c: Concern) => LEVELS.indexOf(c);
+
+/** Why a finding has no point on the map, in plain words: what the filing is, then what geography found. */
+function whereText(ctx: FindingContext | undefined): string {
+  if (!ctx) return "no context for this finding";
+  const n = ctx.notice ?? {};
+  const what = n.orbit === "GSO" && n.longitude_deg != null
+    ? `geostationary satellite at ${Math.abs(n.longitude_deg)} ${n.longitude_deg < 0 ? "W" : "E"}`
+    : n.orbit === "GSO" ? "geostationary satellite" : n.orbit === "NGSO" ? "non-geostationary satellite" : "no position filed";
+  return ctx.geo?.note ? `${what}; ${ctx.geo.note}` : what;
+}
 const fmtLatLon = (lat: number, lon: number, digits: number) =>
   `${Math.abs(lat).toFixed(digits)} ${lat < 0 ? "S" : "N"}, ${Math.abs(lon).toFixed(digits)} ${lon < 0 ? "W" : "E"}`;
 
@@ -72,7 +82,7 @@ function merge(points: Map<string, MapPoint>, p: MapPoint) {
   if (rank(p.concern) < rank(q.concern)) q.concern = p.concern;
 }
 
-function collectPoints(bundle: AnalysisBundle): { points: MapPoint[]; unlocated: number } {
+function collectPoints(bundle: AnalysisBundle): { points: MapPoint[]; unlocated: string[] } {
   const layers = bundle.map ?? {};
   const known = (id: string | null | undefined): id is string => id != null && bundle.context[id] != null;
   const csv = `results/${bundle.result.kind}_${bundle.result.issue}.csv`;
@@ -143,7 +153,7 @@ function collectPoints(bundle: AnalysisBundle): { points: MapPoint[]; unlocated:
     if (p.type !== "special_interest" && p.findingIds.length > 1) p.facts.unshift(`named by ${p.findingIds.length} findings`);
     else if (p.type === "earth_station" && p.findingIds.length === 1) p.facts.unshift(`${p.findingIds[0]}, ${bundle.context[p.findingIds[0]]?.title ?? ""}`);
   }
-  const unlocated = bundle.result.findings.filter((f) => !located.has(f.id)).length;
+  const unlocated = bundle.result.findings.filter((f) => !located.has(f.id)).map((f) => f.id);
   return { points: out, unlocated };
 }
 
@@ -228,6 +238,11 @@ export function OverviewMap({ bundle, region, selected, onSelect }: {
   const drawn = [...onMap].sort((a, b) => Number(isActive(a)) - Number(isActive(b)) || rank(b.concern) - rank(a.concern));
   const current = points.find((p) => p.key === focus) ?? points.find((p) => p.type !== "special_interest" && selected != null && p.findingIds.includes(selected)) ?? null;
   const pick = (p: MapPoint) => { setFocus(p.key); if (p.type !== "special_interest" && p.findingIds[0]) onSelect(p.findingIds[0]); };
+  const byId = new Map(bundle.result.findings.map((f) => [f.id, f]));
+  const unplaced = unlocated
+    .map((id) => ({ id, concern: byId.get(id)?.concern ?? "none", review: (bundle.decisions?.[id]?.decision ?? "open") as ReviewState }))
+    .filter((u) => levels.has(u.concern) && reviews.has(u.review))
+    .sort((a, b) => rank(a.concern) - rank(b.concern) || a.id.localeCompare(b.id));
   const listed = [...visible].sort((a, b) => rank(a.concern) - rank(b.concern) || a.name.localeCompare(b.name));
 
   return (
@@ -260,7 +275,7 @@ export function OverviewMap({ bundle, region, selected, onSelect }: {
           <dl className="grid grid-cols-2 gap-2" aria-label="Map counts">
             <div><dt className="text-muted-foreground text-xs">On the map</dt><dd className="num font-semibold">{onMap.length}</dd></div>
             <div><dt className="text-muted-foreground text-xs">Outside the map</dt><dd className="num font-semibold">{offMap.length}</dd></div>
-            <div className="col-span-2"><dt className="text-muted-foreground text-xs">Findings without a location (satellites, orbits)</dt><dd className="num font-semibold">{unlocated}</dd></div>
+            <div className="col-span-2"><dt className="text-muted-foreground text-xs">Findings without a location (satellites, orbits)</dt><dd className="num font-semibold">{unlocated.length}</dd></div>
           </dl>
           <Chips label="Type" values={TYPES} shown={types} counts={count(points, (p) => p.type)} text={(v) => TYPE_LABEL[v]} onToggle={toggler(setTypes)} />
           <Chips label="Concern" values={LEVELS} shown={levels} counts={count(points, (p) => p.concern)} text={(v) => CONCERN_LABEL[v]} onToggle={toggler(setLevels)} />
@@ -318,6 +333,29 @@ export function OverviewMap({ bundle, region, selected, onSelect }: {
           </ol>
         </div>
       </div>
+
+      {unplaced.length > 0 && (
+        <div>
+          <h3 className="text-sm font-semibold mb-2">{`Findings without a ground position (${unplaced.length})`}</h3>
+          <p className="text-xs text-muted-foreground mb-2">Satellites and orbits have no point on a map of the ground; their visibility from Finland is in each finding's Map tab.</p>
+          <div className="max-h-80 overflow-y-auto rounded-xl border border-border">
+            <ol aria-label="Findings without a ground position" className="text-sm">
+              {unplaced.map(({ id, concern, review }) => (
+                <li key={id} className="row-lazy">
+                  <button type="button" onClick={() => onSelect(id)} aria-current={id === selected}
+                    className={`w-full text-left px-3 py-2 border-b border-border flex flex-wrap items-center gap-x-2 gap-y-0.5 ${id === selected ? "bg-secondary" : "hover:bg-muted"}`}>
+                    <ConcernBadge concern={concern} />
+                    <span className="font-medium">{bundle.context[id]?.title ?? id}</span>
+                    <span className="shrink-0 rounded-full border border-border px-2 py-0.5 text-[11px] text-secondary-foreground">{REVIEW_LABEL[review]}</span>
+                    <span className="num text-xs text-muted-foreground">{id}</span>
+                    <span className="basis-full text-xs text-muted-foreground">{whereText(bundle.context[id])}</span>
+                  </button>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
