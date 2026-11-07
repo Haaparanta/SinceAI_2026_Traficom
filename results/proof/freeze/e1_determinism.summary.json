@@ -1,5 +1,5 @@
 {
-  "status": "FAIL",
+  "status": "PASS",
   "sha256": {
     "results/space_3074.csv": "538145058979cdb90dbb63f098388bed69067936c7f107be35219fc3a873f4b7",
     "results/space_3074.json": "376ac830c42f173a1560acd2ec4af52926173229e8a2bf0fafbb2dde45fea6ce",
@@ -10,7 +10,7 @@
     "data/cache/terrestrial_3076.json": "380620e72dbda6b215082b0ac72b5dfe2fa3d002c21417c9848f1571e4b35c5e"
   },
   "seconds": [
-    73.5,
-    84.4
+    168.6,
+    117.9
   ]
 }
