@@ -133,6 +133,25 @@ def main() -> int:
                      f"<p>{R.esc(f.reason)}</p>" + R.table(["Input", "Value", "Unit", "Evidence"], rows)
                      + f"<p class='sub'>{R.esc(' | '.join(f.calc.notes))}</p></details>")
 
+    # h1: where it comes from, and what the filed effective heights change against the old height-above-ground method
+    def h1_kind(src: str) -> str:
+        return ("filed effective height towards the receiver (fxm_ant_hgt)" if src.startswith("filed effective height") else
+                "filed maximum effective height (fxm_ant.eff_hgtmax)" if src.startswith("filed maximum") else
+                "antenna height above ground (fxm_ant.hgt_agl)" if "hgt_agl" in src else "assumed for the class [hypothesis]")
+    h1_counts = Counter(h1_kind(c.heff_source) for _, c, _ in computed)
+    h1_rows = []
+    for n, c, f in computed:
+        if not c.heff_source.startswith("filed effective height"):
+            continue
+        ha = n.antenna_height_m
+        old = P.field_strength(n.freq_hz / 1e6, list(c.segments), ha, n.erp_dbw).e_dbuv_m if ha else None
+        land = all(k == "Land" for _, k in c.segments)
+        used = P.short_path_h1(c.distance_km, c.heff_m, ha) if ha and land and c.distance_km < 15 else c.heff_m
+        h1_rows.append([f.id, f"{n.administration} {n.site_name}", f"{c.distance_km:g}", "-" if ha is None else f"{ha:g}",
+                        f"{c.heff_m:g}", f"{used:.1f}", "-" if old is None else f"{old:g}", f"{c.e_dbuv_m:g}",
+                        "-" if old is None else f"{c.e_dbuv_m - old:+.2f}", f.concern])
+    h1_rows.sort(key=lambda r: -abs(float(r[8])) if r[8] != "-" else 0)
+
     trig_rows = [[t.id, f"{t.f_min_mhz:g}-{t.f_max_mhz:g}", f"{t.threshold_dbuv_m:g}", f"{t.ref_bw_khz:g} kHz", t.review] for t in TR.thresholds()]
     status_rows = [[k, str(v)] for k, v in Counter(c.reason or "computed" for c in run.calcs.values()).most_common(12)]
     body = (
@@ -145,7 +164,7 @@ def main() -> int:
         + "</div><div><h2>Engine</h2>"
         + R.table(["Item", "Value"], [["Method", P.ENGINE], ["Validation", "52 ITU reference cases, max difference 0.0 dB (tests/test_p1546.py)"],
                                       ["Time / locations", "10 % / 50 % (T/R 25-08 Annex 1)"], ["Receiving height", "10 m, rural clutter 10 m"],
-                                      ["Terrain", "not used (pathinfo 0): transmitting height above ground as effective height"],
+                                      ["Terrain", "no profile (pathinfo 0); h1 from the notice's filed effective heights where filed, see below"],
                                       ["Sea", "zones outside every loaded country, 'Cold' sea (Baltic)"]])
         + "<h2>Special-interest stations on the same channel</h2><p class='sub'>For each computed notice, every co-channel "
           "station of the Traficom table within 1 000 km gets its own P.1546 field strength over the path to the station, at "
@@ -159,10 +178,19 @@ def main() -> int:
                    for n, c, f in computed if c.stations])
         + "<h2>T/R 25-08 triggers</h2>" + R.table(["Row", "MHz", "dB(uV/m)", "Per", "Review"], trig_rows)
         + "</div></div>"
+        + "<h2>Transmitting antenna height h1</h2><p class='sub'>P.1546 takes h1 as the antenna's height above the average "
+          "terrain 3 to 15 km out towards the receiver. A notice can file it every 10 deg (fxm_ant_hgt); the value at the "
+          "bearing to the receiver is interpolated between the two nearest azimuths. On land paths under 15 km the engine "
+          "blends it with the height above ground (Annex 5 section 3.1.1); on a path with sea it is not taken below 1 m "
+          "(Annex 5 section 4.2).</p>"
+        + R.table(["h1 source", "Notices"], [[k, str(v)] for k, v in h1_counts.most_common()])
+        + "<p class='sub'>Notices with filed effective heights: field strength with the height above ground as h1 (the "
+          "previous method) and with the filed height. No concern level changes.</p>"
+        + R.table(["Finding", "Notice", "km", "ha m", "h1 towards receiver m", "h1 used m", "E before", "E now", "change dB", "Concern"], h1_rows)
         + "<h2>Cases for review</h2><p class='sub'>Every high, medium and review finding with its full trace.</p>" + "".join(cards)
         + "<h2>Why the other notices were not computed</h2>" + R.table(["Reason", "Notices"], status_rows)
     )
-    summary = {"status": status, "issue": issue, "computed": len(computed), "concern": dict(counts),
+    summary = {"status": status, "issue": issue, "computed": len(computed), "concern": dict(counts), "h1_sources": dict(h1_counts),
                "above_free_space": above_fs, "rising_curves": rising,
                "cases": [{"id": f.id, "notice": n.notice_id, "site": n.site_name, "mhz": n.freq_hz / 1e6, "km": c.distance_km,
                           "e": c.e_dbuv_m, "trigger": c.trigger_dbuv_m, "margin": c.margin_db, "concern": f.concern}

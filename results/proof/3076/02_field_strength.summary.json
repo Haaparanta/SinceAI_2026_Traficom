@@ -9,6 +9,11 @@
     "low": 52,
     "none": 3992
   },
+  "h1_sources": {
+    "antenna height above ground (fxm_ant.hgt_agl)": 20,
+    "assumed for the class [hypothesis]": 13,
+    "filed effective height towards the receiver (fxm_ant_hgt)": 32
+  },
   "above_free_space": [],
   "rising_curves": [],
   "cases": [
@@ -95,7 +100,7 @@
       "site": "KRL RUSKEALA",
       "mhz": 793.5,
       "km": 12.3,
-      "e": 24.42,
+      "e": 17.82,
       "trigger": null,
       "margin": null,
       "concern": "review"
@@ -106,7 +111,7 @@
       "site": "KRL RUSKEALA",
       "mhz": 794.74,
       "km": 12.3,
-      "e": 24.42,
+      "e": 17.81,
       "trigger": null,
       "margin": null,
       "concern": "review"
@@ -117,7 +122,7 @@
       "site": "KRL SORTAVALA",
       "mhz": 793.5,
       "km": 13.9,
-      "e": 34.88,
+      "e": 37.75,
       "trigger": null,
       "margin": null,
       "concern": "review"
@@ -128,7 +133,7 @@
       "site": "KRL RUSKEALA",
       "mhz": 793.5,
       "km": 13.9,
-      "e": 32.77,
+      "e": 34.93,
       "trigger": null,
       "margin": null,
       "concern": "review"
@@ -139,7 +144,7 @@
       "site": "MUR TITOVKA",
       "mhz": 793.5,
       "km": 95.1,
-      "e": -13.88,
+      "e": -20.91,
       "trigger": null,
       "margin": null,
       "concern": "review"
@@ -150,7 +155,7 @@
       "site": "MUR TITOVKA",
       "mhz": 794.74,
       "km": 95.1,
-      "e": -13.89,
+      "e": -20.92,
       "trigger": null,
       "margin": null,
       "concern": "review"
