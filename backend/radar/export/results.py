@@ -16,6 +16,7 @@ import io
 import json
 from pathlib import Path
 
+from radar.adapters import traficom_table
 from radar.config import ROOT
 from radar.calc import pfd as PFD
 from radar.models import ResultRow
@@ -210,6 +211,7 @@ def concern_order_ok(rows: list[ResultRow]) -> bool:
 
 def terrestrial_rows(run) -> list[ResultRow]:
     by_id = {n.notice_id: n for n in run.ingest.notices}
+    bands = {b.id: b for b in traficom_table.subbands()}
     out = []
     for f in run.result.findings:
         n = by_id[f.notice_id]
@@ -220,7 +222,8 @@ def terrestrial_rows(run) -> list[ResultRow]:
             administration=n.administration, network_or_station=n.site_name or (f"zone {e.zone_id}" if e.zone_id else "unknown"),
             freq_min_mhz=None if n.freq_hz is None else round((n.freq_hz - (n.bandwidth_hz or 0) / 2) / 1e6, 6),
             freq_max_mhz=None if n.freq_hz is None else round((n.freq_hz + (n.bandwidth_hz or 0) / 2) / 1e6, 6),
-            direction=n.change, finnish_match=None, special_interest_station_ids=", ".join(f.matched_station_numbers) or None, overlap_mhz=None,
+            direction=n.change, finnish_match=_finnish_match(f.matched_subband_ids, bands),
+            special_interest_station_ids=", ".join(f.matched_station_numbers) or None, overlap_mhz=None,
             geo_relevance=f.geo_relevance, calc_method=f.calc.method,
             calc_value=f.calc.result_value, calc_unit=f.calc.result_unit or None, limit_value=f.calc.limit_value,
             margin_db=f.calc.margin_db, concern=f.concern, reason=f.reason,
