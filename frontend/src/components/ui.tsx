@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { KeyboardEvent, ReactNode } from "react";
 import { CONCERN_LABEL } from "../api";
 import type { Concern } from "../types";
 
@@ -26,10 +26,21 @@ export function Card({ children, className = "" }: { children: ReactNode; classN
 export function Segmented<T extends string>({ value, options, onChange, label }: {
   value: T; options: { value: T; label: string }[]; onChange: (v: T) => void; label: string;
 }) {
+  // Tabs pattern (WAI-ARIA APG): one tab stop; arrow keys, Home and End move and select.
+  const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    const i = options.findIndex((o) => o.value === value);
+    const next = { ArrowRight: i + 1, ArrowDown: i + 1, ArrowLeft: i - 1, ArrowUp: i - 1, Home: 0, End: options.length - 1 }[e.key];
+    if (next === undefined) return;
+    e.preventDefault();
+    const n = (next + options.length) % options.length;
+    onChange(options[n].value);
+    (e.currentTarget.children[n] as HTMLElement | undefined)?.focus();
+  };
   return (
-    <div role="tablist" aria-label={label} className="inline-flex max-w-full overflow-x-auto rounded-full bg-muted p-1 gap-1">
+    <div role="tablist" aria-label={label} onKeyDown={onKeyDown} className="inline-flex max-w-full overflow-x-auto rounded-full bg-muted p-1 gap-1">
       {options.map((o) => (
-        <button key={o.value} role="tab" aria-selected={value === o.value} onClick={() => onChange(o.value)}
+        <button key={o.value} type="button" role="tab" aria-selected={value === o.value} tabIndex={value === o.value ? 0 : -1}
+          onClick={() => onChange(o.value)}
           className={`min-h-9 shrink-0 whitespace-nowrap rounded-full px-4 text-sm font-medium transition-colors ${value === o.value
             ? "bg-card text-foreground shadow-soft" : "text-muted-foreground hover:text-foreground"}`}>
           {o.label}

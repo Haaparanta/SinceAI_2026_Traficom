@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { api } from "../api";
 import type { DraftResult, Explanation, Letter } from "../types";
 
@@ -22,7 +22,7 @@ function Cited({ ids, onEvidence }: { ids: string[]; onEvidence: (id: string) =>
     <div className="flex flex-wrap gap-1.5 text-xs" aria-label="Cited evidence">
       <span className="text-muted-foreground">Cites</span>
       {ids.map((id) => (
-        <button key={id} onClick={() => onEvidence(id)} className="num text-primary underline underline-offset-2">{id}</button>
+        <button key={id} type="button" onClick={() => onEvidence(id)} className="num text-primary underline underline-offset-2">{id}</button>
       ))}
     </div>
   );
@@ -37,38 +37,62 @@ export function DraftsPanel({ findingId, onEvidence }: { findingId: string; onEv
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
-  useEffect(() => { setExplanation(null); setLetter(null); setBody(""); setError(null); }, [findingId]);
+  // The finding on screen now: a draft that arrives after the reviewer moved on is dropped, not shown on the wrong finding.
+  const current = useRef(findingId);
+  useEffect(() => {
+    current.current = findingId;
+    setExplanation(null); setLetter(null); setBody(""); setError(null); setBusy(null);
+  }, [findingId]);
+  const copiedTimer = useRef<number | undefined>(undefined);
+  useEffect(() => () => window.clearTimeout(copiedTimer.current), []);
 
   async function run(task: "explain" | "letter") {
+    const id = findingId;
     setBusy(task); setError(null);
     try {
-      if (task === "explain") setExplanation(await api.explain(findingId));
-      else { const l = await api.letter(findingId); setLetter(l); setBody(l.output.body_markdown); }
+      if (task === "explain") {
+        const x = await api.explain(id);
+        if (current.current === id) setExplanation(x);
+      } else {
+        const l = await api.letter(id);
+        if (current.current === id) { setLetter(l); setBody(l.output.body_markdown); }
+      }
     } catch (e) {
-      setError(`Could not prepare the ${task === "explain" ? "explanation" : "letter"}. ${String(e)}`);
-    } finally { setBusy(null); }
+      if (current.current === id) setError(`Could not prepare the ${task === "explain" ? "explanation" : "letter"}. ${String(e)}`);
+    } finally {
+      if (current.current === id) setBusy(null);
+    }
   }
 
   async function copy() {
-    try { await navigator.clipboard.writeText(body); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch { setCopied(false); }
+    try {
+      await navigator.clipboard.writeText(body);
+      setCopied(true);
+      window.clearTimeout(copiedTimer.current);
+      copiedTimer.current = window.setTimeout(() => setCopied(false), 2000);
+    } catch { setCopied(false); }
   }
   const download = () => {
-    const blob = new Blob([`# ${letter!.output.subject}\n\n${body}\n`], { type: "text/markdown" });
+    if (!letter) return;
+    const blob = new Blob([`# ${letter.output.subject}\n\n${body}\n`], { type: "text/markdown" });
+    const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
+    a.href = url;
     a.download = `letter-${findingId}.md`;
+    document.body.appendChild(a);   // Firefox needs the link in the document
     a.click();
-    URL.revokeObjectURL(a.href);
+    a.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);   // revoking at once can cancel the download in Safari
   };
 
   return (
     <section aria-label="Explanation and letter" className="rounded-2xl border border-border p-3 space-y-3">
       <div className="flex flex-wrap gap-2">
-        <button onClick={() => run("explain")} disabled={busy !== null}
+        <button type="button" onClick={() => run("explain")} disabled={busy !== null}
           className="min-h-11 rounded-full bg-secondary text-secondary-foreground px-4 text-sm font-semibold disabled:opacity-40">
           {busy === "explain" ? "Preparing explanation" : "Explain in plain language"}
         </button>
-        <button onClick={() => run("letter")} disabled={busy !== null}
+        <button type="button" onClick={() => run("letter")} disabled={busy !== null}
           className="min-h-11 rounded-full border border-border px-4 text-sm font-semibold hover:bg-muted disabled:opacity-40">
           {busy === "letter" ? "Preparing letter" : "Draft letter"}
         </button>
@@ -95,10 +119,11 @@ export function DraftsPanel({ findingId, onEvidence }: { findingId: string; onEv
           <textarea id={`letter-${findingId}`} value={body} onChange={(e) => setBody(e.target.value)} rows={14}
             className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm num leading-5 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" />
           <div className="flex flex-wrap gap-2">
-            <button onClick={copy} className="min-h-11 rounded-full border border-border px-4 text-sm font-semibold hover:bg-muted">
+            <button type="button" onClick={copy} className="min-h-11 rounded-full border border-border px-4 text-sm font-semibold hover:bg-muted">
               {copied ? "Copied" : "Copy text"}
             </button>
-            <button onClick={download} className="min-h-11 rounded-full border border-border px-4 text-sm font-semibold hover:bg-muted">
+            <span className="sr-only" role="status">{copied ? "Letter text copied" : ""}</span>
+            <button type="button" onClick={download} className="min-h-11 rounded-full border border-border px-4 text-sm font-semibold hover:bg-muted">
               Download .md
             </button>
           </div>

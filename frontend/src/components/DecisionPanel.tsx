@@ -51,7 +51,7 @@ export function DecisionPanel({ findingId, reviewer, onDecided }: {
         className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" />
       <div className="flex flex-wrap gap-2">
         {OPTIONS.map((o) => (
-          <button key={o.value} onClick={() => decide(o.value)} disabled={!!missing || busy}
+          <button key={o.value} type="button" onClick={() => decide(o.value)} disabled={!!missing || busy}
             className={`min-h-11 rounded-full px-4 text-sm font-semibold transition active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed ${o.className}`}>
             {o.label}
           </button>

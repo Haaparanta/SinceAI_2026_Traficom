@@ -31,3 +31,29 @@ def test_non_canonical_host_is_not_indexed():
 def test_large_responses_are_gzipped():
     r = client.get("/api/analysis/space/3074", headers={"accept-encoding": "gzip"})
     assert r.headers.get("content-encoding") == "gzip"
+
+
+def test_security_headers_on_pages():
+    r = client.get("/health", headers={"host": "filingradar.click"})
+    h = r.headers
+    assert "default-src 'self'" in h["Content-Security-Policy"]
+    assert "object-src 'none'" in h["Content-Security-Policy"]
+    assert h["Strict-Transport-Security"].startswith("max-age=")
+    assert "camera=()" in h["Permissions-Policy"]
+    assert h["Cross-Origin-Opener-Policy"] == "same-origin"
+
+
+def test_api_docs_keep_working_without_csp():
+    # Swagger UI under /api/docs loads from a CDN, so the page CSP is not applied to /api/.
+    assert "Content-Security-Policy" not in client.get("/api/issues").headers
+
+
+def test_inline_script_hashes(tmp_path):
+    import base64
+    import hashlib
+
+    from radar.serve import inline_script_hashes
+    p = tmp_path / "index.html"
+    p.write_text('<script>var a=1</script><script type="application/ld+json">{}</script><script src="/x.js"></script>')
+    expected = "'sha256-" + base64.b64encode(hashlib.sha256(b"var a=1").digest()).decode() + "'"
+    assert inline_script_hashes(p) == [expected]   # only the executable inline script, not JSON-LD or src scripts

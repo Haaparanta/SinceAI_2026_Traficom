@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { api } from "./api";
 import { AuditLogView } from "./components/AuditLogView";
 import { CalcTraceView } from "./components/CalcTraceView";
 import { DecisionPanel } from "./components/DecisionPanel";
 import { DraftsPanel } from "./components/DraftsPanel";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 import { FindingCard } from "./components/FindingCard";
 import { MapView } from "./components/MapView";
 import { RankedList } from "./components/RankedList";
@@ -71,10 +72,19 @@ export default function App() {
   const finding = bundle?.result.findings.find((f) => f.id === selected) ?? null;
   const ctx = finding ? bundle?.context[finding.id] : undefined;
   const r = bundle?.result;
-  const showEvidence = (id: string) => { setHighlight(id); setTimeout(() => setHighlight(null), 2500); };
+  const highlightTimer = useRef<number | undefined>(undefined);
+  const showEvidence = (id: string) => {
+    window.clearTimeout(highlightTimer.current);
+    setHighlight(id);
+    highlightTimer.current = window.setTimeout(() => setHighlight(null), 2500);
+  };
+  useEffect(() => () => window.clearTimeout(highlightTimer.current), []);
 
   return (
     <div className="bg-sigil min-h-screen">
+      <a href="#findings" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:shadow-soft">
+        Skip to findings
+      </a>
       <div className="mx-auto max-w-[1600px] px-4 py-4 flex flex-col gap-4 lg:h-screen">
         <header className="flex flex-wrap items-end gap-4">
           <div className="mr-auto">
@@ -112,10 +122,17 @@ export default function App() {
           )}
         </header>
 
-        {error && <Card className="p-4 text-sm"><b>Could not load data.</b> Start the API (make api) and build the cache (scripts/build_cache.py). {error}</Card>}
+        {error && (
+          <Card className="p-4 text-sm" >
+            <p role="alert"><b>Could not load the analysis.</b> Reload the page to try again.</p>
+            <p className="mt-1 text-xs text-muted-foreground break-words">
+              {import.meta.env.DEV ? "Running locally: start the API (make api) and build the cache (scripts/build_cache.py). " : ""}{error}
+            </p>
+          </Card>
+        )}
 
         {bundle && (
-          <main className="grid gap-4 flex-1 min-h-0 grid-cols-1 lg:grid-cols-[340px_minmax(0,1fr)_420px]">
+          <main id="findings" tabIndex={-1} className="focus:outline-none grid gap-4 flex-1 min-h-0 grid-cols-1 lg:grid-cols-[340px_minmax(0,1fr)_420px]">
             <Card className="min-h-0 overflow-hidden flex flex-col max-h-[70vh] lg:max-h-none">
               <RankedList bundle={bundle} selected={selected} onSelect={(id) => { setSelected(id); }} />
               {bundle.omitted && <p className="text-xs text-muted-foreground p-3 border-t border-border">{bundle.omitted.not_raised.toLocaleString("en")} notices not raised; {bundle.omitted.note}.</p>}
@@ -125,18 +142,22 @@ export default function App() {
                 <Segmented label="Central view" value={tab} onChange={setTab}
                   options={[{ value: "spectrum", label: "Spectrum" }, { value: "map", label: "Map" }, { value: "calculation", label: "Calculation" }, { value: "audit", label: "Audit log" }]} />
               </div>
+              <ErrorBoundary key={`${tab}-${selected}`} label="view">
               {tab === "audit" ? <AuditLogView kind={bundle.result.kind} issue={bundle.result.issue} version={auditVersion} onSelect={setSelected} />
                 : !finding || !ctx ? <Empty>Select a finding.</Empty>
                 : tab === "spectrum" ? <SpectrumView ctx={ctx} />
                 : tab === "map" ? <MapView ctx={ctx} region={region} points={points} />
                 : <CalcTraceView calc={finding.calc} onEvidence={showEvidence} />}
+              </ErrorBoundary>
             </Card>
             <Card className="min-h-0 overflow-y-auto">
+              <ErrorBoundary key={selected ?? "none"} label="finding">
               {finding ? (
                 <FindingCard finding={finding} ctx={ctx} highlight={highlight}
                   drafts={<DraftsPanel findingId={finding.id} onEvidence={showEvidence} />}
                   decision={<DecisionPanel findingId={finding.id} reviewer={reviewer} onDecided={onDecided} />} />
               ) : <Empty>Select a finding.</Empty>}
+              </ErrorBoundary>
             </Card>
           </main>
         )}
