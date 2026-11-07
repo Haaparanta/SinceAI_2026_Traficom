@@ -126,6 +126,9 @@ def terrestrial(issue: int) -> dict:
                         "segments": [{"km": d, "zone": k} for d, k in c.segments],
                         "e_dbuv_m": c.e_dbuv_m, "free_space_dbuv_m": c.free_space_dbuv_m}},
             "rule": None, "score": None, "factors": {},
+            "stations": [{"number": s["number"], "class": s["class"], "lat": s["lat"], "lon": s["lon"], "centre_hz": s["centre_hz"],
+                          "row": s["row"], "reach": {"distance_km": s["distance_km"], "e_dbuv_m": s["e_dbuv_m"],
+                                                     "margin_db": s["margin_db"], "h2_m": s["h2_m"]}} for s in c.stations],
         }
     result = json.loads(run.result.model_dump_json())
     result["findings"] = [f for f in result["findings"] if f["concern"] != "none"]

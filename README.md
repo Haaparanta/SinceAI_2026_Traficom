@@ -75,7 +75,7 @@ Methods and every parameter are listed in [`results/README.md`](results/README.m
 
 | Check | Command | What it shows |
 |---|---|---|
-| Unit and data tests | `make test` | 346 Python tests (the data tests skip without `data/derived/` and the XLS): formulas against hand-worked values, golden cases, contracts, invariants on 3074 and 3076 |
+| Unit and data tests | `make test` | 352 Python tests (the data tests skip without `data/derived/` and the XLS): formulas against hand-worked values, golden cases, contracts, invariants on 3074 and 3076 |
 | P.1546 engine | part of `make test` | the ITU validation suite (52 reference cases) reproduces to 0.0 dB |
 | Evidence | `make check-evidence ISSUE=3074` | every citation re-opened; tamper tests prove a changed excerpt fails |
 | Stage reports | `make index`, then open `reports/index.html` (or the `reports` entry in `.claude/launch.json`) | one HTML page per build step: counts in and out, charts, maps, ten random rows, PASS or FAIL |
@@ -89,7 +89,7 @@ Methods and every parameter are listed in [`results/README.md`](results/README.m
 
 Read [`AGENTS.md`](AGENTS.md) first (also linked as `CLAUDE.md` and `.cursorrules`): the rules, data contracts and who owns which folder. Work on a branch `feat/<area>-<thing>` and open a pull request against `main`; nothing is committed straight to `main`.
 
-**Setup for the tests.** `uv sync` and `npm --prefix frontend install` from the quick start, then once `npx --prefix frontend playwright install chromium` for the end-to-end tests. Playwright starts its own API on port 8100 and dev server on port 5180, so both ports must be free.
+**Setup for the tests.** `uv sync` and `npm --prefix frontend install` from the quick start, then once `npx --prefix frontend playwright install chromium` for the end-to-end tests. Playwright starts its own API on port 8100 and dev server on port 5287, so both ports must be free; E2E_API_PORT and E2E_WEB_PORT pick others.
 
 **Before every commit**, run all of them:
 

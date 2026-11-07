@@ -117,6 +117,13 @@ def check_terrestrial(result: AnalysisResult) -> list[Check]:
             elif e.kind == "calculation" and e.locator.startswith("border("):
                 c = calc(e.locator[len("border(notice_id="):-1])
                 found = TR.border_excerpt(c) if c.status == "computed" else c.status
+            elif e.kind == "special_interest_row":
+                st = SI.by_row().get(int(e.locator.split("=", 1)[1]))
+                found = SI.excerpt(st) if st else None
+            elif e.kind == "calculation" and e.locator.startswith("p1546_station("):
+                nid, num = e.locator[len("p1546_station(notice_id="):-1].split(";station=")
+                w = next((s for s in calc(nid).stations if s["number"] == num), None)
+                found = TR.station_excerpt(w) if w else None
             elif e.kind == "calculation" and e.locator.startswith("p1546("):
                 c = calc(e.locator[len("p1546(notice_id="):-1])
                 found = f"E {c.e_dbuv_m:.2f} dB(uV/m); free space {c.free_space_dbuv_m:.2f}" if c.status == "computed" else c.status

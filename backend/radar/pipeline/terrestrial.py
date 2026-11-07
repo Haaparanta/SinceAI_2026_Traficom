@@ -8,6 +8,12 @@ For every located land-mobile notice of another administration within MAX_DISTAN
      50 % locations, 10 m receiving height
   4. the ECC/ERC T/R 25-08 Annex 1 trigger for the band plus 10 log10(channel / 25 kHz); margin = trigger - E
 
+Special-interest stations (Traficom XLS): for a computed notice, every station whose protected channel (RX
+frequency +- half the bandwidth) overlaps the notice's channel and lies within MAX_DISTANCE_KM gets its own P.1546
+field strength, over the path from the transmitter to the station and at the station's antenna height above ground,
+against the same trigger. The concern is the worse of the border check and the worst station; the trace shows the
+calculation that decided it.
+
 Concern [HYPOTHESIS rules until Q11, Q12]:
   new or modified notice, E above the trigger -> high; within 6 dB below -> medium; further below -> low
   recorded (unchanged) notice, E above the trigger -> medium; otherwise low
@@ -29,6 +35,9 @@ from radar.models import AnalysisResult, CalcInput, CalcTrace, Evidence, Finding
 from scoring.geometry import Region
 
 MAX_DISTANCE_KM = 1000.0         # P.1546 validity limit
+MAX_STATION_EVIDENCE = 5          # stations cited per finding; all of them are in the results file
+P1546_MIN_H2_SEA_M = 3.0         # P.1546-6: receiving antenna below 3 m adjacent to sea is outside the method
+STATION_DEFAULT_H2_M = 10.0     # receiving height when the sheet gives none (the T/R 25-08 reference height)
 NO_CRITERION_REVIEW_KM = 100.0   # [HYPOTHESIS] without a criterion, only stations this close go to review (Q12)
 WITHIN_DB_MEDIUM = 6.0           # [HYPOTHESIS] within 6 dB of the trigger is still worth a look (Q12)
 DEFAULT_HEIGHT = {"ML": 1.5, "MO": 1.5}   # [HYPOTHESIS] vehicle or handheld height when none is filed
@@ -118,6 +127,7 @@ class TerrestrialCalc:
     trigger_dbuv_m: float | None = None
     margin_db: float | None = None
     notes: list[str] = field(default_factory=list)
+    stations: list[dict] = field(default_factory=list)     # co-channel special-interest stations, worst first
 
 
 def evaluate(n: TerrestrialNotice, extra: T.NoticeExtra) -> TerrestrialCalc:
@@ -159,10 +169,85 @@ def evaluate(n: TerrestrialNotice, extra: T.NoticeExtra) -> TerrestrialCalc:
         c.margin_db = round(c.trigger_dbuv_m - fs.e_dbuv_m, 2)
     if extra.directivity == "D" and n.azimuth_deg is not None:
         c.notes.append(f"directional antenna, maximum radiation at {n.azimuth_deg:g} deg; no pattern applied (conservative)")
+    c.stations = station_checks(n, heff, c.trigger_dbuv_m)
     return c
 
 
+def co_channel_stations(n: TerrestrialNotice) -> list:
+    from radar.adapters import special_interest as SI
+    half = (n.bandwidth_hz or 0) // 2
+    lo, hi = n.freq_hz - half, n.freq_hz + half
+    out = []
+    for s in SI.stations():
+        s_lo, s_hi = s.centre_hz - s.bandwidth_hz // 2, s.centre_hz + s.bandwidth_hz // 2
+        if (min(hi, s_hi) - max(lo, s_lo) > 0) or (lo == hi and s_lo <= lo < s_hi):
+            out.append(s)
+    return out
+
+
+def station_checks(n: TerrestrialNotice, heff: float, trigger: float | None) -> list[dict]:
+    """P.1546 field strength at every co-channel special-interest station within MAX_DISTANCE_KM, worst first."""
+    from radar.calc.p1546 import field_strength
+    from scoring.geometry import haversine_km
+
+    out = []
+    for s in co_channel_stations(n):
+        d = haversine_km(n.lat, n.lon, s.lat, s.lon)
+        if d > MAX_DISTANCE_KM:
+            continue
+        h2 = max(s.antenna_height_m or STATION_DEFAULT_H2_M, 1.0)
+        h2_source = "antenna height above ground (sheet)" if s.antenna_height_m else f"not filed; {STATION_DEFAULT_H2_M:g} m assumed"
+        segs = path_segments(round(n.lat, 5), round(n.lon, 5), round(s.lat, 5), round(s.lon, 5), round(max(d, 0.04), 3))
+        if segs[-1][1] != "Land" and h2 < P1546_MIN_H2_SEA_M:
+            h2_source = f"{h2:g} m raised to {P1546_MIN_H2_SEA_M:g} m: P.1546 is not valid below that next to sea"
+            h2 = P1546_MIN_H2_SEA_M
+        fs = field_strength(n.freq_hz / 1e6, list(segs), heff, n.erp_dbw, rx_height_m=h2)
+        out.append({"number": s.station_number, "row": s.source_row, "class": s.licence_class, "lat": s.lat, "lon": s.lon,
+                    "centre_hz": s.centre_hz, "distance_km": round(d, 1), "h2_m": h2,
+                    "h2_source": h2_source,
+                    "segments": segs, "e_dbuv_m": fs.e_dbuv_m,
+                    "margin_db": None if trigger is None else round(trigger - fs.e_dbuv_m, 2)})
+    return sorted(out, key=lambda r: (-r["e_dbuv_m"], r["distance_km"], r["number"]))
+
+
+def station_excerpt(s: dict) -> str:
+    return f"E {s['e_dbuv_m']:.2f} dB(uV/m) at station {s['number']}, {s['distance_km']:g} km, h2 {s['h2_m']:g} m"
+
+
+def _level(n: TerrestrialNotice, margin: float | None, distance_km: float) -> str:
+    if margin is None:
+        return "review" if distance_km <= NO_CRITERION_REVIEW_KM else "low"
+    over = margin < 0
+    if n.change in ("new", "modified"):
+        return "high" if over else ("medium" if margin < WITHIN_DB_MEDIUM else "low")
+    return "medium" if over else "low"
+
+
 def concern(n: TerrestrialNotice, c: TerrestrialCalc) -> tuple[str, str]:
+    """The worse of the border check and the worst co-channel special-interest station (decides the trace too)."""
+    level, text = border_concern(n, c)
+    if c.status != "computed" or not c.stations:
+        return level, text
+    w = c.stations[0]
+    s_level = _level(n, w["margin_db"], w["distance_km"])
+    k = len(c.stations)
+    who = f"special-interest station {w['number']}" if k == 1 else f"{k} co-channel special-interest stations, worst {w['number']}"
+    at = (f"{who}: {w['distance_km']:g} km, field strength {w['e_dbuv_m']:g} dB(uV/m) at {w['h2_m']:g} m"
+          + ("" if w["margin_db"] is None else
+             f", {'exceeds the trigger by ' + format(-w['margin_db'], 'g') + ' dB' if w['margin_db'] < 0 else format(w['margin_db'], 'g') + ' dB below the trigger'}"))
+    if CONCERN_ORDER[s_level] > CONCERN_ORDER[level]:
+        return s_level, f"{text}; {at} (decides)"
+    return level, f"{text}; {at}"
+
+
+def station_decides(n: TerrestrialNotice, c: TerrestrialCalc) -> bool:
+    if c.status != "computed" or not c.stations:
+        return False
+    w = c.stations[0]
+    return CONCERN_ORDER[_level(n, w["margin_db"], w["distance_km"])] > CONCERN_ORDER[border_concern(n, c)[0]]
+
+
+def border_concern(n: TerrestrialNotice, c: TerrestrialCalc) -> tuple[str, str]:
     if c.status == "not_applicable":
         return "none", c.reason
     if c.status == "no_input":
@@ -250,11 +335,50 @@ def run(issue: int) -> TerrestrialRun:
                 result_value=c.e_dbuv_m, result_unit="dB(uV/m)", limit_value=c.trigger_dbuv_m, limit_evidence_id=t_ev,
                 margin_db=c.margin_db, label="indicative",
                 notes=[f"h1: {c.heff_source}", "no antenna pattern applied (conservative)"] + c.notes)
+            if c.stations:
+                from radar.adapters import special_interest as SI
+                rows = SI.by_row()
+                st_ev = {}
+                for st in c.stations[:MAX_STATION_EVIDENCE]:
+                    e_st = SI.evidence(rows[st["row"]], f"E-{len(ev) + 1:03d}")
+                    ev.append(e_st)
+                    st_ev[st["number"]] = e_st.id
+                w = c.stations[0]
+                ws_ev = add("calculation", "radar.calc.p1546 (ITU-R P.1546-6 reference implementation)",
+                            f"p1546_station(notice_id={n.notice_id};station={w['number']})", station_excerpt(w))
+                if station_decides(n, c):
+                    trace = CalcTrace(
+                        method="p1546_field_strength",
+                        inputs=[CalcInput(name="f frequency", value=n.freq_hz / 1e6, unit="MHz", evidence_id=n_ev),
+                                CalcInput(name="e.r.p.", value=n.erp_dbw, unit="dBW", evidence_id=a_ev),
+                                CalcInput(name="h1 transmitting antenna height", value=c.heff_m, unit="m", evidence_id=a_ev),
+                                CalcInput(name=f"d distance to special-interest station {w['number']}", value=w["distance_km"], unit="km",
+                                          evidence_id=st_ev[w["number"]]),
+                                CalcInput(name="path zones", value="; ".join(f"{d:g} km {k}" for d, k in w["segments"]), unit="",
+                                          evidence_id=ws_ev),
+                                CalcInput(name="time percentage", value=10.0, unit="%", evidence_id=ws_ev),
+                                CalcInput(name="h2 receiving height (station antenna)", value=w["h2_m"], unit="m",
+                                          evidence_id=st_ev[w["number"]]),
+                                CalcInput(name="bandwidth correction 10 log10(B/25 kHz)", value=c.bc_db, unit="dB",
+                                          evidence_id=t_ev or n_ev)],
+                        formula="E = P.1546-6(f, t = 10 %, h1, h2 = station antenna height, path zones to the station) scaled to the "
+                                "e.r.p.; margin = (trigger + BC) - E",
+                        result_value=w["e_dbuv_m"], result_unit="dB(uV/m)", limit_value=c.trigger_dbuv_m, limit_evidence_id=t_ev,
+                        margin_db=w["margin_db"], label="indicative",
+                        notes=[f"computed at special-interest station {w['number']} (decides the concern); at the border: "
+                               f"E {c.e_dbuv_m:g} dB(uV/m), {c.distance_km:g} km",
+                               f"h2: {w['h2_source']}", f"h1: {c.heff_source}", "no antenna pattern applied (conservative)",
+                               "the T/R 25-08 trigger is defined at the border line; applying it at a station inside Finland is "
+                               "an indicative protection check [hypothesis]"] + c.notes)
+                else:
+                    trace.notes.append(f"{len(c.stations)} co-channel special-interest station(s); worst {station_excerpt(w)} "
+                                       f"(evidence {ws_ev}); the border check decides")
             geo = "near_border" if c.distance_km <= 300 else "far"
             del s_ev
         elif c.distance_km is not None:
             geo = "near_border" if c.distance_km <= 300 else "far"
         findings.append(Finding(id="", kind="terrestrial", issue=issue, notice_id=n.notice_id, group_id=None,
+                                matched_station_numbers=[st["number"] for st in c.stations],
                                 geo_relevance=geo, calc=trace, concern=level, reason=reason, evidence=ev))
     con.close()
     order = sorted(findings, key=lambda f: (-CONCERN_ORDER[f.concern],
