@@ -26,6 +26,7 @@ or the API. The root [README](../README.md#development) has the same options for
 | Ranked findings with concern filter and search | `src/components/RankedList.tsx` |
 | Spectrum tab: the lead group against the Finnish table rows | `src/components/SpectrumView.tsx` |
 | Map tab: reference points and elevations, or the station and its path to the border | `src/components/MapView.tsx` |
+| All on map tab: every located datapoint of the issue (terrestrial stations, earth stations, special-interest stations) over Finland and its neighbours, with type, concern, review state and filters; clicking one selects its finding | `src/components/OverviewMap.tsx` |
 | Calculation tab: inputs with evidence links, formula, result, limit, margin | `src/components/CalcTraceView.tsx` |
 | Finding card: concern, reason, every evidence item, score factors | `src/components/FindingCard.tsx` |
 | Decision: approve, investigate, dismiss with a required note; the finding's history | `src/components/DecisionPanel.tsx` |

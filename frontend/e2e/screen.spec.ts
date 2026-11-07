@@ -83,7 +83,7 @@ test("spectrum and map tabs draw the lead group, the Finnish rows and the refere
   const spectrum = page.getByRole("img", { name: "Spectrum overlap" });
   await expect(spectrum).toBeVisible();
   expect(await spectrum.locator("rect").count()).toBeGreaterThan(1);
-  await page.getByRole("tab", { name: "Map" }).click();
+  await page.getByRole("tab", { name: "Map", exact: true }).click();
   const map = page.getByRole("img", { name: /Map of Finland/ });
   await expect(map).toBeVisible();
   const points = await (await page.request.get("/api/reference/points")).json();
