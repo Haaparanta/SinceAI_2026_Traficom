@@ -34,7 +34,7 @@ None of the corrections changes a computed number. The page number appears only 
 
 | Not in the CSV | Why | Effect on the results |
 |---|---|---|
-| RR rows for non-GSO and highly inclined orbits: 10.7-12.75 GHz (footnotes 24 and 25), 17.7-19.7 GHz (footnote 16), 27.5-30 GHz (footnote 26), and 37-38, 37.5-40, 40.5-42 and 42-42.5 GHz non-GSO | The pfd check (build step C1) covers GSO only; non-GSO is reported as "not evaluated" | none: those groups are "medium, non-GSO pfd not evaluated" |
+| RR rows for non-GSO in 11.7-12.75 GHz (footnote 24) and 27.5-30 GHz inter-satellite (footnote 26) | Added on 7 Nov 2026 for the non-GSO check were the rows that 3074 needs: 17.7-19.3 GHz non-GSO (footnote 13, X), 17.7-19.7 GHz highly inclined orbits (footnote 16), 37-38 GHz space research, 37.5-40, 40.5-42 and 42-42.5 GHz non-GSO (footnote 11); each agrees with the independent transcription (`tests/test_reference_review.py`). The 19.3-19.7 GHz -115/-105 row is printed with no orbit qualifier (RR21-10) and is now `any`, not `GSO` | one 3074 non-GSO group at 12.7 GHz has no limit row and stays "no limit in band" |
 | 9.9-10.4 GHz, Earth exploration-satellite (active), mean pfd (footnote 18) | Non-GSO radar; mean pfd is a different quantity | none: the 5 candidate groups in 3074 are all non-GSO |
 | 12.2-12.75 GHz GSO (Region 3) and 12.5-12.75 GHz (Region 1 countries in Nos. 5.494 and 5.496) | Finland is in Region 1 and not listed in either provision | none: kept in the CSV with `applies_to_finland = no` |
 | 31.0-31.3 and 34.7-35.2 GHz space research | The printed qualifier about Nos. 5.550 and 5.549 may cover only 34.7-35.2 GHz (a layout doubt) | none: no 3074 downlink in these bands |
@@ -46,7 +46,7 @@ None of the corrections changes a computed number. The page number appears only 
 
 | # | Question | Decision | Effect today |
 |---|---|---|---|
-| 1 | Footnote 13 (`X`, 17.7-19.3 GHz non-GSO FSS) and footnote 22 (`Y`, 3.4-4.2 GHz non-GSO) | Not used: the pfd check evaluates GSO only. When non-GSO pfd is added, `X` and `Y` must come from the constellation size in the notice (`orbit.nbr_sat_pl`), not from the default 0 in the CSV, which is the least strict value. | none |
+| 1 | Footnote 13 (`X`, 17.7-19.3 GHz non-GSO FSS) and footnote 22 (`Y`, 3.4-4.2 GHz non-GSO) | `X` is used since 7 Nov 2026: from N = the sum of `orbit.nbr_sat_pl` (`radar.calc.pfd.x_db`); for N of 1 000 or more it also needs Nv, which is not filed, so its lower bound 20.3 dB is used and a pass is reported as not conclusive. `Y` (co-frequency satellites per hemisphere) is not filed either; it stays 0, the least strict value. | 3074: 17.7-19.3 GHz non-GSO groups use X from N; 3.4-4.2 GHz exceedances are certain, passes are upper-bounded by Y = 0 |
 | 2 | T/R 25-08 footnote 2: 1 % time "in certain situations" for digital systems | Keep 10 % time, the baseline of A1.2.3. Footnote 2 names no situation, so it is not applied by default. | none |
 | 3 | Shared band edges (47, 108, 380, 400 MHz) | A frequency on an edge belongs to both ranges, so the **stricter** (lower) trigger applies, and 470 MHz itself is covered. Code: `radar.pipeline.terrestrial.threshold_for`; tests in `tests/test_p1546.py`. | none: no 3076 notice sits on an edge |
 | 4 | 6 825-7 075 MHz has two limits (per 4 kHz and per 1 MHz) | Both apply, as printed; the pfd step reports the smaller margin. | none |

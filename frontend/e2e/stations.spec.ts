@@ -4,6 +4,7 @@ import { expect, test } from "@playwright/test";
 // and the side panel counts the same number.
 test("map shows the special-interest stations in reach", async ({ page }) => {
   await page.goto("/");
+  await page.getByPlaceholder(/Search/).fill("124520183");     // CHINASAT-H-60.5E, a GSO case with stations in reach
   await page.getByRole("list", { name: "Ranked findings" }).getByRole("button").first().click();
   await page.getByRole("tab", { name: "Map", exact: true }).click();
   const panel = page.getByLabel("Special-interest stations in reach");

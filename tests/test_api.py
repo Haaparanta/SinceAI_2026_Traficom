@@ -37,7 +37,7 @@ def test_metrics_match_the_results_file_counts():
     # 196 IFIC notices plus the AP30B sections of 3074 from the plan database
     assert m["screened"] == len(rows) and m["flagged"] == sum(r["concern"] != "none" for r in rows) == 135
     assert m["provenance_coverage_pct"] == 100.0
-    assert m["concern"]["high"] == 23
+    assert m["concern"]["high"] == sum(r["concern"] == "high" for r in rows)
 
 
 @needs_cache

@@ -25,7 +25,8 @@ def isolate(tmp_path, monkeypatch):
 @pytest.fixture(scope="module")
 def first():
     b = json.loads(CACHE.read_text())
-    f = b["result"]["findings"][0]
+    # CHINASAT-H-60.5E (GSO, 6.3 dB over): the case these tests write their facts for; the list's first finding may differ
+    f = next(x for x in b["result"]["findings"] if x["notice_id"] == "124520183")
     return f, b["context"][f["id"]]
 
 

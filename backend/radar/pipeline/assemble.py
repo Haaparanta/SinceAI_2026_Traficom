@@ -59,16 +59,17 @@ def _fmt_hz(hz: int) -> str:
     return f"{hz} Hz"
 
 
-def _pfd_trace(res, gi, add, source, M, gid, score, geo_ev, station_ev=None) -> CalcTrace:
+def _pfd_trace(res, gi, add, source, M, gid, score, geo_ev, station_ev=None, con=None) -> CalcTrace:
     """CalcTrace for the lead group, with an evidence item for every input (pm_pack/06 rule 5)."""
     base_notes = [f"ranking score {score.score} from scoring/weights.json", f"geography evidence {geo_ev}"]
     if res is None:
         return CalcTrace(method="none", inputs=[], formula="", result_value=None, result_unit="", limit_value=None,
                          limit_evidence_id=None, margin_db=None,
-                         notes=["pfd not evaluated: only GSO downlinks over Finnish terrestrial or passive rows that "
-                                "Finland can see are computed in step C1"] + base_notes)
+                         notes=["pfd not evaluated: only space-station downlinks over Finnish terrestrial or passive rows "
+                                "that Finland can see are computed in step C1"] + base_notes)
+    formula = PFD.FORMULA if res.orbit == "GSO" else PFD.FORMULA_NGSO
     if res.status != "computed":
-        return CalcTrace(method="pfd_gso_worst_case", inputs=[], formula=PFD.FORMULA, result_value=None, result_unit="",
+        return CalcTrace(method=res.method, inputs=[], formula=formula, result_value=None, result_unit="",
                          limit_value=None, limit_evidence_id=None, margin_db=None, notes=res.notes + base_notes)
     w = res.worst
     row = w["limit_row"]
@@ -83,6 +84,11 @@ def _pfd_trace(res, gi, add, source, M, gid, score, geo_ev, station_ev=None) -> 
     lim_ev = add("regulation", f"{row.source}, page {row.page} (data/reference/pfd_limits.csv)",
                  f"pfd_limits.csv id={row.id}", row.excerpt())
     point_ev = geo_ev
+    if res.orbit != "GSO" and con is not None:
+        ok = {M.col("space", "orbit", "notice_id"): gi.notice_id, M.col("space", "orbit", "orbit_id"): w["orbit_id"]}
+        point_ev = add("itu_row", source, locator(M.table("space", "orbit"), **ok), row_excerpt(
+            con, M.table("space", "orbit"), ok, [M.col("space", "orbit", c) for c in
+                                                ("inclination_deg", "apogee_km", "perigee_km", "satellites_per_plane")]))
     if w["point"].startswith("station ") and station_ev is not None:
         point_ev = station_ev(w["point"][len("station "):]) or geo_ev
     calc_ev = add("calculation", "radar.calc.pfd", f"pfd(group_id={gid})",
@@ -95,7 +101,14 @@ def _pfd_trace(res, gi, add, source, M, gid, score, geo_ev, station_ev=None) -> 
         CalcInput(name=f"delta angle of arrival at {w['point']}", value=w["elevation_deg"], unit="deg", evidence_id=point_ev),
         CalcInput(name="10 log10(4 pi d^2) spreading loss", value=w["spreading_loss_db"], unit="dB", evidence_id=calc_ev),
     ]
-    return CalcTrace(method="pfd_gso_worst_case", inputs=inputs, formula=PFD.FORMULA, result_value=res.pfd_db,
+    if res.orbit != "GSO":
+        inputs[3:3] = [CalcInput(name=f"h altitude (perigee of orbit {w['orbit_id']})", value=w["altitude_km"], unit="km",
+                                 evidence_id=point_ev),
+                       CalcInput(name="highest elevation seen from Finland", value=w["max_elevation_deg"], unit="deg",
+                                 evidence_id=calc_ev)]
+        if row.x_footnote == "13":
+            inputs.append(CalcInput(name="X (RR footnote 13) from N satellites", value=w["x_db"], unit="dB", evidence_id=point_ev))
+    return CalcTrace(method=res.method, inputs=inputs, formula=formula, result_value=res.pfd_db,
                      result_unit=f"dB(W/m2) in {PFD.fmt_bw(w['bandwidth_hz'])}", limit_value=res.limit_db, limit_evidence_id=lim_ev,
                      margin_db=res.margin_db, label="indicative", notes=res.notes + base_notes)
 
@@ -130,16 +143,25 @@ def run(issue: int) -> SpaceRun:
     entries = PLANS.finnish_entries(snaps=snaps) if snaps else []
     effects = PLANS.bureau_effects(snaps=snaps) if snaps else []
     PL.apply(rows, by_notice, PL.tolerances(con), entries, effects)
-    # C1: worst-case pfd for GSO downlinks over Finnish terrestrial or passive rows, visible from Finland
-    eligible = [r for r in rows if r.candidate and r.direction == "space_to_earth" and types.get(r.notice_id) == "G"
+    # C1: worst-case pfd for space-station downlinks (GSO and non-GSO) over Finnish terrestrial or passive rows, visible
+    # from Finland
+    eligible = [r for r in rows if r.candidate and r.direction == "space_to_earth" and types.get(r.notice_id) in ("G", "N")
                 and r.geo_relevance in ("visible", "low_elevation")
                 and ("pfd_terrestrial" in r.paths or "passive_service" in r.paths)]
     pfd_inputs = PFD.load_inputs(con, [r.group_id for r in eligible])
+    orbits = PFD.load_orbits(con, sorted({r.notice_id for r in eligible if types.get(r.notice_id) == "N"}))
     pfd_results = {}
     for r in eligible:
         gi = pfd_inputs.get(r.group_id)
+        if gi is None:
+            continue
+        if types.get(r.notice_id) == "N":
+            if orbits.get(r.notice_id):
+                pfd_results[r.group_id] = PFD.worst_case_ngso(r.freq_min_hz, r.freq_max_hz, orbits[r.notice_id], gi.emissions,
+                                                              gi.gain_dbi, gi.steerable)
+            continue
         lon = by_notice[r.notice_id].longitude_deg
-        if gi is not None and lon is not None:
+        if lon is not None:
             pfd_results[r.group_id] = PFD.worst_case(r.freq_min_hz, r.freq_max_hz, lon, gi.emissions, gi.gain_dbi, gi.steerable,
                                                      extra_points=G.station_points(r.matched_station_numbers, lon, stations))
     scores, lead = {}, {}
@@ -232,6 +254,10 @@ def run(issue: int) -> SpaceRun:
         for number in sorted(r.matched_station_numbers, key=lambda k: (reach.get(k, {}).get("elevation_deg", 0),
                                                                        reach.get(k, {}).get("distance_km", 0), k))[:MAX_STATION_EVIDENCE]:
             station_ev(number)
+        if "service_area_finland" in r.paths:
+            sk = {C("service_area", "group_id"): gid, C("service_area", "country"): "FIN"}
+            add("itu_row", source, locator(T("service_area"), **sk),
+                row_excerpt(con, T("service_area"), sk, [C("service_area", "country"), C("service_area", "excluded_api")]))
         for b in r.plan_bureau[:4]:
             PL.add_effect_evidence(add, b)
         for h in r.plan_hits[:2]:
@@ -248,7 +274,7 @@ def run(issue: int) -> SpaceRun:
         geo_key = f"group_id={gid}" if gid in geo.by_group else f"notice_id={n.notice_id}"
         geo_ev = add("calculation", "radar.pipeline.geography", f"geography({geo_key})", f"{gres.relevance}: {gres.note}")
 
-        calc = _pfd_trace(pfd_results.get(gid), pfd_inputs.get(gid), add, source, M, gid, s, geo_ev, station_ev)
+        calc = _pfd_trace(pfd_results.get(gid), pfd_inputs.get(gid), add, source, M, gid, s, geo_ev, station_ev, con)
 
         more = candidates_per_notice.get(n.notice_id, 0) - (1 if r.candidate else 0)
         reason = (f"{s.rule[0].upper()}{s.rule[1:]}. Lead group {gid}: {_fmt_hz(r.freq_min_hz)} to {_fmt_hz(r.freq_max_hz)} "

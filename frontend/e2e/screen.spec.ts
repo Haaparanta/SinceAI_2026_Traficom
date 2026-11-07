@@ -31,6 +31,18 @@ async function bundle(page: Page, kind: string, issue: number): Promise<Bundle> 
 function list(page: Page) {
   return page.getByRole("list", { name: "Ranked findings" });
 }
+// The GSO case the trace and map tests read: CHINASAT-H-60.5E (steerable beam, 6.3 dB over, special-interest stations
+// in reach). The list's first finding can be a non-GSO notice, whose map has no per-point elevations.
+const GSO_NOTICE = "124520183";
+
+async function openGso(page: Page): Promise<Bundle["result"]["findings"][number]> {
+  const b = await bundle(page, "space", 3074);
+  const f = b.result.findings.find((x) => x.notice_id === GSO_NOTICE)!;
+  await page.getByPlaceholder(/Search/).fill(GSO_NOTICE);
+  await page.getByRole("list", { name: "Ranked findings" }).getByRole("button").first().click();
+  return f;
+}
+
 async function chooseIssue(page: Page, label: string) {
   await page.getByRole("tablist", { name: "Issue" }).getByRole("tab", { name: label }).click();
   await expect(page.getByRole("tablist", { name: "Issue" }).getByRole("tab", { name: label })).toHaveAttribute("aria-selected", "true");
@@ -58,8 +70,7 @@ test("the ranked list starts with the API's first finding and every badge has a 
 });
 
 test("calculation tab shows result, limit, margin and the indicative label from the trace", async ({ page }) => {
-  const b = await bundle(page, "space", 3074);
-  const calc = b.result.findings[0].calc;
+  const calc = (await openGso(page)).calc;
   await page.getByRole("tab", { name: "Calculation" }).click();
   await expect(page.getByText("Worst-case power flux-density at the Finnish surface")).toBeVisible();
   await expect(page.getByText("Indicative", { exact: true })).toBeVisible();
@@ -79,6 +90,7 @@ test("an evidence link in the trace highlights that evidence item", async ({ pag
 });
 
 test("spectrum and map tabs draw the lead group, the Finnish rows and the reference points", async ({ page }) => {
+  await openGso(page);
   await page.getByRole("tab", { name: "Spectrum" }).click();
   const spectrum = page.getByRole("img", { name: "Spectrum overlap" });
   await expect(spectrum).toBeVisible();

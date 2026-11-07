@@ -3,6 +3,7 @@ import { Empty } from "./ui";
 
 const METHOD: Record<string, string> = {
   pfd_gso_worst_case: "Worst-case power flux-density at the Finnish surface (RR Article 21)",
+  pfd_ngso_worst_case: "Worst-case power flux-density at the Finnish surface from one non-GSO satellite (RR Article 21)",
   p1546_field_strength: "Field strength at the Finnish border (ITU-R P.1546-6, T/R 25-08)",
 };
 

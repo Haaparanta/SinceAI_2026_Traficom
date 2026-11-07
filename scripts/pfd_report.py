@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Step C1 visual proof: worst-case pfd of GSO downlinks against RR Article 21 Table 21-4.
+"""Step C1 visual proof: worst-case pfd of GSO and non-GSO downlinks against RR Article 21 Table 21-4.
 
     uv run python scripts/pfd_report.py 3074       # writes reports/3074/06_pfd.html and .summary.json
 
@@ -32,8 +32,7 @@ details.f { background:var(--card); border:1px solid var(--line); border-radius:
 """
 
 
-def histogram(margins: list[tuple[float, bool]]) -> str:
-    lo, hi, step = -10, 30, 1
+def histogram(margins: list[tuple[float, bool]], lo: int = -10, hi: int = 30, step: int = 1) -> str:
     bins = [[0, 0] for _ in range((hi - lo) // step)]
     for m, steer in margins:
         i = min(max(int((m - lo) // step), 0), len(bins) - 1)
@@ -70,14 +69,50 @@ def histogram(margins: list[tuple[float, bool]]) -> str:
     return f'<div class="chart">{legend}{"".join(p)}</div>'
 
 
+def ngso_section(ngso, rg, bn, run, status_ngso) -> str:
+    """One row per non-GSO network: its worst group, the margin at the worst elevation and with the satellite highest."""
+    by_notice: dict[str, tuple] = {}
+    for g, r in ngso:
+        nid = rg[g].notice_id
+        if nid not in by_notice or r.margin_db < by_notice[nid][1].margin_db:
+            by_notice[nid] = (g, r)
+    concern = {f.notice_id: f.concern for f in run.result.findings}
+    rows = []
+    for nid, (g, r) in sorted(by_notice.items(), key=lambda t: t[1][1].margin_db):
+        w = r.worst
+        rows.append([f"{bn[nid].administration} {bn[nid].network_name}", str(w["n_sats"] or "-"), w["orbit_class"],
+                     f"{w['inclination_deg']:g} / {w['altitude_km']:g}", f"{rg[g].freq_min_hz / 1e6:g}", w["limit_row"].id,
+                     f"{w['x_db']:g}" + (" (lower bound)" if w.get("x_lower_bound") else ""),
+                     f"{w['max_elevation_deg']:g}", f"{r.margin_db:g} at {w['elevation_deg']:g} deg",
+                     "; ".join(f"{m:g} at {e:g} deg" for e, m in w["tops"]), concern.get(nid, "")])
+    margins = [(r.margin_db, bool(r.worst["steerable"])) for _, r in ngso]
+    return (
+        "<h2>Non-GSO: one satellite at its lowest altitude</h2><p class='sub'>Every elevation from 0 deg to the highest a "
+        "Finnish reference point sees is scanned, at the perigee altitude, with the beam peak towards Finland. A constellation "
+        "lowers its power near the horizon with a pfd mask that the IFIC does not carry, so a notice is high only when it "
+        "exceeds with the satellite at 60 deg or more over Finland; an exceedance only lower down is review. Rows of footnote "
+        "11 (99 satellites or fewer) are left out for larger systems; footnote 13 uses X from N, with its lower bound 20.3 dB "
+        "when N is 1 000 or more (Nv is not filed).</p>"
+        + R.tiles([("non-GSO groups evaluated", str(sum(status_ngso.values()))), ("computed", str(status_ngso["computed"])),
+                   ("no limit in band", str(status_ngso["no_limit"])), ("not visible", str(status_ngso["not_visible"])),
+                   ("groups exceeding", str(sum(1 for m, _ in margins if m < 0))), ("networks", str(len(by_notice)))])
+        + histogram(margins, lo=-65, hi=35)
+        + R.table(["Network", "N", "Orbit", "Incl. / alt. km", "Lead MHz", "Limit row", "X dB", "Highest el. deg",
+                   "Worst margin dB", "Margin at the highest pass, per orbit dB", "Concern"], rows)
+    )
+
+
 def main() -> int:
     issue = int(sys.argv[1]) if len(sys.argv) > 1 else 3074
     run = assemble.run(issue)
     P = run.pfd
     rg = {r.group_id: r for r in run.rows}
     bn = {n.notice_id: n for n in run.ingest.notices}
-    comp = [(g, r) for g, r in P.items() if r.status == "computed"]
-    status = Counter(r.status for r in P.values())
+    comp_all = [(g, r) for g, r in P.items() if r.status == "computed"]
+    comp = [(g, r) for g, r in comp_all if r.orbit == "GSO"]
+    ngso = [(g, r) for g, r in comp_all if r.orbit != "GSO"]
+    status = Counter(r.status for r in P.values() if r.orbit == "GSO")
+    status_ngso = Counter(r.status for r in P.values() if r.orbit != "GSO")
 
     # Hand-worked check (pm_pack/08 C1): -40 dBW/Hz, 0 dBi, 4 kHz, 38 000 km
     hand = PFD.pfd_db(-40, 0, 4000, 38e6)
@@ -86,9 +121,17 @@ def main() -> int:
                 hand, -166.57, 0.05),
                ("CHINASAT-H by hand: -54 + 50 + 60 - 163.21", PFD.pfd_db(-54, 50, 1e6, 40796.8e3), -107.21, 0.05),
                ("Limit 17.7-19.3 GHz GSO at 8.036 deg: -115 + 0.5 x 3.036", next(r for r in PFD.limits() if r.id == "17700-19300_gso").limit(8.036), -113.48, 0.01)]
+    x_row = next(r for r in PFD.limits() if r.id == "17700-19300_ngso")
+    vectors += [("Non-GSO slant range overhead at 550 km", PFD.slant_range_km(550, 90), 550.0, 1e-6),
+                ("Non-GSO slant range at the horizon from 550 km: sqrt(6928.137^2 - 6378.137^2)", PFD.slant_range_km(550, 0), 2705.3, 0.05),
+                ("Highest elevation over Hanko of a 53-degree orbit at 550 km", PFD.highest_elevation(53, 550)[1], 31.34, 0.01),
+                ("Footnote 13: X at N = 288, (5/119)(288 - 50)", PFD.x_db(288)[0], 10.0, 1e-6),
+                ("Footnote 13: X at N = 999, (999 + 402)/69", PFD.x_db(999)[0], 20.304, 0.001),
+                ("17.7-19.3 GHz non-GSO limit at 15 deg with X = 20.3: -135.3 + (30.3/20) x 10", x_row.limit(15, 20.3), -120.15, 1e-6)]
     vec_ok = all(abs(v - e) <= t for _, v, e, t in vectors)
-    pfd_range_ok = all(-250 <= r.pfd_db <= -80 for _, r in comp)
-    unlabelled = [f.id for f in run.result.findings if f.calc.method == "pfd_gso_worst_case" and f.calc.label != "indicative"]
+    pfd_range_ok = all(-250 <= r.pfd_db <= -80 for _, r in comp) and all(-250 <= r.pfd_db <= -60 for _, r in ngso)
+    unlabelled = [f.id for f in run.result.findings if f.calc.method in ("pfd_gso_worst_case", "pfd_ngso_worst_case")
+                  and f.calc.label != "indicative"]
     ok = vec_ok and pfd_range_ok and not unlabelled
 
     worst = sorted(comp, key=lambda t: t[1].margin_db)[:10]
@@ -109,7 +152,7 @@ def main() -> int:
                      f'{rg[g].freq_min_hz / 1e6:g}-{rg[g].freq_max_hz / 1e6:g} MHz &middot; margin <b>{r.margin_db:g} dB</b></summary>'
                      + R.table(["Input", "Value", "Source"], rows) + f"<p class='sub'>{R.esc(' | '.join(r.notes))}</p></details>")
 
-    used = Counter(r.worst["limit_row"].id for _, r in comp)
+    used = Counter(r.worst["limit_row"].id for _, r in comp_all)
     lim_rows = [[row.id, f"{row.band_min_mhz:g}-{row.band_max_mhz:g}", row.orbit, f"{row.ref_bw_hz:g}", row.segments_text(),
                  row.page, str(used.get(row.id, 0)), row.review] for row in PFD.limits() if row.applies_to_finland]
 
@@ -117,15 +160,16 @@ def main() -> int:
     why = Counter()
     for f in medium:
         res = P.get(f.group_id)
-        why["pfd computed, within 15 dB of the limit" if res and res.status == "computed" else
+        why["non-GSO: pass computed with the lower bound of X, not conclusive" if res and res.status == "computed" and res.worst.get("x_lower_bound") else
+            "pfd computed, within 15 dB of the limit" if res and res.status == "computed" else
             "no Article 21 limit in this band" if res and res.status == "no_limit" else
-            "non-GSO: pfd not evaluated in C1" if bn[f.notice_id].orbit == "NGSO" else
+            "no pfd evaluated (not eligible or geography)" if bn[f.notice_id].orbit == "NGSO" else
             "uplink near Finland (pfd not applicable)" if "uplink" in run.scores[f.group_id].rule else
             f"other: {res.status if res else 'not eligible'}"] += 1
 
     exceed = [(g, r) for g, r in comp if r.margin_db < 0]
     body = (
-        R.tiles([("GSO downlink groups eligible", str(len(P))), ("computed", str(status["computed"])),
+        R.tiles([("GSO downlink groups eligible", str(sum(status.values()))), ("computed", str(status["computed"])),
                  ("no limit in band", str(status["no_limit"])), ("input missing", str(status["no_input"])),
                  ("exceed (steerable / fixed)", f"{sum(1 for _, r in exceed if r.worst['steerable'])} / {sum(1 for _, r in exceed if not r.worst['steerable'])}"),
                  ("notices exceeding", str(len({rg[g].notice_id for g, _ in exceed})))])
@@ -136,12 +180,14 @@ def main() -> int:
         + R.table(["Case", "Computed", "Expected", "Status"],
                   [[c, f"{v:.2f}", f"{e:g}", R.badge("PASS" if abs(v - e) <= t else "FAIL")] for c, v, e, t in vectors], raw=True)
         + "<h2>Ten smallest margins</h2>" + "".join(cards)
-        + "<h2>Why 99 notices stay medium</h2>" + R.table(["Lead group", "Notices"], [[k, str(v)] for k, v in why.most_common()])
+        + ngso_section(ngso, rg, bn, run, status_ngso)
+        + f"<h2>Why {len(medium)} notices stay medium</h2>" + R.table(["Lead group", "Notices"], [[k, str(v)] for k, v in why.most_common()])
         + "<h2>Limit rows</h2><p class='sub'>data/reference/pfd_limits.csv, transcribed from RR 2024 Vol. 1 Article 21 "
           "Table 21-4 (Rev.WRC-23). Signed off on 7 Nov 2026 by Claude (AI agent) at the project owner's request: every row agrees with an independent transcription (data/reference/review).</p>"
         + R.table(["Row", "MHz", "Orbit", "Ref bw Hz", "Limit by angle of arrival", "RR page", "Worst cases", "Review"], lim_rows)
     )
-    summary = {"status": "PASS" if ok else "FAIL", "issue": issue, "pfd_status": dict(status), "vectors_ok": vec_ok,
+    summary = {"status": "PASS" if ok else "FAIL", "issue": issue, "pfd_status": dict(status), "pfd_status_ngso": dict(status_ngso),
+               "ngso_exceeding_notices": sorted({rg[g].notice_id for g, r in ngso if r.margin_db < 0}), "vectors_ok": vec_ok,
                "pfd_range_ok": pfd_range_ok, "exceeding_groups": len(exceed),
                "exceeding_notices": sorted({rg[g].notice_id for g, _ in exceed}), "medium_why": dict(why),
                "worst": [{"group": g, "notice": rg[g].notice_id, "margin_db": r.margin_db, "pfd": r.pfd_db, "limit": r.limit_db} for g, r in worst]}
