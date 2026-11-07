@@ -7,6 +7,10 @@ Bureau's intent, which maps to our change field:
 Site from fxm_geo (POINT or ZONE); antenna from fxm_ant, the transmitting antenna with the highest power.
 Power is normalised to e.r.p.: e.i.r.p. (pwr_eiv = I) minus 2.15 dB. Every ITU name comes from schema_map.yaml.
 
+Effective antenna height, the P.1546 h1 input: the notice may file it per azimuth (fxm_ant_hgt, 36 values every
+10 deg in 3076, the height above the average terrain 3 to 15 km out in that direction) and as a maximum
+(fxm_ant.eff_hgtmax). Both are carried for the chosen antenna; radar.pipeline.terrestrial picks the azimuth.
+
     uv run python -m radar.adapters.terrestrial_ific 3076
 """
 from __future__ import annotations
@@ -41,6 +45,8 @@ class NoticeExtra:
     land_mobile: bool = False
     antenna_key: int | None = None
     zone_id: str | None = None          # for ZONE sites: the territory the notice covers
+    eff_height_max_m: float | None = None                      # fxm_ant.eff_hgtmax of the chosen antenna
+    eff_heights: tuple[tuple[float, float], ...] = ()          # (azimuth deg, effective height m), fxm_ant_hgt
 
 
 @dataclass
@@ -69,7 +75,8 @@ def load(issue: int, con: duckdb.DuckDBPyConnection | None = None) -> Terrestria
                    arg_max({q('antenna','height_agl_m')}, coalesce({q('antenna','power_dbw')}, -999)) AS hgt,
                    arg_max({q('antenna','azimuth_max_deg')}, coalesce({q('antenna','power_dbw')}, -999)) AS azm,
                    arg_max({q('antenna','directivity')}, coalesce({q('antenna','power_dbw')}, -999)) AS dir,
-                   arg_max({q('antenna','antenna_key')}, coalesce({q('antenna','power_dbw')}, -999)) AS akey
+                   arg_max({q('antenna','antenna_key')}, coalesce({q('antenna','power_dbw')}, -999)) AS akey,
+                   arg_max({q('antenna','max_effective_height_m')}, coalesce({q('antenna','power_dbw')}, -999)) AS heffmax
             FROM {M.t(KIND,'antenna')}
             WHERE coalesce({q('antenna','tx_rx')}, 'TX') = 'TX'
             GROUP BY 1),
@@ -80,19 +87,27 @@ def load(issue: int, con: duckdb.DuckDBPyConnection | None = None) -> Terrestria
                {q('notice','bandwidth_khz','t')}, {q('notice','received','t')},
                {q('site','geo_type','g')}, {q('site','country','g')}, {q('site','site_name','g')}, {q('site','zone_id','g')},
                {q('site','lat_deg','g')}, {q('site','lon_deg','g')},
-               ant.pwr, ant.eiv, ant.hgt, ant.azm, ant.dir, tg.target, ant.akey
+               ant.pwr, ant.eiv, ant.hgt, ant.azm, ant.dir, tg.target, ant.akey, ant.heffmax
         FROM {M.t(KIND,'notice')} t
         LEFT JOIN {M.t(KIND,'site')} g ON {q('site','geo_key','g')} = {q('notice','geo_key','t')}
         LEFT JOIN ant ON ant.tk = {q('notice','notice_id','t')}
         LEFT JOIN tg ON tg.tk = {q('notice','notice_id','t')}
         ORDER BY 1""").fetchall()
+    heights: dict[tuple[str, int], list[tuple[float, float]]] = {}
+    for tk, ak, az, h in con.execute(f"""
+            SELECT CAST({q('antenna_height','notice_id')} AS VARCHAR), {q('antenna_height','antenna_key')},
+                   {q('antenna_height','azimuth_deg')}, {q('antenna_height','effective_height_m')}
+            FROM {M.t(KIND,'antenna_height')}
+            WHERE {q('antenna_height','azimuth_deg')} IS NOT NULL AND {q('antenna_height','effective_height_m')} IS NOT NULL
+            ORDER BY 1, 2, 3""").fetchall():
+        heights.setdefault((tk, ak), []).append((float(az), float(h)))
     if own:
         con.close()
 
     t_notice, c_id = M.table(KIND, "notice"), M.col(KIND, "notice", "notice_id")
     notices, extra = [], {}
     for (tk, adm, intent, cls, ntype, f_mhz, bw_khz, rcv, gtype, ctry, site, zone, lat, lon,
-         pwr, eiv, hgt, azm, ant_dir, target, akey) in rows:
+         pwr, eiv, hgt, azm, ant_dir, target, akey, heffmax) in rows:
         erp = None
         if pwr is not None and eiv in ("E", "I"):
             erp = round(float(pwr) - (EIRP_TO_ERP_DB if eiv == "I" else 0.0), 3)
@@ -108,11 +123,14 @@ def load(issue: int, con: duckdb.DuckDBPyConnection | None = None) -> Terrestria
         ))
         extra[tk] = NoticeExtra(intent, ntype, gtype, ctry, None if pwr is None else float(pwr), eiv, ant_dir,
                                 None if rcv is None else str(rcv)[:10], target, land_mobile=cls in land_mobile,
-                                antenna_key=akey, zone_id=zone)
+                                antenna_key=akey, zone_id=zone,
+                                eff_height_max_m=None if heffmax is None else float(heffmax),
+                                eff_heights=tuple(heights.get((tk, akey), ())))
     return TerrestrialIngest(issue, notices, extra, {
         "notices": len(notices), "located": sum(1 for n in notices if n.lat is not None),
         "with_erp": sum(1 for n in notices if n.erp_dbw is not None),
         "land_mobile": sum(1 for e in extra.values() if e.land_mobile),
+        "with_effective_heights": sum(1 for e in extra.values() if e.eff_heights),
     })
 
 
