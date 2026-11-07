@@ -95,7 +95,7 @@ def test_3074_station_evidence_points_to_the_sheet():
     b = json.loads(CACHE.read_text())
     rows = SI.by_row()
     with_st = [f for f in b["result"]["findings"] if f["matched_station_numbers"]]
-    assert len(with_st) == 52
+    assert len(with_st) == 62          # 52 before the non-GSO pfd check moved some leads to the exceeding group
     for f in with_st:
         cited = [e for e in f["evidence"] if e["kind"] == "special_interest_row"]
         assert 1 <= len(cited) <= 5

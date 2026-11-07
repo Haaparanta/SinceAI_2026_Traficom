@@ -5,6 +5,7 @@ import { expect, test } from "@playwright/test";
 const LOCAL = /^https?:\/\/(localhost|127\.0\.0\.1|\[::1\])(:\d+)?\//;
 
 test("the whole screen works offline in demo mode", async ({ page }) => {
+  test.setTimeout(60_000);   // walks every tab of both issues: 26-27 s alone on an M1, close to the default 30 s
   const external: string[] = [];
   await page.route("**/*", (route) => {
     const url = route.request().url();

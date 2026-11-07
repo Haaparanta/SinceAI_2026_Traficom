@@ -81,17 +81,19 @@
     "uplink_uncovered": 376,
     "uplink_passive": 651,
     "uncovered": 174,
-    "passive_service": 20
+    "passive_service": 20,
+    "service_area_finland": 1
   },
   "paths_notices": {
-    "uplink_terrestrial": 131,
     "pfd_terrestrial": 158,
     "uplink_uncovered": 44,
+    "uplink_terrestrial": 131,
+    "uncovered": 23,
     "space_cofrequency": 157,
     "uplink_space": 132,
+    "passive_service": 3,
     "uplink_passive": 23,
-    "uncovered": 23,
-    "passive_service": 3
+    "service_area_finland": 1
   },
   "space_to_earth_kept_share": 0.9933,
   "overlap_wider_than_group": [],

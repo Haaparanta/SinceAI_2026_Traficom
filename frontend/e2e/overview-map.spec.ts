@@ -1,5 +1,9 @@
 import { expect, test } from "@playwright/test";
 
+// The terrestrial overview draws and lists about 4 000 datapoints: single tests take 29-33 s on an M1 when the whole
+// suite runs in parallel, at the default 30 s limit, so this file gets 60 s per test.
+test.describe.configure({ timeout: 60_000 });
+
 // "All on map": every located datapoint of the issue over Finland and its neighbours, with its type and state.
 // Expected counts come from the API bundle, not typed in here.
 type Bundle = {
