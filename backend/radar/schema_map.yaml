@@ -361,3 +361,43 @@ terrestrial:
       antenna_key: ant_key
       azimuth_deg: azm
       effective_height_m: eff_hgt
+  # Broadcasting (FM and TV under GE84 and GE06): one wide table per notice [CHECKED on 3076: 562 rows, RUS 37 BC + 14 BT]
+  broadcast:
+    table: fmtv_terra
+    key: terrakey
+    columns:
+      notice_id: terrakey
+      administration: adm
+      country: ctry
+      intent: intent              # ADD, MODIFY, SUPPRESS, RECORDED
+      station_class: stn_cls      # BC sound broadcasting, BT television
+      notice_type: notice_typ
+      freq_mhz: freq_assgn
+      bandwidth_khz: bdwdth
+      tv_channel: tv_chan
+      emission_class: emi_cls
+      digital: is_digital
+      system: tran_sys
+      site_name: site_name
+      lon_deg: long_dec
+      lat_deg: lat_dec
+      altitude_m: site_alt
+      height_agl_m: hgt_agl
+      max_effective_height_m: eff_hgtmax
+      erp_dbw: erp_dbw
+      directivity: ant_dir
+      polarisation: polar
+      plan_entry: plan_entry
+  broadcast_antenna_height:       # effective height per azimuth (P.1546 h1 towards a receiver)
+    table: fmtv_ant_hgt
+    columns:
+      notice_id: terrakey
+      azimuth_deg: azm
+      effective_height_m: eff_hgt
+  broadcast_pattern:              # antenna attenuation per azimuth for directional antennas
+    table: fmtv_ant_diag
+    columns:
+      notice_id: terrakey
+      azimuth_deg: azm
+      polarisation: polar
+      attenuation_db: attn

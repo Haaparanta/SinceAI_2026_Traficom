@@ -19,7 +19,7 @@
     [
       "Concern counts = 04_findings bars",
       true,
-      "{'high': 46, 'medium': 74, 'review': 3, 'low': 12, 'none': 64}"
+      "{'high': 23, 'medium': 99, 'review': 1, 'low': 12, 'none': 64}"
     ],
     [
       "Group rows = candidates after geography (03_geography)",
@@ -43,8 +43,8 @@
     ]
   ],
   "sha256_16": {
-    "csv": "0dddee8c3067827b",
-    "json": "dae94f69f058faf5",
-    "groups": "fa839317dadb5906"
+    "csv": "538145058979cdb9",
+    "json": "376ac830c42f173a",
+    "groups": "25508ce1fa973ad6"
   }
 }

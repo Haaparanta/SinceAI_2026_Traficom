@@ -1,5 +1,5 @@
 # Filing Radar. Step IDs refer to pm_pack/08_Build_Plan_Step_by_Step.md.
-.PHONY: doctor check-data checksums schema convert convert-plans plans subbands special-interest ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial explanations determinism golden proof freeze status api-demo index cache frontend frontend-build e2e e2e-failed screenshots test test-failed test-changed test-list api
+.PHONY: broadcasting doctor check-data checksums schema convert import convert-plans plans subbands special-interest ingest relevance geography findings check-evidence results pfd diff field-strength results-terrestrial explanations determinism golden proof freeze status api-demo index cache frontend frontend-build e2e e2e-failed screenshots test test-failed test-changed test-list api
 
 doctor:        ## A1: tools on PATH, native arm64
 	python3 scripts/doctor.py tools
@@ -22,6 +22,11 @@ convert:       ## A5: .mdb -> DuckDB with row-count check and report (about 25 s
 	uv run python scripts/mdb_to_duckdb.py data/raw/ific3074/ific3074.mdb data/derived/space_3074.duckdb
 	uv run python scripts/mdb_to_duckdb.py data/raw/brific3075/brific3075.mdb data/derived/terrestrial_3075.duckdb
 	uv run python scripts/mdb_to_duckdb.py data/raw/brific3076/brific3076.mdb data/derived/terrestrial_3076.duckdb
+
+KIND ?= space
+
+import:        ## any IFIC issue from its number to the screen: download, verify, convert, screen, evidence, cache; make import KIND=terrestrial ISSUE=3077 [ZIP=path] [FORCE=1]
+	uv run python scripts/import_issue.py --kind $(KIND) --issue $(ISSUE) $(if $(ZIP),--zip "$(ZIP)") $(if $(filter 1,$(FORCE)),--force)
 
 PLAN ?= $(shell ls -d data/raw/30B_*/ 2>/dev/null | grep -oE '[0-9]{4}/$$' | tr -d / | sort -n | tail -1)
 
@@ -68,6 +73,10 @@ diff:          ## C2: terrestrial change set and trend, report reports/$(ISSUE)/
 
 field-strength: ## C3: P.1546 at the border, report reports/$(ISSUE)/02_field_strength.html (make field-strength ISSUE=3076)
 	uv run python scripts/field_strength_report.py $(ISSUE)
+
+broadcasting:  ## FM and TV notices (GE84, GE06) of $(ISSUE): results/broadcasting_$(ISSUE).csv|json, report reports/$(ISSUE)/03_broadcasting.html (make broadcasting ISSUE=3076)
+	PYTHONPATH=backend:. uv run python -m radar.export --issue $(ISSUE) --kind broadcasting
+	uv run python scripts/broadcasting_report.py $(ISSUE)
 
 results-terrestrial: ## C3: results/terrestrial_$(ISSUE).csv|json
 	PYTHONPATH=backend:. uv run python -m radar.export --issue $(ISSUE) --kind terrestrial

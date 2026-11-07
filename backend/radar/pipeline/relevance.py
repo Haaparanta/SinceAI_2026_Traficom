@@ -201,8 +201,14 @@ def screen(notices: list[Notice], bands: tuple[FinnishSubBand, ...] | None = Non
     return out
 
 
-def funnel(rows: list[GroupRelevance], by: str = "group") -> list[tuple[str, int]]:
-    """Counts per stage, by group or by notice (a notice counts once if any of its groups qualifies)."""
+def funnel(rows: list[GroupRelevance], by: str = "group",
+           station_hits: dict[str, list[str]] | None = None) -> list[tuple[str, int]]:
+    """Counts per stage, by group or by notice (a notice counts once if any of its groups qualifies).
+
+    station_hits: group_id -> special-interest stations the group overlaps in frequency, from a screen with the
+    stations (the B2 report screens without them so its funnel and hand-check cases stay frequency-only)."""
+    hits = station_hits if station_hits is not None else {r.group_id: r.matched_station_numbers for r in rows}
+
     def n(pred) -> int:
         if by == "group":
             return sum(1 for r in rows if pred(r))
@@ -216,5 +222,5 @@ def funnel(rows: list[GroupRelevance], by: str = "group") -> list[tuple[str, int
         ("  over a Finnish terrestrial row (pfd path)", n(lambda r: "pfd_terrestrial" in r.paths)),
         ("  over a primary terrestrial row", n(lambda r: r.primary_terrestrial)),
         ("  Bureau names Finland as affected (provn)", n(lambda r: r.finland_named_provisions)),
-        ("  hit a special-interest station (XLS waiting)", n(lambda r: r.matched_station_numbers)),
+        ("  overlap a special-interest station (frequency, before geography)", n(lambda r: hits.get(r.group_id))),
     ]

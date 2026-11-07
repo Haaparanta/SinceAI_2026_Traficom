@@ -1,0 +1,1189 @@
+{
+ "generated": "2026-11-07",
+ "documents": [
+  {
+   "id": "GE06",
+   "url": "https://www.itu.int/dms_pub/itu-r/opb/act/R-ACT-RRC.14-2006-PDF-E.pdf",
+   "landing_page": "https://www.itu.int/pub/R-ACT-RRC.14-2006",
+   "local_path": "/Users/vesahaaparanta/Desktop/SinceAI_2026_Traficom/.claude/worktrees/project-execution-plan-0ef4e1/data/raw/itu_ge/R-ACT-RRC.14-2006-PDF-E.pdf",
+   "bytes": 5485861,
+   "sha256": "3eb4f7002ccf22ba093abd80769aefa9ca2c3916e59716ee81af450c960dac3f",
+   "pdf_pages": 336,
+   "title": "Final Acts of the Regional Radiocommunication Conference for planning of the digital terrestrial broadcasting service in parts of Regions 1 and 3, in the frequency bands 174-230 MHz and 470-862 MHz (RRC-06), Geneva, 15 May - 16 June 2006",
+   "edition": "ITU 2006 English edition (PDF created 2006-10-02); original GE06 text, not consolidated with later modifications",
+   "price": "free"
+  },
+  {
+   "id": "GE84",
+   "url": "https://www.itu.int/dms_pub/itu-r/opb/act/R-ACT-RRC.5-1984-PDF-E.pdf",
+   "landing_page": "https://www.itu.int/pub/R-ACT-RRC.6-1984 returns 'The Publication selected is not available'; the dms_pub file was found via search",
+   "local_path": "/Users/vesahaaparanta/Desktop/SinceAI_2026_Traficom/.claude/worktrees/project-execution-plan-0ef4e1/data/raw/itu_ge/R-ACT-RRC.5-1984-PDF-E.pdf",
+   "bytes": 630291,
+   "sha256": "55b2abcf329a67fec10ea4bff7d5e38deaf619246f9e7ff7bb3cf4563b768cdd",
+   "pdf_pages": 100,
+   "title": "Final Acts of the Regional Administrative Conference for the Planning of VHF Sound Broadcasting (Region 1 and Part of Region 3), Geneva, 1984 - Regional Agreement relating to the use of the band 87.5-108 MHz for FM sound broadcasting",
+   "edition": "ITU re-typeset electronic edition of the 1984 Final Acts (PDF metadata ModDate 2000-03-06); original 1984 text, not a consolidation of later revisions; printed page = PDF page - 6",
+   "price": "free"
+  },
+  {
+   "id": "GE84_scan",
+   "url": "https://search.itu.int/history/HistoryDigitalCollectionDocLibrary/4.108.43.en.700.pdf",
+   "local_path": "/Users/vesahaaparanta/Desktop/SinceAI_2026_Traficom/.claude/worktrees/project-execution-plan-0ef4e1/data/raw/itu_ge/history_4.108.43.en.700.pdf",
+   "bytes": 3653289,
+   "sha256": "efe8bc02af8a71c27df95a7e31e8b8299971895721bc559c1a5fa306ec154056",
+   "pdf_pages": 102,
+   "title": "Same Final Acts (Geneva, 1984), scan of the printed 1984 edition by the ITU Library & Archives (microfiche Plan not included)",
+   "edition": "Scanned 2016 from the 1984 print; used only to cross-check the GE84 values; printed page = PDF page - 7",
+   "price": "free"
+  }
+ ],
+ "values": [
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    174,
+    230
+   ],
+   "band": "III",
+   "service_or_system": "Interferer = DVB-T assignment/allotment modifying the Plan; protects broadcasting (any victim system: DVB-T fixed roof-level 95% loc, T-DAB mobile 99% loc, analogue TV SECAM L fixed 50% loc - most critical case)",
+   "trigger_dbuv_m": 17,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.1.1 (printed p. 290, PDF p. 298): tropospheric curves 1% time 50% locations, Rx 10 m agl"
+   },
+   "applies_where": "Coordination contour (1 deg radials, 10 km steps inward from 1 000 km) around the station / SFN centre of gravity / allotment boundary test points; an administration is affected if its national boundary is intersected by or enclosed within the contour (Annex 4 Section I §1, §2.1 Step 5, §3, §4)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.1 'Coordination trigger field-strength values to protect systems in the broadcasting service from modifications to the Plan'",
+   "page_printed": 292,
+   "page_pdf": 300,
+   "notes": "Row key is the broadcasting system MODIFYING the Plan (the interferer), not the victim. This is the table GE06 prescribes for identifying administrations whose broadcasting is affected (§2.1 Step 2, §5.1.1).",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    470,
+    582
+   ],
+   "band": "IV",
+   "service_or_system": "Interferer = DVB-T assignment/allotment modifying the Plan; protects broadcasting (any victim system: DVB-T fixed roof-level 95% loc, T-DAB mobile 99% loc, analogue TV SECAM L fixed 50% loc - most critical case)",
+   "trigger_dbuv_m": 21,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.1.1 (printed p. 290, PDF p. 298): tropospheric curves 1% time 50% locations, Rx 10 m agl"
+   },
+   "applies_where": "Coordination contour (1 deg radials, 10 km steps inward from 1 000 km) around the station / SFN centre of gravity / allotment boundary test points; an administration is affected if its national boundary is intersected by or enclosed within the contour (Annex 4 Section I §1, §2.1 Step 5, §3, §4)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.1 'Coordination trigger field-strength values to protect systems in the broadcasting service from modifications to the Plan'",
+   "page_printed": 292,
+   "page_pdf": 300,
+   "notes": "Row key is the broadcasting system MODIFYING the Plan (the interferer), not the victim. This is the table GE06 prescribes for identifying administrations whose broadcasting is affected (§2.1 Step 2, §5.1.1).",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    582,
+    718
+   ],
+   "band": "V",
+   "service_or_system": "Interferer = DVB-T assignment/allotment modifying the Plan; protects broadcasting (any victim system: DVB-T fixed roof-level 95% loc, T-DAB mobile 99% loc, analogue TV SECAM L fixed 50% loc - most critical case)",
+   "trigger_dbuv_m": 23,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.1.1 (printed p. 290, PDF p. 298): tropospheric curves 1% time 50% locations, Rx 10 m agl"
+   },
+   "applies_where": "Coordination contour (1 deg radials, 10 km steps inward from 1 000 km) around the station / SFN centre of gravity / allotment boundary test points; an administration is affected if its national boundary is intersected by or enclosed within the contour (Annex 4 Section I §1, §2.1 Step 5, §3, §4)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.1 'Coordination trigger field-strength values to protect systems in the broadcasting service from modifications to the Plan'",
+   "page_printed": 292,
+   "page_pdf": 300,
+   "notes": "Row key is the broadcasting system MODIFYING the Plan (the interferer), not the victim. This is the table GE06 prescribes for identifying administrations whose broadcasting is affected (§2.1 Step 2, §5.1.1).",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    718,
+    862
+   ],
+   "band": "V",
+   "service_or_system": "Interferer = DVB-T assignment/allotment modifying the Plan; protects broadcasting (any victim system: DVB-T fixed roof-level 95% loc, T-DAB mobile 99% loc, analogue TV SECAM L fixed 50% loc - most critical case)",
+   "trigger_dbuv_m": 25,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.1.1 (printed p. 290, PDF p. 298): tropospheric curves 1% time 50% locations, Rx 10 m agl"
+   },
+   "applies_where": "Coordination contour (1 deg radials, 10 km steps inward from 1 000 km) around the station / SFN centre of gravity / allotment boundary test points; an administration is affected if its national boundary is intersected by or enclosed within the contour (Annex 4 Section I §1, §2.1 Step 5, §3, §4)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.1 'Coordination trigger field-strength values to protect systems in the broadcasting service from modifications to the Plan'",
+   "page_printed": 292,
+   "page_pdf": 300,
+   "notes": "Row key is the broadcasting system MODIFYING the Plan (the interferer), not the victim. This is the table GE06 prescribes for identifying administrations whose broadcasting is affected (§2.1 Step 2, §5.1.1).",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    174,
+    230
+   ],
+   "band": "III",
+   "service_or_system": "Interferer = T-DAB assignment/allotment modifying the Plan; protects broadcasting (any victim system: DVB-T fixed roof-level 95% loc, T-DAB mobile 99% loc, analogue TV SECAM L fixed 50% loc - most critical case)",
+   "trigger_dbuv_m": 12,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.1.1 (printed p. 290, PDF p. 298): tropospheric curves 1% time 50% locations, Rx 10 m agl"
+   },
+   "applies_where": "Coordination contour (1 deg radials, 10 km steps inward from 1 000 km) around the station / SFN centre of gravity / allotment boundary test points; an administration is affected if its national boundary is intersected by or enclosed within the contour (Annex 4 Section I §1, §2.1 Step 5, §3, §4)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.1 'Coordination trigger field-strength values to protect systems in the broadcasting service from modifications to the Plan'",
+   "page_printed": 292,
+   "page_pdf": 300,
+   "notes": "Row key is the broadcasting system MODIFYING the Plan (the interferer), not the victim. This is the table GE06 prescribes for identifying administrations whose broadcasting is affected (§2.1 Step 2, §5.1.1).",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    470,
+    582
+   ],
+   "band": "IV",
+   "service_or_system": "Interferer = T-DAB assignment/allotment modifying the Plan; protects broadcasting (any victim system: DVB-T fixed roof-level 95% loc, T-DAB mobile 99% loc, analogue TV SECAM L fixed 50% loc - most critical case)",
+   "trigger_dbuv_m": null,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.1.1 (printed p. 290, PDF p. 298): tropospheric curves 1% time 50% locations, Rx 10 m agl"
+   },
+   "applies_where": "Coordination contour (1 deg radials, 10 km steps inward from 1 000 km) around the station / SFN centre of gravity / allotment boundary test points; an administration is affected if its national boundary is intersected by or enclosed within the contour (Annex 4 Section I §1, §2.1 Step 5, §3, §4)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.1 'Coordination trigger field-strength values to protect systems in the broadcasting service from modifications to the Plan'",
+   "page_printed": 292,
+   "page_pdf": 300,
+   "notes": "Row key is the broadcasting system MODIFYING the Plan (the interferer), not the victim. This is the table GE06 prescribes for identifying administrations whose broadcasting is affected (§2.1 Step 2, §5.1.1). Dash in the table: T-DAB is planned only in Band III.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    582,
+    718
+   ],
+   "band": "V",
+   "service_or_system": "Interferer = T-DAB assignment/allotment modifying the Plan; protects broadcasting (any victim system: DVB-T fixed roof-level 95% loc, T-DAB mobile 99% loc, analogue TV SECAM L fixed 50% loc - most critical case)",
+   "trigger_dbuv_m": null,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.1.1 (printed p. 290, PDF p. 298): tropospheric curves 1% time 50% locations, Rx 10 m agl"
+   },
+   "applies_where": "Coordination contour (1 deg radials, 10 km steps inward from 1 000 km) around the station / SFN centre of gravity / allotment boundary test points; an administration is affected if its national boundary is intersected by or enclosed within the contour (Annex 4 Section I §1, §2.1 Step 5, §3, §4)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.1 'Coordination trigger field-strength values to protect systems in the broadcasting service from modifications to the Plan'",
+   "page_printed": 292,
+   "page_pdf": 300,
+   "notes": "Row key is the broadcasting system MODIFYING the Plan (the interferer), not the victim. This is the table GE06 prescribes for identifying administrations whose broadcasting is affected (§2.1 Step 2, §5.1.1). Dash in the table: T-DAB is planned only in Band III.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    718,
+    862
+   ],
+   "band": "V",
+   "service_or_system": "Interferer = T-DAB assignment/allotment modifying the Plan; protects broadcasting (any victim system: DVB-T fixed roof-level 95% loc, T-DAB mobile 99% loc, analogue TV SECAM L fixed 50% loc - most critical case)",
+   "trigger_dbuv_m": null,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.1.1 (printed p. 290, PDF p. 298): tropospheric curves 1% time 50% locations, Rx 10 m agl"
+   },
+   "applies_where": "Coordination contour (1 deg radials, 10 km steps inward from 1 000 km) around the station / SFN centre of gravity / allotment boundary test points; an administration is affected if its national boundary is intersected by or enclosed within the contour (Annex 4 Section I §1, §2.1 Step 5, §3, §4)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.1 'Coordination trigger field-strength values to protect systems in the broadcasting service from modifications to the Plan'",
+   "page_printed": 292,
+   "page_pdf": 300,
+   "notes": "Row key is the broadcasting system MODIFYING the Plan (the interferer), not the victim. This is the table GE06 prescribes for identifying administrations whose broadcasting is affected (§2.1 Step 2, §5.1.1). Dash in the table: T-DAB is planned only in Band III.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    174,
+    230
+   ],
+   "band": "III",
+   "service_or_system": "Interferer = Analogue TV assignment/allotment modifying the Plan; protects broadcasting (any victim system: DVB-T fixed roof-level 95% loc, T-DAB mobile 99% loc, analogue TV SECAM L fixed 50% loc - most critical case)",
+   "trigger_dbuv_m": 10,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.1.1 (printed p. 290, PDF p. 298): tropospheric curves 1% time 50% locations, Rx 10 m agl"
+   },
+   "applies_where": "Coordination contour (1 deg radials, 10 km steps inward from 1 000 km) around the station / SFN centre of gravity / allotment boundary test points; an administration is affected if its national boundary is intersected by or enclosed within the contour (Annex 4 Section I §1, §2.1 Step 5, §3, §4)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.1 'Coordination trigger field-strength values to protect systems in the broadcasting service from modifications to the Plan'",
+   "page_printed": 292,
+   "page_pdf": 300,
+   "notes": "Row key is the broadcasting system MODIFYING the Plan (the interferer), not the victim. This is the table GE06 prescribes for identifying administrations whose broadcasting is affected (§2.1 Step 2, §5.1.1).",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    470,
+    582
+   ],
+   "band": "IV",
+   "service_or_system": "Interferer = Analogue TV assignment/allotment modifying the Plan; protects broadcasting (any victim system: DVB-T fixed roof-level 95% loc, T-DAB mobile 99% loc, analogue TV SECAM L fixed 50% loc - most critical case)",
+   "trigger_dbuv_m": 18,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.1.1 (printed p. 290, PDF p. 298): tropospheric curves 1% time 50% locations, Rx 10 m agl"
+   },
+   "applies_where": "Coordination contour (1 deg radials, 10 km steps inward from 1 000 km) around the station / SFN centre of gravity / allotment boundary test points; an administration is affected if its national boundary is intersected by or enclosed within the contour (Annex 4 Section I §1, §2.1 Step 5, §3, §4)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.1 'Coordination trigger field-strength values to protect systems in the broadcasting service from modifications to the Plan'",
+   "page_printed": 292,
+   "page_pdf": 300,
+   "notes": "Row key is the broadcasting system MODIFYING the Plan (the interferer), not the victim. This is the table GE06 prescribes for identifying administrations whose broadcasting is affected (§2.1 Step 2, §5.1.1).",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    582,
+    718
+   ],
+   "band": "V",
+   "service_or_system": "Interferer = Analogue TV assignment/allotment modifying the Plan; protects broadcasting (any victim system: DVB-T fixed roof-level 95% loc, T-DAB mobile 99% loc, analogue TV SECAM L fixed 50% loc - most critical case)",
+   "trigger_dbuv_m": 20,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.1.1 (printed p. 290, PDF p. 298): tropospheric curves 1% time 50% locations, Rx 10 m agl"
+   },
+   "applies_where": "Coordination contour (1 deg radials, 10 km steps inward from 1 000 km) around the station / SFN centre of gravity / allotment boundary test points; an administration is affected if its national boundary is intersected by or enclosed within the contour (Annex 4 Section I §1, §2.1 Step 5, §3, §4)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.1 'Coordination trigger field-strength values to protect systems in the broadcasting service from modifications to the Plan'",
+   "page_printed": 292,
+   "page_pdf": 300,
+   "notes": "Row key is the broadcasting system MODIFYING the Plan (the interferer), not the victim. This is the table GE06 prescribes for identifying administrations whose broadcasting is affected (§2.1 Step 2, §5.1.1).",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    718,
+    862
+   ],
+   "band": "V",
+   "service_or_system": "Interferer = Analogue TV assignment/allotment modifying the Plan; protects broadcasting (any victim system: DVB-T fixed roof-level 95% loc, T-DAB mobile 99% loc, analogue TV SECAM L fixed 50% loc - most critical case)",
+   "trigger_dbuv_m": 22,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.1.1 (printed p. 290, PDF p. 298): tropospheric curves 1% time 50% locations, Rx 10 m agl"
+   },
+   "applies_where": "Coordination contour (1 deg radials, 10 km steps inward from 1 000 km) around the station / SFN centre of gravity / allotment boundary test points; an administration is affected if its national boundary is intersected by or enclosed within the contour (Annex 4 Section I §1, §2.1 Step 5, §3, §4)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.1 'Coordination trigger field-strength values to protect systems in the broadcasting service from modifications to the Plan'",
+   "page_printed": 292,
+   "page_pdf": 300,
+   "notes": "Row key is the broadcasting system MODIFYING the Plan (the interferer), not the victim. This is the table GE06 prescribes for identifying administrations whose broadcasting is affected (§2.1 Step 2, §5.1.1).",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    174,
+    230
+   ],
+   "band": "III",
+   "service_or_system": "Victim = broadcasting Plan (Analogue and digital (transition period, footnote 2)); interferer = station of another primary terrestrial service (fixed, mobile, ARNS)",
+   "trigger_dbuv_m": 10,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.2.1 (printed p. 291, PDF p. 299)"
+   },
+   "applies_where": "Coordination contour around the other-service transmitting station; ground-to-ground curves 1% time 50% locations, air-to-ground free space limited to 420 km, airborne Tx height 10 000 m (§5.2.1, printed p. 291)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.10 'Coordination trigger field strengths for the protection of the Plan from other primary terrestrial services'",
+   "page_printed": 299,
+   "page_pdf": 307,
+   "notes": "Footnote 1: values relate to the 7 or 8 MHz bandwidth of the system to be protected. Not the broadcasting-vs-broadcasting case; included because it is the GE06 broadcasting protection value against non-broadcasting interferers.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    470,
+    582
+   ],
+   "band": "IV",
+   "service_or_system": "Victim = broadcasting Plan (Analogue and digital (transition period, footnote 2)); interferer = station of another primary terrestrial service (fixed, mobile, ARNS)",
+   "trigger_dbuv_m": 18,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.2.1 (printed p. 291, PDF p. 299)"
+   },
+   "applies_where": "Coordination contour around the other-service transmitting station; ground-to-ground curves 1% time 50% locations, air-to-ground free space limited to 420 km, airborne Tx height 10 000 m (§5.2.1, printed p. 291)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.10 'Coordination trigger field strengths for the protection of the Plan from other primary terrestrial services'",
+   "page_printed": 299,
+   "page_pdf": 307,
+   "notes": "Footnote 1: values relate to the 7 or 8 MHz bandwidth of the system to be protected. Not the broadcasting-vs-broadcasting case; included because it is the GE06 broadcasting protection value against non-broadcasting interferers.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    582,
+    718
+   ],
+   "band": "V",
+   "service_or_system": "Victim = broadcasting Plan (Analogue and digital (transition period, footnote 2)); interferer = station of another primary terrestrial service (fixed, mobile, ARNS)",
+   "trigger_dbuv_m": 20,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.2.1 (printed p. 291, PDF p. 299)"
+   },
+   "applies_where": "Coordination contour around the other-service transmitting station; ground-to-ground curves 1% time 50% locations, air-to-ground free space limited to 420 km, airborne Tx height 10 000 m (§5.2.1, printed p. 291)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.10 'Coordination trigger field strengths for the protection of the Plan from other primary terrestrial services'",
+   "page_printed": 299,
+   "page_pdf": 307,
+   "notes": "Footnote 1: values relate to the 7 or 8 MHz bandwidth of the system to be protected. Not the broadcasting-vs-broadcasting case; included because it is the GE06 broadcasting protection value against non-broadcasting interferers.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    718,
+    862
+   ],
+   "band": "V",
+   "service_or_system": "Victim = broadcasting Plan (Analogue and digital (transition period, footnote 2)); interferer = station of another primary terrestrial service (fixed, mobile, ARNS)",
+   "trigger_dbuv_m": 22,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.2.1 (printed p. 291, PDF p. 299)"
+   },
+   "applies_where": "Coordination contour around the other-service transmitting station; ground-to-ground curves 1% time 50% locations, air-to-ground free space limited to 420 km, airborne Tx height 10 000 m (§5.2.1, printed p. 291)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.10 'Coordination trigger field strengths for the protection of the Plan from other primary terrestrial services'",
+   "page_printed": 299,
+   "page_pdf": 307,
+   "notes": "Footnote 1: values relate to the 7 or 8 MHz bandwidth of the system to be protected. Not the broadcasting-vs-broadcasting case; included because it is the GE06 broadcasting protection value against non-broadcasting interferers.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    174,
+    230
+   ],
+   "band": "III",
+   "service_or_system": "Victim = broadcasting Plan (Digital); interferer = station of another primary terrestrial service (fixed, mobile, ARNS)",
+   "trigger_dbuv_m": 17,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.2.1 (printed p. 291, PDF p. 299)"
+   },
+   "applies_where": "Coordination contour around the other-service transmitting station; ground-to-ground curves 1% time 50% locations, air-to-ground free space limited to 420 km, airborne Tx height 10 000 m (§5.2.1, printed p. 291)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.10 'Coordination trigger field strengths for the protection of the Plan from other primary terrestrial services'",
+   "page_printed": 299,
+   "page_pdf": 307,
+   "notes": "Footnote 1: values relate to the 7 or 8 MHz bandwidth of the system to be protected. Not the broadcasting-vs-broadcasting case; included because it is the GE06 broadcasting protection value against non-broadcasting interferers.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    470,
+    582
+   ],
+   "band": "IV",
+   "service_or_system": "Victim = broadcasting Plan (Digital); interferer = station of another primary terrestrial service (fixed, mobile, ARNS)",
+   "trigger_dbuv_m": 21,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.2.1 (printed p. 291, PDF p. 299)"
+   },
+   "applies_where": "Coordination contour around the other-service transmitting station; ground-to-ground curves 1% time 50% locations, air-to-ground free space limited to 420 km, airborne Tx height 10 000 m (§5.2.1, printed p. 291)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.10 'Coordination trigger field strengths for the protection of the Plan from other primary terrestrial services'",
+   "page_printed": 299,
+   "page_pdf": 307,
+   "notes": "Footnote 1: values relate to the 7 or 8 MHz bandwidth of the system to be protected. Not the broadcasting-vs-broadcasting case; included because it is the GE06 broadcasting protection value against non-broadcasting interferers.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    582,
+    718
+   ],
+   "band": "V",
+   "service_or_system": "Victim = broadcasting Plan (Digital); interferer = station of another primary terrestrial service (fixed, mobile, ARNS)",
+   "trigger_dbuv_m": 23,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.2.1 (printed p. 291, PDF p. 299)"
+   },
+   "applies_where": "Coordination contour around the other-service transmitting station; ground-to-ground curves 1% time 50% locations, air-to-ground free space limited to 420 km, airborne Tx height 10 000 m (§5.2.1, printed p. 291)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.10 'Coordination trigger field strengths for the protection of the Plan from other primary terrestrial services'",
+   "page_printed": 299,
+   "page_pdf": 307,
+   "notes": "Footnote 1: values relate to the 7 or 8 MHz bandwidth of the system to be protected. Not the broadcasting-vs-broadcasting case; included because it is the GE06 broadcasting protection value against non-broadcasting interferers.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    718,
+    862
+   ],
+   "band": "V",
+   "service_or_system": "Victim = broadcasting Plan (Digital); interferer = station of another primary terrestrial service (fixed, mobile, ARNS)",
+   "trigger_dbuv_m": 25,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "source": "Annex 4 Section I §5.2.1 (printed p. 291, PDF p. 299)"
+   },
+   "applies_where": "Coordination contour around the other-service transmitting station; ground-to-ground curves 1% time 50% locations, air-to-ground free space limited to 420 km, airborne Tx height 10 000 m (§5.2.1, printed p. 291)",
+   "table": "Annex 4, Section I, Appendix 1, Table A.1.10 'Coordination trigger field strengths for the protection of the Plan from other primary terrestrial services'",
+   "page_printed": 299,
+   "page_pdf": 307,
+   "notes": "Footnote 1: values relate to the 7 or 8 MHz bandwidth of the system to be protected. Not the broadcasting-vs-broadcasting case; included because it is the GE06 broadcasting protection value against non-broadcasting interferers.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    174,
+    230
+   ],
+   "band": "III (computed at 200 MHz)",
+   "service_or_system": "Victim DVB-T; interferer DVB-T",
+   "trigger_dbuv_m": 17,
+   "victim_fmed_dbuv_m": 51,
+   "protection_ratio_db": 21,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "frequency_mhz": 200,
+    "source": "Appendix 2 §2: Ftrigger = Fmed + fcorr - PR - CF, tropospheric PR, no Rx antenna discrimination"
+   },
+   "applies_where": "Background derivation for Table A.1.1 (not applied directly)",
+   "table": "Annex 4, Section I, Appendix 2, Table A.2.1 (200 MHz)",
+   "page_printed": 301,
+   "page_pdf": 309,
+   "notes": "Bold (most critical per interferer) in the table: 17 (DVB-T), 12 (T-DAB), 10 (analogue TV) - these equal Table A.1.1 Band III. Footnote: values relate to the bandwidth of the system to be protected. CF value is not printed in this table.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    174,
+    230
+   ],
+   "band": "III (computed at 200 MHz)",
+   "service_or_system": "Victim T-DAB; interferer DVB-T",
+   "trigger_dbuv_m": 33,
+   "victim_fmed_dbuv_m": 60,
+   "protection_ratio_db": 9,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "frequency_mhz": 200,
+    "source": "Appendix 2 §2: Ftrigger = Fmed + fcorr - PR - CF, tropospheric PR, no Rx antenna discrimination"
+   },
+   "applies_where": "Background derivation for Table A.1.1 (not applied directly)",
+   "table": "Annex 4, Section I, Appendix 2, Table A.2.1 (200 MHz)",
+   "page_printed": 301,
+   "page_pdf": 309,
+   "notes": "Bold (most critical per interferer) in the table: 17 (DVB-T), 12 (T-DAB), 10 (analogue TV) - these equal Table A.1.1 Band III. Footnote: values relate to the bandwidth of the system to be protected. CF value is not printed in this table.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    174,
+    230
+   ],
+   "band": "III (computed at 200 MHz)",
+   "service_or_system": "Victim Analogue TV; interferer DVB-T",
+   "trigger_dbuv_m": 20,
+   "victim_fmed_dbuv_m": 55,
+   "protection_ratio_db": 35,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "frequency_mhz": 200,
+    "source": "Appendix 2 §2: Ftrigger = Fmed + fcorr - PR - CF, tropospheric PR, no Rx antenna discrimination"
+   },
+   "applies_where": "Background derivation for Table A.1.1 (not applied directly)",
+   "table": "Annex 4, Section I, Appendix 2, Table A.2.1 (200 MHz)",
+   "page_printed": 301,
+   "page_pdf": 309,
+   "notes": "Bold (most critical per interferer) in the table: 17 (DVB-T), 12 (T-DAB), 10 (analogue TV) - these equal Table A.1.1 Band III. Footnote: values relate to the bandwidth of the system to be protected. CF value is not printed in this table.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    174,
+    230
+   ],
+   "band": "III (computed at 200 MHz)",
+   "service_or_system": "Victim DVB-T; interferer T-DAB",
+   "trigger_dbuv_m": 12,
+   "victim_fmed_dbuv_m": 51,
+   "protection_ratio_db": 26,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "frequency_mhz": 200,
+    "source": "Appendix 2 §2: Ftrigger = Fmed + fcorr - PR - CF, tropospheric PR, no Rx antenna discrimination"
+   },
+   "applies_where": "Background derivation for Table A.1.1 (not applied directly)",
+   "table": "Annex 4, Section I, Appendix 2, Table A.2.1 (200 MHz)",
+   "page_printed": 301,
+   "page_pdf": 309,
+   "notes": "Bold (most critical per interferer) in the table: 17 (DVB-T), 12 (T-DAB), 10 (analogue TV) - these equal Table A.1.1 Band III. Footnote: values relate to the bandwidth of the system to be protected. CF value is not printed in this table.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    174,
+    230
+   ],
+   "band": "III (computed at 200 MHz)",
+   "service_or_system": "Victim T-DAB; interferer T-DAB",
+   "trigger_dbuv_m": 27,
+   "victim_fmed_dbuv_m": 60,
+   "protection_ratio_db": 15,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "frequency_mhz": 200,
+    "source": "Appendix 2 §2: Ftrigger = Fmed + fcorr - PR - CF, tropospheric PR, no Rx antenna discrimination"
+   },
+   "applies_where": "Background derivation for Table A.1.1 (not applied directly)",
+   "table": "Annex 4, Section I, Appendix 2, Table A.2.1 (200 MHz)",
+   "page_printed": 301,
+   "page_pdf": 309,
+   "notes": "Bold (most critical per interferer) in the table: 17 (DVB-T), 12 (T-DAB), 10 (analogue TV) - these equal Table A.1.1 Band III. Footnote: values relate to the bandwidth of the system to be protected. CF value is not printed in this table.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    174,
+    230
+   ],
+   "band": "III (computed at 200 MHz)",
+   "service_or_system": "Victim Analogue TV; interferer T-DAB",
+   "trigger_dbuv_m": 13,
+   "victim_fmed_dbuv_m": 55,
+   "protection_ratio_db": 42,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "frequency_mhz": 200,
+    "source": "Appendix 2 §2: Ftrigger = Fmed + fcorr - PR - CF, tropospheric PR, no Rx antenna discrimination"
+   },
+   "applies_where": "Background derivation for Table A.1.1 (not applied directly)",
+   "table": "Annex 4, Section I, Appendix 2, Table A.2.1 (200 MHz)",
+   "page_printed": 301,
+   "page_pdf": 309,
+   "notes": "Bold (most critical per interferer) in the table: 17 (DVB-T), 12 (T-DAB), 10 (analogue TV) - these equal Table A.1.1 Band III. Footnote: values relate to the bandwidth of the system to be protected. CF value is not printed in this table.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    174,
+    230
+   ],
+   "band": "III (computed at 200 MHz)",
+   "service_or_system": "Victim DVB-T; interferer Analogue TV",
+   "trigger_dbuv_m": 29,
+   "victim_fmed_dbuv_m": 51,
+   "protection_ratio_db": 9,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "frequency_mhz": 200,
+    "source": "Appendix 2 §2: Ftrigger = Fmed + fcorr - PR - CF, tropospheric PR, no Rx antenna discrimination"
+   },
+   "applies_where": "Background derivation for Table A.1.1 (not applied directly)",
+   "table": "Annex 4, Section I, Appendix 2, Table A.2.1 (200 MHz)",
+   "page_printed": 301,
+   "page_pdf": 309,
+   "notes": "Bold (most critical per interferer) in the table: 17 (DVB-T), 12 (T-DAB), 10 (analogue TV) - these equal Table A.1.1 Band III. Footnote: values relate to the bandwidth of the system to be protected. CF value is not printed in this table.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    174,
+    230
+   ],
+   "band": "III (computed at 200 MHz)",
+   "service_or_system": "Victim T-DAB; interferer Analogue TV",
+   "trigger_dbuv_m": 40,
+   "victim_fmed_dbuv_m": 60,
+   "protection_ratio_db": 2,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "frequency_mhz": 200,
+    "source": "Appendix 2 §2: Ftrigger = Fmed + fcorr - PR - CF, tropospheric PR, no Rx antenna discrimination"
+   },
+   "applies_where": "Background derivation for Table A.1.1 (not applied directly)",
+   "table": "Annex 4, Section I, Appendix 2, Table A.2.1 (200 MHz)",
+   "page_printed": 301,
+   "page_pdf": 309,
+   "notes": "Bold (most critical per interferer) in the table: 17 (DVB-T), 12 (T-DAB), 10 (analogue TV) - these equal Table A.1.1 Band III. Footnote: values relate to the bandwidth of the system to be protected. CF value is not printed in this table.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    174,
+    230
+   ],
+   "band": "III (computed at 200 MHz)",
+   "service_or_system": "Victim Analogue TV; interferer Analogue TV",
+   "trigger_dbuv_m": 10,
+   "victim_fmed_dbuv_m": 55,
+   "protection_ratio_db": 45,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "frequency_mhz": 200,
+    "source": "Appendix 2 §2: Ftrigger = Fmed + fcorr - PR - CF, tropospheric PR, no Rx antenna discrimination"
+   },
+   "applies_where": "Background derivation for Table A.1.1 (not applied directly)",
+   "table": "Annex 4, Section I, Appendix 2, Table A.2.1 (200 MHz)",
+   "page_printed": 301,
+   "page_pdf": 309,
+   "notes": "Bold (most critical per interferer) in the table: 17 (DVB-T), 12 (T-DAB), 10 (analogue TV) - these equal Table A.1.1 Band III. Footnote: values relate to the bandwidth of the system to be protected. CF value is not printed in this table.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    470,
+    862
+   ],
+   "band": "IV/V (computed at 650 MHz)",
+   "service_or_system": "Victim DVB-T; interferer DVB-T",
+   "trigger_dbuv_m": 23,
+   "victim_fmed_dbuv_m": 57,
+   "protection_ratio_db": 21,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "frequency_mhz": 650,
+    "source": "Appendix 2 §2"
+   },
+   "applies_where": "Background derivation for Table A.1.1 (not applied directly)",
+   "table": "Annex 4, Section I, Appendix 2, Table A.2.2 (650 MHz)",
+   "page_printed": 301,
+   "page_pdf": 309,
+   "notes": "Bold: 23 (DVB-T interferer), 20 (analogue interferer) = Table A.1.1 Band V 582-718. Footnote: related to the 8 MHz bandwidth of the system to be protected.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    470,
+    862
+   ],
+   "band": "IV/V (computed at 650 MHz)",
+   "service_or_system": "Victim Analogue TV; interferer DVB-T",
+   "trigger_dbuv_m": 30,
+   "victim_fmed_dbuv_m": 65,
+   "protection_ratio_db": 35,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "frequency_mhz": 650,
+    "source": "Appendix 2 §2"
+   },
+   "applies_where": "Background derivation for Table A.1.1 (not applied directly)",
+   "table": "Annex 4, Section I, Appendix 2, Table A.2.2 (650 MHz)",
+   "page_printed": 301,
+   "page_pdf": 309,
+   "notes": "Bold: 23 (DVB-T interferer), 20 (analogue interferer) = Table A.1.1 Band V 582-718. Footnote: related to the 8 MHz bandwidth of the system to be protected.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    470,
+    862
+   ],
+   "band": "IV/V (computed at 650 MHz)",
+   "service_or_system": "Victim DVB-T; interferer Analogue TV",
+   "trigger_dbuv_m": 35,
+   "victim_fmed_dbuv_m": 57,
+   "protection_ratio_db": 9,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "frequency_mhz": 650,
+    "source": "Appendix 2 §2"
+   },
+   "applies_where": "Background derivation for Table A.1.1 (not applied directly)",
+   "table": "Annex 4, Section I, Appendix 2, Table A.2.2 (650 MHz)",
+   "page_printed": 301,
+   "page_pdf": 309,
+   "notes": "Bold: 23 (DVB-T interferer), 20 (analogue interferer) = Table A.1.1 Band V 582-718. Footnote: related to the 8 MHz bandwidth of the system to be protected.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE06",
+   "band_or_range_mhz": [
+    470,
+    862
+   ],
+   "band": "IV/V (computed at 650 MHz)",
+   "service_or_system": "Victim Analogue TV; interferer Analogue TV",
+   "trigger_dbuv_m": 20,
+   "victim_fmed_dbuv_m": 65,
+   "protection_ratio_db": 45,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": 1,
+    "percentage_locations": 50,
+    "frequency_mhz": 650,
+    "source": "Appendix 2 §2"
+   },
+   "applies_where": "Background derivation for Table A.1.1 (not applied directly)",
+   "table": "Annex 4, Section I, Appendix 2, Table A.2.2 (650 MHz)",
+   "page_printed": 301,
+   "page_pdf": 309,
+   "notes": "Bold: 23 (DVB-T interferer), 20 (analogue interferer) = Table A.1.1 Band V 582-718. Footnote: related to the 8 MHz bandwidth of the system to be protected.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE84",
+   "band_or_range_mhz": [
+    87.5,
+    108
+   ],
+   "service_or_system": "FM sound broadcasting, all systems (unified)",
+   "trigger_dbuv_m": null,
+   "nuisance_field_dbuv_m": 54,
+   "protection_ratio_tropospheric_db": 39,
+   "protection_ratio_steady_db": 47,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": "1 (tropospheric) and 50 (steady)",
+    "percentage_locations": 50,
+    "source": "Annex 2 Ch. 2 propagation curves (50% locations, 50% and 1% time, h2 = 10 m); Annex 2 §3.5 nuisance field"
+   },
+   "applies_where": "Nearest point on the boundary of the other administration's country (Art. 4 §4.2.2 a)",
+   "table": "Annex 4, Chapter 1, introductory text to Tables 4.1-4.4",
+   "page_printed": 54,
+   "page_pdf": 60,
+   "notes": "GE84 has NO trigger field strength. Coordination is triggered by DISTANCE: an administration is affected if the station is closer to its border than the coordination distance in Tables 4.1 (land), 4.2 (cold sea), 4.3 (warm sea), 4.4 (super-refractive) for the station's e.r.p. (dBW) and effective antenna height, linear interpolation, mixed path D_M = sum(d_i/d_T * D_i). The distances were computed from a 54 dB(uV/m) nuisance field with mean protection ratios 39 dB (tropospheric) and 47 dB (steady), taking the larger distance. Confirmed identical in the 1984 scan (scan PDF p. 61).",
+   "doubt": "Implied interfering field strength at the border (54-39 = 15 dB(uV/m) for 1% time; 54-47 = 7 dB(uV/m) for 50% time) is OUR derivation from Annex 2 §3.5 (Et = P + E(50,T) + At), not a value printed in the Agreement. Use the distance tables, not these numbers, to reproduce the GE84 test."
+  },
+  {
+   "agreement": "GE84",
+   "band_or_range_mhz": [
+    87.5,
+    108
+   ],
+   "service_or_system": "FM sound broadcasting, acceptance criterion for the consulted administration",
+   "trigger_dbuv_m": 54,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": "usable field strength per Annex 2 Ch. 4 (50% locations, (100-T)% time, T e.g. 1)",
+    "percentage_locations": 50,
+    "source": "Art. 4 §4.3.7.1"
+   },
+   "applies_where": "At the transmitter site or at specific points of the service area of the affected station",
+   "table": "Article 4, §4.3.7.1 (no table)",
+   "page_printed": 5,
+   "page_pdf": 11,
+   "notes": "Affected sound broadcasting administration should normally accept if the resulting usable field strength is <= 54 dB(uV/m), or > 54 but increased by <= 0.5 dB relative to the reference usable field strength; more than 0.5 dB is open to negotiation. Usable field strength by the simplified multiplication method (Annex 2 Ch. 4, sigma = 8.3 dB). This is the second-stage acceptance test, not the trigger.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE84",
+   "band_or_range_mhz": [
+    87.5,
+    100
+   ],
+   "service_or_system": "TV stations under Stockholm 1961 in 87.5-100 MHz (acceptance criterion)",
+   "trigger_dbuv_m": 52,
+   "reference": {
+    "source": "Art. 4 §4.3.7.2",
+    "percentage_locations": 50,
+    "receiving_height_m": 10,
+    "percentage_time": "as usable field strength"
+   },
+   "applies_where": "At the transmitter site of the TV station",
+   "table": "Article 4, §4.3.7.2",
+   "page_printed": 6,
+   "page_pdf": 12,
+   "notes": "Resulting usable field strength <= 52 dB(uV/m), or increase <= 0.5 dB. Not relevant to Finland (no TV in band II) - included for completeness.",
+   "doubt": null
+  },
+  {
+   "agreement": "GE84",
+   "band_or_range_mhz": [
+    87.5,
+    108
+   ],
+   "service_or_system": "FM stereo (minimum usable field strength, rural)",
+   "trigger_dbuv_m": null,
+   "minimum_usable_field_strength_dbuv_m": 54,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": "median",
+    "percentage_locations": "median",
+    "source": "Annex 2 §3.6"
+   },
+   "applies_where": "Planning value (coverage), not a coordination trigger",
+   "table": "Annex 2, Chapter 3, §3.6 (no table)",
+   "page_printed": 34,
+   "page_pdf": 40,
+   "notes": "Applies to +/-50 kHz and +/-75 kHz deviation. Confirmed in 1984 scan (scan PDF p. 41).",
+   "doubt": null
+  },
+  {
+   "agreement": "GE84",
+   "band_or_range_mhz": [
+    87.5,
+    108
+   ],
+   "service_or_system": "FM mono (minimum usable field strength, rural)",
+   "trigger_dbuv_m": null,
+   "minimum_usable_field_strength_dbuv_m": 48,
+   "reference": {
+    "receiving_height_m": 10,
+    "percentage_time": "median",
+    "percentage_locations": "median",
+    "source": "Annex 2 §3.6"
+   },
+   "applies_where": "Planning value (coverage), not a coordination trigger",
+   "table": "Annex 2, Chapter 3, §3.6 (no table)",
+   "page_printed": 34,
+   "page_pdf": 40,
+   "notes": "Applies to +/-50 kHz and +/-75 kHz deviation. Confirmed in 1984 scan (scan PDF p. 41).",
+   "doubt": null
+  }
+ ],
+ "ge84_protection_ratios": {
+  "source": "GE84 Annex 2, Chapter 3, §3.4, Tables 2.1-2.3 (printed pp. 31 and 33, PDF pp. 37 and 39); curves Figs 2.6/2.7; tropospheric = protection for 99% of the time. Cross-checked digit by digit against the 1984 scan (scan PDF pp. 38 and 40).",
+  "spacing_khz": [
+   0,
+   25,
+   50,
+   75,
+   100,
+   150,
+   200,
+   250,
+   300,
+   350,
+   400
+  ],
+  "table_2_1_dev75": {
+   "mono_steady": [
+    36,
+    31,
+    24,
+    16,
+    12,
+    8,
+    6,
+    2,
+    -7,
+    -15,
+    -20
+   ],
+   "mono_tropo": [
+    28,
+    27,
+    22,
+    16,
+    12,
+    8,
+    6,
+    2,
+    -7,
+    -15,
+    -20
+   ],
+   "stereo_steady": [
+    45,
+    51,
+    51,
+    45,
+    33,
+    18,
+    7,
+    2,
+    -7,
+    -15,
+    -20
+   ],
+   "stereo_tropo": [
+    37,
+    43,
+    43,
+    37,
+    25,
+    14,
+    7,
+    2,
+    -7,
+    -15,
+    -20
+   ]
+  },
+  "spacing_khz_25": [
+   0,
+   25,
+   50,
+   75,
+   100,
+   125,
+   150,
+   175,
+   200,
+   225,
+   250,
+   275,
+   300,
+   325,
+   350,
+   375,
+   400
+  ],
+  "table_2_2_dev50": {
+   "mono_steady": [
+    39,
+    32,
+    24,
+    15,
+    12,
+    7.5,
+    6,
+    2,
+    -2.5,
+    -3.5,
+    -6,
+    -7.5,
+    -10,
+    -12,
+    -15,
+    -17.5,
+    -20
+   ],
+   "mono_tropo": [
+    32,
+    28,
+    22,
+    15,
+    12,
+    7.5,
+    6,
+    2,
+    -2.5,
+    -3.5,
+    -6,
+    -7.5,
+    -10,
+    -12,
+    -15,
+    -17.5,
+    -20
+   ],
+   "stereo_steady": [
+    49,
+    53,
+    51,
+    45,
+    33,
+    25,
+    18,
+    12,
+    7,
+    5,
+    2,
+    0,
+    -7,
+    -10,
+    -15,
+    -17.5,
+    -20
+   ],
+   "stereo_tropo": [
+    41,
+    45,
+    43,
+    37,
+    25,
+    18,
+    14,
+    11,
+    7,
+    5,
+    2,
+    0,
+    -7,
+    -10,
+    -15,
+    -17.5,
+    -20
+   ]
+  },
+  "table_2_3_mixed_dev_stereo": {
+   "wanted50_interferer75_steady": [
+    49,
+    53,
+    51,
+    45,
+    33,
+    25,
+    18,
+    12,
+    7,
+    5,
+    2,
+    0,
+    -7,
+    -10,
+    -15,
+    -17.5,
+    -20
+   ],
+   "wanted50_interferer75_tropo": [
+    41,
+    45,
+    43,
+    37,
+    25,
+    18,
+    14,
+    11,
+    7,
+    5,
+    2,
+    0,
+    -7,
+    -10,
+    -15,
+    -17.5,
+    -20
+   ],
+   "wanted75_interferer50_steady": [
+    45,
+    51,
+    51,
+    45,
+    33,
+    24.5,
+    18,
+    11,
+    7,
+    4.5,
+    2,
+    -2,
+    -7,
+    -11.5,
+    -15,
+    -17.5,
+    -20
+   ],
+   "wanted75_interferer50_tropo": [
+    37,
+    43,
+    43,
+    37,
+    25,
+    18,
+    14,
+    10,
+    7,
+    4.5,
+    2,
+    -2,
+    -7,
+    -11.5,
+    -15,
+    -17.5,
+    -20
+   ]
+  },
+  "co_channel_summary_db": {
+   "dev75": {
+    "mono_steady": 36,
+    "mono_tropo": 28,
+    "stereo_steady": 45,
+    "stereo_tropo": 37
+   },
+   "dev50": {
+    "mono_steady": 39,
+    "mono_tropo": 32,
+    "stereo_steady": 49,
+    "stereo_tropo": 41
+   }
+  }
+ },
+ "ge84_coordination_distances_note": "Tables 4.1-4.4 (printed pp. 55-58, PDF pp. 61-64) give coordination distances in km by e.r.p. 0-55 dBW (5 dB steps) and effective antenna height 10/37.5/75/150/300/600/1200/1800 m; not transcribed here (the task asked for field strengths). Example Table 4.1 land, 30 dBW: 250/250/260/270/290/320/360/400 km. Table 4.4 (super-refractive) is height-independent, 560 km at 0 dBW to 1480 km at 55 dBW.",
+ "method_notes": {
+  "GE06": "Single trigger value per band and system, applied through a coordination contour. Annex 4 Section I (Limits and methodology for determining when agreement with another administration is required; printed pp. 285-302, PDF pp. 293-310). NOTE: the trigger tables are in Section I and its Appendix 1, not Section II (Section II, printed p. 304, is 'Examination of conformity with the digital Plan entry'). For a modification to the Plan, take Table A.1.1 by the system modifying the Plan (DVB-T: 17/21/23/25 dB(uV/m) in Band III/IV/V-low/V-high), compute field strength with the Annex 2 Chapter 2 propagation model for 1% time, 50% locations, 10 m Rx height, notified e.r.p. and effective height; on 1 deg radials start at 1 000 km and step inward 10 km until the trigger is reached; an administration whose national boundary is intersected by or enclosed in the contour is affected. SFN: reference point at the centre of gravity of the transmitters, power sum. Allotment: reference network from each boundary test point (Appendix 3, +3 dB power margin for DVB-T RN). Contour capped at 1 000 km. Triggers are derived as Ftrigger = Fmed + fcorr - PR - CF (Appendix 2, eq. A.2.1), tropospheric PR, no receiving antenna discrimination, fcorr = 20 log10(f/fr) for fixed reception, 30 log10(f/fr) for portable/mobile, fr = 200 MHz (Band III) or 650 MHz (Bands IV/V). Definition (Annex 2, Chapter 1, §1.3.10, printed p. 74, PDF p. 82): 'Field-strength level which, when exceeded, determines that coordination is required'.",
+  "GE84": "No single trigger field strength. Article 4 §4.2.2 a) (printed p. 4, PDF p. 10): sound broadcasting of another administration is likely to be affected if the distance from the station to the nearest point of that country's boundary is less than the limit in Annex 4 Chapter 1, i.e. coordination distance Tables 4.1-4.4 by e.r.p. and effective antenna height and path type (land / cold sea / warm sea / super-refractive; mixed paths by weighted sum). Those distances were derived from a 54 dB(uV/m) nuisance field with mean protection ratios 39 dB tropospheric and 47 dB steady. §4.2.4 exempts power reductions, cases beyond the distances, and site moves <= 15 km (>= 1 kW) or <= 5 km (< 1 kW). Once identified, the consulted administration assesses by calculation (§4.3.7.1): usable field strength by the simplified multiplication method (Annex 2 Ch. 4, nuisance fields Esi = Pi + Eni(50,T) + Ai + Bi, sigma = 8.3 dB) at the transmitter site or specific service-area points; acceptable if <= 54 dB(uV/m) or increased by <= 0.5 dB over the reference usable field strength. Nuisance field: steady Es = P + E(50,50) + As, tropospheric Et = P + E(50,T) + At, use the larger (Annex 2 §3.5). Planning minimum usable field strength: 54 stereo / 48 mono dB(uV/m), rural, 10 m (Annex 2 §3.6).",
+  "for_the_tool": "For GE06 a fixed per-band trigger can be compared with a P.1546-type field strength at the Finnish border (1% time, 50% loc, 10 m). For GE84 the faithful test is the distance table, not a field-strength threshold; an implied border field strength (15 dB(uV/m) at 1% time / 7 dB(uV/m) at 50% time) is a derivation and must be labelled so."
+ },
+ "not_found_or_uncertain": [
+  "GE84 landing page https://www.itu.int/pub/R-ACT-RRC.6-1984 says 'not available'; the text used is the ITU dms_pub file R-ACT-RRC.5-1984 (title confirmed in PDF metadata and title page) plus the ITU History scan.",
+  "Neither document is consolidated: GE84 and GE06 Plans and some technical provisions may have been amended by later conferences/regional revisions; not checked. In Finland Bands 694-790/790-862 MHz are now mobile, so the 718-862 MHz GE06 value applies only to remaining 694-718 MHz broadcasting (if any).",
+  "GE06 Table A.1.1 carries no bandwidth footnote, while A.1.9/A.1.10/A.2.x say the values relate to the 7 or 8 MHz bandwidth of the protected system; we assume A.1.1 is the same basis.",
+  "Location correction factor CF values used in Appendix 2 are not printed in Tables A.2.1/A.2.2 (they are in Annex 2 Chapter 3, not read).",
+  "GE84 Annex 4 Chapters 4-6 (land mobile, fixed, aeronautical mobile limits) and Chapter 2 TV distance tables not transcribed."
+ ]
+}

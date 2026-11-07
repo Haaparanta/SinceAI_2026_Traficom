@@ -139,7 +139,8 @@ Counts: **6 high, 1 medium, 6 review, 52 low, 3 992 not raised.** Field strength
 1. Each extract is the change set of its issue (no 3076 notice is in 3075; MODIFY and SUPPRESS point into the Master Register), so the change comes from the Bureau's intent. The comparison with 3075 is a trend per administration, band and station class (`reports/3076/01_diff.html`).
 2. Land-mobile notices (station classes FB, FL, ML, MO) of other administrations, with a point location, within 1 000 km of Finland.
 3. Distance to the nearest point of the Finland polygon; the straight path split into land and sea zones (sea = outside every country polygon, treated as cold sea).
-4. Field strength with the **ITU-R P.1546-6 reference implementation** (Py1546 6.1, pinned to commit e2356290; its 52 ITU validation cases reproduce to 0.0 dB in `tests/test_p1546.py`): 10 % of time, 50 % of locations, receiving antenna 10 m, rural receiver, no terrain profile (transmitting antenna height above ground as effective height; 1.5 m assumed for mobiles without a filed height), notified e.r.p. (e.i.r.p. minus 2.15 dB), no antenna pattern (conservative).
+4. Field strength with the **ITU-R P.1546-6 reference implementation** (Py1546 6.1, pinned to commit e2356290; its 52 ITU validation cases reproduce to 0.0 dB in `tests/test_p1546.py`): 10 % of time, 50 % of locations, receiving antenna 10 m, rural receiver, no terrain profile, notified e.r.p. (e.i.r.p. minus 2.15 dB), no antenna pattern (conservative).
+   **Transmitting height h1.** The notice's own filed effective height towards the receiver: `fxm_ant_hgt` holds it every 10 deg (height above the average terrain 3 to 15 km out), interpolated to the bearing of the receiver (the nearest border point, or each special-interest station). 32 of the 65 computed notices file it. Otherwise, in order: the filed maximum effective height (`fxm_ant.eff_hgtmax`), the antenna height above ground (`fxm_ant.hgt_agl`, 20 notices), 1.5 m for mobiles and 10 m for others [hypothesis] (13 notices). On land paths under 15 km the engine blends h1 with the height above ground (P.1546-6 Annex 5 section 3.1.1); on a path with sea h1 is not taken below 1 m (Annex 5 section 4.2). Compared with using the height above ground for every notice, the 32 notices move by -7.0 to +2.9 dB and no concern level changes (`reports/3076/02_field_strength.html`, section "Transmitting antenna height h1").
 5. **Special-interest stations.** Every station of the Traficom table whose protected channel (RX frequency +- half the bandwidth) overlaps the notice's channel and lies within 1 000 km gets its own P.1546 field strength over the path from the transmitter to the station, at the station's antenna height above ground (10 m when not filed; raised to 3 m next to sea, the method's lower limit), against the same trigger. Applying the border trigger at a station is an indicative protection check [hypothesis].
 6. Concern [hypothesis until Q11, Q12]: new or modified notice above the trigger, high; within 6 dB below, medium; further below, low. Recorded notice above the trigger, medium; otherwise low. No T/R 25-08 trigger for the band (for example 790-862 MHz), review within 100 km and low beyond, field strength reported. Withdrawn, Finnish, non-land-mobile and area notices for distant territories are not raised, with the reason. The concern is the worse of the border check and the worst co-channel station; the trace shows the calculation that decided it. In 3076 no station decides: the closest is 13.7 dB under the trigger (Russian 415.825 MHz base station at Kingisepp against station 640513, 147.5 km away, where the field strength is 6.3 dB(uV/m), higher than the -0.5 dB(uV/m) at the nearest border point, because the station's antenna is 34 m above ground: at the 10 m reference height it would be -4.1 dB(uV/m)).
 
@@ -152,3 +153,22 @@ uv run python -m radar.export --issue 3076 --kind terrestrial
 uv run python scripts/field_strength_report.py 3076      # reports/3076/02_field_strength.html
 ```
 
+
+## Broadcasting extension: FM (GE84) and TV (GE06), Terrestrial IFIC 3076
+
+`broadcasting_3076.csv` and `.json` (same `ResultRow` columns, finding ids `B-3076-nnnn`) hold the 562 FM and TV notices of the issue. They are kept apart from the graded land-mobile file. `make broadcasting ISSUE=3076`; proof in `reports/3076/03_broadcasting.html`.
+
+**Method.** The same engine as the land-mobile side quest: P.1546-6 reference implementation, filed effective height towards the receiver, land and sea path zones. Field strength at the nearest Finnish border point and at every special-interest station on the same channel within 1 000 km, at 10 m receiving height (the GE84 and GE06 planning height) and 1 % of time (interference), against the trigger in `data/reference/ge_triggers.csv`. The concern is the worse of the two points, with the land-mobile rules.
+
+**Triggers.**
+- **GE06**, Annex 4 Section I Appendix 1, Table A.1.1 (page 292), at 1 % time, 50 % locations and 10 m:
+  - DVB-T: 17, 21, 23 and 25 dB(uV/m) in Bands III, IV, V-low and V-high;
+  - analogue TV: 10, 18, 20 and 22 dB(uV/m).
+- **GE84 has no trigger field strength.** It identifies affected administrations by distance tables (Annex 4 Tables 4.1-4.4). Those tables were computed from a 54 dB(uV/m) nuisance field and a 39 dB mean tropospheric protection ratio (page 54). The FM row uses the border field strength they imply, 54 - 39 = 15 dB(uV/m) at 1 % time, and is marked **derived** [hypothesis].
+
+Both agreements were transcribed from the official ITU PDFs and checked on the page images (`data/reference/review/`).
+
+**Result for 3076.**
+- **Nothing to coordinate for Finland.** Only Russia among the neighbours filed broadcasting (37 FM, 14 TV), at Tver, Kaluga, Astrakhan, Grozny, Makhachkala and in the Altai, 640 to 3 350 km away.
+- **Beyond the method's range.** 558 notices are more than 1 000 km from Finland, beyond P.1546, or are withdrawn or without a location.
+- **Computed.** The 4 FM notices within range (2 at Tver, 640 km; 2 at Kaluga, 860 km) give -11.6 to -36.6 dB(uV/m) at the border, 26.6 to 51.6 dB under the trigger: all low.

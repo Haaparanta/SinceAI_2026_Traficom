@@ -5,171 +5,171 @@
   "flagged": 135,
   "provenance_coverage_pct": 100.0,
   "concern": {
-    "high": 46,
-    "medium": 74,
-    "review": 3,
+    "high": 23,
+    "medium": 99,
+    "review": 1,
     "low": 12,
     "none": 64
   },
-  "citations": 2232,
+  "citations": 2106,
   "citation_mismatches": 0,
   "resolver": {
-    "itu_row:PASS": 1056,
-    "finnish_table_row:PASS": 576,
-    "calculation:PASS": 273,
-    "regulation:PASS": 76,
-    "special_interest_row:PASS": 251
+    "itu_row:PASS": 878,
+    "finnish_table_row:PASS": 573,
+    "regulation:PASS": 210,
+    "special_interest_row:PASS": 232,
+    "calculation:PASS": 213
   },
   "top": [
     {
       "id": "F-3074-0001",
-      "notice": "124520174",
-      "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 9.0 dB with the satellite high over Finland (90 deg elevation) (indicative). Lead group 124741924: 5.1675 GHz to 5.1985 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 5 more candidate group(s) in this notice."
-    },
-    {
-      "id": "F-3074-0002",
-      "notice": "324520174",
-      "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 9.0 dB with the satellite high over Finland (90 deg elevation) (indicative). Lead group 324741924: 5.1675 GHz to 5.1985 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 5 more candidate group(s) in this notice."
-    },
-    {
-      "id": "F-3074-0003",
-      "notice": "124520131",
-      "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 0.3 dB with the satellite high over Finland (90 deg elevation) (indicative); 3 special-interest stations in the band and in reach. Lead group 124742535: 19.3 GHz to 19.7 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1079 more candidate group(s) in this notice."
-    },
-    {
-      "id": "F-3074-0004",
       "notice": "124520183",
       "concern": "high",
       "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 6.3 dB with a steerable beam that can be pointed at Finland (indicative); 9 special-interest stations in the band and in reach. Lead group 124794008: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 15.5 deg at Helsinki); 36 more candidate group(s) in this notice."
     },
     {
-      "id": "F-3074-0005",
+      "id": "F-3074-0002",
       "notice": "124520184",
       "concern": "high",
       "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 4.7 dB with a steerable beam that can be pointed at Finland (indicative); 9 special-interest stations in the band and in reach. Lead group 124793617: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 21.5 deg at Hanko); 60 more candidate group(s) in this notice."
     },
     {
-      "id": "F-3074-0006",
-      "notice": "124520191",
-      "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 2.9 dB with the satellite high over Finland (90 deg elevation) (indicative). Lead group 124813260: 37.5 GHz to 42.5 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 2 more candidate group(s) in this notice."
-    },
-    {
-      "id": "F-3074-0007",
+      "id": "F-3074-0003",
       "notice": "124520214",
       "concern": "high",
       "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 3.4 dB with a steerable beam that can be pointed at Finland (indicative); 12 special-interest stations in the band and in reach. Lead group 124727502: 18.7 GHz to 19.7 GHz space-to-Earth; geography visible (highest elevation 12.1 deg at Ilomantsi); 98 more candidate group(s) in this notice."
     },
     {
-      "id": "F-3074-0008",
-      "notice": "124520220",
-      "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 4.5 dB with the satellite high over Finland (90 deg elevation) (indicative). Lead group 124811692: 37.5 GHz to 42.5 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 323 more candidate group(s) in this notice."
-    },
-    {
-      "id": "F-3074-0009",
-      "notice": "125520053",
-      "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 4.3 dB with the satellite high over Finland (90 deg elevation) (indicative); 3 special-interest stations in the band and in reach. Lead group 125805051: 17.7 GHz to 17.8 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1137 more candidate group(s) in this notice."
-    },
-    {
-      "id": "F-3074-0010",
-      "notice": "125545347",
-      "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 20.4 dB with the satellite high over Finland (90 deg elevation) (indicative); 170 special-interest stations in the band and in reach. Lead group 125748048: 2.2 GHz to 2.29 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 7 more candidate group(s) in this notice."
-    },
-    {
-      "id": "F-3074-0011",
-      "notice": "125545368",
-      "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 14.9 dB with the satellite high over Finland (90 deg elevation) (indicative); 170 special-interest stations in the band and in reach. Lead group 125752920: 2.2 GHz to 2.29 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 3 more candidate group(s) in this notice."
-    },
-    {
-      "id": "F-3074-0012",
-      "notice": "125545392",
-      "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 5.2 dB with the satellite high over Finland (90 deg elevation) (indicative); 32 special-interest stations in the band and in reach. Lead group 125741809: 2.22273 GHz to 2.22327 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1 more candidate group(s) in this notice."
-    },
-    {
-      "id": "F-3074-0013",
-      "notice": "126545098",
-      "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 3.2 dB with the satellite high over Finland (90 deg elevation) (indicative); 43 special-interest stations in the band and in reach. Lead group 126662059: 2.22928 GHz to 2.22972 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N))."
-    },
-    {
-      "id": "F-3074-0014",
-      "notice": "126545119",
-      "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 0.3 dB with the satellite high over Finland (90 deg elevation) (indicative); 17 special-interest stations in the band and in reach. Lead group 126664723: 2.244 GHz to 2.246 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 3 more candidate group(s) in this notice."
-    },
-    {
-      "id": "F-3074-0015",
-      "notice": "126545131",
-      "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 2.1 dB with the satellite high over Finland (90 deg elevation) (indicative); 22 special-interest stations in the band and in reach. Lead group 126656468: 2.24319 GHz to 2.24381 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N))."
-    },
-    {
-      "id": "F-3074-0016",
-      "notice": "123520029",
-      "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 2.3 dB with the satellite high over Finland (90 deg elevation) (indicative); 8 special-interest stations in the band and in reach. Lead group 124746437: 17.7 GHz to 17.95 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 755 more candidate group(s) in this notice."
-    },
-    {
-      "id": "F-3074-0017",
-      "notice": "323520029",
-      "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 2.3 dB with the satellite high over Finland (90 deg elevation) (indicative); 8 special-interest stations in the band and in reach. Lead group 324746437: 17.7 GHz to 17.95 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 755 more candidate group(s) in this notice."
-    },
-    {
-      "id": "F-3074-0018",
-      "notice": "324520131",
-      "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 0.3 dB with the satellite high over Finland (90 deg elevation) (indicative); 3 special-interest stations in the band and in reach. Lead group 324742535: 19.3 GHz to 19.7 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 1079 more candidate group(s) in this notice."
-    },
-    {
-      "id": "F-3074-0019",
+      "id": "F-3074-0004",
       "notice": "324520183",
       "concern": "high",
       "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 6.3 dB with a steerable beam that can be pointed at Finland (indicative); 9 special-interest stations in the band and in reach. Lead group 324794008: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 15.5 deg at Helsinki); 36 more candidate group(s) in this notice."
     },
     {
-      "id": "F-3074-0020",
+      "id": "F-3074-0005",
       "notice": "324520184",
       "concern": "high",
       "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 4.7 dB with a steerable beam that can be pointed at Finland (indicative); 9 special-interest stations in the band and in reach. Lead group 324793617: 18.7 GHz to 19.2 GHz space-to-Earth; geography visible (highest elevation 21.5 deg at Hanko); 60 more candidate group(s) in this notice."
     },
     {
-      "id": "F-3074-0021",
-      "notice": "324520191",
-      "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 2.9 dB with the satellite high over Finland (90 deg elevation) (indicative). Lead group 324813260: 37.5 GHz to 42.5 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 2 more candidate group(s) in this notice."
-    },
-    {
-      "id": "F-3074-0022",
+      "id": "F-3074-0006",
       "notice": "324520214",
       "concern": "high",
       "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 3.4 dB with a steerable beam that can be pointed at Finland (indicative); 12 special-interest stations in the band and in reach. Lead group 324727502: 18.7 GHz to 19.7 GHz space-to-Earth; geography visible (highest elevation 12.1 deg at Ilomantsi); 98 more candidate group(s) in this notice."
     },
     {
-      "id": "F-3074-0023",
-      "notice": "324520220",
+      "id": "F-3074-0007",
+      "notice": "124520173",
       "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 4.5 dB with the satellite high over Finland (90 deg elevation) (indicative). Lead group 324811692: 37.5 GHz to 42.5 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 323 more candidate group(s) in this notice."
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 124793424: 235 MHz to 312 MHz Earth-to-space; geography unknown (typical earth station, no location filed); 39 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0008",
+      "notice": "124520194",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 124725054: 240 MHz to 270 MHz space-to-Earth; geography low_elevation (highest elevation 9.6 deg at Ilomantsi); 66 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0009",
+      "notice": "324520173",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 324793424: 235 MHz to 312 MHz Earth-to-space; geography unknown (typical earth station, no location filed); 39 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0010",
+      "notice": "324520194",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 324725054: 240 MHz to 270 MHz space-to-Earth; geography low_elevation (highest elevation 9.6 deg at Ilomantsi); 66 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0011",
+      "notice": "125520111",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.14). Lead group 125849380: 400.15 MHz to 401 MHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 8 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0012",
+      "notice": "124520179",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.11). Lead group 124711730: 17.67 GHz to 17.72 GHz space-to-Earth; geography not_visible (highest elevation -0.1 deg at Mariehamn); 35 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0013",
+      "notice": "124520200",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 124813282: 148 MHz to 149.9 MHz Earth-to-space; geography far (nearest earth station LATMOS (F) 1800 km from Finland)."
+    },
+    {
+      "id": "F-3074-0014",
+      "notice": "124520212",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 124770975: 148.024 MHz to 148.114 MHz Earth-to-space; geography far (nearest earth station DELFT (HOL) 1377 km from Finland)."
+    },
+    {
+      "id": "F-3074-0015",
+      "notice": "324520179",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.11). Lead group 324711730: 17.67 GHz to 17.72 GHz space-to-Earth; geography not_visible (highest elevation -0.1 deg at Mariehamn); 35 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0016",
+      "notice": "324520200",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 324813282: 148 MHz to 149.9 MHz Earth-to-space; geography far (nearest earth station LATMOS (F) 1800 km from Finland)."
+    },
+    {
+      "id": "F-3074-0017",
+      "notice": "324520212",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (9.21/C). Lead group 324770975: 148.024 MHz to 148.114 MHz Earth-to-space; geography far (nearest earth station DELFT (HOL) 1377 km from Finland)."
+    },
+    {
+      "id": "F-3074-0018",
+      "notice": "125500068",
+      "concern": "high",
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd exceeds the RR Article 21 limit by 3.1 dB with a steerable beam that can be pointed at Finland (indicative); 8 special-interest stations in the band and in reach. Lead group 125622933: 17.7 GHz to 17.95 GHz space-to-Earth; geography visible (highest elevation 13.0 deg at Ilomantsi); 393 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0019",
+      "notice": "126545119",
+      "concern": "high",
+      "reason": "Uplink from an earth station inside Finland. Lead group 126664721: 401 MHz to 401.05 MHz Earth-to-space; geography near_border (earth station TAMPERE (FIN) is inside Finland); 3 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0020",
+      "notice": "126500107",
+      "concern": "high",
+      "reason": "Uplink from an earth station inside Finland. Lead group 126662083: 2.068 GHz to 2.074 GHz Earth-to-space; geography near_border (earth station PLAN-S_MUONIO(FIN) (FIN) is inside Finland); 12 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0021",
+      "notice": "125500060",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (V/11.31.1/C). Lead group 125622475: 7.1 GHz to 7.155 GHz Earth-to-space; geography unknown (typical earth station, no location filed); 1 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0022",
+      "notice": "125500061",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (V/11.31.1/C). Lead group 125622563: 7.1 GHz to 7.155 GHz Earth-to-space; geography unknown (typical earth station, no location filed); 1 more candidate group(s) in this notice."
+    },
+    {
+      "id": "F-3074-0023",
+      "notice": "125500066",
+      "concern": "high",
+      "reason": "The Bureau lists Finland as affected (V/11.31.1/C). Lead group 125638815: 7.1 GHz to 7.155 GHz Earth-to-space; geography unknown (typical earth station, no location filed); 28 more candidate group(s) in this notice."
     },
     {
       "id": "F-3074-0024",
-      "notice": "124545403",
-      "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 9.2 dB with the satellite high over Finland (90 deg elevation) (indicative). Lead group 124747312: 32.3 GHz to 33 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 121 more candidate group(s) in this notice."
+      "notice": "124520204",
+      "concern": "medium",
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd 0.8 dB below the RR Article 21 limit (indicative); 9 special-interest stations in the band and in reach. Lead group 124725956: 18.8 GHz to 19.8 GHz space-to-Earth; geography visible (highest elevation 13.3 deg at Ilomantsi); 8 more candidate group(s) in this notice."
     },
     {
       "id": "F-3074-0025",
-      "notice": "125545390",
-      "concern": "high",
-      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd of one satellite exceeds the RR Article 21 limit by 6.6 dB with the satellite high over Finland (90 deg elevation) (indicative); 4 special-interest stations in the band and in reach. Lead group 125743446: 25.5 GHz to 27 GHz space-to-Earth; geography visible (seen up to 90.0 N at 10 deg elevation (Finland from 59.8 N)); 8 more candidate group(s) in this notice."
+      "notice": "324520204",
+      "concern": "medium",
+      "reason": "Downlink over a Finnish primary terrestrial allocation; worst-case pfd 0.8 dB below the RR Article 21 limit (indicative); 9 special-interest stations in the band and in reach. Lead group 324725956: 18.8 GHz to 19.8 GHz space-to-Earth; geography visible (highest elevation 13.3 deg at Ilomantsi); 8 more candidate group(s) in this notice."
     }
   ]
 }

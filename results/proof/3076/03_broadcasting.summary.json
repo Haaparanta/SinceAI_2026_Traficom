@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "checks": [
+    [
+      "Every FM and TV notice is screened and has a reason",
+      true,
+      "562 notices"
+    ],
+    [
+      "No notice beyond the P.1546 range is computed",
+      true,
+      ""
+    ],
+    [
+      "Every computed notice has a trace and a field-strength evidence item",
+      true,
+      "4 computed"
+    ],
+    [
+      "Every citation reopens",
+      true,
+      "580 citations, 0 mismatches"
+    ]
+  ],
+  "concern": {
+    "low": 4,
+    "none": 558
+  }
+}

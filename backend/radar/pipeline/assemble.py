@@ -3,8 +3,8 @@
 One Finding per notice (a notice is as serious as its worst group, scoring/DESIGN.md section 2). The lead group is
 the group with the highest concern, then the highest score. Every finding carries evidence that a person, or
 radar.evidence_check, can reopen: the notice row, its special sections, the station row, the lead group row,
-the Finnish table rows, the Bureau's provn rows when Finland is named, the earth station row for uplinks, and the
-geography calculation. The reason is a fixed template; no language model is involved.
+the Finnish table rows and Regulation M4 for the first of them, the Bureau's provn rows when Finland is named, the
+earth station row for uplinks, and the geography calculation. The reason is a fixed template; no language model is involved.
 
     uv run python -m radar.pipeline.assemble 3074      # writes data/derived/findings_space_3074.json
 """
@@ -232,6 +232,9 @@ def run(issue: int) -> SpaceRun:
         for b in lanes[:MAX_FINNISH_ROWS]:
             e = traficom_table.evidence(b, f"E-{len(ev) + 1:03d}")
             ev.append(e)
+        if lanes:
+            # the regulation behind the table: M4 sets the Finnish use of the first (most relevant) row
+            ev.append(traficom_table.m4_evidence(lanes[0], f"E-{len(ev) + 1:03d}"))
         for prov in r.finland_named_provisions:
             k = {C("affected", "group_id"): gid, C("affected", "administration"): "FIN", C("affected", "provision"): prov}
             ex = row_excerpt(con, T("affected"), k, [C("affected", "provision"), C("affected", "administration"), "agree_st"])

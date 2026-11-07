@@ -6,6 +6,7 @@ import json
 import pytest
 
 from radar.adapters import special_interest as SI
+from radar.adapters import terrestrial_ific as T
 from radar.config import settings
 from radar.models import SpecialInterestStation, TerrestrialNotice
 from radar.pipeline import terrestrial as TR
@@ -14,6 +15,11 @@ from radar.pipeline import terrestrial as TR
 def notice(freq=415_825_000, bw=25_000, change="new", lat=60.0, lon=28.8, erp=20.0):
     return TerrestrialNotice(issue=3076, notice_id="N1", administration="RUS", change=change, station_class="FB",
                              lat=lat, lon=lon, freq_hz=freq, bandwidth_hz=bw, erp_dbw=erp, antenna_height_m=30.0, source_ref="t")
+
+
+def extra(**kw):
+    return T.NoticeExtra(intent="ADD", notice_type="T12", geo_type="POINT", country="RUS", power_dbw_filed=20.0,
+                         power_quantity="E", directivity="ND", received=None, target=None, land_mobile=True, **kw)
 
 
 def station(number, centre, bw=25_000, lat=60.47, lon=26.95, h=30.0):
@@ -36,20 +42,20 @@ def test_co_channel_means_overlapping_channels(stations):
 def test_field_strength_at_the_station_uses_its_antenna_height(stations):
     inland = dict(lat=61.0, lon=27.5)
     stations([station("LOW", 415_825_000, h=2.0, **inland), station("HIGH", 415_825_000, h=60.0, **inland)])
-    res = {s["number"]: s for s in TR.station_checks(notice(), 30.0, 20.0)}
+    res = {s["number"]: s for s in TR.station_checks(notice(), extra(), 20.0)}
     assert res["HIGH"]["e_dbuv_m"] > res["LOW"]["e_dbuv_m"] and res["HIGH"]["h2_m"] == 60.0
     assert res["LOW"]["margin_db"] == pytest.approx(20.0 - res["LOW"]["e_dbuv_m"], abs=0.01)
 
 
 def test_a_low_antenna_next_to_sea_is_raised_to_the_p1546_minimum(stations):
     stations([station("SEA", 415_825_000, h=2.0, lat=60.2, lon=27.4)])          # Gulf of Finland, off Kotka
-    [r] = TR.station_checks(notice(), 30.0, 20.0)
+    [r] = TR.station_checks(notice(), extra(), 20.0)
     assert r["h2_m"] == 3.0 and "raised to 3 m" in r["h2_source"] and r["segments"][-1][1] != "Land"
 
 
 def test_stations_beyond_the_p1546_limit_are_left_out(stations):
     stations([station("FAR", 415_825_000, lat=69.9, lon=27.0)])
-    assert TR.station_checks(notice(lat=50.0, lon=30.0), 30.0, 20.0) == []
+    assert TR.station_checks(notice(lat=50.0, lon=30.0), extra(), 20.0) == []
 
 
 def test_a_station_over_the_trigger_decides_the_concern():

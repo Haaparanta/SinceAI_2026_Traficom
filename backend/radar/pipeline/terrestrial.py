@@ -5,8 +5,13 @@ For every located land-mobile notice of another administration within MAX_DISTAN
   2. the path from the station to that point split into land and sea zones (1 km samples against the country
      polygons; sea = outside every loaded country, treated as 'Cold' sea for P.1546: Baltic, Gulf of Finland)
   3. field strength at the border with ITU-R P.1546-6 (radar.calc.p1546) for the notified e.r.p., 10 % time,
-     50 % locations, 10 m receiving height
+     50 % locations, 10 m receiving height. h1, the transmitting antenna's effective height, is the notice's own
+     filed value in the direction of the receiver when it files one (fxm_ant_hgt, every 10 deg, interpolated to the
+     bearing), else its filed maximum effective height, else the antenna height above ground (no terrain profile)
   4. the ECC/ERC T/R 25-08 Annex 1 trigger for the band plus 10 log10(channel / 25 kHz); margin = trigger - E
+
+Evidence: the notice, site and antenna rows, the border and P.1546 calculations, the T/R 25-08 row and, for a raised
+notice, the Finnish table rows its channel overlaps with Regulation M4 behind the first of them.
 
 Special-interest stations (Traficom XLS): for a computed notice, every station whose protected channel (RX
 frequency +- half the bandwidth) overlaps the notice's channel and lies within MAX_DISTANCE_KM gets its own P.1546
@@ -29,6 +34,7 @@ from functools import lru_cache
 
 from radar import schema_map
 from radar.adapters import terrestrial_ific as T
+from radar.adapters import traficom_table
 from radar.config import ROOT
 from radar.evidence import locator, row_excerpt
 from radar.models import AnalysisResult, CalcInput, CalcTrace, Evidence, Finding, TerrestrialNotice
@@ -36,12 +42,14 @@ from scoring.geometry import Region
 
 MAX_DISTANCE_KM = 1000.0         # P.1546 validity limit
 MAX_STATION_EVIDENCE = 5          # stations cited per finding; all of them are in the results file
+MAX_FINNISH_ROWS = 6              # Finnish table rows cited per raised finding (same cap as the space findings)
 P1546_MIN_H2_SEA_M = 3.0         # P.1546-6: receiving antenna below 3 m adjacent to sea is outside the method
 STATION_DEFAULT_H2_M = 10.0     # receiving height when the sheet gives none (the T/R 25-08 reference height)
 NO_CRITERION_REVIEW_KM = 100.0   # [HYPOTHESIS] without a criterion, only stations this close go to review (Q12)
 WITHIN_DB_MEDIUM = 6.0           # [HYPOTHESIS] within 6 dB of the trigger is still worth a look (Q12)
 DEFAULT_HEIGHT = {"ML": 1.5, "MO": 1.5}   # [HYPOTHESIS] vehicle or handheld height when none is filed
 DEFAULT_HEIGHT_OTHER = 10.0
+P1546_MIN_H1_SEA_M = 1.0         # P.1546-6 Annex 5 section 4.2: for a sea path h1 should not be less than 1 m
 THRESHOLDS_FILE = ROOT / "data" / "reference" / "tr2508_thresholds.csv"
 CONCERN_ORDER = {"high": 4, "medium": 3, "review": 2, "low": 1, "none": 0}
 
@@ -109,6 +117,57 @@ def path_segments(lat1: float, lon1: float, lat2: float, lon2: float, d_km: floa
     return tuple((round(d_km * c / n, 4), k) for c, k in segs)
 
 
+# ---- transmitting antenna height h1 ----------------------------------------------------------------------------
+
+@dataclass(frozen=True)
+class H1:
+    value_m: float
+    source: str
+    azimuths: tuple[float, ...] = ()      # fxm_ant_hgt rows used (for the evidence)
+    bearing_deg: float | None = None
+
+
+def interpolate_azimuth(heights: tuple[tuple[float, float], ...], bearing: float) -> tuple[float, tuple[float, ...]]:
+    """Linear interpolation between the two filed azimuths around the bearing (circular)."""
+    pts = sorted((az % 360.0, h) for az, h in heights)
+    b = bearing % 360.0
+    for az, h in pts:
+        if abs(az - b) < 1e-9:
+            return h, (az,)
+    after = next(((az, h) for az, h in pts if az > b), (pts[0][0] + 360.0, pts[0][1]))
+    before = next(((az, h) for az, h in reversed(pts) if az < b), (pts[-1][0] - 360.0, pts[-1][1]))
+    t = (b - before[0]) / (after[0] - before[0])
+    return before[1] + t * (after[1] - before[1]), (before[0] % 360.0, after[0] % 360.0)
+
+
+def h1_for(n: TerrestrialNotice, extra: T.NoticeExtra, lat2: float, lon2: float, sea_in_path: bool) -> H1:
+    """h1 towards (lat2, lon2): the filed effective height first, then the filed maximum, then above ground, then a default."""
+    from scoring.geometry import initial_bearing_deg
+
+    if extra.eff_heights:
+        b = round(initial_bearing_deg(n.lat, n.lon, lat2, lon2), 1)
+        h, used = interpolate_azimuth(extra.eff_heights, b)
+        h = round(h, 1)
+        between = f"filed at {used[0]:g} deg" if len(used) == 1 else f"interpolated between {used[0]:g} and {used[1]:g} deg"
+        out = H1(h, f"filed effective height towards the receiver, bearing {b:g} deg ({between}, fxm_ant_hgt.eff_hgt)", used, b)
+    elif extra.eff_height_max_m is not None:
+        out = H1(extra.eff_height_max_m, "filed maximum effective height (fxm_ant.eff_hgtmax); no value per azimuth, "
+                                         "so the highest one is used (conservative)")
+    elif n.antenna_height_m:
+        out = H1(n.antenna_height_m, "antenna height above ground (fxm_ant.hgt_agl): no effective height filed, no terrain profile")
+    else:
+        h = DEFAULT_HEIGHT.get(n.station_class or "", DEFAULT_HEIGHT_OTHER)
+        out = H1(h, f"not filed; {h:g} m assumed for class {n.station_class} [hypothesis]")
+    if sea_in_path and out.value_m < P1546_MIN_H1_SEA_M:
+        out = H1(P1546_MIN_H1_SEA_M, f"{out.source}; {out.value_m:g} m raised to {P1546_MIN_H1_SEA_M:g} m: P.1546-6 Annex 5 "
+                                     f"section 4.2, h1 should not be less than 1 m on a sea path", out.azimuths, out.bearing_deg)
+    return out
+
+
+def _has_sea(segs) -> bool:
+    return any(k != "Land" for _, k in segs)
+
+
 # ---- one notice ------------------------------------------------------------------------------------------------
 
 @dataclass
@@ -128,6 +187,7 @@ class TerrestrialCalc:
     margin_db: float | None = None
     notes: list[str] = field(default_factory=list)
     stations: list[dict] = field(default_factory=list)     # co-channel special-interest stations, worst first
+    heff_azimuths: tuple[float, ...] = ()   # fxm_ant_hgt azimuths behind h1 (empty when not per azimuth)
 
 
 def evaluate(n: TerrestrialNotice, extra: T.NoticeExtra) -> TerrestrialCalc:
@@ -152,24 +212,20 @@ def evaluate(n: TerrestrialNotice, extra: T.NoticeExtra) -> TerrestrialCalc:
         return TerrestrialCalc("no_input", "frequency outside 30-4000 MHz (P.1546 range)", distance_km=round(d, 1))
     if n.erp_dbw is None:
         return TerrestrialCalc("no_input", "e.r.p. not filed", distance_km=round(d, 1))
-    if n.antenna_height_m:
-        heff, src = n.antenna_height_m, "antenna height above ground (fxm_ant.hgt_agl), no terrain profile"
-    else:
-        heff = DEFAULT_HEIGHT.get(n.station_class or "", DEFAULT_HEIGHT_OTHER)
-        src = f"not filed; {heff:g} m assumed for class {n.station_class} [hypothesis]"
     from radar.calc.p1546 import field_strength
 
     segs = path_segments(round(n.lat, 5), round(n.lon, 5), round(nlat, 5), round(nlon, 5), round(max(d, 0.04), 3))
-    fs = field_strength(n.freq_hz / 1e6, list(segs), heff, n.erp_dbw)
+    h1 = h1_for(n, extra, nlat, nlon, _has_sea(segs))
+    fs = field_strength(n.freq_hz / 1e6, list(segs), h1.value_m, n.erp_dbw, ha_m=n.antenna_height_m)
     row, bc = threshold_for(n.freq_hz, n.bandwidth_hz)
-    c = TerrestrialCalc("computed", "", round(d, 1), (nlat, nlon), segs, heff, src, fs.e_dbuv_m, fs.free_space_dbuv_m,
-                        row, bc, notes=fs.notes)
+    c = TerrestrialCalc("computed", "", round(d, 1), (nlat, nlon), segs, h1.value_m, h1.source, fs.e_dbuv_m, fs.free_space_dbuv_m,
+                        row, bc, notes=fs.notes, heff_azimuths=h1.azimuths)
     if row is not None:
         c.trigger_dbuv_m = round(row.threshold_dbuv_m + bc, 2)
         c.margin_db = round(c.trigger_dbuv_m - fs.e_dbuv_m, 2)
     if extra.directivity == "D" and n.azimuth_deg is not None:
         c.notes.append(f"directional antenna, maximum radiation at {n.azimuth_deg:g} deg; no pattern applied (conservative)")
-    c.stations = station_checks(n, heff, c.trigger_dbuv_m)
+    c.stations = station_checks(n, extra, c.trigger_dbuv_m)
     return c
 
 
@@ -185,7 +241,7 @@ def co_channel_stations(n: TerrestrialNotice) -> list:
     return out
 
 
-def station_checks(n: TerrestrialNotice, heff: float, trigger: float | None) -> list[dict]:
+def station_checks(n: TerrestrialNotice, extra: T.NoticeExtra, trigger: float | None) -> list[dict]:
     """P.1546 field strength at every co-channel special-interest station within MAX_DISTANCE_KM, worst first."""
     from radar.calc.p1546 import field_strength
     from scoring.geometry import haversine_km
@@ -201,9 +257,11 @@ def station_checks(n: TerrestrialNotice, heff: float, trigger: float | None) -> 
         if segs[-1][1] != "Land" and h2 < P1546_MIN_H2_SEA_M:
             h2_source = f"{h2:g} m raised to {P1546_MIN_H2_SEA_M:g} m: P.1546 is not valid below that next to sea"
             h2 = P1546_MIN_H2_SEA_M
-        fs = field_strength(n.freq_hz / 1e6, list(segs), heff, n.erp_dbw, rx_height_m=h2)
+        h1 = h1_for(n, extra, s.lat, s.lon, _has_sea(segs))
+        fs = field_strength(n.freq_hz / 1e6, list(segs), h1.value_m, n.erp_dbw, rx_height_m=h2, ha_m=n.antenna_height_m)
         out.append({"number": s.station_number, "row": s.source_row, "class": s.licence_class, "lat": s.lat, "lon": s.lon,
                     "centre_hz": s.centre_hz, "distance_km": round(d, 1), "h2_m": h2,
+                    "h1_m": h1.value_m, "h1_source": h1.source, "h1_azimuths": h1.azimuths,
                     "h2_source": h2_source,
                     "segments": segs, "e_dbuv_m": fs.e_dbuv_m,
                     "margin_db": None if trigger is None else round(trigger - fs.e_dbuv_m, 2)})
@@ -211,7 +269,7 @@ def station_checks(n: TerrestrialNotice, heff: float, trigger: float | None) -> 
 
 
 def station_excerpt(s: dict) -> str:
-    return f"E {s['e_dbuv_m']:.2f} dB(uV/m) at station {s['number']}, {s['distance_km']:g} km, h2 {s['h2_m']:g} m"
+    return f"E {s['e_dbuv_m']:.2f} dB(uV/m) at station {s['number']}, {s['distance_km']:g} km, h1 {s['h1_m']:g} m, h2 {s['h2_m']:g} m"
 
 
 def _level(n: TerrestrialNotice, margin: float | None, distance_km: float) -> str:
@@ -287,6 +345,7 @@ def run(issue: int) -> TerrestrialRun:
     source = f"brific{issue}.mdb (data/derived/terrestrial_{issue}.duckdb)"
     geo_keys = dict(con.execute(f'SELECT CAST("{C("notice", "notice_id")}" AS VARCHAR), "{C("notice", "geo_key")}" '
                                 f'FROM "{Tb("notice")}"').fetchall())
+    bands = traficom_table.subbands()
     calcs, findings = {}, []
     for n in ing.notices:
         e = ing.extra[n.notice_id]
@@ -302,6 +361,13 @@ def run(issue: int) -> TerrestrialRun:
         k = {C("notice", "notice_id"): n.notice_id}
         n_ev = add("itu_row", source, locator(Tb("notice"), **k), row_excerpt(con, Tb("notice"), k, [
             C("notice", x) for x in ("administration", "intent", "notice_type", "station_class", "freq_mhz", "bandwidth_khz")]))
+        # Raised notices cite the Finnish table rows their channel overlaps and Regulation M4 behind the first one
+        # (pm_pack/06: M4 is the citation target for every Finnish-table match).
+        fi_rows = finnish_rows(n, bands) if level != "none" else []
+        for b in fi_rows:
+            ev.append(traficom_table.evidence(b, f"E-{len(ev) + 1:03d}"))
+        if fi_rows:
+            ev.append(traficom_table.m4_evidence(fi_rows[0], f"E-{len(ev) + 1:03d}"))
         trace = CalcTrace(method="none", inputs=[], formula="", result_value=None, result_unit="", limit_value=None,
                           limit_evidence_id=None, margin_db=None, notes=[c.reason] if c.reason else [])
         geo = "unknown"
@@ -311,7 +377,18 @@ def run(issue: int) -> TerrestrialRun:
                 C("site", x) for x in ("country", "site_name", "lat_deg", "lon_deg")]))
             ak = {C("antenna", "notice_id"): n.notice_id, C("antenna", "antenna_key"): e.antenna_key}
             a_ev = add("itu_row", source, locator(Tb("antenna"), **ak), row_excerpt(con, Tb("antenna"), ak, [
-                C("antenna", x) for x in ("power_dbw", "power_quantity", "height_agl_m", "directivity")]))
+                C("antenna", x) for x in ("power_dbw", "power_quantity", "height_agl_m", "max_effective_height_m", "directivity")]))
+
+            def h_ev(azimuths) -> str:
+                """Evidence for h1: the fxm_ant_hgt rows used, or the antenna row."""
+                ids = []
+                for az in azimuths:
+                    hk = {C("antenna_height", "notice_id"): n.notice_id, C("antenna_height", "antenna_key"): e.antenna_key,
+                          C("antenna_height", "azimuth_deg"): f"{az:.1f}"}
+                    ids.append(add("itu_row", source, locator(Tb("antenna_height"), **hk), row_excerpt(
+                        con, Tb("antenna_height"), hk, [C("antenna_height", "azimuth_deg"), C("antenna_height", "effective_height_m")])))
+                return ids[0] if ids else a_ev
+            h1_ev = h_ev(c.heff_azimuths)
             b_ev = add("calculation", "radar.pipeline.terrestrial (Natural Earth 1:50m polygons)",
                        f"border(notice_id={n.notice_id})", border_excerpt(c))
             p_ev = add("calculation", "radar.calc.p1546 (ITU-R P.1546-6 reference implementation)",
@@ -324,7 +401,10 @@ def run(issue: int) -> TerrestrialRun:
                 method="p1546_field_strength",
                 inputs=[CalcInput(name="f frequency", value=n.freq_hz / 1e6, unit="MHz", evidence_id=n_ev),
                         CalcInput(name="e.r.p.", value=n.erp_dbw, unit="dBW", evidence_id=a_ev),
-                        CalcInput(name="h1 transmitting antenna height", value=c.heff_m, unit="m", evidence_id=a_ev),
+                        CalcInput(name="h1 transmitting antenna effective height", value=c.heff_m, unit="m", evidence_id=h1_ev),
+                        CalcInput(name="ha antenna height above ground (sets h1 on land paths under 15 km)",
+                                  value=n.antenna_height_m if n.antenna_height_m is not None else "not filed", unit="m",
+                                  evidence_id=a_ev),
                         CalcInput(name="d distance to the Finnish border", value=c.distance_km, unit="km", evidence_id=b_ev),
                         CalcInput(name="path zones", value="; ".join(f"{d:g} km {k}" for d, k in c.segments), unit="", evidence_id=b_ev),
                         CalcInput(name="time percentage", value=10.0, unit="%", evidence_id=p_ev),
@@ -347,11 +427,13 @@ def run(issue: int) -> TerrestrialRun:
                 ws_ev = add("calculation", "radar.calc.p1546 (ITU-R P.1546-6 reference implementation)",
                             f"p1546_station(notice_id={n.notice_id};station={w['number']})", station_excerpt(w))
                 if station_decides(n, c):
+                    w_h1_ev = h_ev(w["h1_azimuths"]) if w["h1_azimuths"] != c.heff_azimuths else h1_ev
                     trace = CalcTrace(
                         method="p1546_field_strength",
                         inputs=[CalcInput(name="f frequency", value=n.freq_hz / 1e6, unit="MHz", evidence_id=n_ev),
                                 CalcInput(name="e.r.p.", value=n.erp_dbw, unit="dBW", evidence_id=a_ev),
-                                CalcInput(name="h1 transmitting antenna height", value=c.heff_m, unit="m", evidence_id=a_ev),
+                                CalcInput(name="h1 transmitting antenna effective height", value=w["h1_m"], unit="m",
+                                          evidence_id=w_h1_ev),
                                 CalcInput(name=f"d distance to special-interest station {w['number']}", value=w["distance_km"], unit="km",
                                           evidence_id=st_ev[w["number"]]),
                                 CalcInput(name="path zones", value="; ".join(f"{d:g} km {k}" for d, k in w["segments"]), unit="",
@@ -367,7 +449,7 @@ def run(issue: int) -> TerrestrialRun:
                         margin_db=w["margin_db"], label="indicative",
                         notes=[f"computed at special-interest station {w['number']} (decides the concern); at the border: "
                                f"E {c.e_dbuv_m:g} dB(uV/m), {c.distance_km:g} km",
-                               f"h2: {w['h2_source']}", f"h1: {c.heff_source}", "no antenna pattern applied (conservative)",
+                               f"h2: {w['h2_source']}", f"h1: {w['h1_source']}", "no antenna pattern applied (conservative)",
                                "the T/R 25-08 trigger is defined at the border line; applying it at a station inside Finland is "
                                "an indicative protection check [hypothesis]"] + c.notes)
                 else:
@@ -378,6 +460,7 @@ def run(issue: int) -> TerrestrialRun:
         elif c.distance_km is not None:
             geo = "near_border" if c.distance_km <= 300 else "far"
         findings.append(Finding(id="", kind="terrestrial", issue=issue, notice_id=n.notice_id, group_id=None,
+                                matched_subband_ids=[b.id for b in fi_rows],
                                 matched_station_numbers=[st["number"] for st in c.stations],
                                 geo_relevance=geo, calc=trace, concern=level, reason=reason, evidence=ev))
     con.close()
@@ -391,6 +474,23 @@ def run(issue: int) -> TerrestrialRun:
                          flagged=sum(1 for f in order if f.concern != "none"),
                          provenance_coverage_pct=round(100 * complete / max(len(order), 1), 1), findings=order)
     return TerrestrialRun(res, calcs, ing)
+
+
+def finnish_rows(n: TerrestrialNotice, bands=None) -> list:
+    """The Finnish table rows (Regulation M4) the notified channel overlaps: widest overlap first, one row per distinct
+    service and limits, at most MAX_FINNISH_ROWS. Empty when the notice has no frequency."""
+    if n.freq_hz is None:
+        return []
+    half = (n.bandwidth_hz or 0) // 2
+    lo, hi = n.freq_hz - half, n.freq_hz + half
+    hits = traficom_table.overlapping(lo, max(hi, lo + 1), bands)
+    out, seen = [], set()
+    for b, _ in sorted(hits, key=lambda h: (-h[1], h[0].lower_hz, h[0].id)):
+        key = (b.services_in_finland, b.lower_hz, b.upper_hz)
+        if key not in seen:
+            seen.add(key)
+            out.append(b)
+    return out[:MAX_FINNISH_ROWS]
 
 
 def border_excerpt(c: TerrestrialCalc) -> str:

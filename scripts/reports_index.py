@@ -33,6 +33,7 @@ STEPS = [
     ("3074/08_plans.html", "C1b", "Space 3074: AP30, AP30A and AP30B plans against Finland's plan entries"),
     ("3076/01_diff.html", "C2", "Terrestrial 3075 to 3076: diff"),
     ("3076/02_field_strength.html", "C3", "Terrestrial 3076: border distance and field strength"),
+    ("3076/03_broadcasting.html", "C3+", "Terrestrial 3076: FM and TV broadcasting (GE84, GE06)"),
     ("3074/07_explanations.html", "D2", "Space 3074: grounded explanations and letter drafts"),
     ("3076/07_explanations.html", "D2", "Terrestrial 3076: grounded explanations and letter drafts"),
     ("playwright/index.html", "D1", "Playwright end-to-end tests of the screen (make e2e), incl. the offline demo walk (E3)"),

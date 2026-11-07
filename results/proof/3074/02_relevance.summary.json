@@ -31,8 +31,8 @@
       220
     ],
     [
-      "  hit a special-interest station (XLS waiting)",
-      0
+      "  overlap a special-interest station (frequency, before geography)",
+      9568
     ]
   ],
   "funnel_notices": [
@@ -65,10 +65,14 @@
       18
     ],
     [
-      "  hit a special-interest station (XLS waiting)",
-      0
+      "  overlap a special-interest station (frequency, before geography)",
+      124
     ]
   ],
+  "special_interest": {
+    "stations": 869,
+    "overlapped_before_geography": 659
+  },
   "paths_groups": {
     "space_cofrequency": 13926,
     "pfd_terrestrial": 9560,
@@ -77,19 +81,17 @@
     "uplink_uncovered": 376,
     "uplink_passive": 651,
     "uncovered": 174,
-    "passive_service": 20,
-    "service_area_finland": 1
+    "passive_service": 20
   },
   "paths_notices": {
-    "space_cofrequency": 157,
-    "pfd_terrestrial": 158,
     "uplink_terrestrial": 131,
-    "uplink_space": 132,
-    "passive_service": 3,
-    "uncovered": 23,
-    "uplink_passive": 23,
+    "pfd_terrestrial": 158,
     "uplink_uncovered": 44,
-    "service_area_finland": 1
+    "space_cofrequency": 157,
+    "uplink_space": 132,
+    "uplink_passive": 23,
+    "uncovered": 23,
+    "passive_service": 3
   },
   "space_to_earth_kept_share": 0.9933,
   "overlap_wider_than_group": [],

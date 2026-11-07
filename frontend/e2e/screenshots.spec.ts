@@ -120,6 +120,25 @@ test("terrestrial-stations: field strength at a special-interest station", async
   await page.screenshot({ path: `../docs/screenshots/${step}/1-map-${info.project.name}.png` });
 });
 
+test("overview: whole-issue charts", async ({ page }, info) => {
+  test.skip(step !== "overview");
+  await page.goto("/");
+  await page.getByRole("tab", { name: "Overview" }).click();
+  await expect(page.getByRole("tab", { name: "Overview" })).toHaveAttribute("aria-selected", "true");
+  await page.waitForTimeout(400);                                   // the tab highlight fades in (transition-colors)
+  await expect(page.locator("svg[aria-label^='Geostationary arc'] [data-finding]").first()).toBeVisible();
+  await page.getByRole("region", { name: "Issue overview" }).scrollIntoViewIfNeeded();
+  if (info.project.name === "phone") await page.getByRole("region", { name: "Issue overview" }).screenshot({ path: `../docs/screenshots/${step}/1-space-${info.project.name}.png` });
+  else await page.screenshot({ path: `../docs/screenshots/${step}/1-space-${info.project.name}.png` });
+  await page.getByRole("tab", { name: "Terrestrial 3076" }).click();
+  await page.getByRole("tab", { name: "Overview" }).click();
+  await expect(page.getByRole("tab", { name: "Overview" })).toHaveAttribute("aria-selected", "true");
+  await page.waitForTimeout(400);                                   // the tab highlight fades in (transition-colors)
+  await expect(page.locator("svg[aria-label='Flagged findings by frequency and concern'] [data-finding]").first()).toBeVisible();
+  if (info.project.name === "phone") await page.getByRole("region", { name: "Issue overview" }).screenshot({ path: `../docs/screenshots/${step}/2-terrestrial-${info.project.name}.png` });
+  else await page.screenshot({ path: `../docs/screenshots/${step}/2-terrestrial-${info.project.name}.png` });
+});
+
 test("ap30: plan check report", async ({ page }, info) => {
   test.skip(step !== "ap30");
   const proof = new URL("../../results/proof/", import.meta.url).href;
@@ -128,6 +147,26 @@ test("ap30: plan check report", async ({ page }, info) => {
   await page.screenshot({ path: `../docs/screenshots/${step}/1-orbit-strip-${info.project.name}.png` });
   await page.getByRole("heading", { name: /Plan sections published in IFIC/ }).evaluate((el) => el.scrollIntoView({ block: "start" }));
   await page.screenshot({ path: `../docs/screenshots/${step}/2-plan-sections-${info.project.name}.png` });
+});
+
+test("heights: effective antenna height in the field-strength report", async ({ page }, info) => {
+  test.skip(step !== "heights");
+  const proof = new URL("../../results/proof/", import.meta.url).href;
+  await page.goto(`${proof}3076/02_field_strength.html`);
+  const heading = page.getByRole("heading", { name: "Transmitting antenna height h1" });
+  await expect(heading).toBeVisible();
+  await heading.evaluate((el) => el.scrollIntoView({ block: "start" }));
+  await page.screenshot({ path: `../docs/screenshots/${step}/1-h1-table-${info.project.name}.png` });
+});
+
+test("broadcasting: FM and TV report", async ({ page }, info) => {
+  test.skip(step !== "broadcasting");
+  const proof = new URL("../../results/proof/", import.meta.url).href;
+  await page.goto(`${proof}3076/03_broadcasting.html`);
+  await expect(page.getByRole("heading", { name: /FM and TV broadcasting/ })).toBeVisible();
+  await page.screenshot({ path: `../docs/screenshots/${step}/1-summary-${info.project.name}.png` });
+  await page.getByRole("heading", { name: "Computed notices" }).evaluate((el) => el.scrollIntoView({ block: "start" }));
+  await page.screenshot({ path: `../docs/screenshots/${step}/2-computed-${info.project.name}.png` });
 });
 
 test("ngso: non-GSO pfd in the pfd report", async ({ page }, info) => {
