@@ -85,11 +85,11 @@
   },
   "paths_notices": {
     "uplink_terrestrial": 131,
-    "space_cofrequency": 157,
-    "uplink_passive": 23,
     "pfd_terrestrial": 158,
     "uplink_uncovered": 44,
+    "space_cofrequency": 157,
     "uplink_space": 132,
+    "uplink_passive": 23,
     "uncovered": 23,
     "passive_service": 3
   },
