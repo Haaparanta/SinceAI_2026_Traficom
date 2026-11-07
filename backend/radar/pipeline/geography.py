@@ -158,6 +158,9 @@ def earth_station_result(stations: list[dict]) -> GeoResult:
 class IssueGeography:
     by_notice: dict[str, GeoResult]                 # space-station visibility, or earth-station notice location
     by_group: dict[str, GeoResult]                  # earth-station location for uplink groups of space notices
+    # every earth station as filed, for the map (geography itself keeps only the nearest one per group)
+    group_stations: dict[str, list[dict]] = field(default_factory=dict)    # group_id -> stations of that group
+    notice_stations: dict[str, dict] = field(default_factory=dict)         # notice_id -> station of an S notice
 
 
 def for_issue(notices: list[Notice], con: duckdb.DuckDBPyConnection) -> IssueGeography:
@@ -210,7 +213,9 @@ def for_issue(notices: list[Notice], con: duckdb.DuckDBPyConnection) -> IssueGeo
             for g in n.groups:
                 if g.direction == "earth_to_space":
                     by_group[g.group_id] = earth_station_result(group_stations.get(g.group_id, []))
-    return IssueGeography(by_notice, by_group)
+    return IssueGeography(by_notice, by_group, group_stations,
+                          {n.notice_id: {**es_notice[n.notice_id], "country": n.administration}
+                           for n in notices if n.notice_id in es_notice})
 
 
 def group_relevance(geo: IssueGeography, notice_id: str, group_id: str, direction: str) -> GeoResult:
