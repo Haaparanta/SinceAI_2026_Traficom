@@ -124,12 +124,16 @@ test("overview: whole-issue charts", async ({ page }, info) => {
   test.skip(step !== "overview");
   await page.goto("/");
   await page.getByRole("tab", { name: "Overview" }).click();
+  await expect(page.getByRole("tab", { name: "Overview" })).toHaveAttribute("aria-selected", "true");
+  await page.waitForTimeout(400);                                   // the tab highlight fades in (transition-colors)
   await expect(page.locator("svg[aria-label^='Geostationary arc'] [data-finding]").first()).toBeVisible();
   await page.getByRole("region", { name: "Issue overview" }).scrollIntoViewIfNeeded();
   if (info.project.name === "phone") await page.getByRole("region", { name: "Issue overview" }).screenshot({ path: `../docs/screenshots/${step}/1-space-${info.project.name}.png` });
   else await page.screenshot({ path: `../docs/screenshots/${step}/1-space-${info.project.name}.png` });
   await page.getByRole("tab", { name: "Terrestrial 3076" }).click();
   await page.getByRole("tab", { name: "Overview" }).click();
+  await expect(page.getByRole("tab", { name: "Overview" })).toHaveAttribute("aria-selected", "true");
+  await page.waitForTimeout(400);                                   // the tab highlight fades in (transition-colors)
   await expect(page.locator("svg[aria-label='Flagged findings by frequency and concern'] [data-finding]").first()).toBeVisible();
   if (info.project.name === "phone") await page.getByRole("region", { name: "Issue overview" }).screenshot({ path: `../docs/screenshots/${step}/2-terrestrial-${info.project.name}.png` });
   else await page.screenshot({ path: `../docs/screenshots/${step}/2-terrestrial-${info.project.name}.png` });
