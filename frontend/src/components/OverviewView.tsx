@@ -1,8 +1,8 @@
 import type { KeyboardEvent } from "react";
 import { CONCERN_LABEL } from "../api";
-import type { AnalysisBundle, Concern, Region } from "../types";
+import type { AnalysisBundle, Concern } from "../types";
 
-// Whole-issue view: every flagged finding at once. Colour encodes the concern level (status), always with a legend and a
+// Whole-issue view: every flagged finding at once (positions on a map are in OverviewMap, the All on map tab). Colour encodes the concern level (status), always with a legend and a
 // text label on hover and focus; clicking or pressing Enter on a mark selects that finding. Every position comes from
 // the cache (the GSO arc is computed by radar.pipeline.geography in scripts/build_cache.py), never from the screen.
 
@@ -130,52 +130,7 @@ function ArcOverview({ bundle, selected, onSelect }: { bundle: AnalysisBundle; s
   );
 }
 
-/** Every flagged foreign station around Finland, and the special-interest stations they share a channel with. */
-function StationMap({ bundle, region, selected, onSelect }: { bundle: AnalysisBundle; region: Region | null; selected: string | null; onSelect: (id: string) => void }) {
-  const V = { lon0: 8, lon1: 38.5, lat0: 52, lat1: 71.5 };    // further east the region file's clip edge shows
-  const W = 640;
-  const H = Math.round((W * (V.lat1 - V.lat0)) / ((V.lon1 - V.lon0) * Math.cos((62 * Math.PI) / 180)));
-  const x = (lon: number) => ((lon - V.lon0) / (V.lon1 - V.lon0)) * W;
-  const y = (lat: number) => ((V.lat1 - lat) / (V.lat1 - V.lat0)) * H;
-  const flagged = bundle.result.findings.filter((f) => f.concern !== "none" && bundle.context[f.id]?.notice.lat != null);
-  const inView = flagged.filter((f) => { const n = bundle.context[f.id].notice; return n.lon >= V.lon0 && n.lon <= V.lon1 && n.lat >= V.lat0 && n.lat <= V.lat1; });
-  const stations = new Map<string, { lat: number; lon: number }>();
-  for (const f of flagged) for (const s of bundle.context[f.id].stations ?? []) stations.set(s.number, s);
-  const tri = (cx: number, cy: number) => `${cx.toFixed(1)},${(cy - 5).toFixed(1)} ${(cx + 4.5).toFixed(1)},${(cy + 3.5).toFixed(1)} ${(cx - 4.5).toFixed(1)},${(cy + 3.5).toFixed(1)}`;
-  const order = [...inView].sort((a, b) => ORDER.indexOf(b.concern) - ORDER.indexOf(a.concern));
-  return (
-    <>
-      <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label="Flagged foreign stations around Finland">
-        {region?.features.map((f) => f.geometry.coordinates.map((poly, i) => (
-          <polygon key={`${f.properties.itu}-${i}`} points={poly[0].map(([lo, la]) => `${x(lo).toFixed(1)},${y(la).toFixed(1)}`).join(" ")}
-            fill={f.properties.itu === "FIN" ? "var(--map-footprint)" : "var(--map-land)"}
-            stroke={f.properties.itu === "FIN" ? "var(--map-focus-outline)" : "var(--muted-foreground)"}
-            strokeOpacity={f.properties.itu === "FIN" ? 1 : 0.45} strokeWidth={f.properties.itu === "FIN" ? 1.2 : 0.6} />
-        )))}
-        {[...stations.entries()].map(([num, s]) => (
-          <polygon key={num} points={tri(x(s.lon), y(s.lat))} fill="var(--chart-3)" stroke="var(--card)" strokeWidth={1}>
-            <title>{`Special-interest station ${num}`}</title>
-          </polygon>
-        ))}
-        {order.map((f) => {
-          const n = bundle.context[f.id].notice;
-          const on = f.id === selected;
-          return (
-            <circle key={f.id} cx={x(n.lon)} cy={y(n.lat)} r={on ? 6.5 : 4.5} fill={FILL[f.concern]} stroke={on ? "var(--foreground)" : "var(--card)"}
-              strokeWidth={on ? 2.5 : 1.5} data-finding={f.id} {...activate(onSelect, f.id)}>
-              <title>{`${f.id} ${bundle.context[f.id].title}: ${n.freq_hz ? fmtHz(n.freq_hz) : "frequency unknown"}, ${CONCERN_LABEL[f.concern]}`}</title>
-            </circle>
-          );
-        })}
-      </svg>
-      <p className="text-xs text-muted-foreground">
-        {`Dots: the ${inView.length} flagged stations in this window${flagged.length > inView.length ? ` (${flagged.length - inView.length} more outside it)` : ""}. Triangles: the ${stations.size} special-interest stations on their channels.`}
-      </p>
-    </>
-  );
-}
-
-export function OverviewView({ bundle, region, selected, onSelect }: { bundle: AnalysisBundle; region: Region | null; selected: string | null; onSelect: (id: string) => void }) {
+export function OverviewView({ bundle, selected, onSelect }: { bundle: AnalysisBundle; selected: string | null; onSelect: (id: string) => void }) {
   const flagged = bundle.result.findings.filter((f) => f.concern !== "none");
   const counts: Record<string, number> = {};
   for (const f of flagged) counts[f.concern] = (counts[f.concern] ?? 0) + 1;
@@ -187,15 +142,16 @@ export function OverviewView({ bundle, region, selected, onSelect }: { bundle: A
   return (
     <div className="p-4 space-y-6" aria-label="Issue overview" role="region">
       <Legend counts={counts} />
-      <section aria-label={space ? "Geostationary arc" : "Station map"} className="space-y-2">
-        <h3 className="text-sm font-semibold">{space ? "Geostationary arc seen from Finland" : "Flagged stations around Finland"}</h3>
-        {space ? <ArcOverview bundle={bundle} selected={selected} onSelect={onSelect} />
-          : <StationMap bundle={bundle} region={region} selected={selected} onSelect={onSelect} />}
-      </section>
+      {space && (
+        <section aria-label="Geostationary arc" className="space-y-2">
+          <h3 className="text-sm font-semibold">Geostationary arc seen from Finland</h3>
+          <ArcOverview bundle={bundle} selected={selected} onSelect={onSelect} />
+        </section>
+      )}
       <section aria-label="Frequencies" className="space-y-2">
         <h3 className="text-sm font-semibold">Where in the spectrum</h3>
         {marks.length ? <SpectrumOverview marks={marks} selected={selected} onSelect={onSelect} /> : <p className="text-sm text-muted-foreground">No frequency ranges.</p>}
-        <p className="text-xs text-muted-foreground">{`${marks.length} flagged findings by the lead frequency range, log scale. Hover for details; click to open a finding.`}</p>
+        <p className="text-xs text-muted-foreground">{`${marks.length} flagged findings by the lead frequency range, log scale. Hover for details; click to open a finding. Where the stations are: the All on map tab.`}</p>
       </section>
     </div>
   );

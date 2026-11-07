@@ -23,16 +23,17 @@ test("space: the arc holds every flagged GSO filing and a click opens it", async
   await expect(page.getByRole("heading", { name: b.context[target.id].title }).first()).toBeVisible();
 });
 
-test("terrestrial: the map holds every located flagged station; Enter opens one", async ({ page }) => {
+test("terrestrial: one bar per flagged finding with a frequency; Enter opens one", async ({ page }) => {
   const b = await bundle(page, "terrestrial", 3076);
-  const located = b.result.findings.filter((f) => f.concern !== "none" && b.context[f.id].notice.lat != null);
+  const withFreq = b.result.findings.filter((f) => f.concern !== "none" && (b.context[f.id].group?.freq_min_hz ?? 0) > 0);
   await page.goto("/");
   await page.getByRole("tab", { name: "Terrestrial 3076" }).click();
   await page.getByRole("tab", { name: "Overview" }).click();
-  const map = page.locator("svg[aria-label='Flagged foreign stations around Finland']");
-  await expect(map.locator("[data-finding]")).toHaveCount(located.length);
-  const target = located.find((f) => f.concern === "high")!;
-  await map.locator(`[data-finding='${target.id}']`).focus();
+  await expect(page.locator("svg[aria-label^='Geostationary arc']")).toHaveCount(0);
+  const bars = page.locator("svg[aria-label='Flagged findings by frequency and concern'] [data-finding]");
+  await expect(bars).toHaveCount(withFreq.length);
+  const target = withFreq.find((f) => f.concern === "high")!;
+  await bars.and(page.locator(`[data-finding='${target.id}']`)).focus();
   await page.keyboard.press("Enter");
   await expect(page.getByRole("heading", { name: b.context[target.id].title }).first()).toBeVisible();
 });

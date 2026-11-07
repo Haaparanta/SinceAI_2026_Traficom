@@ -8,13 +8,14 @@ import { ErrorBoundary } from "./components/ErrorBoundary";
 import { FindingCard } from "./components/FindingCard";
 import { OverviewView } from "./components/OverviewView";
 import { MapView } from "./components/MapView";
+import { OverviewMap } from "./components/OverviewMap";
 import { RankedList } from "./components/RankedList";
 import { SpectrumView } from "./components/SpectrumView";
 import { ThemeSwitch } from "./components/ThemeSwitch";
 import { Card, Empty, Segmented, Stat } from "./components/ui";
 import type { AnalysisBundle, AuditEntry, IssueInfo, Kind, RefPoint, Region } from "./types";
 
-type Tab = "overview" | "spectrum" | "map" | "calculation" | "audit";
+type Tab = "summary" | "spectrum" | "map" | "overview" | "calculation" | "audit";
 const REVIEWER_KEY = "filing-radar.reviewer";
 
 function storedReviewer(): string {
@@ -141,10 +142,11 @@ export default function App() {
             <Card className="min-h-0 overflow-y-auto">
               <div className="p-3 border-b border-border flex items-center gap-3">
                 <Segmented label="Central view" value={tab} onChange={setTab}
-                  options={[{ value: "overview", label: "Overview" }, { value: "spectrum", label: "Spectrum" }, { value: "map", label: "Map" }, { value: "calculation", label: "Calculation" }, { value: "audit", label: "Audit log" }]} />
+                  options={[{ value: "summary", label: "Overview" }, { value: "spectrum", label: "Spectrum" }, { value: "map", label: "Map" }, { value: "overview", label: "All on map" }, { value: "calculation", label: "Calculation" }, { value: "audit", label: "Audit log" }]} />
               </div>
-              <ErrorBoundary key={`${tab}-${selected}`} label="view">
-              {tab === "overview" ? <OverviewView bundle={bundle} region={region} selected={selected} onSelect={setSelected} />
+              <ErrorBoundary key={tab === "overview" || tab === "summary" ? tab : `${tab}-${selected}`} label="view">
+              {tab === "summary" ? <OverviewView bundle={bundle} selected={selected} onSelect={setSelected} />
+                : tab === "overview" ? <OverviewMap bundle={bundle} region={region} selected={selected} onSelect={setSelected} />
                 : tab === "audit" ? <AuditLogView kind={bundle.result.kind} issue={bundle.result.issue} version={auditVersion} onSelect={setSelected} />
                 : !finding || !ctx ? <Empty>Select a finding.</Empty>
                 : tab === "spectrum" ? <SpectrumView ctx={ctx} />
