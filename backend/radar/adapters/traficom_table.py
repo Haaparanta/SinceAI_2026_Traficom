@@ -96,6 +96,23 @@ def evidence(band: FinnishSubBand, evidence_id: str) -> Evidence:
     )
 
 
+M4_SOURCE = ("Traficom Regulation M4, Radio Frequency Regulation 4 AG/2026 M (Finlex, traficom-viestinta 2026/3); "
+             "its frequency allocation table as published in the Taajuusjakotaulukko API")
+M4_LOCATOR_PREFIX = "M4 4 AG/2026 M, Taajuusjakotaulukko.ID="
+
+
+def m4_evidence(band: FinnishSubBand, evidence_id: str) -> Evidence:
+    """The regulation behind a Finnish-table match: Regulation M4 sets the Finnish use of the sub-band.
+    evidence_check rebuilds the excerpt from the same snapshot row."""
+    return Evidence(
+        id=evidence_id,
+        kind="regulation",
+        source=M4_SOURCE,
+        locator=f"{M4_LOCATOR_PREFIX}{band.id}",
+        excerpt=f"Regulation M4: Finnish use of {band.lower_hz}-{band.upper_hz} Hz is {band.services_in_finland}",
+    )
+
+
 def coverage_gaps(bands: tuple[FinnishSubBand, ...]) -> list[tuple[int, int]]:
     """Ranges between the lowest and highest limit that no sub-band covers (union of all rows)."""
     gaps, reach = [], None

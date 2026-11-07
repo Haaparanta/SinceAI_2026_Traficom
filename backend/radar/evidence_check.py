@@ -4,7 +4,8 @@
 * finnish_table_row: rebuild the excerpt from the Traficom snapshot by ID.
 * calculation:       re-run the geography or the pfd for the group and compare the excerpt.
 * regulation:        rebuild the excerpt from data/reference/pfd_limits.csv (the RR Table 21-4 transcription) or
-                     data/reference/plan_arcs.csv (the AP30/30A/30B orbital arcs).
+                     data/reference/plan_arcs.csv (the AP30/30A/30B orbital arcs), or for Regulation M4 from the Traficom
+                     snapshot row it names.
 * plan rows:         a locator prefixed with a plan database tag (SPS_ALL_IFIC3083:grp.grp_id=3412) is reopened in
                      that database; plan_arc(...) recomputes the orbital spacing; geography(plan:...) the GSO look angles.
 
@@ -86,6 +87,9 @@ def check(result: AnalysisResult) -> list[Check]:
             elif e.kind == "finnish_table_row":
                 bid = int(e.locator.split("=", 1)[1])
                 found = traficom_table.evidence(bands[bid], e.id).excerpt if bid in bands else None
+            elif e.kind == "regulation" and e.locator.startswith(traficom_table.M4_LOCATOR_PREFIX):
+                bid = int(e.locator[len(traficom_table.M4_LOCATOR_PREFIX):])
+                found = traficom_table.m4_evidence(bands[bid], e.id).excerpt if bid in bands else None
             elif e.kind == "regulation" and e.locator.startswith("pfd_limits.csv id="):
                 rid = e.locator.split("=", 1)[1]
                 row = next((r for r in PFD.limits() if r.id == rid), None)

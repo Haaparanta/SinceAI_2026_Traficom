@@ -27,7 +27,7 @@ or the API. The root [README](../README.md#development) has the same options for
 | Overview tab: the whole issue; space: the geostationary arc seen from Finland with every flagged GSO filing; both: flagged findings across the spectrum by concern (positions are on the All on map tab). Click or Enter opens a finding | `src/components/OverviewView.tsx` |
 | Spectrum tab: the lead group against the Finnish table rows | `src/components/SpectrumView.tsx` |
 | Map tab: reference points and elevations, or the station and its path to the border | `src/components/MapView.tsx` |
-| All on map tab: every located datapoint of the issue (terrestrial stations, earth stations, special-interest stations) over Finland and its neighbours, with type, concern, review state and filters; clicking one selects its finding | `src/components/OverviewMap.tsx` |
+| All on map tab: every located datapoint of the issue over Finland and its neighbours (every terrestrial notice raised or not, every earth station, every special-interest station, from the cache key `map` and `earth_stations`; older cache files fall back to what the findings carry), with type, concern, review state and filters; clicking one selects its finding | `src/components/OverviewMap.tsx` |
 | Calculation tab: inputs with evidence links, formula, result, limit, margin | `src/components/CalcTraceView.tsx` |
 | Finding card: concern, reason, every evidence item, score factors | `src/components/FindingCard.tsx` |
 | Decision: approve, investigate, dismiss with a required note; the finding's history | `src/components/DecisionPanel.tsx` |

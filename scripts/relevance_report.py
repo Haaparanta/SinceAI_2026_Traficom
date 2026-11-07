@@ -20,6 +20,7 @@ import duckdb  # noqa: E402
 
 from radar import report_html as R  # noqa: E402
 from radar.adapters import space_ific, traficom_table  # noqa: E402
+from radar.adapters import special_interest as SI  # noqa: E402
 from radar.config import settings  # noqa: E402
 from radar.pipeline import relevance as rel  # noqa: E402
 
@@ -45,8 +46,8 @@ def fmt_hz(hz: float) -> str:
     return f"{hz:g} Hz"
 
 
-def funnel_table(rows) -> str:
-    g, n = rel.funnel(rows, "group"), rel.funnel(rows, "notice")
+def funnel_table(rows, station_hits=None) -> str:
+    g, n = rel.funnel(rows, "group", station_hits), rel.funnel(rows, "notice", station_hits)
     top_g, top_n = g[0][1] or 1, n[0][1] or 1
     out = []
     for (label, cg), (_, cn) in zip(g, n):
@@ -131,6 +132,12 @@ def main() -> int:
         named = rel.finland_named(con)
     bands = traficom_table.subbands()
     rows = rel.screen(ing.notices, bands, named=named)
+    # Special-interest stations: a second screen with the sheet, used only for the station counts, so the funnel,
+    # the paths and the seeded hand-check cases above stay the frequency-only screen (tests/golden/space_3074.yaml).
+    stations = list(SI.stations())
+    station_hits = ({r.group_id: r.matched_station_numbers for r in rel.screen(ing.notices, bands, stations=stations, named=named)
+                     if r.matched_station_numbers} if stations else None)
+    stations_hit = len({s for v in (station_hits or {}).values() for s in v})
     by_notice = {n.notice_id: n for n in ing.notices}
     bands_by_id = {b.id: b for b in bands}
     classes = {b.id: rel.classify(b.services_in_finland) for b in bands}
@@ -168,11 +175,12 @@ def main() -> int:
         R.tiles([("groups screened", f"{len(rows):,}"), ("candidate groups", f"{sum(r.candidate for r in rows):,}"),
                  ("space-to-Earth groups kept", f"{100 * kept_share:.1f} %"),
                  ("notices the Bureau lists Finland against", str(len(named_notices))),
-                 ("special-interest stations", "WAITING for XLS")])
+                 ("special-interest stations overlapped (before geography)",
+                  f"{stations_hit:,} of {len({s.station_number for s in stations}):,}" if stations else "sheet missing")])
         + "<h2>Funnel</h2><p class='sub'>Frequency alone keeps almost every downlink: satellites file in satellite bands, "
           "and Finland allocates the same bands to satellite and terrestrial services. This is expected, not a join error "
           "(bounds and direction are tested). The ranking must therefore rest on geography (B3), pfd (C1) and the Bureau's "
-          "own list of affected administrations, shown below.</p>" + funnel_table(rows)
+          "own list of affected administrations, shown below.</p>" + funnel_table(rows, station_hits)
         + "<h2>Concern paths</h2>" + R.table(["Path", "Kind", "Groups", "Notices"], path_rows)
         + "<h2>Notices where the Bureau lists Finland as affected</h2><p class='sub'>From <code>provn.adm = 'FIN'</code>. "
           "These are the ITU's own identification and should rank first for review.</p>"
@@ -182,7 +190,8 @@ def main() -> int:
           "<code>tests/golden/space_3074.yaml</code>.</p>" + legend + cases_html
     )
     summary = {
-        "status": status, "issue": issue, "funnel_groups": rel.funnel(rows, "group"), "funnel_notices": rel.funnel(rows, "notice"),
+        "status": status, "issue": issue, "funnel_groups": rel.funnel(rows, "group", station_hits), "funnel_notices": rel.funnel(rows, "notice", station_hits),
+        "special_interest": {"stations": len({s.station_number for s in stations}), "overlapped_before_geography": stations_hit},
         "paths_groups": dict(paths), "paths_notices": dict(path_notices),
         "space_to_earth_kept_share": round(kept_share, 4), "overlap_wider_than_group": bad_overlap,
         "uplink_candidates_without_bureau_naming": e2s_candidates, "finland_named_notices": named_notices,
