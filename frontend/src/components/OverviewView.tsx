@@ -107,8 +107,8 @@ function ArcOverview({ bundle, selected, onSelect }: { bundle: AnalysisBundle; s
             <text x={left - 6} y={y(e) + 4} textAnchor="end" className="fill-muted-foreground text-[11px]">{`${e}°`}</text>
           </g>
         ))}
-        <text x={left + 6} y={y(10) - 4} className="fill-muted-foreground text-[11px]">low elevation below 10°</text>
-        <text x={W - right - 4} y={y(0) - 4} textAnchor="end" className="fill-muted-foreground text-[11px]">horizon: not visible below</text>
+        <text x={left + 6} y={y(10) - 4} className="fill-muted-foreground text-[11px]">low elevation</text>
+        <text x={left + 6} y={y(0) - 4} className="fill-muted-foreground text-[11px]">horizon</text>
         <path d={path} fill="none" stroke="var(--primary)" strokeWidth={2} />
         {gso.filter((f) => { const l = bundle.context[f.id].notice.longitude_deg as number; return l >= LON0 && l <= LON1; }).map((f) => {
           const c = bundle.context[f.id];
@@ -124,7 +124,7 @@ function ArcOverview({ bundle, selected, onSelect }: { bundle: AnalysisBundle; s
         })}
       </svg>
       <p className="text-xs text-muted-foreground">
-        {`Line: highest elevation of the geostationary arc from any Finnish reference point; peak ${peak?.max_elevation_deg.toFixed(1)} deg at ${peak?.lon} E (${peak?.point}). Dots: the ${gso.length} flagged GSO filings at their filed longitude${outside ? `, ${outside} outside this window` : ""}. Non-GSO and earth-station filings are not on the arc.`}
+        {`Line: highest elevation of the geostationary arc from any Finnish reference point; peak ${peak?.max_elevation_deg.toFixed(1)} deg at ${peak?.lon} E (${peak?.point}). Dots: the ${gso.length} flagged GSO filings at their filed longitude${outside ? `, ${outside} outside this window` : ""}. Below the horizon a satellite cannot be seen; below 10 deg the elevation is low. Non-GSO and earth-station filings are not on the arc.`}
       </p>
     </>
   );
@@ -132,7 +132,7 @@ function ArcOverview({ bundle, selected, onSelect }: { bundle: AnalysisBundle; s
 
 /** Every flagged foreign station around Finland, and the special-interest stations they share a channel with. */
 function StationMap({ bundle, region, selected, onSelect }: { bundle: AnalysisBundle; region: Region | null; selected: string | null; onSelect: (id: string) => void }) {
-  const V = { lon0: 8, lon1: 40, lat0: 52, lat1: 71.5 };      // east of 40 E the region file is clipped
+  const V = { lon0: 8, lon1: 38.5, lat0: 52, lat1: 71.5 };    // further east the region file's clip edge shows
   const W = 640;
   const H = Math.round((W * (V.lat1 - V.lat0)) / ((V.lon1 - V.lon0) * Math.cos((62 * Math.PI) / 180)));
   const x = (lon: number) => ((lon - V.lon0) / (V.lon1 - V.lon0)) * W;
