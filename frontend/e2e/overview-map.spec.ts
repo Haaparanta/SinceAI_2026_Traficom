@@ -123,3 +123,22 @@ test("with every earth station: a filing's stations are all drawn, and a shared 
   await expect(page.getByLabel("Selected datapoint")).toContainText("Named by 2 findings");
   await expect(page.getByLabel("Selected datapoint").getByRole("button", { name: target })).toBeVisible();
 });
+
+test("space 3074: every finding without a ground position is listed with the reason, and selects its finding", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("tab", { name: "All on map" }).click();
+  const counted = Number(await page.getByLabel("Map counts").locator("dd").nth(2).innerText());
+  expect(counted).toBeGreaterThan(0);
+  const rows = page.getByRole("list", { name: "Findings without a ground position" }).getByRole("button");
+  await expect(rows).toHaveCount(counted);                                   // all filters on: every one is listed
+  await expect(rows.filter({ hasText: /geostationary satellite at [\d.]+ [EW]/ }).first()).toBeVisible();
+  const row = rows.first();
+  const id = (await row.locator(".num").first().innerText()).trim();
+  await row.click();
+  await expect(page.locator("main").getByText(id, { exact: true }).first()).toBeVisible();
+  await expect(row).toHaveAttribute("aria-current", "true");
+
+  // The concern filter applies to this list too.
+  await page.getByRole("group", { name: "Concern", exact: true }).getByRole("button", { name: /Not raised/ }).click();
+  expect(await rows.count()).toBeLessThan(counted);
+});
