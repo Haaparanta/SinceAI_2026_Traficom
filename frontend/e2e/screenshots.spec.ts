@@ -119,3 +119,13 @@ test("terrestrial-stations: field strength at a special-interest station", async
   await map.scrollIntoViewIfNeeded();
   await page.screenshot({ path: `../docs/screenshots/${step}/1-map-${info.project.name}.png` });
 });
+
+test("heights: effective antenna height in the field-strength report", async ({ page }, info) => {
+  test.skip(step !== "heights");
+  const proof = new URL("../../results/proof/", import.meta.url).href;
+  await page.goto(`${proof}3076/02_field_strength.html`);
+  const heading = page.getByRole("heading", { name: "Transmitting antenna height h1" });
+  await expect(heading).toBeVisible();
+  await heading.evaluate((el) => el.scrollIntoView({ block: "start" }));
+  await page.screenshot({ path: `../docs/screenshots/${step}/1-h1-table-${info.project.name}.png` });
+});
